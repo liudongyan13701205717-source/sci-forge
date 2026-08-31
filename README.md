@@ -55,16 +55,29 @@ inject_results（实验数据并入 results）      export_document（LaTeX/PDF/
 要求 Python ≥ 3.10。
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/liudongyan13701205717-source/clawsgo-science-mcp.git
 cd clawsgo-science-mcp
 pip install -e .            # 最小安装（只带 MCP 本体）
 
-# 需要复现线时，装上运行依赖：
+# 需要复现线时，装上运行依赖（推荐）：
 pip install -e ".[reproduce,dev]"
 ```
 
-> 复现线沙箱执行需要 NumPy / Matplotlib（`reproduce` extra）；LaTeX→PDF 需要本机
-> `xelatex`/`pdflatex`（没有时会自动用内置的 PyMuPDF 渲染出 PDF）。
+**依赖说明**：
+
+| 依赖 | 用途 | 必需？ |
+| --- | --- | --- |
+| `mcp>=1.29.0` | MCP 协议与 FastMCP 运行 | ✅ 必需（base） |
+| `pymupdf` | 论文 PDF 解析 | 复现线 |
+| `numpy` / `matplotlib` | 沙箱执行复现代码、绘制收敛图 | 复现线 |
+| 本机 `xelatex`/`pdflatex` | LaTeX→PDF 导出 | 可选（缺省时自动用内置 PyMuPDF 渲染出 PDF） |
+
+**验证安装**：
+
+```bash
+python -m clawsgo_self.server --help 2>&1 | Out-Null   # 能启动即安装成功（stdio server）
+python -m pytest tests/ -q                              # 跑内置测试，应全绿
+```
 
 ### 在 opencode / Claude Code 中配置
 
@@ -177,6 +190,18 @@ python -m pytest tests/ -q      # 40 项，全离线可跑（文献/复现用模
 ```
 
 测试覆盖四条线上的单元 + stdio 端到端（真实 spawn MCP server 并调用工具）。
+
+---
+
+## 反馈与贡献
+
+遇到 bug、功能建议或有任何问题，欢迎通过 **GitHub Issues** 反馈：
+
+👉 [https://github.com/liudongyan13701205717-source/clawsgo-science-mcp/issues](https://github.com/liudongyan13701205717-source/clawsgo-science-mcp/issues)
+
+- 🐛 **Bug**：请附上复现步骤、报错信息（含 `File "...", line ...` 堆栈）与相关 `paper_id`/`task_id`。
+- 💡 **Feature**：说明你的使用场景与期望行为。
+- 🤝 **Contribute**：Fork 后提 PR 即可；请先运行 `python -m pytest tests/ -q` 确保全绿。
 
 ---
 
