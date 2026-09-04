@@ -28,7 +28,7 @@ import asyncio, os
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-ROOT = r"F:\opencode工坊"
+ROOT = r"F:\opencode工坊\clawsgo"
 
 async def main():
     env = dict(os.environ); env["PYTHONPATH"] = ROOT
@@ -60,11 +60,11 @@ asyncio.run(main())
     "clawsgo-self": {
       "type": "local",
       "command": ["C:\\Python314\\python.exe", "-m", "clawsgo_self.server"],
-      "cwd": "F:\\opencode工坊",
+      "cwd": "F:\\opencode工坊\\clawsgo",
       "enabled": true,
       "environment": {
         "CLAWSGO_SELF_ENV": "dev",
-        "PYTHONPATH": "F:\\opencode工坊"
+        "PYTHONPATH": "F:\\opencode工坊\\clawsgo"
       }
     }
   }
