@@ -7,6 +7,7 @@
 - 🧪 **复现线** — 拿到一篇论文 PDF，五步闭环复现：解析 → 方案 → 生成代码 → 沙箱运行比对 → 产出交付物
 - ✍️ **写作线** — 按章节引导生成论文内容，导出 LaTeX / PDF / DOCX
 - 🔬 **研究线** — 构思 → 选题 → 多视角假设辩论 → 实验设计 → 结果自旋门决策
+- 🧭 **科研/论文线** — 研究计划书、文献综述、标题/摘要提炼、模拟同行评审、投稿匹配、论文润色
 - 📦 **交付线** — 把复现/写作的全部实物（源码/数据/报告/图/导出物）分门别类交付
 
 **特色：免 API key。** 文献检索用 OpenAlex 免鉴权接口（覆盖 arXiv 预印本），LLM 能力为**可选增强**——没有 LLM 时自动回退到本地模板，整条链路仍然可用。
@@ -26,6 +27,12 @@
 | `ideate_paper` | 研究 | 构思→选题→研究缺口→候选假设→多视角评审→实验计划 |
 | `inject_results` | 研究 | 把复现的真实实验结果并入论文对应章节 |
 | `research_verdict` | 研究 | 结果自旋门：PROCEED / REFINE / PIVOT 决策建议 |
+| `research_plan` | 科研/论文 | 完整研究计划书（RQ/假设/目标/贡献/方法/数据/里程碑/风险） |
+| `literature_review` | 科研/论文 | 文献综述（OpenAlex 免 key 检索：代表文献/聚类/缺口/结构） |
+| `auto_title_abstract` | 科研/论文 | 从正文提炼标题/摘要/关键词 |
+| `peer_review` | 科研/论文 | 模拟同行评审（4 维评分 + 推荐 + 优缺点/修改建议） |
+| `venue_suggest` | 科研/论文 | 投稿/期刊匹配（内置映射库 + 可选 LLM） |
+| `paper_polish` | 科研/论文 | 润色/一致性/完整性检查 |
 | `get_deliverables` | 交付 | 列出任务（复现/写作）的交付物清单，按类型分类 |
 
 ### 全链路：从构思到论文
@@ -104,7 +111,7 @@ python -m pytest tests/ -q                              # 跑内置测试，应�
 
 > 用**绝对路径**指向解释器与工作区，避免命中系统自带的 Python Store 占位符。
 
-重启客户端后即可看到全部 8 个工具。
+重启客户端后即可看到全部 14 个工具。
 
 ---
 
@@ -143,13 +150,30 @@ inject_results("my_proj", tid)    # 把真实指标表 + 收敛图写进 my_proj
 get_deliverables(tid)             # 拿到复现的全部交付物
 ```
 
+### 4. 科研/论文全流程（无 key，agent 直接成文）
+
+```text
+ideate_paper(topic, paper_id)          # 选题与缺口
+research_plan(topic, paper_id)         # 研究计划书
+literature_review(topic, paper_id)     # 文献综述
+# 由 agent 依 WRITING_PROTOCOL 用 write_section 写满各章完整正文（无 LLM 配置）
+auto_title_abstract(paper_id)          # 提炼标题/摘要/关键词
+peer_review(paper_id)                  # 模拟审稿，据意见修订
+paper_polish(paper_id, "completeness") # 完整性检查
+paper_polish(paper_id, "grammar")      # 语言润色
+venue_suggest(topic, paper_id)         # 投稿建议
+export_document(paper_id, "pdf")       # 终版导出
+```
+
+> 快速起一个可写作的论文项目：`python scripts/agent_write_paper.py <paper_id> --topic "..."`。
+
 ---
 
 ## 架构
 
 ```
 clawsgo_self/
-├── server.py        # MCP stdio server，注册全部 8 个工具
+├── server.py        # MCP stdio server，注册全部 14 个工具
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
 ├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline
@@ -158,7 +182,8 @@ clawsgo_self/
 │   └── pipeline.py  #   编排五步，产出 results.json / plan.json / deliverables/
 ├── write/           # 写作：doc(DocStore)/templates/validate
 ├── export/          # 导出：md→latex/html/docx + PDF 渲染
-├── research/        # 研究线：lit(OpenAlex 免 key 检索)/ideate/hypoth/design/inject
+├── research/        # 研究线：lit/ideate/hypoth/design/inject
+│   └── (plan/survey/extract/review/venue/polish  # 新增科研/论文六工具)
 └── deliver/         # 交付：get_deliverables（源码/数据/报告/图 分类）
 ```
 
@@ -189,7 +214,7 @@ MODEL=...
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest tests/ -q      # 40 项，全离线可跑（文献/复现用模拟数据）
+python -m pytest tests/ -q      # 48 项，全离线可跑（文献/复现用模拟数据）
 ```
 
 测试覆盖四条线上的单元 + stdio 端到端（真实 spawn MCP server 并调用工具）。

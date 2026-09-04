@@ -141,6 +141,104 @@ def research_verdict(task_id: str) -> dict:
     return _impl(task_id=task_id, layout=get_layout())
 
 
+@mcp.tool()
+def research_plan(
+    topic: str,
+    paper_id: str,
+) -> dict:
+    """研究计划书：由选题展开成完整研究计划（RQ/假设/目标/贡献/方法/数据/
+    基线/指标/消融/里程碑/风险），可复用已有 ideation/experiment plan。
+
+    Args:
+        topic: 研究方向/主题/关键词。
+        paper_id: 论文/项目标识（产物存 projects/{paper_id}/research/research_plan.*）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.plan import research_plan as _impl
+
+    return _impl(topic=topic, paper_id=paper_id, layout=get_layout()).to_dict()
+
+
+@mcp.tool()
+def literature_review(
+    topic: str,
+    paper_id: str,
+) -> dict:
+    """文献综述：基于免 key OpenAlex 检索生成综述框架（代表文献/主题聚类/
+    研究缺口/综述结构），可直接作为 related work 素材。
+
+    Args:
+        topic: 综述主题/关键词。
+        paper_id: 论文/项目标识（产物存 projects/{paper_id}/research/literature_review.*）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.survey import literature_review as _impl
+
+    return _impl(topic=topic, paper_id=paper_id, layout=get_layout()).to_dict()
+
+
+@mcp.tool()
+def auto_title_abstract(paper_id: str) -> dict:
+    """标题/摘要/关键词提炼：从已写正文自动生成投稿所需元数据。
+
+    Args:
+        paper_id: 论文/项目标识（产物存 projects/{paper_id}/research/metadata.*）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.extract import auto_title_abstract as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout()).to_dict()
+
+
+@mcp.tool()
+def peer_review(paper_id: str) -> dict:
+    """模拟同行评审：对已有论文生成结构化审稿意见（novelty/rigor/clarity/
+    soundness 评分 + 推荐 + 优点/缺点/修改建议）。
+
+    Args:
+        paper_id: 论文/项目标识（产物存 projects/{paper_id}/research/peer_review.*）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.review import peer_review as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout()).to_dict()
+
+
+@mcp.tool()
+def venue_suggest(
+    topic: str,
+    paper_id: str,
+) -> dict:
+    """投稿建议：根据主题/关键词推荐目标期刊与会议（内置映射库 + 可选 LLM）。
+
+    Args:
+        topic: 研究方向/主题/关键词。
+        paper_id: 论文/项目标识（产物存 projects/{paper_id}/research/venue_suggest.*）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.venue import venue_suggest as _impl
+
+    return _impl(topic=topic, paper_id=paper_id, layout=get_layout()).to_dict()
+
+
+@mcp.tool()
+def paper_polish(
+    paper_id: str,
+    mode: str = "completeness",
+) -> dict:
+    """论文润色与检查：对已有正文做质量检查并产出建议。
+
+    Args:
+        paper_id: 论文/项目标识。
+        mode: 检查模式，`completeness`(完整性) / `consistency`(一致性) /
+            `grammar`(语言润色)，默认 completeness。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.polish import paper_polish as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout(), mode=mode).to_dict()
+
+
 def run() -> None:
     mcp.run()
 

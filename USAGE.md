@@ -46,7 +46,7 @@ async def main():
 asyncio.run(main())
 ```
 
-输出能看到 8 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
+输出能看到 14 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
 
 ---
 
@@ -79,9 +79,11 @@ asyncio.run(main())
 
 1. **完全退出 opencode 进程**（关掉整个终端/窗口，不是只关标签页），再重新打开。
    → 否则旧进程仍持有修改前的 MCP 配置。
-2. 重启后，8 个工具应出现在可用工具列表：
+2. 重启后，14 个工具应出现在可用工具列表（复现 2 + 写作 2 + 研究 6 + 新增科研/论文 6）：
    `reproduce_paper / reproduce_status / write_section / export_document /
-    ideate_paper / inject_results / research_verdict / get_deliverables`
+    ideate_paper / inject_results / research_verdict / get_deliverables /
+    research_plan / literature_review / auto_title_abstract / peer_review /
+    venue_suggest / paper_polish`
 3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `clawsgo-self` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 
@@ -126,7 +128,54 @@ get_deliverables(paper_id="explain_llm")
 
 ---
 
-## 4. 常见问题
+## 4. 无 Key 成文（方案 A：agent 直接成文）——科研/论文推荐工作流
+
+本复刻**不配置任何 LLM API key**，论文正文由 **agent（opencode 等）直接用当前对话模型
+写出完整章节**，再由本地工具导出。这与"对话中自然调用 write_section"等价，区别在于：
+每个章节都写成完整正文（不依赖 server 端模板占位），从而导出内容是真实论文而非骨架。
+
+### 初始化脚手架（生成章节占位 + 成文协议）
+
+```bash
+# 在项目根，cwd 指向 clawsgo
+python scripts/agent_write_paper.py <paper_id> --topic "研究方向"
+```
+
+脚本会创建 `projects/<paper_id>/sections/*.md` 空章节占位 + 重建 `doc.md`，
+并输出一份 10 章节的**成文清单**，同时写入 `WRITING_PROTOCOL.md` 记录无 key 契约。
+
+### 科研/论文新增六工具（聚焦"全部科研、论文"）
+
+| 工具 | 作用 | 落盘 |
+| --- | --- | --- |
+| `research_plan(topic, paper_id)` | 完整研究计划书（RQ/假设/目标/贡献/方法/数据/基线/里程碑/风险） | `research/research_plan.{json,md}` |
+| `literature_review(topic, paper_id)` | 文献综述（OpenAlex 免 key 检索：代表文献/聚类/缺口/结构） | `research/literature_review.{json,md}` |
+| `auto_title_abstract(paper_id)` | 从正文提炼标题/摘要/关键词 | `research/metadata.{json,md}` |
+| `peer_review(paper_id)` | 模拟同行评审（4 维评分 + 推荐 + 优缺点/修改建议） | `research/peer_review.{json,md}` |
+| `venue_suggest(topic, paper_id)` | 投稿/期刊匹配（内置映射库 + 可选 LLM） | `research/venue_suggest.{json,md}` |
+| `paper_polish(paper_id, mode)` | 润色/一致性/完整性检查（mode: completeness/consistency/grammar） | `research/polish_{mode}.{json,md}` |
+
+这些工具无 LLM 时**全部走确定性模板/映射/规则**，可独立产出有价值结果；配置了
+`CLAWSGO_SELF_LLM_*` 环境变量后会自动升级为模型增强。
+
+### 端到端科研-论文链路建议
+
+```text
+ideate_paper(topic, paper_id)          # 选题与缺口
+research_plan(topic, paper_id)         # 研究计划书
+literature_review(topic, paper_id)     # 文献综述（related work 素材）
+# agent 依 WRITING_PROTOCOL 用 write_section 写满各章完整正文
+auto_title_abstract(paper_id)          # 提炼标题/摘要/关键词
+peer_review(paper_id)                  # 模拟审稿，据意见修订
+paper_polish(paper_id, "completeness") # 检查完整性
+paper_polish(paper_id, "grammar")      # 语言润色
+venue_suggest(topic, paper_id)         # 投稿建议
+export_document(paper_id, "pdf")       # 终版导出
+```
+
+---
+
+## 5. 常见问题
 
 | 现象 | 原因 | 处理 |
 | --- | --- | --- |
@@ -137,8 +186,8 @@ get_deliverables(paper_id="explain_llm")
 
 ---
 
-## 5. 测试
+## 6. 测试
 
 ```bash
-python -m pytest tests/ -q   # 40 项，全离线可跑
+python -m pytest tests/ -q   # 48 项，全离线可跑
 ```

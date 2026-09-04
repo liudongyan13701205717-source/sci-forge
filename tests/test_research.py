@@ -159,3 +159,113 @@ def test_verdict_pivot_on_failure(tmp_path):
     )
     v = decision_readout(task_id=tid, layout=layout)
     assert v["verdict"] == "PIVOT"
+
+
+# ---- 新增科研/论文六工具 ----
+
+def _write_doc(layout: Layout, paper_id: str, text: str) -> None:
+    store = DocStore(layout, paper_id)
+    store.sections_dir.mkdir(parents=True, exist_ok=True)
+    store.write_section("introduction", text, fmt="markdown")
+
+
+def test_research_plan_template(tmp_path):
+    from clawsgo_self.research.plan import research_plan
+
+    layout = _layout(tmp_path)
+    r = research_plan("大语言模型可解释性", paper_id="p_rp", layout=layout)
+    assert r.ok is True
+    assert r.llm_used is False
+    assert r.hypotheses and r.objectives and r.milestones
+    md = r.to_markdown()
+    assert "研究计划书" in md and "里程碑" in md
+    assert (layout.project_dir("p_rp") / "research" / "research_plan.json").exists()
+
+
+def test_literature_review_offline_template(tmp_path, monkeypatch):
+    from clawsgo_self.research.survey import literature_review
+
+    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    layout = _layout(tmp_path)
+    r = literature_review("可解释性", paper_id="p_lr", layout=layout)
+    assert r.ok is True
+    assert r.keyworks
+    assert r.gaps and r.outline  # 离线也能产出确定性综述框架
+    assert (layout.project_dir("p_lr") / "research" / "literature_review.json").exists()
+
+
+def test_venue_suggest_mapping(tmp_path):
+    from clawsgo_self.research.venue import venue_suggest
+
+    layout = _layout(tmp_path)
+    r = venue_suggest("大语言模型可解释性与概念探针", paper_id="p_v", layout=layout)
+    assert r.ok is True
+    assert r.matches  # 命中可解释性映射
+    assert any("ICLR" in m["name"] or "NeurIPS" in m["name"] for m in r.matches)
+    assert (layout.project_dir("p_v") / "research" / "venue_suggest.json").exists()
+
+
+def test_auto_title_abstract_heuristic(tmp_path):
+    from clawsgo_self.research.extract import auto_title_abstract
+
+    layout = _layout(tmp_path)
+    body = (
+        "# 探针辅助的注意力归因方法\n\n"
+        "## 摘要\n本工作提出一种轻量可解释方法。\n\n"
+        "## 关键词\n注意力归因, 概念探针, 大语言模型\n\n"
+        "## 引言\n我们关注模型可解释性。"
+    )
+    _write_doc(layout, "p_meta", body)
+    r = auto_title_abstract(paper_id="p_meta", layout=layout)
+    assert r.ok is True
+    assert r.title == "探针辅助的注意力归因方法"
+    assert "轻量可解释" in r.abstract
+    assert "注意力归因" in r.keywords
+
+
+def test_peer_review_scores_and_recommendation(tmp_path):
+    from clawsgo_self.research.review import peer_review
+
+    layout = _layout(tmp_path)
+    body = (
+        "# 标题\n\n## 摘要\n摘要内容足够长。" * 2 +
+        "\n\n## 引言\n motivation 与背景介绍段落内容。" * 3 +
+        "\n\n| 方法 | 精度 |\n| --- | --- |\n| 基线 | 0.9 |\n| 本文 | 0.95 |\n" +
+        "\n\n![fig1](x.png)\n\n[1] arxiv:1234.5678"
+    )
+    _write_doc(layout, "p_pr", body)
+    r = peer_review(paper_id="p_pr", layout=layout)
+    assert r.ok is True
+    assert {"novelty", "rigor", "clarity", "soundness"} <= set(r.scores)
+    assert r.recommendation in ("Accept (with minor)", "Minor Revision", "Major Revision", "Reject")
+    assert (layout.project_dir("p_pr") / "research" / "peer_review.json").exists()
+
+
+def test_paper_polish_completeness_flags_missing(tmp_path):
+    from clawsgo_self.research.polish import paper_polish
+
+    layout = _layout(tmp_path)
+    # 只写引言，缺结果/结论/引用
+    _write_doc(layout, "p_pol", "# 引言\n内容内容内容。")
+    r = paper_polish(paper_id="p_pol", layout=layout, mode="completeness")
+    assert r.ok is True
+    assert r.issues and isinstance(r.score, float)
+    assert any("结果" in i or "结论" in i or "参考文献" in i for i in r.issues)
+
+
+def test_paper_polish_empty_error(tmp_path):
+    from clawsgo_self.research.polish import paper_polish
+
+    layout = _layout(tmp_path)
+    r = paper_polish(paper_id="ghost_pol", layout=layout)
+    assert r.ok is False
+    assert "尚无正文" in r.error
+
+
+def test_peer_review_empty_error(tmp_path):
+    from clawsgo_self.research.review import peer_review
+
+    layout = _layout(tmp_path)
+    r = peer_review(paper_id="ghost_pr", layout=layout)
+    assert r.ok is False
+    assert "尚无正文" in r.error
