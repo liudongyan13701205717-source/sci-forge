@@ -50,6 +50,9 @@ inject_results（实验数据并入 results）      export_document（LaTeX/PDF/
 
 ## 快速开始
 
+> 👉 **想让 MCP 在 opencode 里自动启动并在对话中自然调用？** 详见 [**USAGE.md**](./USAGE.md)
+> （含：自启动验证脚本、opencode 连接步骤、对话式端到端论文生成示例、常见问题）。
+
 ### 安装
 
 要求 Python ≥ 3.10。
