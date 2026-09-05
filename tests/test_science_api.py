@@ -36,6 +36,7 @@ def test_science_list_dbs_by_domain(monkeypatch):
 
 def test_science_search_hits(monkeypatch):
     monkeypatch.setattr(api, "get_registry", _reg)
+    monkeypatch.setattr(api, "_offline", lambda: False)
     r = api.science_search("openalex", "test", limit=5)
     assert r["ok"] is True
     assert r["database"] == "openalex"
@@ -70,6 +71,7 @@ def test_science_fetch_not_supported(monkeypatch):
 
 def test_science_cross_lookup_merges(monkeypatch):
     monkeypatch.setattr(api, "get_registry", _reg)
+    monkeypatch.setattr(api, "_offline", lambda: False)
     r = api.science_cross_lookup("test", databases=["openalex", "uniprot"], limit=5)
     assert r["ok"] is True
     assert r["total"] >= 2
@@ -79,6 +81,7 @@ def test_science_cross_lookup_merges(monkeypatch):
 
 def test_cross_lookup_normal_shape(monkeypatch):
     monkeypatch.setattr(api, "get_registry", _reg)
+    monkeypatch.setattr(api, "_offline", lambda: False)
     r = api.cross_lookup("test", databases=["openalex"], limit=5)
     assert len(r) == 1
     assert r[0]["title"] == "T"

@@ -46,7 +46,7 @@ async def main():
 asyncio.run(main())
 ```
 
-输出能看到 20 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
+输出能看到 24 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
 
 ---
 
@@ -83,14 +83,15 @@ asyncio.run(main())
 
 1. **完全退出 opencode 进程**（关掉整个终端/窗口，不是只关标签页），再重新打开。
    → 否则旧进程仍持有修改前的 MCP 配置。
-2. 重启后，20 个工具应出现在可用工具列表
-   （复现 2 + 写作 2 + 研究/科研 16）：
+2. 重启后，24 个工具应出现在可用工具列表
+   （复现 2 + 写作 2 + 研究/科研 16 + 科学数据 4）：
    `reproduce_paper / reproduce_status / write_section / export_document /
     ideate_paper / inject_results / research_verdict / get_deliverables /
     research_plan / literature_review / auto_title_abstract / peer_review /
     venue_suggest / paper_polish /
     compare_metrics / check_novelty / package_submission /
-    citation_landscape / project_memory / review_code`
+    citation_landscape / project_memory / review_code /
+    science_list_dbs / science_search / science_fetch / science_cross_lookup`
 3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `clawsgo-self` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 
@@ -211,5 +212,41 @@ export_document(paper_id, "pdf")       # 终版导出
 ## 6. 测试
 
 ```bash
-python -m pytest tests/ -q   # 61 项，全离线可跑
+python -m pytest tests/ -q   # 全量测试，全离线可跑
+```
+
+---
+
+## 7. 科学数据查询
+
+通过 41 个连接器覆盖 7 大领域（literature / proteins / chemistry / genomics / pathways / omics / datasets），提供 4 个 MCP 工具：
+
+### 列出可用数据库
+
+```text
+science_list_dbs()                          # 列出全部 41 个数据库
+science_list_dbs("literature")              # 仅列出 literature 领域的数据库
+```
+
+### 单库搜索
+
+```text
+science_search("openalex", "transformer attention", limit=5)   # 搜索 OpenAlex
+science_search("uniprot", "BRCA1", limit=3)                   # 搜索 UniProt
+science_search("chembl", "aspirin", limit=5)                  # 搜索 ChEMBL
+```
+
+### 按 ID 获取记录
+
+```text
+science_fetch("openalex", "W123456789")            # 获取 OpenAlex 记录
+science_fetch("uniprot", "P53_HUMAN")              # 获取 UniProt 记录
+science_fetch("rcsb-pdb", "1ABC")                  # 获取 PDB 结构
+```
+
+### 多库联合查询
+
+```text
+science_cross_lookup("BRCA1", databases=["uniprot", "mygene"], limit=3)   # 多库查 BRCA1
+science_cross_lookup("aspirin")                                             # 全库搜索
 ```

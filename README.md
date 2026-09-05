@@ -40,6 +40,10 @@
 | `package_submission` | 交付 | 投稿材料打包（zip + Cover Letter + Checklist） |
 | `review_code` | 交付 | 复现代码静态点评（种子/硬编码/风险 + 可信度分） |
 | `get_deliverables` | 交付 | 列出任务（复现/写作）的交付物清单，按类型分类 |
+| `science_list_dbs` | 科学数据 | 列出可用数据库（按领域筛选） |
+| `science_search` | 科学数据 | 单库搜索 |
+| `science_fetch` | 科学数据 | 按 ID 获取记录 |
+| `science_cross_lookup` | 科学数据 | 多库联合查询 |
 
 ### 全链路：从构思到论文
 
@@ -119,7 +123,7 @@ python -m pytest tests/ -q                              # 跑内置测试，应�
 > 用**绝对路径**指向解释器与工作区，避免命中系统自带的 Python Store 占位符。
 > 建议显式加 `"timeout"`（毫秒），避免冷启动被误判为掉线而出现"需要手动 connect"。
 
-重启客户端后即可看到全部 20 个工具。
+重启客户端后即可看到全部 24 个工具。
 
 ---
 
@@ -181,7 +185,7 @@ export_document(paper_id, "pdf")       # 终版导出
 
 ```
 clawsgo_self/
-├── server.py        # MCP stdio server，注册全部 20 个工具
+├── server.py        # MCP stdio server，注册全部 24 个工具
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
 ├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline + codereview 静态点评
@@ -192,8 +196,32 @@ clawsgo_self/
 ├── export/          # 导出：md→latex/html/docx + PDF 渲染
 ├── research/        # 研究线：lit/ideate/hypoth/design/inject + stats/bench/novelty/community
 │   └── (plan/survey/extract/review/venue/polish  # 科研/论文工具集)
-└── deliver/         # 交付：get_deliverables + package_submission（投稿打包）
+├── deliver/         # 交付：get_deliverables + package_submission（投稿打包）
+└── science/         # 科学数据查询：41 个连接器，覆盖文献/蛋白/化学/基因组/通路/组学/数据集
 ```
+
+## 科学数据查询（science）
+
+通过 41 个连接器，覆盖 7 大领域的公开科学数据库：
+
+| 领域 | 连接器 |
+| --- | --- |
+| literature | openalex, arxiv, biorxiv, crossref, europepmc, pubmed, semantic-scholar |
+| proteins | uniprot, rcsb-pdb, pdbe, alphafold, interpro, sifts |
+| chemistry | chembl, pubchem, chebi, bindingdb, gtopdb, surechembl |
+| genomics | ensembl, eutils, mygene, myvariant, clinvar, dbsnp, gnomad |
+| pathways | biogrid, intact, kegg, opentargets, reactome |
+| omics | arrayexpress, depmap, expression-atlas, geo, gtex, hpa |
+| datasets | zenodo, doaj, openaire, huggingface |
+
+提供 4 个 MCP 工具：
+
+| 工具 | 描述 |
+| --- | --- |
+| `science_list_dbs(domain?)` | 列出可用数据库，可按领域筛选 |
+| `science_search(database, query, limit)` | 单库搜索 |
+| `science_fetch(database, id, format)` | 按 ID 获取记录 |
+| `science_cross_lookup(query, databases?, limit)` | 多库联合查询 |
 
 ### 存储布局
 
@@ -223,10 +251,10 @@ MODEL=...
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest tests/ -q      # 61 项，全离线可跑（文献/复现用模拟数据）
+python -m pytest tests/ -q      # 全量测试，全离线可跑（文献/复现用模拟数据）
 ```
 
-测试覆盖四条线上的单元 + stdio 端到端（真实 spawn MCP server 并调用工具）。
+测试覆盖四条线上的单元 + stdio 端到端（真实 spawn MCP server 并调用工具）+ 科学数据连接器。
 
 ---
 
