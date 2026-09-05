@@ -163,6 +163,7 @@ def check_novelty(
     paper_id: str,
     layout: Layout,
     limit: int = 8,
+    sources: list[str] | None = None,
 ) -> NoveltyResult:
     """创新性检查：检索相似工作并给出差异点。"""
     r = NoveltyResult(ok=False, paper_id=paper_id)
@@ -174,16 +175,20 @@ def check_novelty(
     phrases = _extract_phrases(title, abstract)
     r.phrases = phrases
 
-    queries = [title] if title else [abstract[:120]]
-    if len(phrases) >= 3:
-        queries.append(" ".join(phrases[:4]))
-    if len(phrases) >= 5:
-        queries.append(" ".join(phrases[4:7]))
+    from clawsgo_self.science.api import cross_lookup
+    if sources:
+        papers = cross_lookup(" ".join(phrases), databases=sources, limit=limit)
+    else:
+        queries = [title] if title else [abstract[:120]]
+        if len(phrases) >= 3:
+            queries.append(" ".join(phrases[:4]))
+        if len(phrases) >= 5:
+            queries.append(" ".join(phrases[4:7]))
 
-    papers: list[dict] = []
-    for q in queries[:3]:
-        hits = lit.search_openalex(q, limit=limit)
-        papers.extend(hits)
+        papers = []
+        for q in queries[:3]:
+            hits = lit.search_openalex(q, limit=limit)
+            papers.extend(hits)
     papers = lit.dedupe(papers)
     if not papers:
         r.offline = True

@@ -97,6 +97,7 @@ def citation_landscape(
     paper_id: str,
     layout: Layout,
     doi_or_topic: str,
+    sources: list[str] | None = None,
 ) -> CitationLandscape:
     """引文热度分析：DOI 用 OpenAlex 精确查；否则按主题检索。"""
     r = CitationLandscape(ok=False, paper_id=paper_id, source=doi_or_topic)
@@ -116,7 +117,11 @@ def citation_landscape(
             r.notes.append(f"以 DOI 定位到「{seed.get('title','')[:60]}」，"
                            f"被引 {seed.get('cited_by',0)}。")
     else:
-        works = lit.search_openalex(doi_or_topic, limit=40)
+        from clawsgo_self.science.api import cross_lookup
+        if sources:
+            works = cross_lookup(doi_or_topic, databases=sources, limit=40)
+        else:
+            works = lit.search_openalex(doi_or_topic, limit=40)
         if not works:
             r.offline = lit._offline()
             r.notes.append("主题检索无结果（离线或关键词过冷门）。")

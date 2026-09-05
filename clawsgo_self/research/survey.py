@@ -64,10 +64,15 @@ def literature_review(
     paper_id: str,
     layout: Layout,
     limit: int = 10,
+    sources: list[str] | None = None,
 ) -> LiteratureReview:
     r = LiteratureReview(ok=False, topic=topic)
     notes: list = []
-    papers = lit.search_openalex(topic, limit=limit)
+    from clawsgo_self.science.api import cross_lookup
+    if sources:
+        papers = cross_lookup(topic, databases=sources, limit=limit)
+    else:
+        papers = lit.search_openalex(topic, limit=limit)
     papers = lit.dedupe(papers)
     r.papers = papers
     if not papers:
