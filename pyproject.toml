@@ -1,0 +1,35 @@
+[project]
+name = "sci-forge"
+version = "0.1.0"
+description = "SciForge — 论文复现/写作助力/端到端交付的 MCP server（独立自建，不依赖任何官方）"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.29.0",
+]
+
+[project.optional-dependencies]
+reproduce = [
+    "pymupdf>=1.24",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+]
+export = [
+    # LaTeX→PDF 可选引擎（xelatex/pdflatex）；无编辑器时自动用内置 PyMuPDF 渲染
+]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+sci-forge = "sciforge.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sciforge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
