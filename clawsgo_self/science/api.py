@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 from clawsgo_self.science import get_registry
 from clawsgo_self.science.http import _offline
 
@@ -56,7 +55,7 @@ def science_fetch(database: str, id: str, format: str = "") -> dict:
 
 
 def cross_lookup(query: str, databases: list[str], limit: int = 5) -> list[dict]:
-    seen: set = set()
+    seen: set[str] = set()
     out = []
     for db in databases:
         r = science_search(db, query, limit=limit)

@@ -8,7 +8,7 @@ from clawsgo_self.science.http import http_get_json, http_get_text
 
 
 def _truncate(inv_index) -> str:
-    if not inv_index:
+    if not inv_index or not isinstance(inv_index, dict):
         return ""
     pos = {}
     for word, idxs in inv_index.items():

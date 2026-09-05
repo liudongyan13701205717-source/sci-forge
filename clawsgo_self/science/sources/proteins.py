@@ -31,8 +31,8 @@ def _uniprot_search(query, limit):
     return out
 
 
-def _uniprot_fetch(id, format):
-    if format == "fasta":
+def _uniprot_fetch(id, fmt=""):
+    if fmt == "fasta":
         url = f"https://rest.uniprot.org/uniprotkb/{id}.fasta"
         text = http_get_text(url)
         return {"format": "fasta", "data": text or ""}

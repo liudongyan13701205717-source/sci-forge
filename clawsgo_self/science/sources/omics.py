@@ -3,7 +3,7 @@
 import urllib.parse
 from clawsgo_self.science import register as _register
 from clawsgo_self.science.connector import Connector
-from clawsgo_self.science.http import http_get_json, http_get_text
+from clawsgo_self.science.http import http_get_json
 
 
 def _arrayexpress_search(query, limit):
@@ -106,6 +106,8 @@ def _gtex_search(query, limit):
     if not data:
         return []
     items = data.get("data", [data]) if isinstance(data, dict) else data
+    if not isinstance(items, list):
+        items = [items]
     out = []
     for d in items[:limit]:
         tissue = d.get("tissueSiteDetailId", "")
@@ -129,6 +131,8 @@ def _hpa_search(query, limit):
     if not data:
         return []
     items = data.get("data", data) if isinstance(data, dict) else data
+    if not isinstance(items, list):
+        items = [items]
     out = []
     for d in items[:limit]:
         out.append({

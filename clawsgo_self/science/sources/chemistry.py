@@ -3,7 +3,7 @@ from __future__ import annotations
 import urllib.parse
 from clawsgo_self.science import register as _register
 from clawsgo_self.science.connector import Connector
-from clawsgo_self.science.http import http_get_json, http_get_text
+from clawsgo_self.science.http import http_get_json
 
 
 def _chembl_search(query, limit):
