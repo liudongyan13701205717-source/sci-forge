@@ -46,7 +46,7 @@ def _new_params():
     env["PYTHONPATH"] = _PROJECT_ROOT + os.pathsep + env.get("PYTHONPATH", "")
     return StdioServerParameters(
         command=sys.executable,
-        args=["-m", "clawsgo_self.server"],
+        args=["-m", "sciforge.server"],
         cwd=_PROJECT_ROOT,
         env=env,
     )

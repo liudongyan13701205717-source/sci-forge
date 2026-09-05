@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "abstract": {
+      "format": "latex"
+    },
+    "introduction": {
+      "format": "latex"
+    }
+  },
+  "order": [
+    "abstract",
+    "introduction",
+    "problem",
+    "assumptions",
+    "notation",
+    "modeling",
+    "solution",
+    "results",
+    "references",
+    "appendix"
+  ]
+}

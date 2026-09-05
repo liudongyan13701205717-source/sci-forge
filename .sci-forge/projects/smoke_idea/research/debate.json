@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "reviews": [
+    {
+      "title": "大语言模型的轻量化可解释方法：面向资源受限场景的高效方法",
+      "hypothesis": "在同等精度下，针对「大语言模型的轻量化可解释方法」的轻量化方案能大幅降低计算/参数开销",
+      "scores": {
+        "novelty": 6.0,
+        "rigor": 5.5,
+        "feasibility": 7.0
+      },
+      "strengths": [
+        "设计紧凑结构并用公开基准对比基线"
+      ],
+      "weaknesses": [
+        "未经验证，需实验支撑"
+      ],
+      "weighted": 6.15,
+      "rank": 1
+    }
+  ],
+  "recommendation": "推荐第 1 名「大语言模型的轻量化可解释方法：面向资源受限场景的高效方法」（加权 6.15）",
+  "notes": [],
+  "error": "",
+  "llm_used": false
+}

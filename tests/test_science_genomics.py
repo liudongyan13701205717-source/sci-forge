@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science import get_registry
-from clawsgo_self.science.sources import genomics
+from sciforge.science import get_registry
+from sciforge.science.sources import genomics
 
 
 def test_genomics_registers_7():
@@ -13,7 +13,7 @@ def test_genomics_registers_7():
 def test_ensembl_search_parses(monkeypatch):
     fake = [{"id": "ENSG00000139618", "display_name": "BRCA2", "species": "homo_sapiens",
              "biotype": "protein_coding"}]
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json",
                         lambda url, **kw: fake)
     genomics.register()
     c = get_registry().get("ensembl")
@@ -30,7 +30,7 @@ def test_eutils_search_parses(monkeypatch):
         if "esearch" in url:
             return search_fake
         return summ_fake
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json", fake_json)
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json", fake_json)
     genomics.register()
     c = get_registry().get("eutils")
     hits = c.search("TP53", 5)
@@ -41,7 +41,7 @@ def test_eutils_search_parses(monkeypatch):
 def test_mygene_search_parses(monkeypatch):
     fake = {"hits": [{"_id": "7157", "symbol": "TP53", "name": "tumor protein p53",
                       "taxid": 9606, "entrezgene": "7157"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json",
                         lambda url, **kw: fake)
     genomics.register()
     c = get_registry().get("mygene")
@@ -52,7 +52,7 @@ def test_mygene_search_parses(monkeypatch):
 
 def test_myvariant_search_parses(monkeypatch):
     fake = {"hits": [{"_id": "chr17:7577121:G:A", "dbsnp": {"rsid": "rs12345"}}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json",
                         lambda url, **kw: fake)
     genomics.register()
     c = get_registry().get("myvariant")
@@ -69,7 +69,7 @@ def test_clinvar_search_parses(monkeypatch):
         if "esearch" in url:
             return search_fake
         return summ_fake
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json", fake_json)
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json", fake_json)
     genomics.register()
     c = get_registry().get("clinvar")
     hits = c.search("BRCA1", 5)
@@ -84,7 +84,7 @@ def test_dbsnp_search_parses(monkeypatch):
         if "esearch" in url:
             return search_fake
         return summ_fake
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json", fake_json)
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json", fake_json)
     genomics.register()
     c = get_registry().get("dbsnp")
     hits = c.search("rs12345", 5)
@@ -94,7 +94,7 @@ def test_dbsnp_search_parses(monkeypatch):
 
 def test_gnomad_search_parses(monkeypatch):
     fake = {"data": {"variant": {"variantId": "1-55516888-G-A", "consequence": "missense"}}}
-    monkeypatch.setattr("clawsgo_self.science.sources.genomics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.genomics.http_get_json",
                         lambda url, **kw: fake)
     genomics.register()
     c = get_registry().get("gnomad")

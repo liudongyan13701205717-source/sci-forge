@@ -6,10 +6,10 @@ import zipfile
 
 import pymupdf
 
-from clawsgo_self.core import Layout
-from clawsgo_self.export import convert, docx as _docx, render
-from clawsgo_self.export.api import export_document
-from clawsgo_self.write.api import write_section
+from sciforge.core import Layout
+from sciforge.export import convert, docx as _docx, render
+from sciforge.export.api import export_document
+from sciforge.write.api import write_section
 
 _SAMPLE = """## 摘要
 

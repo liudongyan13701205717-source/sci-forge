@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science import get_registry
-from clawsgo_self.science.sources import datasets
+from sciforge.science import get_registry
+from sciforge.science.sources import datasets
 
 
 def test_datasets_registers_4():
@@ -15,7 +15,7 @@ def test_zenodo_search_parses(monkeypatch):
         {"id": 12345, "metadata": {"title": "My Dataset", "description": "desc",
                                     "creators": [{"name": "Lee"}]}}
     ]}}
-    monkeypatch.setattr("clawsgo_self.science.sources.datasets.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.datasets.http_get_json",
                         lambda url, **kw: fake)
     datasets.register()
     c = get_registry().get("zenodo")
@@ -31,7 +31,7 @@ def test_doaj_search_parses(monkeypatch):
                      "journal": {"title": "PLOS ONE"},
                      "author": [{"name": "Kim"}], "abstract": "open science"}}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.datasets.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.datasets.http_get_json",
                         lambda url, **kw: fake)
     datasets.register()
     c = get_registry().get("doaj")
@@ -45,7 +45,7 @@ def test_openaire_search_parses(monkeypatch):
     fake = {"response": {"results": {"result": [
         {"metadata": {"oaf:entity": {"oaf:result":
             {"title": {"$": "EU Project"}}}}}]}}}
-    monkeypatch.setattr("clawsgo_self.science.sources.datasets.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.datasets.http_get_json",
                         lambda url, **kw: fake)
     datasets.register()
     c = get_registry().get("openaire")
@@ -59,7 +59,7 @@ def test_huggingface_search_parses(monkeypatch):
         {"id": "squad", "title": "SQuAD", "description": "QA dataset",
          "author": "stanford", "downloads": 100000, "likes": 500}
     ]
-    monkeypatch.setattr("clawsgo_self.science.sources.datasets.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.datasets.http_get_json",
                         lambda url, **kw: fake)
     datasets.register()
     c = get_registry().get("huggingface")

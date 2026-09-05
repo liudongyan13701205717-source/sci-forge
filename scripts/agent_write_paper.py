@@ -1,6 +1,6 @@
 """方案 A 固化脚本：初始化一个"由 agent 直接成文"的论文项目脚手架。
 
-背景：ClawsGO Science 复刻不配置任何 LLM API key。论文正文由 agent（opencode
+背景：SciForge不配置任何 LLM API key。论文正文由 agent（opencode
 等）直接用当前对话模型写入项目章节文件，再调用 export_document 导出 PDF/LaTeX。
 本脚本负责：
   1) 按 DocStore 的 SECTION_ORDER 创建空章节文件（占位，避免 export 报"无章节"）；
@@ -25,8 +25,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from clawsgo_self.core import get_layout
-from clawsgo_self.write.doc import DocStore
+from sciforge.core import get_layout
+from sciforge.write.doc import DocStore
 
 _SECTION_ORDER = DocStore.SECTION_ORDER
 
@@ -45,8 +45,8 @@ _HEADINGS = {
 
 _PROTOCOL = """# 无 Key 成文协议（方案 A：agent 直接成文）
 
-ClawsGO Science 复刻**不配置**任何 LLM API key。论文正文由 agent 用当前对话模型
-直接写入项目章节，再由 clawsgo 本地工具导出。
+SciForge**不配置**任何 LLM API key。论文正文由 agent 用当前对话模型
+直接写入项目章节，再由 sciforge 本地工具导出。
 
 ## 步骤
 1. 运行 `python scripts/agent_write_paper.py <paper_id>` 生成脚手架。

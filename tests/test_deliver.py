@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from clawsgo_self.core import Layout
-from clawsgo_self.deliver.api import get_deliverables
-from clawsgo_self.write.api import write_section
+from sciforge.core import Layout
+from sciforge.deliver.api import get_deliverables
+from sciforge.write.api import write_section
 
 
 def _make_task_dir(layout, tid):
@@ -45,7 +45,7 @@ def test_deliverables_project(tmp_path):
     layout = Layout(tmp_path)
     layout.ensure()
     write_section("doc9", "abstract", "测试论文要点", layout=layout)
-    from clawsgo_self.export.api import export_document
+    from sciforge.export.api import export_document
 
     export_document("doc9", "pdf", layout=layout)
     r = get_deliverables(paper_id="doc9", layout=layout)

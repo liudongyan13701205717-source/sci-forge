@@ -9,8 +9,8 @@ import json
 
 import pytest
 
-from clawsgo_self.core import Layout, get_layout
-from clawsgo_self.write.doc import DocStore
+from sciforge.core import Layout, get_layout
+from sciforge.write.doc import DocStore
 
 _MOCK_PAPERS = [
     {"title": "Interpretability of Large Models", "year": 2023,
@@ -30,7 +30,7 @@ def _layout(tmp_path) -> Layout:
 
 
 def test_ideate_produces_gaps_rq_candidates(tmp_path):
-    from clawsgo_self.research.ideate import ideate
+    from sciforge.research.ideate import ideate
 
     r = ideate(
         "大语言模型的轻量化可解释方法",
@@ -44,7 +44,7 @@ def test_ideate_produces_gaps_rq_candidates(tmp_path):
 
 
 def test_ideate_rejects_empty_topic(tmp_path):
-    from clawsgo_self.research.ideate import ideate
+    from sciforge.research.ideate import ideate
 
     r = ideate("   ", layout=_layout(tmp_path), paper_id="p_bad", papers=[])
     assert r.ok is False
@@ -52,8 +52,8 @@ def test_ideate_rejects_empty_topic(tmp_path):
 
 
 def test_debate_ranks_and_recommends(tmp_path):
-    from clawsgo_self.research import ideate
-    from clawsgo_self.research.hypoth import debate
+    from sciforge.research import ideate
+    from sciforge.research.hypoth import debate
 
     ir = ideate.ideate(
         "分布式训练", layout=_layout(tmp_path), paper_id="p_d", papers=_MOCK_PAPERS
@@ -66,8 +66,8 @@ def test_debate_ranks_and_recommends(tmp_path):
 
 
 def test_design_produces_plan_markdown(tmp_path):
-    from clawsgo_self.research import ideate
-    from clawsgo_self.research.design import design
+    from sciforge.research import ideate
+    from sciforge.research.design import design
 
     ir = ideate.ideate(
         "图神经网络泛化", layout=_layout(tmp_path), paper_id="p_m", papers=_MOCK_PAPERS
@@ -81,8 +81,8 @@ def test_design_produces_plan_markdown(tmp_path):
 
 
 def test_inject_writes_real_metrics_to_section(tmp_path):
-    from clawsgo_self.core import Layout
-    from clawsgo_self.research.inject import inject_results
+    from sciforge.core import Layout
+    from sciforge.research.inject import inject_results
 
     layout = _layout(tmp_path)
     tid = "task_x"
@@ -118,7 +118,7 @@ def test_inject_writes_real_metrics_to_section(tmp_path):
 
 
 def test_inject_missing_result_raises(tmp_path):
-    from clawsgo_self.research.inject import InjectError, inject_results
+    from sciforge.research.inject import InjectError, inject_results
 
     layout = _layout(tmp_path)
     with pytest.raises(InjectError):
@@ -126,7 +126,7 @@ def test_inject_missing_result_raises(tmp_path):
 
 
 def test_verdict_proceed_when_metrics_and_plot(tmp_path):
-    from clawsgo_self.research.api import decision_readout
+    from sciforge.research.api import decision_readout
 
     layout = _layout(tmp_path)
     tid = "tv"
@@ -149,7 +149,7 @@ def test_verdict_proceed_when_metrics_and_plot(tmp_path):
 
 
 def test_verdict_pivot_on_failure(tmp_path):
-    from clawsgo_self.research.api import decision_readout
+    from sciforge.research.api import decision_readout
 
     layout = _layout(tmp_path)
     tid = "tf"
@@ -170,7 +170,7 @@ def _write_doc(layout: Layout, paper_id: str, text: str) -> None:
 
 
 def test_research_plan_template(tmp_path):
-    from clawsgo_self.research.plan import research_plan
+    from sciforge.research.plan import research_plan
 
     layout = _layout(tmp_path)
     r = research_plan("大语言模型可解释性", paper_id="p_rp", layout=layout)
@@ -183,7 +183,7 @@ def test_research_plan_template(tmp_path):
 
 
 def test_literature_review_offline_template(tmp_path, monkeypatch):
-    from clawsgo_self.research.survey import literature_review
+    from sciforge.research.survey import literature_review
 
     monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
     layout = _layout(tmp_path)
@@ -195,7 +195,7 @@ def test_literature_review_offline_template(tmp_path, monkeypatch):
 
 
 def test_venue_suggest_mapping(tmp_path):
-    from clawsgo_self.research.venue import venue_suggest
+    from sciforge.research.venue import venue_suggest
 
     layout = _layout(tmp_path)
     r = venue_suggest("大语言模型可解释性与概念探针", paper_id="p_v", layout=layout)
@@ -206,7 +206,7 @@ def test_venue_suggest_mapping(tmp_path):
 
 
 def test_auto_title_abstract_heuristic(tmp_path):
-    from clawsgo_self.research.extract import auto_title_abstract
+    from sciforge.research.extract import auto_title_abstract
 
     layout = _layout(tmp_path)
     body = (
@@ -226,7 +226,7 @@ def test_auto_title_abstract_heuristic(tmp_path):
 def test_auto_title_abstract_no_h1_fallback(tmp_path):
     """无一级标题时：标题回退为摘要首句；无关键词行时：中文 n-gram 回退。
     """
-    from clawsgo_self.research.extract import auto_title_abstract
+    from sciforge.research.extract import auto_title_abstract
 
     layout = _layout(tmp_path)
     body = (
@@ -247,7 +247,7 @@ def test_auto_title_abstract_no_h1_fallback(tmp_path):
 
 
 def test_peer_review_scores_and_recommendation(tmp_path):
-    from clawsgo_self.research.review import peer_review
+    from sciforge.research.review import peer_review
 
     layout = _layout(tmp_path)
     body = (
@@ -265,7 +265,7 @@ def test_peer_review_scores_and_recommendation(tmp_path):
 
 
 def test_paper_polish_completeness_flags_missing(tmp_path):
-    from clawsgo_self.research.polish import paper_polish
+    from sciforge.research.polish import paper_polish
 
     layout = _layout(tmp_path)
     # 只写引言，缺结果/结论/引用
@@ -277,7 +277,7 @@ def test_paper_polish_completeness_flags_missing(tmp_path):
 
 
 def test_paper_polish_empty_error(tmp_path):
-    from clawsgo_self.research.polish import paper_polish
+    from sciforge.research.polish import paper_polish
 
     layout = _layout(tmp_path)
     r = paper_polish(paper_id="ghost_pol", layout=layout)
@@ -286,7 +286,7 @@ def test_paper_polish_empty_error(tmp_path):
 
 
 def test_peer_review_empty_error(tmp_path):
-    from clawsgo_self.research.review import peer_review
+    from sciforge.research.review import peer_review
 
     layout = _layout(tmp_path)
     r = peer_review(paper_id="ghost_pr", layout=layout)

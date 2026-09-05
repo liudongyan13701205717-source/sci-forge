@@ -1,19 +1,19 @@
 # 使用指南 (USAGE)
 
-> 本文件说明如何让 `clawsgo-self` MCP 在 opencode / Claude Code 中**自动启动并自然调用**，
+> 本文件说明如何让 `sci-forge` MCP 在 opencode / Claude Code 中**自动启动并自然调用**，
 > 以及如何验证 server 自启正常。
 
 ---
 
 ## 1. 快速验证：server 能否自动启动
 
-`clawsgo-self` 是 `type: local` 的 stdio MCP。只要配置正确，客户端会**自动 spawn** 一个
+`sci-forge` 是 `type: local` 的 stdio MCP。只要配置正确，客户端会**自动 spawn** 一个
 子进程并连接，无需任何手动操作。
 
 ### 命令行自检（30 秒）
 
 ```bash
-C:\Python314\python.exe -c "import clawsgo_self.server; print('import ok')"
+C:\Python314\python.exe -c "import sciforge.server; print('import ok')"
 ```
 
 能打印 `import ok` 即说明包、依赖、路径都正常。
@@ -28,13 +28,13 @@ import asyncio, os
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-ROOT = r"F:\opencode工坊\clawsgo"
+ROOT = r"F:\opencode工坊\sciforge"
 
 async def main():
     env = dict(os.environ); env["PYTHONPATH"] = ROOT
     params = StdioServerParameters(
         command=r"C:\Python314\python.exe",
-        args=["-m", "clawsgo_self.server"],
+        args=["-m", "sciforge.server"],
         cwd=ROOT, env=env,
     )
     async with stdio_client(params) as (r, w):
@@ -57,15 +57,15 @@ asyncio.run(main())
 ```jsonc
 {
   "mcp": {
-    "clawsgo-self": {
+    "sci-forge": {
       "type": "local",
-      "command": ["C:\\Python314\\python.exe", "-m", "clawsgo_self.server"],
-      "cwd": "F:\\opencode工坊\\clawsgo",
+      "command": ["C:\\Python314\\python.exe", "-m", "sciforge.server"],
+      "cwd": "F:\\opencode工坊\\sciforge",
       "enabled": true,
       "timeout": 120000,
       "environment": {
-        "CLAWSGO_SELF_ENV": "dev",
-        "PYTHONPATH": "F:\\opencode工坊\\clawsgo"
+        "SCIFORGE_ENV": "dev",
+        "PYTHONPATH": "F:\\opencode工坊\\sciforge"
       }
     }
   }
@@ -74,7 +74,7 @@ asyncio.run(main())
 
 关键点：
 - **用绝对路径**指向解释器与工作区（不要用裸 `python`，避免命中系统 Store 占位符）。
-- `cwd` 与 `PYTHONPATH` 都指向项目根，保证能 import 到 `clawsgo_self` 包。
+- `cwd` 与 `PYTHONPATH` 都指向项目根，保证能 import 到 `sciforge` 包。
 - `timeout` 设为 `120000`（毫秒）：opencode 默认首次连接超时只有几秒，冷启动 / 工具
   列表初始化较慢时会被误判为"掉线"（表现为需要手动 connect）。显式加大超时即可保证
   **自动拉起**。
@@ -92,7 +92,7 @@ asyncio.run(main())
     compare_metrics / check_novelty / package_submission /
     citation_landscape / project_memory / review_code /
     science_list_dbs / science_search / science_fetch / science_cross_lookup`
-3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `clawsgo-self` 点 **connect**（一次性）。
+3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `sci-forge` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 
 > opencode 对 `type: local` MCP 是**懒加载**：首次真正调用工具时才拉起进程，之后本会话内自动复用。
@@ -145,7 +145,7 @@ get_deliverables(paper_id="explain_llm")
 ### 初始化脚手架（生成章节占位 + 成文协议）
 
 ```bash
-# 在项目根，cwd 指向 clawsgo
+# 在项目根，cwd 指向 sciforge
 python scripts/agent_write_paper.py <paper_id> --topic "研究方向"
 ```
 
@@ -164,7 +164,7 @@ python scripts/agent_write_paper.py <paper_id> --topic "研究方向"
 | `paper_polish(paper_id, mode)` | 润色/一致性/完整性检查（mode: completeness/consistency/grammar） | `research/polish_{mode}.{json,md}` |
 
 这些工具无 LLM 时**全部走确定性模板/映射/规则**，可独立产出有价值结果；配置了
-`CLAWSGO_SELF_LLM_*` 环境变量后会自动升级为模型增强。
+`SCIFORGE_LLM_*` 环境变量后会自动升级为模型增强。
 
 ### 成果分析与交付六工具（科研进阶）
 
@@ -200,7 +200,7 @@ export_document(paper_id, "pdf")       # 终版导出
 
 | 现象 | 原因 | 处理 |
 | --- | --- | --- |
-| 工具列表里没有 `clawsgo-self` | opencode 未重启 / 未 connect | 完全退出重启；或 `/mcp` → connect |
+| 工具列表里没有 `sci-forge` | opencode 未重启 / 未 connect | 完全退出重启；或 `/mcp` → connect |
 | 启动报错 `ModuleNotFoundError` | `PYTHONPATH` 或 `cwd` 未指向项目根 | 核对配置中的绝对路径 |
 | 首次打开出现"需要手动 connect" | 默认连接/枚举超时太短，冷启动被误判掉线 | 配置 `"timeout": 120000` 后完全重启 opencode |
 | 调用超时 / 卡住 | 首次冷启动 | 稍等 1–2s 重试 |

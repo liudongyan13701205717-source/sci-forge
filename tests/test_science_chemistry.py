@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science import get_registry
-from clawsgo_self.science.sources import chemistry
+from sciforge.science import get_registry
+from sciforge.science.sources import chemistry
 
 
 def test_chemistry_registers_6():
@@ -15,7 +15,7 @@ def test_chembl_search_parses(monkeypatch):
         {"molecule_chembl_id": "CHEMBL123", "pref_name": "Aspirin",
          "molecule_structures": {"canonical_smiles": "CC(=O)OC1=CC=CC=C1C(O)=O"}}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.chemistry.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.chemistry.http_get_json",
                         lambda url, **kw: fake)
     chemistry.register()
     c = get_registry().get("chembl")
@@ -34,7 +34,7 @@ def test_pubchem_search_parses(monkeypatch):
         if "cids" in url:
             return fake_cids
         return fake_prop
-    monkeypatch.setattr("clawsgo_self.science.sources.chemistry.http_get_json", fake_json)
+    monkeypatch.setattr("sciforge.science.sources.chemistry.http_get_json", fake_json)
     chemistry.register()
     c = get_registry().get("pubchem")
     hits = c.search("acetaminophen", 5)
@@ -44,7 +44,7 @@ def test_pubchem_search_parses(monkeypatch):
 
 def test_chebi_search_parses(monkeypatch):
     fake = {"List": {"item": [{"chebiId": "CHEBI:12345", "chebiAsciiName": "Caffeine"}]}}
-    monkeypatch.setattr("clawsgo_self.science.sources.chemistry.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.chemistry.http_get_json",
                         lambda url, **kw: fake)
     chemistry.register()
     c = get_registry().get("chebi")

@@ -1,7 +1,7 @@
 import pytest
-from clawsgo_self.science import register, get_registry
-from clawsgo_self.science.connector import Connector
-from clawsgo_self.science.sources import literature
+from sciforge.science import register, get_registry
+from sciforge.science.connector import Connector
+from sciforge.science.sources import literature
 
 
 def test_literature_registers_7():
@@ -28,7 +28,7 @@ def test_openalex_search_parses(monkeypatch):
          "authorships": [{"author": {"display_name": "Smith"}}],
          "cited_by_count": 42, "abstract_inverted_index": None}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("openalex")
@@ -52,7 +52,7 @@ def test_arxiv_search_parses(monkeypatch):
     <link rel="alternate" href="http://arxiv.org/abs/2301.00001"/>
   </entry>
 </feed>"""
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_text",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_text",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("arxiv")
@@ -66,7 +66,7 @@ def test_biorxiv_search_parses(monkeypatch):
         {"title": "COVID Study", "doi": "10.1101/2023.01.01",
          "abstract": "virus research", "category": "microbiology"}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("biorxiv")
@@ -82,7 +82,7 @@ def test_crossref_search_parses(monkeypatch):
          "container-title": ["Science"],
          "author": [{"given": "Jane", "family": "Doe"}]}
     ]}}
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("crossref")
@@ -99,7 +99,7 @@ def test_europepmc_search_parses(monkeypatch):
          "pubYear": "2021", "journalInfo": {"journal": {"title": "Cell"}},
          "authorString": "Lee K", "citedByCount": 10}
     ]}}
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("europepmc")
@@ -121,7 +121,7 @@ def test_pubmed_search_parses(monkeypatch):
         if "esearch" in url:
             return search_fake
         return summ_fake
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         fake_json)
     literature.register()
     c = get_registry().get("pubmed")
@@ -137,7 +137,7 @@ def test_semantic_scholar_search_parses(monkeypatch):
          "venue": "NeurIPS", "citationCount": 500,
          "externalIds": {"DOI": "10.1234/attn"}}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.literature.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.literature.http_get_json",
                         lambda url, **kw: fake)
     literature.register()
     c = get_registry().get("semantic-scholar")

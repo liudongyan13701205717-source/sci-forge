@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pymupdf
 
-from clawsgo_self.parse.pdf import parse_pdf
+from sciforge.parse.pdf import parse_pdf
 
 
 def _make_sample_pdf(tmp_path):

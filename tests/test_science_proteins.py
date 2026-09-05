@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science import get_registry
-from clawsgo_self.science.sources import proteins
+from sciforge.science import get_registry
+from sciforge.science.sources import proteins
 
 
 def test_proteins_registers_6():
@@ -16,7 +16,7 @@ def test_uniprot_search_parses(monkeypatch):
          "proteinDescription": {"recommendedName": {"fullName": {"value": "Kinase X"}}},
          "organism": {"scientificName": "Homo sapiens"}}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_json",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("uniprot")
@@ -28,7 +28,7 @@ def test_uniprot_search_parses(monkeypatch):
 
 def test_uniprot_fetch_fasta(monkeypatch):
     fake = ">sp|P12345|KINH_HUMAN\nMKWVTFISLL"
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_text",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_text",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("uniprot")
@@ -39,7 +39,7 @@ def test_uniprot_fetch_fasta(monkeypatch):
 
 def test_rcsb_pdb_search_parses(monkeypatch):
     fake = {"result_set": [{"identifier": "1ABC", "score": 1.0}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_json",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("rcsb-pdb")
@@ -53,7 +53,7 @@ def test_alphafold_search_parses(monkeypatch):
              "uniprotDescription": "Protein structure",
              "organismScientificName": "Human",
              "pdbUrl": "http://pdb/1abc"}]
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_json",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("alphafold")
@@ -67,7 +67,7 @@ def test_interpro_search_parses(monkeypatch):
         {"metadata": {"accession": "IPR000001", "name": "Kinase dom",
                        "source_database": "Pfam", "protein_count": 500}}
     ]}
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_json",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("interpro")
@@ -78,7 +78,7 @@ def test_interpro_search_parses(monkeypatch):
 
 def test_pdbe_search_parses(monkeypatch):
     fake = {"1abc": {"title": "Heme binding protein"}}
-    monkeypatch.setattr("clawsgo_self.science.sources.proteins.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.proteins.http_get_json",
                         lambda url, **kw: fake)
     proteins.register()
     c = get_registry().get("pdbe")

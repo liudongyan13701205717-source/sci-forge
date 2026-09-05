@@ -1,5 +1,5 @@
 import pytest
-from clawsgo_self.science.connector import (
+from sciforge.science.connector import (
     Connector, ConnectorHit, ConnectorRegistry, DOMAINS,
 )
 

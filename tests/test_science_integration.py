@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science.connector import Connector, ConnectorRegistry
-from clawsgo_self.science import api
+from sciforge.science.connector import Connector, ConnectorRegistry
+from sciforge.science import api
 
 
 def _reg() -> ConnectorRegistry:
@@ -19,9 +19,9 @@ def _reg() -> ConnectorRegistry:
 
 
 def _patch_offline(monkeypatch):
-    monkeypatch.setattr("clawsgo_self.science.api._offline", lambda: False)
-    monkeypatch.setattr("clawsgo_self.research.lit._offline", lambda: False)
-    monkeypatch.setattr("clawsgo_self.research.lit.search_openalex",
+    monkeypatch.setattr("sciforge.science.api._offline", lambda: False)
+    monkeypatch.setattr("sciforge.research.lit._offline", lambda: False)
+    monkeypatch.setattr("sciforge.research.lit.search_openalex",
                         lambda q, limit=10, timeout=20: [
                             {"title": "From OpenAlex", "year": 2024, "doi": "10/oa",
                              "url": "http://oa", "venue": "OA Journal", "authors": [],
@@ -31,8 +31,8 @@ def _patch_offline(monkeypatch):
 def test_literature_review_multi_source(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     _patch_offline(monkeypatch)
-    from clawsgo_self.core import get_layout
-    from clawsgo_self.research.survey import literature_review
+    from sciforge.core import get_layout
+    from sciforge.research.survey import literature_review
     monkeypatch.setattr(api, "get_registry", _reg)
     layout = get_layout()
     r = literature_review(topic="test", paper_id="p_multi", layout=layout,
@@ -45,8 +45,8 @@ def test_literature_review_multi_source(tmp_path, monkeypatch):
 def test_literature_review_default_sources(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     _patch_offline(monkeypatch)
-    from clawsgo_self.core import get_layout
-    from clawsgo_self.research.survey import literature_review
+    from sciforge.core import get_layout
+    from sciforge.research.survey import literature_review
     monkeypatch.setattr(api, "get_registry", _reg)
     layout = get_layout()
     r = literature_review(topic="test", paper_id="p_default", layout=layout)
@@ -57,8 +57,8 @@ def test_literature_review_default_sources(tmp_path, monkeypatch):
 def test_check_novelty_multi_source(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     _patch_offline(monkeypatch)
-    from clawsgo_self.core import get_layout
-    from clawsgo_self.research.novelty import check_novelty
+    from sciforge.core import get_layout
+    from sciforge.research.novelty import check_novelty
     monkeypatch.setattr(api, "get_registry", _reg)
     layout = get_layout()
     project = layout.project_dir("p_nov")
@@ -74,8 +74,8 @@ def test_check_novelty_multi_source(tmp_path, monkeypatch):
 def test_citation_landscape_multi_source(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     _patch_offline(monkeypatch)
-    from clawsgo_self.core import get_layout
-    from clawsgo_self.research.community import citation_landscape
+    from sciforge.core import get_layout
+    from sciforge.research.community import citation_landscape
     monkeypatch.setattr(api, "get_registry", _reg)
     layout = get_layout()
     r = citation_landscape(paper_id="p_cit", layout=layout, doi_or_topic="test",

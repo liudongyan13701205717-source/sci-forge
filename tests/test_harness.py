@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 import time
 
-from clawsgo_self.reproduce.harness import (
+from sciforge.reproduce.harness import (
     MetricValidator,
     VerifiedRegistry,
     execute,

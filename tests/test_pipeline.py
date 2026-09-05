@@ -6,9 +6,9 @@ import json
 
 import pymupdf
 
-from clawsgo_self.core import Layout
-from clawsgo_self.reproduce import pipeline
-from clawsgo_self.reproduce.tasks import Task
+from sciforge.core import Layout
+from sciforge.reproduce import pipeline
+from sciforge.reproduce.tasks import Task
 
 
 def _make_pdf(tmp_path) -> str:

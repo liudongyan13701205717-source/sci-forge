@@ -1,6 +1,6 @@
 ﻿import pytest
-from clawsgo_self.science import get_registry
-from clawsgo_self.science.sources import pathways, omics
+from sciforge.science import get_registry
+from sciforge.science.sources import pathways, omics
 
 
 def test_pathways_registers_5():
@@ -19,7 +19,7 @@ def test_omics_registers_6():
 
 def test_biogrid_search_parses(monkeypatch):
     fake = {"12345": [{"interactor_a": "P12345", "interactor_b": "P67890"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.pathways.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.pathways.http_get_json",
                         lambda url, **kw: fake)
     pathways.register()
     c = get_registry().get("biogrid")
@@ -30,7 +30,7 @@ def test_biogrid_search_parses(monkeypatch):
 
 def test_intact_search_parses(monkeypatch):
     fake = {"data": [{"id": "EBI-12345", "label": "BRCA1-BRCA2"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.pathways.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.pathways.http_get_json",
                         lambda url, **kw: fake)
     pathways.register()
     c = get_registry().get("intact")
@@ -41,7 +41,7 @@ def test_intact_search_parses(monkeypatch):
 
 def test_kegg_search_parses(monkeypatch):
     fake = [["hsa:7157\tTP53 tumor protein p53"]]
-    monkeypatch.setattr("clawsgo_self.science.sources.pathways.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.pathways.http_get_json",
                         lambda url, **kw: fake)
     pathways.register()
     c = get_registry().get("kegg")
@@ -52,7 +52,7 @@ def test_kegg_search_parses(monkeypatch):
 
 def test_opentargets_search_parses(monkeypatch):
     fake = {"data": [{"id": "ENSG00000141510", "name": "TP53", "symbol": "TP53"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.pathways.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.pathways.http_get_json",
                         lambda url, **kw: fake)
     pathways.register()
     c = get_registry().get("opentargets")
@@ -63,7 +63,7 @@ def test_opentargets_search_parses(monkeypatch):
 
 def test_reactome_search_parses(monkeypatch):
     fake = {"results": [{"dbId": 12345, "displayName": "DNA Repair"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.pathways.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.pathways.http_get_json",
                         lambda url, **kw: fake)
     pathways.register()
     c = get_registry().get("reactome")
@@ -74,7 +74,7 @@ def test_reactome_search_parses(monkeypatch):
 
 def test_arrayexpress_search_parses(monkeypatch):
     fake = {"hits": [{"accession": "E-MTAB-1234", "title": "RNA-seq of cancer"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json",
                         lambda url, **kw: fake)
     omics.register()
     c = get_registry().get("arrayexpress")
@@ -85,7 +85,7 @@ def test_arrayexpress_search_parses(monkeypatch):
 
 def test_depmap_search_parses(monkeypatch):
     fake = {"data": [{"DepMap_ID": "ACH-000001", "cell_line_name": "A549"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json",
                         lambda url, **kw: fake)
     omics.register()
     c = get_registry().get("depmap")
@@ -96,7 +96,7 @@ def test_depmap_search_parses(monkeypatch):
 
 def test_expression_atlas_search_parses(monkeypatch):
     fake = {"results": [{"experimentAccession": "E-GEOD-12345", "description": "gene expr"}]}
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json",
                         lambda url, **kw: fake)
     omics.register()
     c = get_registry().get("expression-atlas")
@@ -112,7 +112,7 @@ def test_geo_search_parses(monkeypatch):
         if "esearch" in url:
             return search_fake
         return summ_fake
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json", fake_json)
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json", fake_json)
     omics.register()
     c = get_registry().get("geo")
     hits = c.search("breast cancer", 5)
@@ -122,7 +122,7 @@ def test_geo_search_parses(monkeypatch):
 
 def test_gtex_search_parses(monkeypatch):
     fake = {"geneSymbol": "TP53", "tissueSiteDetailId": "Lung", "tpkm": 12.5}
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json",
                         lambda url, **kw: fake)
     omics.register()
     c = get_registry().get("gtex")
@@ -133,7 +133,7 @@ def test_gtex_search_parses(monkeypatch):
 
 def test_hpa_search_parses(monkeypatch):
     fake = [{"gene": "TP53", "tissue": "Lung", "celltype": "alveolar"}]
-    monkeypatch.setattr("clawsgo_self.science.sources.omics.http_get_json",
+    monkeypatch.setattr("sciforge.science.sources.omics.http_get_json",
                         lambda url, **kw: fake)
     omics.register()
     c = get_registry().get("hpa")

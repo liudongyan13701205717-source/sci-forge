@@ -1,6 +1,6 @@
-# clawsgo-science-mcp
+# sci-forge
 
-> ClawsGO Science 复刻 — 一条 MCP 从「构思」到「论文交付」的全流程编程工作台。
+> SciForge — 一条 MCP 从「构思」到「论文交付」的全流程编程工作台。
 
 一个**完全本地自建**的 [MCP](https://modelcontextprotocol.io) server，提供论文领域的端到端自动化：
 
@@ -12,7 +12,7 @@
 
 **特色：免 API key。** 文献检索用 OpenAlex 免鉴权接口（覆盖 arXiv 预印本），LLM 能力为**可选增强**——没有 LLM 时自动回退到本地模板，整条链路仍然可用。
 
-> 独立自建、仅用公开材料，不附属于、不依赖 ClawsGO 官方站点或 API。
+> 独立自建、仅用公开材料，不附属于、不依赖 SciForge 官方站点或 API。
 
 ---
 
@@ -75,8 +75,8 @@ inject_results（实验数据并入 results）      export_document（LaTeX/PDF/
 要求 Python ≥ 3.10。
 
 ```bash
-git clone https://github.com/liudongyan13701205717-source/clawsgo-science-mcp.git
-cd clawsgo-science-mcp
+git clone https://github.com/liudongyan13701205717-source/sci-forge.git
+cd sci-forge
 pip install -e .            # 最小安装（只带 MCP 本体）
 
 # 需要复现线时，装上运行依赖（推荐）：
@@ -95,7 +95,7 @@ pip install -e ".[reproduce,dev]"
 **验证安装**：
 
 ```bash
-python -m clawsgo_self.server --help 2>&1 | Out-Null   # 能启动即安装成功（stdio server）
+python -m sciforge.server --help 2>&1 | Out-Null   # 能启动即安装成功（stdio server）
 python -m pytest tests/ -q                              # 跑内置测试，应全绿
 ```
 
@@ -106,9 +106,9 @@ python -m pytest tests/ -q                              # 跑内置测试，应�
 ```jsonc
 {
   "mcp": {
-    "clawsgo-self": {
+    "sci-forge": {
       "type": "local",
-      "command": ["python", "-m", "clawsgo_self.server"],
+      "command": ["python", "-m", "sciforge.server"],
       "cwd": "<你的工作区路径>",
       "enabled": true,
       "timeout": 120000,
@@ -184,7 +184,7 @@ export_document(paper_id, "pdf")       # 终版导出
 ## 架构
 
 ```
-clawsgo_self/
+sciforge/
 ├── server.py        # MCP stdio server，注册全部 24 个工具
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
@@ -226,7 +226,7 @@ clawsgo_self/
 ### 存储布局
 
 ```
-.clawsgo-self/                  # 运行产物，已 gitignore
+.sci-forge/                  # 运行产物，已 gitignore
 ├── env                         # 本地配置（可选 LLM 端点），不提交
 ├── projects/{paper_id}/        # 写作项目：doc.md / doc.pdf / doc.tex / sections/
 │   └── research/               #   研究产物：*.json + *.md（供后续复用/打包）
@@ -235,7 +235,7 @@ clawsgo_self/
 
 ### 可选增强：LLM
 
-在 `.clawsgo-self/env` 写入 OpenAI 兼容端点即可启用 LLM 增强（更自然的章节生成/评审/构思）：
+在 `.sci-forge/env` 写入 OpenAI 兼容端点即可启用 LLM 增强（更自然的章节生成/评审/构思）：
 
 ```
 BASE_URL=https://.../v1
@@ -262,7 +262,7 @@ python -m pytest tests/ -q      # 全量测试，全离线可跑（文献/复现
 
 遇到 bug、功能建议或有任何问题，欢迎通过 **GitHub Issues** 反馈：
 
-👉 [https://github.com/liudongyan13701205717-source/clawsgo-science-mcp/issues](https://github.com/liudongyan13701205717-source/clawsgo-science-mcp/issues)
+👉 [https://github.com/liudongyan13701205717-source/sci-forge/issues](https://github.com/liudongyan13701205717-source/sci-forge/issues)
 
 - 🐛 **Bug**：请附上复现步骤、报错信息（含 `File "...", line ...` 堆栈）与相关 `paper_id`/`task_id`。
 - 💡 **Feature**：说明你的使用场景与期望行为。
@@ -274,4 +274,4 @@ python -m pytest tests/ -q      # 全量测试，全离线可跑（文献/复现
 
 [MIT](./LICENSE)
 
-<sub>本项目为独立开发的教育/研究工作，与 ClawsGO 及其商标无关联。</sub>
+<sub>本项目为独立开发的教育/研究工作，与 SciForge 及其商标无关联。</sub>

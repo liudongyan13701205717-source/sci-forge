@@ -1,6 +1,6 @@
 import pytest
-from clawsgo_self.science.connector import Connector, ConnectorRegistry
-from clawsgo_self.science import api
+from sciforge.science.connector import Connector, ConnectorRegistry
+from sciforge.science import api
 
 
 def _reg() -> ConnectorRegistry:

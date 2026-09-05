@@ -1,7 +1,7 @@
 [project]
-name = "clawsgo-self"
+name = "sci-forge"
 version = "0.1.0"
-description = "ClawsGO Science 复刻 — 论文复现/写作助力/端到端交付的 MCP server（独立自建，不依赖 ClawsGO 官方）"
+description = "SciForge — 论文复现/写作助力/端到端交付的 MCP server（独立自建，不依赖任何官方）"
 requires-python = ">=3.10"
 dependencies = [
     "mcp>=1.29.0",
@@ -21,7 +21,7 @@ dev = [
 ]
 
 [project.scripts]
-clawsgo-self = "clawsgo_self.cli:main"
+sci-forge = "sciforge.cli:main"
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -29,7 +29,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["clawsgo_self*"]
+include = ["sciforge*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from clawsgo_self.core import Layout
-from clawsgo_self.write import validate
-from clawsgo_self.write.api import write_section
+from sciforge.core import Layout
+from sciforge.write import validate
+from sciforge.write.api import write_section
 
 
 @pytest.fixture

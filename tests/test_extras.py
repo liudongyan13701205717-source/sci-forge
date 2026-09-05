@@ -10,7 +10,7 @@ import os
 
 import pytest
 
-from clawsgo_self.core import Layout, get_layout
+from sciforge.core import Layout, get_layout
 
 
 def _layout(tmp_path) -> Layout:
@@ -32,7 +32,7 @@ def _write_task_results(layout: Layout, task_id: str, series: dict) -> None:
 
 
 def test_compare_metrics_basic_and_sig(tmp_path):
-    from clawsgo_self.research.bench import compare_metrics
+    from sciforge.research.bench import compare_metrics
 
     lay = _layout(tmp_path)
     _write_task_results(lay, "t_base", {"acc": [0.80, 0.81, 0.79, 0.80, 0.81, 0.80]})
@@ -61,7 +61,7 @@ def test_compare_metrics_basic_and_sig(tmp_path):
 
 
 def test_compare_metrics_insufficient_samples(tmp_path):
-    from clawsgo_self.research.bench import compare_metrics
+    from sciforge.research.bench import compare_metrics
 
     lay = _layout(tmp_path)
     _write_task_results(lay, "t1", {"acc": [0.5]})
@@ -72,7 +72,7 @@ def test_compare_metrics_insufficient_samples(tmp_path):
 
 
 def test_compare_metrics_invalid_task(tmp_path):
-    from clawsgo_self.research.bench import compare_metrics
+    from sciforge.research.bench import compare_metrics
 
     lay = _layout(tmp_path)
     lay.project_dir("p_c3")
@@ -82,7 +82,7 @@ def test_compare_metrics_invalid_task(tmp_path):
 
 
 def test_novelty_offline_template(tmp_path, monkeypatch):
-    from clawsgo_self.research.novelty import check_novelty
+    from sciforge.research.novelty import check_novelty
 
     monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
     lay = _layout(tmp_path)
@@ -102,7 +102,7 @@ def test_novelty_offline_template(tmp_path, monkeypatch):
 
 
 def test_novelty_missing_content(tmp_path):
-    from clawsgo_self.research.novelty import check_novelty
+    from sciforge.research.novelty import check_novelty
 
     lay = _layout(tmp_path)
     lay.project_dir("p_empty")
@@ -112,7 +112,7 @@ def test_novelty_missing_content(tmp_path):
 
 
 def test_package_submission_zips_assets(tmp_path):
-    from clawsgo_self.deliver.package import package_submission
+    from sciforge.deliver.package import package_submission
 
     lay = _layout(tmp_path)
     project = lay.project_dir("p_pkg")
@@ -140,7 +140,7 @@ def test_package_submission_zips_assets(tmp_path):
 
 
 def test_package_submission_missing_project(tmp_path):
-    from clawsgo_self.deliver.package import package_submission
+    from sciforge.deliver.package import package_submission
 
     lay = _layout(tmp_path)
     r = package_submission(paper_id="p_none", layout=lay)
@@ -149,7 +149,7 @@ def test_package_submission_missing_project(tmp_path):
 
 
 def test_citation_landscape_offline(tmp_path, monkeypatch):
-    from clawsgo_self.research.community import citation_landscape
+    from sciforge.research.community import citation_landscape
 
     monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
     lay = _layout(tmp_path)
@@ -162,7 +162,7 @@ def test_citation_landscape_offline(tmp_path, monkeypatch):
 
 
 def test_citation_landscape_doi_mode_offline(tmp_path, monkeypatch):
-    from clawsgo_self.research.community import citation_landscape
+    from sciforge.research.community import citation_landscape
 
     monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
     lay = _layout(tmp_path)
@@ -173,7 +173,7 @@ def test_citation_landscape_doi_mode_offline(tmp_path, monkeypatch):
 
 
 def test_project_memory_read_write(tmp_path):
-    from clawsgo_self.core.memory import project_memory
+    from sciforge.core.memory import project_memory
 
     lay = _layout(tmp_path)
     r1 = project_memory(paper_id="p_mem", layout=lay, action="milestone",
@@ -193,7 +193,7 @@ def test_project_memory_read_write(tmp_path):
 
 
 def test_review_code_scans_py(tmp_path):
-    from clawsgo_self.reproduce.codereview import review_code
+    from sciforge.reproduce.codereview import review_code
 
     lay = _layout(tmp_path)
     task = lay.task_dir("t_code")
@@ -218,7 +218,7 @@ def test_review_code_scans_py(tmp_path):
 
 
 def test_review_code_missing_task(tmp_path):
-    from clawsgo_self.reproduce.codereview import review_code
+    from sciforge.reproduce.codereview import review_code
 
     lay = _layout(tmp_path)
     r = review_code(task_id="ghost", layout=lay)
