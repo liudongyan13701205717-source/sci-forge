@@ -46,7 +46,7 @@ async def main():
 asyncio.run(main())
 ```
 
-输出能看到 14 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
+输出能看到 20 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
 
 ---
 
@@ -62,6 +62,7 @@ asyncio.run(main())
       "command": ["C:\\Python314\\python.exe", "-m", "clawsgo_self.server"],
       "cwd": "F:\\opencode工坊\\clawsgo",
       "enabled": true,
+      "timeout": 120000,
       "environment": {
         "CLAWSGO_SELF_ENV": "dev",
         "PYTHONPATH": "F:\\opencode工坊\\clawsgo"
@@ -74,16 +75,22 @@ asyncio.run(main())
 关键点：
 - **用绝对路径**指向解释器与工作区（不要用裸 `python`，避免命中系统 Store 占位符）。
 - `cwd` 与 `PYTHONPATH` 都指向项目根，保证能 import 到 `clawsgo_self` 包。
+- `timeout` 设为 `120000`（毫秒）：opencode 默认首次连接超时只有几秒，冷启动 / 工具
+  列表初始化较慢时会被误判为"掉线"（表现为需要手动 connect）。显式加大超时即可保证
+  **自动拉起**。
 
 ### 让会话内看见工具
 
 1. **完全退出 opencode 进程**（关掉整个终端/窗口，不是只关标签页），再重新打开。
    → 否则旧进程仍持有修改前的 MCP 配置。
-2. 重启后，14 个工具应出现在可用工具列表（复现 2 + 写作 2 + 研究 6 + 新增科研/论文 6）：
+2. 重启后，20 个工具应出现在可用工具列表
+   （复现 2 + 写作 2 + 研究/科研 16）：
    `reproduce_paper / reproduce_status / write_section / export_document /
     ideate_paper / inject_results / research_verdict / get_deliverables /
     research_plan / literature_review / auto_title_abstract / peer_review /
-    venue_suggest / paper_polish`
+    venue_suggest / paper_polish /
+    compare_metrics / check_novelty / package_submission /
+    citation_landscape / project_memory / review_code`
 3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `clawsgo-self` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 
@@ -158,6 +165,19 @@ python scripts/agent_write_paper.py <paper_id> --topic "研究方向"
 这些工具无 LLM 时**全部走确定性模板/映射/规则**，可独立产出有价值结果；配置了
 `CLAWSGO_SELF_LLM_*` 环境变量后会自动升级为模型增强。
 
+### 成果分析与交付六工具（科研进阶）
+
+| 工具 | 作用 | 落盘 |
+| --- | --- | --- |
+| `compare_metrics(paper_id, tasks, baseline, metric)` | 汇总多个复现任务的指标序列，输出均值±std 对比表，并对对照组做 Welch t / Mann-Whitney U 显著性检验（纯标准库，无需 numpy/scipy） | `research/benchmark_compare.{json,md}` |
+| `check_novelty(paper_id, max_papers)` | 从标题/摘要抽关键词检索 OpenAlex 相似工作，给出重叠度与候选差异点 | `research/novelty.{json,md}` |
+| `citation_landscape(paper_id, doi_or_topic)` | 围绕 DOI 或主题分析引文热度：年度分布 / 高被引代表 / 主要载体 | `research/citation_landscape.{json,md}` |
+| `package_submission(paper_id, task_id)` | 把论文导出物 + 研究产物 +（可选）复现代码打成投稿 zip，内置 Cover Letter 与投稿前 Checklist | `projects/{id}/submission_*.zip` |
+| `project_memory(paper_id, action, note, milestone, status)` | 项目进度记账（read/note/milestone/status），形成可回溯研究日志 | `projects/{id}/memory.json` |
+| `review_code(task_id)` | 复现代码静态点评：行数/函数/导入、随机种子、硬编码超参、裸 except、TODO 等，并给出 100 分制可信度分 | `tasks/{id}/code_review.{json,md}` |
+
+这些工具同样遵循**离线优先**：网络检索失败时自动回退启发式模板，不抛错。
+
 ### 端到端科研-论文链路建议
 
 ```text
@@ -181,7 +201,9 @@ export_document(paper_id, "pdf")       # 终版导出
 | --- | --- | --- |
 | 工具列表里没有 `clawsgo-self` | opencode 未重启 / 未 connect | 完全退出重启；或 `/mcp` → connect |
 | 启动报错 `ModuleNotFoundError` | `PYTHONPATH` 或 `cwd` 未指向项目根 | 核对配置中的绝对路径 |
+| 首次打开出现"需要手动 connect" | 默认连接/枚举超时太短，冷启动被误判掉线 | 配置 `"timeout": 120000` 后完全重启 opencode |
 | 调用超时 / 卡住 | 首次冷启动 | 稍等 1–2s 重试 |
+| `check_novelty` / `citation_landscape` 返回"离线模板" | 网络不可达（本机 github/OpenAlex 被阻断） | 属预期回退，仍产出启发式结论 |
 | 无法 git push | 本机 `github.com` 被网络环境阻断 | 用 GitHub API / MCP，或等网络恢复 |
 
 ---
@@ -189,5 +211,5 @@ export_document(paper_id, "pdf")       # 终版导出
 ## 6. 测试
 
 ```bash
-python -m pytest tests/ -q   # 49 项，全离线可跑
+python -m pytest tests/ -q   # 61 项，全离线可跑
 ```

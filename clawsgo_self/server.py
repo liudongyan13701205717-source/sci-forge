@@ -239,6 +239,111 @@ def paper_polish(
     return _impl(paper_id=paper_id, layout=get_layout(), mode=mode).to_dict()
 
 
+@mcp.tool()
+def compare_metrics(
+    paper_id: str,
+    tasks: list[str],
+    baseline: str = "",
+    metric: str = "",
+) -> dict:
+    """对比表与显著性检验：汇总多个任务/基线的指标序列并做检验。
+
+    Args:
+        paper_id: 论文/项目标识。
+        tasks: 一个或多个复现任务 ID（读取各自 results.json 的指标序列）。
+        baseline: 作为对照组的任务 ID，默认取 tasks[0]。
+        metric: 可选，仅统计名称含该子串的指标；留空则全部。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.bench import compare_metrics as _impl
+
+    return _impl(paper_id=paper_id, task_ids=list(tasks),
+                 layout=get_layout(), baseline=baseline, metric=metric).to_dict()
+
+
+@mcp.tool()
+def check_novelty(paper_id: str, max_papers: int = 8) -> dict:
+    """创新性检查：从标题/摘要抽关键词检索相似工作，给出重叠与候选差异点。
+
+    Args:
+        paper_id: 论文/项目标识（需已有 doc.md 或 metadata.json）。
+        max_papers: 检索的相似论文数量上限，默认 8。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.novelty import check_novelty as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout(), limit=max_papers).to_dict()
+
+
+@mcp.tool()
+def package_submission(
+    paper_id: str,
+    task_id: str = "",
+) -> dict:
+    """投稿材料一键打包：把论文导出物与研究/复现产物打成 zip（含 cover letter）。
+
+    Args:
+        paper_id: 论文/项目标识。
+        task_id: 可选，一并打包该复现任务的代码/数据/图表。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.deliver.package import package_submission as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout(), task_id=task_id)
+
+
+@mcp.tool()
+def citation_landscape(paper_id: str, doi_or_topic: str) -> dict:
+    """引文邻域与热度分析：围绕 DOI 或主题分析热度/年度分布/高被引代表。
+
+    Args:
+        paper_id: 论文/项目标识。
+        doi_or_topic: 目标 DOI（含 10.xxxx）或主题关键词。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.research.community import citation_landscape as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout(),
+                 doi_or_topic=doi_or_topic).to_dict()
+
+
+@mcp.tool()
+def project_memory(
+    paper_id: str,
+    action: str = "read",
+    note: str = "",
+    milestone: str = "",
+    status: str = "",
+) -> dict:
+    """项目进度记账：为论文/项目维护可回溯 timeline（备忘/里程碑/状态）。
+
+    Args:
+        paper_id: 论文/项目标识。
+        action: `read`(读取) / `note`(备忘) / `milestone`(里程碑) / `status`(状态)。
+        note: 备忘/说明文本。
+        milestone: 里程碑标识（如 1.0.0、方案评审）。
+        status: 状态描述（如 构思/实验/写作/已投稿/返修）。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.core.memory import project_memory as _impl
+
+    return _impl(paper_id=paper_id, layout=get_layout(), action=action,
+                 note=note, milestone=milestone, status=status).to_dict()
+
+
+@mcp.tool()
+def review_code(task_id: str) -> dict:
+    """复现代化码静态点评：对任务下的 .py 做风格/风险/可复现性检查。
+
+    Args:
+        task_id: 已生成代码的复现任务 ID。
+    """
+    from clawsgo_self.core import get_layout
+    from clawsgo_self.reproduce.codereview import review_code as _impl
+
+    return _impl(task_id=task_id, layout=get_layout()).to_dict()
+
+
 def run() -> None:
     mcp.run()
 

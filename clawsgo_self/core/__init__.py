@@ -53,6 +53,11 @@ class Layout:
 
 def _safe(name: str) -> str:
     """清洗路径段，防止路径穿越。"""
+    return clean_segment(name)
+
+
+def clean_segment(name: str) -> str:
+    """公开的路径段清洗：非字母数字/`-_.` 统一替换为 `_`。"""
     cleaned = "".join(c if (c.isalnum() or c in "-_.") else "_" for c in name)
     cleaned = cleaned.strip(" .")
     return cleaned or "untitled"

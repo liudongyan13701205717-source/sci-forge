@@ -33,6 +33,12 @@
 | `peer_review` | 科研/论文 | 模拟同行评审（4 维评分 + 推荐 + 优缺点/修改建议） |
 | `venue_suggest` | 科研/论文 | 投稿/期刊匹配（内置映射库 + 可选 LLM） |
 | `paper_polish` | 科研/论文 | 润色/一致性/完整性检查 |
+| `compare_metrics` | 科研/论文 | 多任务指标对比表 + Welch t / Mann-Whitney U 显著性检验 |
+| `check_novelty` | 科研/论文 | 创新性检查：检索相似工作并给出候选差异点 |
+| `citation_landscape` | 科研/论文 | 引文热度分析（年度分布/高被引代表/主要载体） |
+| `project_memory` | 科研/论文 | 项目进度记账（里程碑/状态/备忘 timeline） |
+| `package_submission` | 交付 | 投稿材料打包（zip + Cover Letter + Checklist） |
+| `review_code` | 交付 | 复现代码静态点评（种子/硬编码/风险 + 可信度分） |
 | `get_deliverables` | 交付 | 列出任务（复现/写作）的交付物清单，按类型分类 |
 
 ### 全链路：从构思到论文
@@ -101,6 +107,7 @@ python -m pytest tests/ -q                              # 跑内置测试，应�
       "command": ["python", "-m", "clawsgo_self.server"],
       "cwd": "<你的工作区路径>",
       "enabled": true,
+      "timeout": 120000,
       "environment": {
         "PYTHONPATH": "<你的工作区路径>"
       }
@@ -110,8 +117,9 @@ python -m pytest tests/ -q                              # 跑内置测试，应�
 ```
 
 > 用**绝对路径**指向解释器与工作区，避免命中系统自带的 Python Store 占位符。
+> 建议显式加 `"timeout"`（毫秒），避免冷启动被误判为掉线而出现"需要手动 connect"。
 
-重启客户端后即可看到全部 14 个工具。
+重启客户端后即可看到全部 20 个工具。
 
 ---
 
@@ -173,18 +181,18 @@ export_document(paper_id, "pdf")       # 终版导出
 
 ```
 clawsgo_self/
-├── server.py        # MCP stdio server，注册全部 14 个工具
+├── server.py        # MCP stdio server，注册全部 20 个工具
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
-├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline
+├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline + codereview 静态点评
 │   ├── codegen.py   #   提取超参 + 生成 numpy/torch 复现代码
 │   ├── harness.py   #   沙箱执行 + 自愈重试 + 指标/图采集
 │   └── pipeline.py  #   编排五步，产出 results.json / plan.json / deliverables/
 ├── write/           # 写作：doc(DocStore)/templates/validate
 ├── export/          # 导出：md→latex/html/docx + PDF 渲染
-├── research/        # 研究线：lit/ideate/hypoth/design/inject
-│   └── (plan/survey/extract/review/venue/polish  # 新增科研/论文六工具)
-└── deliver/         # 交付：get_deliverables（源码/数据/报告/图 分类）
+├── research/        # 研究线：lit/ideate/hypoth/design/inject + stats/bench/novelty/community
+│   └── (plan/survey/extract/review/venue/polish  # 科研/论文工具集)
+└── deliver/         # 交付：get_deliverables + package_submission（投稿打包）
 ```
 
 ### 存储布局
@@ -193,6 +201,7 @@ clawsgo_self/
 .clawsgo-self/                  # 运行产物，已 gitignore
 ├── env                         # 本地配置（可选 LLM 端点），不提交
 ├── projects/{paper_id}/        # 写作项目：doc.md / doc.pdf / doc.tex / sections/
+│   └── research/               #   研究产物：*.json + *.md（供后续复用/打包）
 └── tasks/{task_id}/            # 复现任务：parse/ code/ runs/ deliverables/
 ```
 
@@ -214,7 +223,7 @@ MODEL=...
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest tests/ -q      # 48 项，全离线可跑（文献/复现用模拟数据）
+python -m pytest tests/ -q      # 61 项，全离线可跑（文献/复现用模拟数据）
 ```
 
 测试覆盖四条线上的单元 + stdio 端到端（真实 spawn MCP server 并调用工具）。
