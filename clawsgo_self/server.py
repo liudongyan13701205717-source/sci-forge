@@ -344,6 +344,31 @@ def review_code(task_id: str) -> dict:
     return _impl(task_id=task_id, layout=get_layout()).to_dict()
 
 
+@mcp.tool()
+def science_list_dbs(domain: str = "") -> dict:
+    from clawsgo_self.science.api import science_list_dbs as _impl
+    return _impl(domain=domain)
+
+
+@mcp.tool()
+def science_search(database: str, query: str, limit: int = 5) -> dict:
+    from clawsgo_self.science.api import science_search as _impl
+    return _impl(database=database, query=query, limit=limit)
+
+
+@mcp.tool()
+def science_fetch(database: str, id: str, format: str = "") -> dict:
+    from clawsgo_self.science.api import science_fetch as _impl
+    return _impl(database=database, id=id, format=format)
+
+
+@mcp.tool()
+def science_cross_lookup(query: str, databases: list[str] | None = None,
+                        limit: int = 5) -> dict:
+    from clawsgo_self.science.api import science_cross_lookup as _impl
+    return _impl(query=query, databases=databases, limit=limit)
+
+
 def run() -> None:
     mcp.run()
 
