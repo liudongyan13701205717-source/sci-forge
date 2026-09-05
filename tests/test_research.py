@@ -223,6 +223,29 @@ def test_auto_title_abstract_heuristic(tmp_path):
     assert "注意力归因" in r.keywords
 
 
+def test_auto_title_abstract_no_h1_fallback(tmp_path):
+    """无一级标题时：标题回退为摘要首句；无关键词行时：中文 n-gram 回退。
+    """
+    from clawsgo_self.research.extract import auto_title_abstract
+
+    layout = _layout(tmp_path)
+    body = (
+        "## 摘要\n本工作提出一种面向边缘设备的大语言模型轻量化推理加速方法。"
+        "该方法结合结构化剪枝与知识蒸馏，在边缘设备上显著降低推理延迟。\n\n"
+        "## 引言\n边缘设备上大语言模型推理延迟较高，相关研究致力于轻量化部署。"
+        "结构化剪枝与知识蒸馏是两种主流压缩策略。"
+    )
+    _write_doc(layout, "p_meta2", body)
+    r = auto_title_abstract(paper_id="p_meta2", layout=layout)
+    assert r.ok is True
+    # 标题回退：从摘要首句生成候选，剔除「本工作提出一种」前缀
+    assert r.title and "面向边缘设备" in r.title
+    # 中文关键词回退：出现有信息量的主题词（非英文词兜底）
+    joined = "".join(r.keywords)
+    assert any(k in joined for k in ("大语言模型", "剪枝", "蒸馏", "边缘设备", "推理"))
+    assert not r.title.startswith(("本工作", "本文", "提出"))
+
+
 def test_peer_review_scores_and_recommendation(tmp_path):
     from clawsgo_self.research.review import peer_review
 

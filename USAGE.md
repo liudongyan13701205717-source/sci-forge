@@ -150,7 +150,7 @@ python scripts/agent_write_paper.py <paper_id> --topic "研究方向"
 | --- | --- | --- |
 | `research_plan(topic, paper_id)` | 完整研究计划书（RQ/假设/目标/贡献/方法/数据/基线/里程碑/风险） | `research/research_plan.{json,md}` |
 | `literature_review(topic, paper_id)` | 文献综述（OpenAlex 免 key 检索：代表文献/聚类/缺口/结构） | `research/literature_review.{json,md}` |
-| `auto_title_abstract(paper_id)` | 从正文提炼标题/摘要/关键词 | `research/metadata.{json,md}` |
+| `auto_title_abstract(paper_id)` | 从正文提炼标题/摘要/关键词；无一级标题时以摘要首句生成候选标题，无关键词行时走中文 n-gram 主题词回退 | `research/metadata.{json,md}` |
 | `peer_review(paper_id)` | 模拟同行评审（4 维评分 + 推荐 + 优缺点/修改建议） | `research/peer_review.{json,md}` |
 | `venue_suggest(topic, paper_id)` | 投稿/期刊匹配（内置映射库 + 可选 LLM） | `research/venue_suggest.{json,md}` |
 | `paper_polish(paper_id, mode)` | 润色/一致性/完整性检查（mode: completeness/consistency/grammar） | `research/polish_{mode}.{json,md}` |
@@ -189,5 +189,5 @@ export_document(paper_id, "pdf")       # 终版导出
 ## 6. 测试
 
 ```bash
-python -m pytest tests/ -q   # 48 项，全离线可跑
+python -m pytest tests/ -q   # 49 项，全离线可跑
 ```
