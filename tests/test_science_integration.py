@@ -79,5 +79,8 @@ def test_citation_landscape_multi_source(tmp_path, monkeypatch):
     monkeypatch.setattr(api, "get_registry", _reg)
     layout = get_layout()
     r = citation_landscape(paper_id="p_cit", layout=layout, doi_or_topic="test",
-                           sources=["openalex"])
-    assert r.ok is True or r.mode == "topic"
+                           sources=["openalex", "crossref"])
+    assert r.ok is True
+    titles = [p.get("title") for p in r.top_cited]
+    assert "From OpenAlex" in titles
+    assert "From Crossref" in titles
