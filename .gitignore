@@ -1,0 +1,15 @@
+# 运行产物 / 本地配置
+.clawsgo-self/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# 环境
+.env
+venv/
+.venv/
