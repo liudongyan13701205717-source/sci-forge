@@ -369,6 +369,44 @@ def science_cross_lookup(query: str, databases: list[str] | None = None,
     return _impl(query=query, databases=databases, limit=limit)
 
 
+@mcp.tool()
+def science_batch_search(query: str, databases: list[str] | None = None,
+                         limit: int = 10) -> dict:
+    from sciforge.science.api import science_batch_search as _impl
+    return _impl(query=query, databases=databases, limit=limit)
+
+
+@mcp.resource("science://databases")
+def science_databases_resource() -> dict:
+    from sciforge.science import DOMAINS
+    from sciforge.science.api import science_list_dbs
+    return {"databases": science_list_dbs()["databases"], "domains": DOMAINS}
+
+
+@mcp.resource("science://databases/{domain}")
+def science_domain_resource(domain: str) -> dict:
+    from sciforge.science.api import science_list_dbs
+    return science_list_dbs(domain=domain)
+
+
+@mcp.tool()
+def ref_to_bibtex(doi: str) -> dict:
+    from sciforge.research.references import ref_to_bibtex as _impl
+    return _impl(doi=doi)
+
+
+@mcp.tool()
+def batch_ref_export(text: str) -> dict:
+    from sciforge.research.references import batch_ref_export as _impl
+    return _impl(text=text)
+
+
+@mcp.tool()
+def recommend_papers(topic: str, limit: int = 5, sources: list[str] | None = None) -> dict:
+    from sciforge.research.recommender import recommend_papers as _impl
+    return _impl(topic=topic, limit=limit, sources=sources)
+
+
 def run() -> None:
     mcp.run()
 

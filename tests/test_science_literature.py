@@ -12,7 +12,7 @@ def test_literature_registers_7():
 
 
 def test_openalex_search_offline(monkeypatch):
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     literature.register()
     c = get_registry().get("openalex")
     assert c is not None

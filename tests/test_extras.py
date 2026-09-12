@@ -1,6 +1,6 @@
 """新增 6 工具（对比/新颖性/投稿打包/引文热度/进度记账/代码点评）的单元与集成测试。
 
-网络一律离线：以 CLAWSGO_SELF_OFFLINE=1 环境变量模拟。模板/启发式路径为主。
+网络一律离线：以 SCI_FORGE_OFFLINE=1 环境变量模拟。模板/启发式路径为主。
 """
 
 from __future__ import annotations
@@ -84,7 +84,7 @@ def test_compare_metrics_invalid_task(tmp_path):
 def test_novelty_offline_template(tmp_path, monkeypatch):
     from sciforge.research.novelty import check_novelty
 
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     lay = _layout(tmp_path)
     project = lay.project_dir("p_n")
     (project / "research").mkdir(parents=True, exist_ok=True)
@@ -151,7 +151,7 @@ def test_package_submission_missing_project(tmp_path):
 def test_citation_landscape_offline(tmp_path, monkeypatch):
     from sciforge.research.community import citation_landscape
 
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     lay = _layout(tmp_path)
     lay.project_dir("p_cit")
     r = citation_landscape(paper_id="p_cit", layout=lay,
@@ -164,7 +164,7 @@ def test_citation_landscape_offline(tmp_path, monkeypatch):
 def test_citation_landscape_doi_mode_offline(tmp_path, monkeypatch):
     from sciforge.research.community import citation_landscape
 
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     lay = _layout(tmp_path)
     lay.project_dir("p_cit2")
     r = citation_landscape(paper_id="p_cit2", layout=lay, doi_or_topic="10.48550/arXiv.2201.0")

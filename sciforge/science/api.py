@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 from sciforge.science import get_registry
 from sciforge.science.http import _offline
 
@@ -75,3 +77,42 @@ def science_cross_lookup(query: str, databases: list[str] | None = None,
     hits = cross_lookup(query, dbs, limit=limit)
     return {"ok": True, "query": query, "databases": dbs,
             "total": len(hits), "hits": hits}
+
+
+def science_batch_search(query: str, databases: list[str] | None = None,
+                         limit: int = 10) -> dict:
+    """Parallel search across multiple databases using ThreadPoolExecutor."""
+    reg = get_registry()
+    dbs = databases or [c.id for c in reg.all() if not c.requires_key]
+    offline = _offline()
+
+    if offline:
+        from sciforge.science.cache import search_cache
+        results = search_cache(query, dbs, limit)
+        return {"ok": True, "query": query, "databases": dbs,
+                "total": len(results), "hits": results, "offline": True}
+
+    def _search_one(db_name: str) -> list[dict]:
+        c = reg.get(db_name)
+        if not c:
+            return []
+        try:
+            hits = c.search(query, limit)
+        except Exception:
+            return []
+        return [_normalize_hit(h) for h in hits]
+
+    results: list[dict] = []
+    seen: set[str] = set()
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        all_hits = list(ex.map(_search_one, dbs))
+    for hits in all_hits:
+        for h in hits:
+            key = (h.get("doi") or h.get("url") or h.get("title", "")).lower().strip()
+            if key in seen:
+                continue
+            seen.add(key)
+            results.append(h)
+
+    return {"ok": True, "query": query, "databases": dbs,
+            "total": len(results), "hits": results, "offline": offline}

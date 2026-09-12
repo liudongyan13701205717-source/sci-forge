@@ -6,9 +6,9 @@ chat.completions 调用。为规避硬依赖，用标准库 urllib 实现；若�
 
 配置读取优先级：环境变量 > 本地配置文件。
 配置文件示例（~/.sci-forge/env）：
-    CLAWSGO_SELF_LLM_BASE=http://localhost:11434/v1
-    CLAWSGO_SELF_LLM_MODEL=qwen2.5:7b
-    CLAWSGO_SELF_LLM_KEY=optional
+    SCI_FORGE_LLM_BASE=http://localhost:11434/v1
+    SCI_FORGE_LLM_MODEL=qwen2.5:7b
+    SCI_FORGE_LLM_KEY=optional
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ DEFAULT_SYSTEM = "你是一个严谨的科研工程助手。"
 
 
 def _env_path() -> Path:
-    p = os.environ.get("CLAWSGO_SELF_ENV_FILE")
+    p = os.environ.get("SCI_FORGE_ENV_FILE")
     return Path(p) if p else _HOME_ENV
 
 
@@ -55,22 +55,22 @@ def configured() -> bool:
 
 def _base_url() -> str | None:
     return (
-        os.environ.get("CLAWSGO_SELF_LLM_BASE")
-        or load_env_file().get("CLAWSGO_SELF_LLM_BASE")
+        os.environ.get("SCI_FORGE_LLM_BASE")
+        or load_env_file().get("SCI_FORGE_LLM_BASE")
     )
 
 
 def _api_key() -> str | None:
     return (
-        os.environ.get("CLAWSGO_SELF_LLM_KEY")
-        or load_env_file().get("CLAWSGO_SELF_LLM_KEY")
+        os.environ.get("SCI_FORGE_LLM_KEY")
+        or load_env_file().get("SCI_FORGE_LLM_KEY")
     )
 
 
 def _model() -> str:
     return (
-        os.environ.get("CLAWSGO_SELF_LLM_MODEL")
-        or load_env_file().get("CLAWSGO_SELF_LLM_MODEL")
+        os.environ.get("SCI_FORGE_LLM_MODEL")
+        or load_env_file().get("SCI_FORGE_LLM_MODEL")
         or "gpt-4o-mini"
     )
 
@@ -113,8 +113,8 @@ def chat(
     """调用内部 LLM 完成一次对话。未配置时抛 RuntimeError。"""
     if not configured():
         raise RuntimeError(
-            "未配置 LLM：请在 ~/.sci-forge/env 设置 CLAWSGO_SELF_LLM_BASE(=端点) "
-            "与 CLAWSGO_SELF_LLM_MODEL。"
+            "未配置 LLM：请在 ~/.sci-forge/env 设置 SCI_FORGE_LLM_BASE(=端点) "
+            "与 SCI_FORGE_LLM_MODEL。"
         )
     messages = [{"role": "system", "content": system}]
     messages.append({"role": "user", "content": prompt})

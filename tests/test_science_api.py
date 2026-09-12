@@ -51,7 +51,7 @@ def test_science_search_unknown_db(monkeypatch):
 
 
 def test_science_search_offline(monkeypatch):
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     reg = _reg()
     reg.register(Connector(id="o", name="O", domain="literature",
                             description="", search=lambda q, n: []))
@@ -88,3 +88,30 @@ def test_cross_lookup_normal_shape(monkeypatch):
     assert r[0]["year"] == 2024
     assert r[0]["doi"] == "10/x"
     assert r[0]["cited_by"] == 5
+
+
+def test_science_batch_search_parallel(monkeypatch):
+    monkeypatch.setattr(api, "get_registry", _reg)
+    monkeypatch.setattr(api, "_offline", lambda: False)
+    r = api.science_batch_search("test", databases=["openalex", "uniprot"], limit=5)
+    assert r["ok"] is True
+    assert r["total"] >= 2
+    assert not r["offline"]
+
+
+def test_science_batch_search_offline(monkeypatch):
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
+    reg = _reg()
+    monkeypatch.setattr(api, "get_registry", lambda: reg)
+    r = api.science_batch_search("test", databases=["openalex"], limit=5)
+    assert r["ok"] is True
+    assert r["offline"] is True
+    assert r["hits"] == []
+
+
+def test_science_batch_search_unknown_db(monkeypatch):
+    monkeypatch.setattr(api, "get_registry", _reg)
+    monkeypatch.setattr(api, "_offline", lambda: False)
+    r = api.science_batch_search("test", databases=["nonexistent"], limit=5)
+    assert r["ok"] is True
+    assert r["total"] == 0

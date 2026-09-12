@@ -187,7 +187,7 @@ def test_ideate_via_stdio():
     def _params():
         base = _new_params()
         env = dict(base.env or {})
-        env["CLAWSGO_SELF_OFFLINE"] = "1"
+        env["SCI_FORGE_OFFLINE"] = "1"
         return StdioServerParameters(
             command=base.command,
             args=base.args,

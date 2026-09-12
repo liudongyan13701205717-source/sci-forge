@@ -10,7 +10,7 @@ import urllib.request
 from typing import Optional
 
 _USER_AGENT = "sciforge/0.1 (+connector-layer; no-key-public-api)"
-_OFFLINE = "CLAWSGO_SELF_OFFLINE"
+_OFFLINE = "SCI_FORGE_OFFLINE"
 
 _rate_limits: dict[str, tuple[threading.Lock, float]] = {}
 _rate_holder = threading.Lock()

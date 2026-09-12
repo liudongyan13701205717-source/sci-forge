@@ -250,8 +250,8 @@ class _Result:
 
     def __init__(self) -> None:
         self.validator = MetricValidator()
-        self.frozen = (os.environ.get("CLAWSGO_SELF_FROZEN") == "1")
-        self.file = os.environ.get("CLAWSGO_SELF_METRIC_FILE") or "metrics.jsonl"
+        self.frozen = (os.environ.get("SCI_FORGE_FROZEN") == "1")
+        self.file = os.environ.get("SCI_FORGE_METRIC_FILE") or "metrics.jsonl"
 
     def freeze(self) -> None:
         self.frozen = True
@@ -306,8 +306,8 @@ def _run_source(source: str, workdir: Path, *, timeout: float,
     # 指标 JSONL 落盘路径（子进程写入、父进程读取）
     metric_file = workdir / "metrics.jsonl"
     env = dict(os.environ)
-    env["CLAWSGO_SELF_METRIC_FILE"] = os.path.abspath(metric_file)
-    env["CLAWSGO_SELF_FROZEN"] = "1" if frozen else "0"
+    env["SCI_FORGE_METRIC_FILE"] = os.path.abspath(metric_file)
+    env["SCI_FORGE_FROZEN"] = "1" if frozen else "0"
     # 无头环境渲染后端（若生成代码用 matplotlib 画图）
     env["MPLBACKEND"] = "Agg"
     # 子进程需能 import sciforge（harness 前缀）

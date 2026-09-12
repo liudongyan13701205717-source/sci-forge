@@ -32,7 +32,7 @@ def _get_json(url: str, timeout: int = 20) -> Optional[dict]:
 
 
 def _offline() -> bool:
-    return os.environ.get("CLAWSGO_SELF_OFFLINE") == "1"
+    return os.environ.get("SCI_FORGE_OFFLINE") == "1"
 
 
 def search_openalex(query: str, *, limit: int = 8, timeout: int = 20) -> list[dict]:

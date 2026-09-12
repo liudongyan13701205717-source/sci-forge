@@ -1,5 +1,6 @@
 # 运行产物 / 本地配置
 .clawsgo-self/
+.sci-forge/
 
 # Python
 __pycache__/

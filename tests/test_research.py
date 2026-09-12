@@ -185,7 +185,7 @@ def test_research_plan_template(tmp_path):
 def test_literature_review_offline_template(tmp_path, monkeypatch):
     from sciforge.research.survey import literature_review
 
-    monkeypatch.setenv("CLAWSGO_SELF_OFFLINE", "1")
+    monkeypatch.setenv("SCI_FORGE_OFFLINE", "1")
     layout = _layout(tmp_path)
     r = literature_review("可解释性", paper_id="p_lr", layout=layout)
     assert r.ok is True
