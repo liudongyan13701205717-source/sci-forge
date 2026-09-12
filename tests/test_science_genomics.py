@@ -4,10 +4,10 @@ from sciforge.science.sources import genomics
 
 
 def test_genomics_registers_7():
-    before = len(get_registry().all())
     genomics.register()
-    after = len(get_registry().all())
-    assert after - before == 7
+    ids = {c.id for c in get_registry().all()}
+    assert {"ensembl", "eutils", "mygene", "myvariant", "clinvar",
+            "dbsnp", "gnomad"} <= ids
 
 
 def test_ensembl_search_parses(monkeypatch):

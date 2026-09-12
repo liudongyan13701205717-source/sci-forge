@@ -5,10 +5,10 @@ from sciforge.science.sources import literature
 
 
 def test_literature_registers_7():
-    before = len(get_registry().all())
     literature.register()
-    after = len(get_registry().all())
-    assert after - before == 7
+    ids = {c.id for c in get_registry().all()}
+    assert {"openalex", "arxiv", "biorxiv", "crossref", "europepmc",
+            "pubmed", "semantic-scholar"} <= ids
 
 
 def test_openalex_search_offline(monkeypatch):

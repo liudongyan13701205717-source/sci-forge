@@ -47,7 +47,18 @@ def test_recommend_offline():
     monkeypatch.undo()
 
 
-def test_recommend_limit_clamp():
+def test_recommend_limit_clamp(monkeypatch):
+    many = [{"title": f"paper-{i}", "cited_by": 100 - i, "year": 2024,
+             "authors": [], "venue": "", "doi": "", "url": "", "abstract": ""}
+            for i in range(50)]
+    seen = {}
+
+    def fake(topic, limit=10, sources=None):
+        seen["limit"] = limit
+        return many[:limit]
+
+    monkeypatch.setattr(recommender, "_trending_papers", fake)
     r = recommender.recommend_papers("test", limit=1000)
     assert r["ok"] is True
-    assert r["count"] == 0
+    assert seen["limit"] == 20
+    assert r["count"] == 20

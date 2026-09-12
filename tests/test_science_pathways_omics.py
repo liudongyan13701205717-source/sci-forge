@@ -4,17 +4,16 @@ from sciforge.science.sources import pathways, omics
 
 
 def test_pathways_registers_5():
-    before = len(get_registry().all())
     pathways.register()
-    after = len(get_registry().all())
-    assert after - before == 5
+    ids = {c.id for c in get_registry().all()}
+    assert {"biogrid", "intact", "kegg", "opentargets", "reactome"} <= ids
 
 
 def test_omics_registers_6():
-    before = len(get_registry().all())
     omics.register()
-    after = len(get_registry().all())
-    assert after - before == 6
+    ids = {c.id for c in get_registry().all()}
+    assert {"arrayexpress", "depmap", "expression-atlas", "geo",
+            "gtex", "hpa"} <= ids
 
 
 def test_biogrid_search_parses(monkeypatch):

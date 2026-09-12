@@ -4,10 +4,10 @@ from sciforge.science.sources import proteins
 
 
 def test_proteins_registers_6():
-    before = len(get_registry().all())
     proteins.register()
-    after = len(get_registry().all())
-    assert after - before == 6
+    ids = {c.id for c in get_registry().all()}
+    assert {"uniprot", "rcsb-pdb", "pdbe", "alphafold", "interpro",
+            "sifts"} <= ids
 
 
 def test_uniprot_search_parses(monkeypatch):

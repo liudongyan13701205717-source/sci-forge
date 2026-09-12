@@ -4,10 +4,9 @@ from sciforge.science.sources import datasets
 
 
 def test_datasets_registers_4():
-    before = len(get_registry().all())
     datasets.register()
-    after = len(get_registry().all())
-    assert after - before == 4
+    ids = {c.id for c in get_registry().all()}
+    assert {"zenodo", "doaj", "openaire", "huggingface"} <= ids
 
 
 def test_zenodo_search_parses(monkeypatch):

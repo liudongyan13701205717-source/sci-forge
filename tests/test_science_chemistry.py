@@ -4,10 +4,10 @@ from sciforge.science.sources import chemistry
 
 
 def test_chemistry_registers_6():
-    before = len(get_registry().all())
     chemistry.register()
-    after = len(get_registry().all())
-    assert after - before == 6
+    ids = {c.id for c in get_registry().all()}
+    assert {"chembl", "pubchem", "chebi", "bindingdb", "gtopdb",
+            "surechembl"} <= ids
 
 
 def test_chembl_search_parses(monkeypatch):
