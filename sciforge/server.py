@@ -346,25 +346,53 @@ def review_code(task_id: str) -> dict:
 
 @mcp.tool()
 def science_list_dbs(domain: str = "") -> dict:
+    """列出当前可用的科学数据库（跨 7 大领域，共 41 个），可按领域筛选。
+
+    Args:
+        domain: 可选领域筛选，如 literature/proteins/chemistry/genomics/
+            pathways/omics/datasets；留空则列出全部。
+    """
     from sciforge.science.api import science_list_dbs as _impl
     return _impl(domain=domain)
 
 
 @mcp.tool()
 def science_search(database: str, query: str, limit: int = 5) -> dict:
+    """在指定科学数据库中进行关键词检索。
+
+    Args:
+        database: 数据库标识（如 openalex/uniprot/chembl），先用
+            science_list_dbs 查看全部。
+        query: 检索关键词。
+        limit: 返回条数上限，默认 5。
+    """
     from sciforge.science.api import science_search as _impl
     return _impl(database=database, query=query, limit=limit)
 
 
 @mcp.tool()
 def science_fetch(database: str, id: str, format: str = "") -> dict:
+    """按记录 ID 从指定科学数据库获取单条完整记录。
+
+    Args:
+        database: 数据库标识。
+        id: 记录 ID（如 P53_HUMAN / 1ABC / W123456789）。
+        format: 期望返回格式，留空用默认。
+    """
     from sciforge.science.api import science_fetch as _impl
     return _impl(database=database, id=id, format=format)
 
 
 @mcp.tool()
 def science_cross_lookup(query: str, databases: list[str] | None = None,
-                        limit: int = 5) -> dict:
+                         limit: int = 5) -> dict:
+    """跨多个科学数据库联合查询同一关键词。
+
+    Args:
+        query: 检索关键词。
+        databases: 可选，限定查询的数据库列表；留空则全库搜索。
+        limit: 每个库返回条数上限，默认 5。
+    """
     from sciforge.science.api import science_cross_lookup as _impl
     return _impl(query=query, databases=databases, limit=limit)
 
@@ -372,6 +400,13 @@ def science_cross_lookup(query: str, databases: list[str] | None = None,
 @mcp.tool()
 def science_batch_search(query: str, databases: list[str] | None = None,
                          limit: int = 10) -> dict:
+    """批量跨库检索：在多个数据库上并行执行同一查询并汇总结果。
+
+    Args:
+        query: 检索关键词。
+        databases: 可选，要检索的数据库列表；留空则覆盖主要库。
+        limit: 每个库返回条数上限，默认 10。
+    """
     from sciforge.science.api import science_batch_search as _impl
     return _impl(query=query, databases=databases, limit=limit)
 
@@ -391,18 +426,35 @@ def science_domain_resource(domain: str) -> dict:
 
 @mcp.tool()
 def ref_to_bibtex(doi: str) -> dict:
+    """按 DOI 生成 BibTeX 条目。
+
+    Args:
+        doi: DOI 标识（含 10.xxxx 前缀）。
+    """
     from sciforge.research.references import ref_to_bibtex as _impl
     return _impl(doi=doi)
 
 
 @mcp.tool()
 def batch_ref_export(text: str) -> dict:
+    """批量导出参考文献：解析文本中的 DOI/引用，转成 BibTeX 条目。
+
+    Args:
+        text: 一段任意文本，内含一个或多个 DOI 或引用信息。
+    """
     from sciforge.research.references import batch_ref_export as _impl
     return _impl(text=text)
 
 
 @mcp.tool()
 def recommend_papers(topic: str, limit: int = 5, sources: list[str] | None = None) -> dict:
+    """围绕研究主题推荐论文。
+
+    Args:
+        topic: 研究方向/主题/关键词。
+        limit: 返回条数上限，默认 5。
+        sources: 可选来源过滤，留空用默认源。
+    """
     from sciforge.research.recommender import recommend_papers as _impl
     return _impl(topic=topic, limit=limit, sources=sources)
 
