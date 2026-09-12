@@ -1,42 +1,39 @@
 # 使用指南 (USAGE)
 
-> 本文件说明如何让 `sci-forge` MCP 在 opencode / Claude Code 中**自动启动并自然调用**，
-> 以及如何验证 server 自启正常。
+> 让 `sci-forge` 以**标准 MCP 工具调用**形式工作：配置一次后，对话里自然描述任务，
+> `sci-forge_*` 工具自动被 agent 选中执行——不需要写命令、不需要碰文件。
+>
+> 想 3 分钟跑通装→配→用，先看 **[MCP_QUICKSTART.md](./MCP_QUICKSTART.md)**；
+> 本文件是它的进阶版：自检、opencode 配置、对话式示例、科研工具说明、FAQ。
 
 ---
 
-## 1. 快速验证：server 能否自动启动
+## 1. 快速验证：server 能否按标准形态启动
 
-`sci-forge` 是 `type: local` 的 stdio MCP。只要配置正确，客户端会**自动 spawn** 一个
-子进程并连接，无需任何手动操作。
+`sci-forge` 是 `type: local` 的 stdio MCP。装好后客户端会**自动 spawn** 一次 `sci-forge`
+进程并连接，无需任何手动操作。
 
-### 命令行自检（30 秒）
+### 命令行自检（10 秒）
 
 ```bash
-C:\Python314\python.exe -c "import sciforge.server; print('import ok')"
+sci-forge --version   # 应打印 sci-forge 0.1.0
+sci-forge --help      # 应打印用法（stdio 启动说明）
 ```
 
-能打印 `import ok` 即说明包、依赖、路径都正常。
+能打印即说明包、依赖、入口脚本都正常。
 
-### 模拟客户端自动连接（推荐，彻底验证）
+### 模拟客户端自动连接（彻底验证）
 
-用与 `opencode.json` 完全一致的参数 spawn 子进程并自动调用工具，全程无手动：
+用与客户端完全等价的参数 spawn 子进程并自动调用工具，全程无手动：
 
 ```python
 # scripts/verify_mcp_auto.py
-import asyncio, os
+import asyncio
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-ROOT = r"F:\opencode工坊\sciforge"
-
 async def main():
-    env = dict(os.environ); env["PYTHONPATH"] = ROOT
-    params = StdioServerParameters(
-        command=r"C:\Python314\python.exe",
-        args=["-m", "sciforge.server"],
-        cwd=ROOT, env=env,
-    )
+    params = StdioServerParameters(command="sci-forge", args=[])
     async with stdio_client(params) as (r, w):
         async with ClientSession(r, w) as s:
             await s.initialize()
@@ -46,26 +43,25 @@ async def main():
 asyncio.run(main())
 ```
 
-输出能看到 24 个工具即证明 server 自启 + 协议正常（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
+输出能看到约 28 个 `sci-forge_*` 工具即证明 server 自启 + 协议正常
+（日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
 
 ---
 
 ## 2. 让 opencode 自动连接并自然调用
 
-### 配置前提（已写入 `~/.config/opencode/opencode.json`）
+### 配置（`~/.config/opencode/opencode.json`）——标准可移植形态
 
 ```jsonc
 {
   "mcp": {
     "sci-forge": {
       "type": "local",
-      "command": ["C:\\Python314\\python.exe", "-m", "sciforge.server"],
-      "cwd": "F:\\opencode工坊\\sciforge",
+      "command": ["sci-forge"],
       "enabled": true,
       "timeout": 120000,
       "environment": {
-        "SCIFORGE_ENV": "dev",
-        "PYTHONPATH": "F:\\opencode工坊\\sciforge"
+        "SCI_FORGE_OFFLINE": "0"
       }
     }
   }
@@ -73,25 +69,29 @@ asyncio.run(main())
 ```
 
 关键点：
-- **用绝对路径**指向解释器与工作区（不要用裸 `python`，避免命中系统 Store 占位符）。
-- `cwd` 与 `PYTHONPATH` 都指向项目根，保证能 import 到 `sciforge` 包。
-- `timeout` 设为 `120000`（毫秒）：opencode 默认首次连接超时只有几秒，冷启动 / 工具
-  列表初始化较慢时会被误判为"掉线"（表现为需要手动 connect）。显式加大超时即可保证
+- **只写命令名 `sci-forge`**，不写绝对路径解释器 / `PYTHONPATH` / `cwd`。
+  安装后该命令就在 PATH 上，这份配置在任何机器原样生效。
+- `timeout` 设为 `120000`（毫秒）：opencode 默认首次连接超时只有几秒，冷启动 /
+  工具列表初始化较慢时会被误判为"掉线"（表现为需要手动 connect）。显式加大超时即可保证
   **自动拉起**。
+
+> 场景：你在**源码目录**里开发 / 还没把 `sci-forge` 装进 PATH，可临时用
+> `["python", "-m", "sciforge.cli"]` + `environment.CWD/PYTHONPATH` 指到源码根。
+> 对普通用户，永远只用 `["sci-forge"]` 这一种。
 
 ### 让会话内看见工具
 
 1. **完全退出 opencode 进程**（关掉整个终端/窗口，不是只关标签页），再重新打开。
    → 否则旧进程仍持有修改前的 MCP 配置。
-2. 重启后，24 个工具应出现在可用工具列表
-   （复现 2 + 写作 2 + 研究/科研 16 + 科学数据 4）：
+2. 重启后，约 28 个 `sci-forge_*` 工具应出现在可用工具列表：
    `reproduce_paper / reproduce_status / write_section / export_document /
     ideate_paper / inject_results / research_verdict / get_deliverables /
     research_plan / literature_review / auto_title_abstract / peer_review /
     venue_suggest / paper_polish /
     compare_metrics / check_novelty / package_submission /
     citation_landscape / project_memory / review_code /
-    science_list_dbs / science_search / science_fetch / science_cross_lookup`
+    science_list_dbs / science_search / science_fetch / science_cross_lookup /
+    science_batch_search / ref_to_bibtex / batch_ref_export / recommend_papers`
 3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `sci-forge` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 

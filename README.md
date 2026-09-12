@@ -67,14 +67,20 @@ inject_results（实验数据并入 results）      export_document（LaTeX/PDF/
 
 ## 快速开始
 
-> 👉 **想让 MCP 在 opencode 里自动启动并在对话中自然调用？** 详见 [**USAGE.md**](./USAGE.md)
-> （含：自启动验证脚本、opencode 连接步骤、对话式端到端论文生成示例、常见问题）。
+> 👉 **3 分钟装好、配置好后即可用对话直接调用（标准 MCP 工具调用，无需命令/文件）：**
+> 详见 [**MCP_QUICKSTART.md**](./MCP_QUICKSTART.md)。
+>
+> 更详细的使用指南、端到端示例与常见问题见 [**USAGE.md**](./USAGE.md)。
 
 ### 安装
 
 要求 Python ≥ 3.10。
 
 ```bash
+# 别人装机第一次用（最简）：
+pip install "git+https://github.com/liudongyan13701205717-source/sci-forge.git"
+
+# 或克隆到本地再安装（可同时拿到源码）：
 git clone https://github.com/liudongyan13701205717-source/sci-forge.git
 cd sci-forge
 pip install -e .            # 最小安装（只带 MCP 本体）
@@ -83,47 +89,23 @@ pip install -e .            # 最小安装（只带 MCP 本体）
 pip install -e ".[reproduce,dev]"
 ```
 
-**依赖说明**：
-
-| 依赖 | 用途 | 必需？ |
-| --- | --- | --- |
-| `mcp>=1.29.0` | MCP 协议与 FastMCP 运行 | ✅ 必需（base） |
-| `pymupdf` | 论文 PDF 解析 | 复现线 |
-| `numpy` / `matplotlib` | 沙箱执行复现代码、绘制收敛图 | 复现线 |
-| 本机 `xelatex`/`pdflatex` | LaTeX→PDF 导出 | 可选（缺省时自动用内置 PyMuPDF 渲染出 PDF） |
-
-**验证安装**：
-
-```bash
-python -m sciforge.server --help 2>&1 | Out-Null   # 能启动即安装成功（stdio server）
-python -m pytest tests/ -q                              # 跑内置测试，应全绿
-```
-
-### 在 opencode / Claude Code 中配置
-
-把 server 注册为本地 MCP（以 opencode 为例，`~/.config/opencode/opencode.json`）：
+安装后会得到 `sci-forge` 命令，直接注册为 local MCP 即可（**不需要**
+`PYTHONPATH` / `cwd`，这是标准可移植配置）：
 
 ```jsonc
 {
   "mcp": {
-    "sci-forge": {
-      "type": "local",
-      "command": ["python", "-m", "sciforge.server"],
-      "cwd": "<你的工作区路径>",
-      "enabled": true,
-      "timeout": 120000,
-      "environment": {
-        "PYTHONPATH": "<你的工作区路径>"
-      }
-    }
+    "sci-forge": { "type": "local", "command": ["sci-forge"], "enabled": true }
   }
 }
 ```
 
-> 用**绝对路径**指向解释器与工作区，避免命中系统自带的 Python Store 占位符。
-> 建议显式加 `"timeout"`（毫秒），避免冷启动被误判为掉线而出现"需要手动 connect"。
+**验证安装**：
 
-重启客户端后即可看到全部 24 个工具。
+```bash
+sci-forge --version                     # 打印版本（还会 --help 用法）
+python -m pytest tests/ -q              # 跑内置测试，应全绿
+```
 
 ---
 
@@ -185,7 +167,7 @@ export_document(paper_id, "pdf")       # 终版导出
 
 ```
 sciforge/
-├── server.py        # MCP stdio server，注册全部 24 个工具
+├── server.py        # MCP stdio server，注册 28 个工具 + 2 个 resource
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
 ├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline + codereview 静态点评
