@@ -459,6 +459,314 @@ def recommend_papers(topic: str, limit: int = 5, sources: list[str] | None = Non
     return _impl(topic=topic, limit=limit, sources=sources)
 
 
+@mcp.tool()
+def run_panel(
+    text: str,
+    mode: str = "full",
+    journal: str = "",
+    design: str = "",
+    adjudications: dict | None = None,
+    author_response: str = "",
+    gold_set: list | None = None,
+    paper_id: str = "",
+    layout=None,
+) -> dict:
+    """多视角同行评审面板（7 席位：field_analyst/eic/methodology_R1/domain_R2/perspective_R3/devils_advocate/editorial_synthesizer）。
+
+    Args:
+        text: 论文全文（必填）。
+        mode: 运行模式，`full`/`quick`/`re-review`/`methodology_focus`/`calibration`，默认 full。
+        journal: 目标期刊名（用于 eic journal-fit），可选。
+        design: 研究设计描述（如 "randomized controlled trial"），用于 validators 指南选择，可选。
+        adjudications: CRITICAL 裁决字典 {issue_id: adjudication}，adjudication ∈ {addressed, countered, unaddressed, wontfix}。
+        author_response: 作者回应文本（re-review 模式用）。
+        gold_set: calibration 模式用的金标准集合 [{text, verdict}, ...]。
+        paper_id / layout: 给定时落盘 projects/{paper_id}/research/review_*.
+
+    Returns:
+        dict：{ok, verdict, phases: {phase1, phase2}, decision, ...}。
+    """
+    from sciforge.review.panel import run_panel as _impl
+    from sciforge.core import get_layout
+
+    return _impl(
+        text=text,
+        mode=mode,
+        journal=journal,
+        design=design,
+        adjudications=adjudications,
+        author_response=author_response,
+        gold_set=gold_set,
+        paper_id=paper_id,
+        layout=layout or get_layout(),
+    )
+
+
+@mcp.tool()
+def validate_review_intake(intake: dict) -> dict:
+    """评审准入门：校验评审请求是否满足本地评审前置条件（fail-closed）。
+
+    Args:
+        intake: 评审请求字典，含 paper_id, mode, authorization, conflict_of_interest, external_services。
+
+    Returns:
+        dict：{ok, status (READY_FOR_LOCAL_REVIEW/BLOCKED), paper_id, mode, blockers, warnings}。
+    """
+    from sciforge.review.validators import validate_review_intake as _impl
+
+    return _impl(intake)
+
+
+@mcp.tool()
+def select_reporting_guidelines(design: str, text: str = "", as_of: str = "") -> dict:
+    """按研究设计选择报告指南并做覆盖审计（非计分、带日期）。
+
+    Args:
+        design: 研究设计描述（如 "randomized controlled trial"），空则从 text 前 2000 字探测。
+        text: 论文正文（用于覆盖审计）。
+        as_of: 审计日期（ISO 格式），缺省取今天。
+
+    Returns:
+        dict：{ok, selected, probe_source, coverage, coverage_summary, text_provided, note, audit_date}。
+    """
+    from sciforge.review.validators import select_reporting_guidelines as _impl
+
+    return _impl(design=design, text=text, as_of=as_of)
+
+
+@mcp.tool()
+def validate_claims_evidence(claims: list, evidence: list) -> dict:
+    """claim/evidence 对齐矩阵：每条 claim 判定 ALIGNED / PARTIAL / UNSUPPORTED。
+
+    Args:
+        claims: [{"id", "text", "requires_evidence?"}] 或纯字符串列表。
+        evidence: [{"id", "text"}] 或纯字符串列表。
+
+    Returns:
+        dict：{ok, n_claims, n_evidence, matrix, summary}。
+    """
+    from sciforge.review.validators import validate_claims_evidence as _impl
+
+    return _impl(claims=claims, evidence=evidence)
+
+
+@mcp.tool()
+def review_panel_intake(intake: dict) -> dict:
+    """评审准入门（兼容旧名，等同 validate_review_intake）。
+
+    Args:
+        intake: 同 validate_review_intake。
+
+    Returns:
+        dict：同 validate_review_intake。
+    """
+    from sciforge.review.validators import validate_review_intake as _impl
+
+    return _impl(intake)
+
+
+@mcp.tool()
+def select_guidelines(design: str, text: str = "", as_of: str = "") -> dict:
+    """报告指南选择（兼容旧名，等同 select_reporting_guidelines）。
+
+    Args:
+        design: 研究设计描述。
+        text: 论文正文。
+        as_of: 审计日期。
+
+    Returns:
+        dict：同 select_reporting_guidelines。
+    """
+    from sciforge.review.validators import select_reporting_guidelines as _impl
+
+    return _impl(design=design, text=text, as_of=as_of)
+
+
+@mcp.tool()
+def claims_evidence_matrix(claims: list, evidence: list) -> dict:
+    """claim/evidence 对齐矩阵（兼容旧名，等同 validate_claims_evidence）。
+
+    Args:
+        claims: claim 列表。
+        evidence: evidence 列表。
+
+    Returns:
+        dict：同 validate_claims_evidence。
+    """
+    from sciforge.review.validators import validate_claims_evidence as _impl
+
+    return _impl(claims=claims, evidence=evidence)
+
+
+@mcp.tool()
+def verify(text: str, sources: dict | None = None) -> dict:
+    """claim→source 核验：解析 doc.md 中 claims + 引文（含锚点），5 类锚点分类，输出 gate_refuse。
+
+    Args:
+        text: 待核验文本（doc.md 全文）。
+        sources: 可选，外部来源索引 {anchor_key: source_text}。
+
+    Returns:
+        dict：{ok, gate_refuse, findings, summary, offline}。
+    """
+    from sciforge.claims.verify import verify as _impl
+
+    return _impl(text=text, sources=sources)
+
+
+@mcp.tool()
+def gate_2_5(context: dict) -> dict:
+    """完整性门 Stage 2.5：代码生成 → 执行之间的完整性门。
+
+    Args:
+        context: {code, plan}。
+
+    Returns:
+        dict：{stage, passed, blocked_patterns, checks, bypassed}。
+    """
+    from sciforge.claims.gates import gate_2_5 as _impl
+
+    return _impl(context)
+
+
+@mcp.tool()
+def gate_4_5(context: dict) -> dict:
+    """完整性门 Stage 4.5：结果 → 论文/交付之间的完整性门。
+
+    Args:
+        context: {results, runs, claims, doc_text, negative_results}。
+
+    Returns:
+        dict：{stage, passed, blocked_patterns, checks, bypassed}。
+    """
+    from sciforge.claims.gates import gate_4_5 as _impl
+
+    return _impl(context)
+
+
+@mcp.tool()
+def run_gates(context: dict) -> dict:
+    """一次性跑两道完整性门（2.5 + 4.5）。
+
+    Args:
+        context: 同时包含 gate_2_5 和 gate_4_5 所需字段。
+
+    Returns:
+        dict：{"2.5": ..., "4.5": ...}。
+    """
+    from sciforge.claims.gates import run_gates as _impl
+
+    return _impl(context)
+
+
+@mcp.tool()
+def request_bypass(gate: dict, reason: str) -> dict:
+    """fail-closed bypass：无理由拒绝放行；有理由记录放行。
+
+    Args:
+        gate: gate_2_5/gate_4_5/run_gates 返回的 gate 字典。
+        reason: 放行理由（必填，fail-closed）。
+
+    Returns:
+        dict：{allowed, stage, bypassed, bypass_reason, error}。
+    """
+    from sciforge.claims.gates import request_bypass as _impl
+
+    return _impl(gate=gate, reason=reason)
+
+
+@mcp.tool()
+def build_passport(
+    task_id: str,
+    results: dict | None = None,
+    runs: list | None = None,
+    claims: list | None = None,
+    gate_results: dict | None = None,
+    hypothesis: str = "",
+    negative_results: list | None = None,
+    doc_text: str = "",
+    as_of: str = "",
+) -> dict:
+    """Material Passport（per-run artifact）：含 experiment provenance + claim 审计。
+
+    Args:
+        task_id: 任务标识。
+        results: 实验结果 dict。
+        runs: 运行记录列表。
+        claims: claim 列表。
+        gate_results: run_gates 返回的双门结果。
+        hypothesis: 初始假设。
+        negative_results: 反面证据列表。
+        doc_text: 论文全文（用于 claim 审计）。
+        as_of: 生成日期（ISO），缺省今天。
+
+    Returns:
+        dict：Material Passport artifact。
+    """
+    from sciforge.claims.gates import build_passport as _impl
+
+    return _impl(
+        task_id=task_id,
+        results=results,
+        runs=runs,
+        claims=claims,
+        gate_results=gate_results,
+        hypothesis=hypothesis,
+        negative_results=negative_results,
+        doc_text=doc_text,
+        as_of=as_of,
+    )
+
+
+@mcp.tool()
+def journal_fit(paper_text: str, venue: str) -> dict:
+    """journal-fit 评分：论文与目标期刊/会议的匹配度（领域/体裁/方法/结构/合规）。
+
+    Args:
+        paper_text: 论文全文。
+        venue: 目标期刊/会议名（如 Nature, Cell, NeurIPS）。
+
+    Returns:
+        dict：{ok, venue, score, breakdown, gaps, recommendations}。
+    """
+    from sciforge.venue.fit import journal_fit as _impl
+
+    return _impl(paper_text=paper_text, venue=venue)
+
+
+@mcp.tool()
+def list_disciplines(domain: str = "") -> dict:
+    """列出当前注册的学科（自动发现，零注册即可发现）。
+
+    Args:
+        domain: 可选领域筛选，预留参数（当前忽略，供未来按领域分组）。
+
+    Returns:
+        dict：{ok, disciplines: [学科名列表]}。
+    """
+    from sciforge.disciplines import list_disciplines as _impl
+
+    return {"ok": True, "disciplines": _impl()}
+
+
+@mcp.tool()
+def get_discipline(name: str) -> dict:
+    """获取指定学科的完整配置（结构体裁/引用样式/报告标准/顶刊/单位公式）。
+
+    Args:
+        name: 学科名（如 mathematics, physics, medicine）。
+
+    Returns:
+        dict：学科配置对象。
+    """
+    from sciforge.disciplines import get_discipline as _impl
+
+    d = _impl(name)
+    if d is None:
+        return {"ok": False, "error": f"未知学科: {name}"}
+    return {"ok": True, "discipline": d.__dict__}
+
+
 def run() -> None:
     mcp.run()
 

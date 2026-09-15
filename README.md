@@ -167,7 +167,11 @@ export_document(paper_id, "pdf")       # 终版导出
 
 ```
 sciforge/
-├── server.py        # MCP stdio server，注册 28 个工具 + 2 个 resource
+├── server.py           # MCP stdio server，注册 44 个工具 + 2 个 resource
+├── review/             # 多视角评审面板（7席+Devil's Advocate+编辑综合决策）
+├── claims/             # claim→source 核验 + 完整性门 + Material Passport
+├── venue/              # 期刊写作模板 + journal-fit 匹配
+├── disciplines/        # 学科论文支持 registry（28 门自动发现）
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
 ├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline + codereview 静态点评
