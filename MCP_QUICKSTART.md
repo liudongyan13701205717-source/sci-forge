@@ -91,7 +91,7 @@ claude mcp add sci-forge -- python -m sciforge.cli
 
 ```
 science_list_dbs()            → 返回 41 个数据库（跨 7 个领域）
-list_disciplines()            → 返回 28 门学科（自动发现）
+list_disciplines()            → 返回 44 门学科（自动发现）
 get_deliverables("demo")      → 若无项目会报“不存在”，属正常
 ```
 
