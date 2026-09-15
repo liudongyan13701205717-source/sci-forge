@@ -84,13 +84,14 @@ claude mcp add sci-forge -- python -m sciforge.cli
 
 重启你的 MCP 客户端（**完全退出再打开**，让新 PATH / 新配置生效），然后：
 
-- opencode：应能在工具列表看到 `sci-forge_*` 前缀的约 28 个工具；
+- opencode：应能在工具列表看到 `sci-forge_*` 前缀的约 44 个工具；
 - 其它客户端：进入 MCP 面板确认 `sci-forge` 状态为 connected。
 
 需要 research/写作/复现都正常的话，快速冒烟：
 
 ```
 science_list_dbs()            → 返回 41 个数据库（跨 7 个领域）
+list_disciplines()            → 返回 28 门学科（自动发现）
 get_deliverables("demo")      → 若无项目会报“不存在”，属正常
 ```
 

@@ -43,7 +43,7 @@ async def main():
 asyncio.run(main())
 ```
 
-输出能看到约 28 个 `sci-forge_*` 工具即证明 server 自启 + 协议正常
+输出能看到约 44 个 `sci-forge_*` 工具即证明 server 自启 + 协议正常
 （日志走 stderr，不污染 stdout 的 JSON-RPC 流）。
 
 ---
@@ -83,7 +83,7 @@ asyncio.run(main())
 
 1. **完全退出 opencode 进程**（关掉整个终端/窗口，不是只关标签页），再重新打开。
    → 否则旧进程仍持有修改前的 MCP 配置。
-2. 重启后，约 28 个 `sci-forge_*` 工具应出现在可用工具列表：
+2. 重启后，约 44 个 `sci-forge_*` 工具应出现在可用工具列表：
    `reproduce_paper / reproduce_status / write_section / export_document /
     ideate_paper / inject_results / research_verdict / get_deliverables /
     research_plan / literature_review / auto_title_abstract / peer_review /
@@ -91,7 +91,11 @@ asyncio.run(main())
     compare_metrics / check_novelty / package_submission /
     citation_landscape / project_memory / review_code /
     science_list_dbs / science_search / science_fetch / science_cross_lookup /
-    science_batch_search / ref_to_bibtex / batch_ref_export / recommend_papers`
+    science_batch_search / ref_to_bibtex / batch_ref_export / recommend_papers /
+    run_panel / validate_review_intake / select_reporting_guidelines /
+    validate_claims_evidence / claims_evidence_matrix / verify / gate_2_5 /
+    gate_4_5 / run_gates / request_bypass / build_passport / journal_fit /
+    list_disciplines / get_discipline`
 3. 若左侧工具列表没出现，输入 `/mcp` 打开面板，对 `sci-forge` 点 **connect**（一次性）。
    首次 spawn 会有 ~1–2s 冷启动。
 
