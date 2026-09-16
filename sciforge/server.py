@@ -767,6 +767,167 @@ def get_discipline(name: str) -> dict:
     return {"ok": True, "discipline": d.__dict__}
 
 
+@mcp.tool()
+def prisma_review(topic: str, hits: list[dict] | None = None,
+                  databases: list[str] | None = None, limit: int = 10,
+                  include_keywords: list[str] | None = None,
+                  exclude_keywords: list[str] | None = None,
+                  paper_id: str = "", persist: bool = False) -> dict:
+    """PRISMA 系统综述：7 阶段协议（规划→多库检索→筛选→全文评估→主题综合→引文核验→文档生成），带流程计数。
+
+    Args:
+        topic: 综述主题（检索查询语句）。
+        hits: 预取检索结果（可选，给定则跳过检索阶段）。
+        databases: 检索库列表（不足 3 个自动补默认库）。
+        limit: 每库检索条数上限，默认 10。
+        include_keywords: title/abstract 纳入关键词（未命中即排除）。
+        exclude_keywords: title/abstract 排除关键词（命中即排除）。
+        paper_id: 项目标识（persist=True 时落盘）。
+        persist: 是否落盘 prisma.json/md，默认 False。
+
+    Returns:
+        dict：{ok, topic, counts, included, themes, verification, queries, phases, notes, offline}。
+    """
+    from sciforge.core import get_layout
+    from sciforge.research.prisma import flow as _impl
+
+    layout = get_layout() if (persist and paper_id) else None
+    return _impl(topic=topic, hits=hits, databases=databases, limit=limit,
+                 include_keywords=include_keywords, exclude_keywords=exclude_keywords,
+                 paper_id=paper_id, layout=layout, persist=persist)
+
+
+@mcp.tool()
+def convert_citation(bibtex: str, style: str = "apa") -> dict:
+    """引用样式转换：解析 BibTeX 条目并渲染为指定样式。
+
+    Args:
+        bibtex: BibTeX 条目文本（@article{...} 等）。
+        style: 目标样式，可选 apa / chicago-notes / chicago-author-date /
+            mla / ieee / vancouver，默认 apa。
+
+    Returns:
+        dict：{ok, style, citation, missing}。missing 为缺字段清单（优雅降级标注 (missing)）。
+    """
+    from sciforge.research.styles import parse_bibtex, render
+
+    cit = parse_bibtex(bibtex or "")
+    return render(cit, style)
+
+
+@mcp.tool()
+def convert_citation_all(bibtex: str) -> dict:
+    """引用样式一键转换：BibTeX → 全部 6 种样式（APA/Chicago×2/MLA/IEEE/Vancouver）。
+
+    Args:
+        bibtex: BibTeX 条目文本。
+
+    Returns:
+        dict：{ok, styles: {style: rendered}, missing}。
+    """
+    from sciforge.research.styles import parse_bibtex, render_all
+
+    return render_all(parse_bibtex(bibtex or ""))
+
+
+@mcp.tool()
+def revision_coach(comments_text: str, paper_id: str = "") -> dict:
+    """修订教练：评审意见 → 结构化路线图（comment→类型 CRITICAL/MAJOR/MINOR→位置→回应计划）。
+
+    Args:
+        comments_text: 评审意见原文（多条意见用编号/空行分隔）。
+        paper_id: 可选，给定时落盘 rebuttal_plan.json。
+
+    Returns:
+        dict：{ok, total, roadmap, summary}。
+    """
+    from sciforge.core import get_layout
+    from sciforge.research.rebuttal import revision_coach as _impl
+
+    layout = get_layout() if paper_id else None
+    return _impl(comments_text, paper_id=paper_id, layout=layout)
+
+
+@mcp.tool()
+def rebuttal_audit(rebuttal_text: str, comments: str, paper_id: str = "") -> dict:
+    """rebuttal 审计：逐条检查 rebuttal 是否回应了每条评审意见（fail-closed）。
+
+    Args:
+        rebuttal_text: rebuttal 草稿全文。
+        comments: 评审意见原文。
+        paper_id: 可选，给定时落盘 rebuttal_audit.json。
+
+    Returns:
+        dict：{ok, total, addressed, unaddressed, coverage, pass}。
+    """
+    from sciforge.core import get_layout
+    from sciforge.research.rebuttal import rebuttal_audit as _impl
+
+    layout = get_layout() if paper_id else None
+    return _impl(rebuttal_text, comments, paper_id=paper_id, layout=layout)
+
+
+@mcp.tool()
+def detect_style(text: str) -> dict:
+    """机器文风检测：hedging 密度 + 模板化句式 + 空洞连接词 → 0-100 分 + 证据列表。
+
+    Args:
+        text: 待检文本（论文正文或章节）。
+
+    Returns:
+        dict：{ok, score, sentences, metrics, evidence}。分数越高越像机器生成。
+    """
+    from sciforge.research.quality import detect_style as _impl
+
+    return _impl(text)
+
+
+@mcp.tool()
+def claim_strength(text: str) -> dict:
+    """claim-strength ladder：检测表述强度（associated<predicts<causes）与无授权的强度上移。
+
+    Args:
+        text: 待检文本。
+
+    Returns:
+        dict：{ok, max_level, claims, escalations}。
+    """
+    from sciforge.research.quality import claim_strength as _impl
+
+    return _impl(text)
+
+
+@mcp.tool()
+def calibrate_style(text: str) -> dict:
+    """风格校准：从已有正文学习作者声音画像（句长分布/用词偏好/结构习惯）。
+
+    Args:
+        text: 已有正文（如 doc.md 全文）。
+
+    Returns:
+        dict：{ok, sentences, tokens, structure}。画像可用于 score_style_text 评分。
+    """
+    from sciforge.research.stylecal import learn_style as _impl
+
+    return _impl(text)
+
+
+@mcp.tool()
+def score_style_text(text: str, profile: dict) -> dict:
+    """文风评分：新文本与作者画像的相似度（0-100，越高越接近作者声音）。
+
+    Args:
+        text: 待评文本。
+        profile: calibrate_style 产出的画像 dict。
+
+    Returns:
+        dict：{ok, score, components, verdict}。
+    """
+    from sciforge.research.stylecal import score_text as _impl
+
+    return _impl(text, profile)
+
+
 def run() -> None:
     mcp.run()
 
