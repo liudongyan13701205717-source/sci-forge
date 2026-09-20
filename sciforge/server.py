@@ -928,6 +928,197 @@ def score_style_text(text: str, profile: dict) -> dict:
     return _impl(text, profile)
 
 
+@mcp.tool()
+def verify_citation(doi: str) -> dict:
+    """引用核验：核验单个 DOI 是否真实存在（Crossref）。离线可用、免 key。
+
+    Args:
+        doi: 待核验的 DOI（如 "10.1038/s41586-020-2649-2"）。
+
+    Returns:
+        dict：{ok, doi, reason, checked_at}。
+    """
+    from sciforge.research.verify import verify_citation as _impl
+
+    return _impl(doi)
+
+
+@mcp.tool()
+def verify_claim(claim: str, topic: str = "", limit: int = 5) -> dict:
+    """主张核验：检索 OpenAlex 支持证据并判定 SUPPORTED/PARTIAL/UNSUPPORTED。离线可用、免 key。
+
+    Args:
+        claim: 待核验的主张/论断文本。
+        topic: 检索主题（为空时用 claim 前 80 字符）。
+        limit: 检索条数上限。
+
+    Returns:
+        dict：{ok, claim, evidence, verdict, notes}。
+    """
+    from sciforge.research.verify import verify_claim as _impl
+
+    return _impl(claim, topic=topic, limit=limit)
+
+
+@mcp.tool()
+def verify_reference_list(refs: list[str]) -> dict:
+    """批量引用核验：逐条核验参考文献 DOI。离线可用、免 key。
+
+    Args:
+        refs: DOI 字符串列表。
+
+    Returns:
+        dict：{ok, total, valid, invalid, notes}。
+    """
+    from sciforge.research.verify import verify_reference_list as _impl
+
+    return _impl(refs)
+
+
+@mcp.tool()
+def paper_metadata(doi: str) -> dict:
+    """论文元数据：经 Crossref 获取标题/作者/年份/期刊/摘要。离线可用、免 key。
+
+    Args:
+        doi: 论文 DOI。
+
+    Returns:
+        dict：{ok, title, authors, year, venue, doi, url, abstract, notes}。
+    """
+    from sciforge.research.papers import paper_metadata as _impl
+
+    return _impl(doi)
+
+
+@mcp.tool()
+def citation_graph(doi: str, depth: int = 1) -> dict:
+    """引用图谱：经 OpenAlex 获取被引数与参考文献。离线可用、免 key。
+
+    Args:
+        doi: 论文 DOI。
+        depth: 展开深度（当前实现仅一层）。
+
+    Returns:
+        dict：{ok, root, citing_count, referenced, notes}。
+    """
+    from sciforge.research.papers import citation_graph as _impl
+
+    return _impl(doi, depth=depth)
+
+
+@mcp.tool()
+def download_paper_pdf(doi: str, out_dir: str = "") -> dict:
+    """论文 PDF 下载：经 OpenAlex OA 定位并下载开放获取 PDF。离线可用、免 key。
+
+    Args:
+        doi: 论文 DOI。
+        out_dir: 保存目录（默认当前目录）。
+
+    Returns:
+        dict：{ok, path, source, size_bytes, notes}。
+    """
+    from sciforge.research.papers import download_paper_pdf as _impl
+
+    return _impl(doi, out_dir=out_dir)
+
+
+@mcp.tool()
+def scout_topic(topic: str, limit: int = 10) -> dict:
+    """主题侦察：多源聚合检索 + 去重 + 评分排序（被引/新近度/关键词）。离线可用、免 key。
+
+    Args:
+        topic: 检索主题/关键词。
+        limit: 每源检索条数上限。
+
+    Returns:
+        dict：{ok, topic, total, ranked, notes}。
+    """
+    from sciforge.research.scout import scout_topic as _impl
+
+    return _impl(topic, limit=limit)
+
+
+@mcp.tool()
+def scout_compare(topics: list[str], limit: int = 5) -> dict:
+    """主题对比：多主题横向对比（按命中数降序）。离线可用、免 key。
+
+    Args:
+        topics: 主题列表。
+        limit: 每主题检索条数上限。
+
+    Returns:
+        dict：{ok, topics, comparison, notes}。
+    """
+    from sciforge.research.scout import scout_compare as _impl
+
+    return _impl(topics, limit=limit)
+
+
+@mcp.tool()
+def rag_answer(question: str, topic: str = "", limit: int = 5) -> dict:
+    """检索增强问答：检索相关文献并用本地模板合成答案（无 LLM）。离线可用、免 key。
+
+    Args:
+        question: 用户问题。
+        topic: 检索主题（为空时用问题前 80 字符）。
+        limit: 检索条数上限。
+
+    Returns:
+        dict：{ok, question, sources, answer, method, notes}。
+    """
+    from sciforge.research.rag import rag_answer as _impl
+
+    return _impl(question, topic=topic, limit=limit)
+
+
+@mcp.tool()
+def rag_sources(question: str, limit: int = 5) -> dict:
+    """RAG 来源：仅检索并排序相关来源（按被引降序）。离线可用、免 key。
+
+    Args:
+        question: 检索问题/主题。
+        limit: 检索条数上限。
+
+    Returns:
+        dict：{ok, question, sources, notes}。
+    """
+    from sciforge.research.rag import rag_sources as _impl
+
+    return _impl(question, limit=limit)
+
+
+@mcp.tool()
+def find_code_for_paper(title: str, limit: int = 5) -> dict:
+    """论文找代码：定位论文并检索关联代码/数据集（HuggingFace/Zenodo）。离线可用、免 key。
+
+    Args:
+        title: 论文标题。
+        limit: 代码检索条数上限。
+
+    Returns:
+        dict：{ok, paper, code_links, notes}。
+    """
+    from sciforge.research.code_link import find_code_for_paper as _impl
+
+    return _impl(title, limit=limit)
+
+
+@mcp.tool()
+def link_papers_to_code(topic: str, limit: int = 5) -> dict:
+    """主题找代码：主题论文批量关联代码/数据集。离线可用、免 key。
+
+    Args:
+        topic: 检索主题。
+        limit: 论文条数上限。
+
+    Returns:
+        dict：{ok, topic, links, notes}。
+    """
+    from sciforge.research.code_link import link_papers_to_code as _impl
+
+    return _impl(topic, limit=limit)
+
+
 def run() -> None:
     mcp.run()
 

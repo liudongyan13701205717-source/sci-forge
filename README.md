@@ -53,6 +53,18 @@
 | `claim_strength` | 科研/论文 | 表述强度阶梯评估（7 级） |
 | `calibrate_style` | 科研/论文 | 作者声音画像（9 维文风雷达） |
 | `score_style_text` | 科研/论文 | 文风评分（对比目标模板） |
+| `verify_citation` | 科研/论文 | 引用核验：DOI 真实性（Crossref） |
+| `verify_claim` | 科研/论文 | 主张核验：检索证据判定 SUPPORTED/PARTIAL/UNSUPPORTED |
+| `verify_reference_list` | 科研/论文 | 批量引用核验（valid/invalid 列表） |
+| `paper_metadata` | 科研/论文 | 论文元数据（Crossref：标题/作者/年份/期刊/摘要） |
+| `citation_graph` | 科研/论文 | 引用图谱（OpenAlex：被引数 + 参考文献） |
+| `download_paper_pdf` | 科研/论文 | 开放获取 PDF 下载（OpenAlex OA 定位） |
+| `scout_topic` | 科研/论文 | 主题侦察：多源聚合 + 去重 + 评分排序 |
+| `scout_compare` | 科研/论文 | 主题横向对比（按命中数降序） |
+| `rag_answer` | 科研/论文 | 检索增强问答（本地模板合成，无 LLM） |
+| `rag_sources` | 科研/论文 | RAG 来源检索（按被引降序） |
+| `find_code_for_paper` | 科研/论文 | 论文找代码/数据集（HuggingFace/Zenodo） |
+| `link_papers_to_code` | 科研/论文 | 主题论文批量关联代码/数据集 |
 
 ### 全链路：从构思到论文
 
@@ -176,7 +188,7 @@ export_document(paper_id, "pdf")       # 终版导出
 
 ```
 sciforge/
-├── server.py           # MCP stdio server，注册 53 个工具 + 2 个 resource
+├── server.py           # MCP stdio server，注册 65 个工具 + 2 个 resource
 ├── review/             # 多视角评审面板（7席+Devil's Advocate+编辑综合决策）
 ├── claims/             # claim→source 核验 + 完整性门 + Material Passport
 ├── venue/              # 期刊写作模板 + journal-fit 匹配
