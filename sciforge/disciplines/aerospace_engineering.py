@@ -36,4 +36,9 @@ DISCIPLINE = Discipline(
         "推力/重量比无量纲；雷诺数 Re = ρvL/μ",
         "翼载用 kg/m² 或 lb/ft²；比冲 Isp 用 s",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("ANSYS", "CATIA", "MATLAB", "风洞试验"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

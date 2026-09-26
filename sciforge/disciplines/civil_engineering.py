@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "刚度 kN·m²；延性系数 μ；能耗能力",
         "规范公式引用编号，符号含义首现定义",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("AutoCAD", "SAP2000", "Revit", "ANSYS"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

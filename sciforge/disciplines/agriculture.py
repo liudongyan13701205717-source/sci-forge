@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "产量 t/ha 或 kg/ha；养分利用率（NUE/PFP）公式须给出",
         "水分利用效率 WUE = 产量/蒸散量；单位 kg/m³",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("R", "DSSAT", "ArcGIS", "SPSS", "Origin"),
+    category="农学",
+    databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

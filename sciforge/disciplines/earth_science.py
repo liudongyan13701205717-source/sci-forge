@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "年龄用 Ma（百万年）/Ga（十亿年）/ka（千年）",
         "浓度用 ppm/‰/ppb；同位素比用 δ（‰ V-SMOW/V-PDB）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("ArcGIS", "QGIS", "Python (NumPy/SciPy)", "MATLAB", "地震仪"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Zenodo", "Semantic Scholar"),
 )

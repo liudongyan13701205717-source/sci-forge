@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "收益率 %（月/年化注明）；波动率年化给 √t 缩放说明",
         "市值亿元或 USD mn；换手率 %；利差 bp",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("Python", "R", "Stata", "MATLAB"),
+    category="经济学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

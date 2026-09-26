@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "效应量给标准化均值差；ICC（组内相关）用于多层数据",
         "样本量按 power analysis 报告；缺失数据处理方式写明",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告", "教案与教材"),
+    tools=("SPSS", "Stata", "R", "NVivo", "LaTeX"),
+    category="教育学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

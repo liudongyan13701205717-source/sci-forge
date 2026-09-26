@@ -63,4 +63,9 @@ DISCIPLINE = Discipline(
         "比表面积 BET 给脱气条件；孔径分布给模型（BJH/DFT）",
         "力学/热学性能给测试标准（ASTM/ISO）与升温/加载速率",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("X 射线衍射仪", "扫描电镜（SEM）", "Origin", "Materials Studio"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

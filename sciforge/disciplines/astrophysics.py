@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "宇宙年龄给 Gyr；哈勃常数 H0 单位 km/s/Mpc",
         "星等对数负数（数值越小越亮），测量须带误差棒",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("Python (NumPy/SciPy)", "LaTeX", "CASA", "DS9", "TOPCAT"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "HuggingFace"),
 )

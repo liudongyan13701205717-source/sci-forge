@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "离散格式给 CFL 或约束条件（如 dt ≤ C·h²）",
         "自适应网格给标记准则与加密率",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码"),
+    tools=("Python (NumPy/SciPy)", "MATLAB", "LaTeX", "Julia", "FEniCS"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "Semantic Scholar"),
 )

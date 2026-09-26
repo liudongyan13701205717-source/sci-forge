@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "定位误差给 RMSE（m）；姿态给四元数或欧拉角约定",
         "控制频率 Hz；算力给 FLOPS 或型号对照",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码", "专利"),
+    tools=("ROS", "MATLAB", "SolidWorks", "Gazebo"),
+    category="工学",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

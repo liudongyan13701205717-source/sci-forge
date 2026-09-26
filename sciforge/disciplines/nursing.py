@@ -82,4 +82,9 @@ DISCIPLINE = Discipline(
         "质性样本以信息饱和为准并说明受访者特征（人数、访谈时长）",
         "护理敏感指标给定义口径（如压疮发生率 per 1000 patient-days）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("SPSS", "NVivo", "EndNote"),
+    category="医学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

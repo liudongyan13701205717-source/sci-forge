@@ -65,4 +65,9 @@ DISCIPLINE = Discipline(
         "定性材料引用格式统一（受访者编号：行号）",
         "效应量与显著性并列报告，避免只报 p 值",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("Stata", "R", "Python", "SPSS", "NVivo"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "降解速率用 %/day 或 mg/day",
         "影像分辨率用 mm 或 μm/pixel",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("SolidWorks", "COMSOL", "MATLAB", "ImageJ"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

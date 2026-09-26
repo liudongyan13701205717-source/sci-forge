@@ -41,4 +41,9 @@ DISCIPLINE = Discipline(
         "效应量给标准化系数或边际效应；民调给抽样误差（±%）与置信水平",
         "时间序列给单位根检验；面板数据给固定/随机效应选择依据",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("R", "Python", "Stata", "LaTeX", "Zotero"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

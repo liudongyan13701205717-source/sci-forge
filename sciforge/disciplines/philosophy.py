@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "论证有效性用真值表/模型可判",
         "概念分析举例（ Gettier/ trolley 顺序互证）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("LaTeX", "Zotero"),
+    category="哲学",
+    databases=("OpenAlex", "Crossref", "Semantic Scholar"),
 )

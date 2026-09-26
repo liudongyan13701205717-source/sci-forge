@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "辐射通量用 W/m²；光学厚度无量纲",
         "模式时间步长用 s；预报提前量用 h 或 days",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("WRF", "GrADS", "Python (NumPy/SciPy)", "NCL", "MATLAB"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "Zenodo", "CNKI", "arXiv"),
 )

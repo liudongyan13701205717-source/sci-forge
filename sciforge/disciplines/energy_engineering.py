@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "排放因子 kg/GJ 或 tCO2/MWh；CO2 强度按排放因子法",
         "投资回收期年；贴现率 % 注明",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("MATLAB", "ANSYS", "EnergyPlus"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "概率空间须明确；期望/方差记号关联随机变量",
         "下界证明须给路径（对手论证/信息论/转换图）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码"),
+    tools=("LaTeX", "Coq", "Isabelle", "TLA+"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

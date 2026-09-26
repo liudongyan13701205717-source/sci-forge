@@ -35,4 +35,9 @@ DISCIPLINE = Discipline(
         "碳通量 t/ha/yr；周转速率",
         "社区完整性指数需要指点",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("R", "Python", "EstimateS", "ArcGIS"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Zenodo"),
 )

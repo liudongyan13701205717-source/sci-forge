@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "同位素给 δ 值与标准物质（SMOW/PDB）",
         "热史模拟给温度-时间路径与置信区间",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("ArcGIS", "Petrel", "X 射线衍射仪", "偏光显微镜", "Python (NumPy/SciPy)"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "Zenodo", "CNKI", "Semantic Scholar"),
 )

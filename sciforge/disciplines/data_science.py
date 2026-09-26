@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "AUC/ROC 无量纲；准确率用 % 或小数",
         "F1-score/Precision/Recall 用小数（三位有效数字）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码", "数据集"),
+    tools=("Python (NumPy/pandas)", "R", "SQL", "Git"),
+    category="工学",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

@@ -80,4 +80,9 @@ DISCIPLINE = Discipline(
         "生产性能指标（日均增重 ADG、饲料转化率 FCR）给定义与测量周期",
         "样本量给功效分析参数与实验单位数（heads/litters）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("SPSS", "PCR 仪", "兽用超声诊断仪", "R", "酶联免疫分析仪"),
+    category="农学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

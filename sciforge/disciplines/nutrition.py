@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "能量 kcal 或 MJ；蛋白质 g/kg 体重；微量元素 µg/day",
         "血糖 mmol/L 或 mg/dL（注明换算）；血脂给口径",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("SPSS", "膳食分析软件", "人体成分分析仪", "R"),
+    category="医学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

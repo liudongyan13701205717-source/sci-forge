@@ -192,7 +192,7 @@ sciforge/
 ├── review/             # 多视角评审面板（7席+Devil's Advocate+编辑综合决策）
 ├── claims/             # claim→source 核验 + 完整性门 + Material Passport
 ├── venue/              # 期刊写作模板 + journal-fit 匹配
-├── disciplines/        # 学科论文支持 registry（60 门自动发现）
+├── disciplines/        # 学科论文支持 registry（261 门自动发现，v2 精细绑定工具/门类/论文库）
 ├── core/            # 布局/存储/Layout + 可选 LLM 连接层（无 key 会回退模板）
 ├── parse/           # 论文 PDF 解析（PyMuPDF）
 ├── reproduce/       # 五步复现闭环：tasks/codegen/harness/pipeline + codereview 静态点评
@@ -204,16 +204,46 @@ sciforge/
 ├── research/        # 研究线：lit/ideate/hypoth/design/inject + stats/bench/novelty/community
 │   └── (plan/survey/extract/review/venue/polish  # 科研/论文工具集)
 ├── deliver/         # 交付：get_deliverables + package_submission（投稿打包）
-└── science/         # 科学数据查询：41 个连接器，覆盖文献/蛋白/化学/基因组/通路/组学/数据集
+└── science/         # 科学数据查询：46 个连接器，覆盖文献/蛋白/化学/基因组/通路/组学/数据集
 ```
+
+---
+
+## 学科体系 v2（Discipline v2，261 门）
+
+`sciforge/disciplines/` 内置 **261 门学科**的论文支持 registry（零注册自动发现），每门学科 13 个声明式字段：
+
+| 字段 | 说明 |
+| --- | --- |
+| name / aliases / paper_types / citation_style / reporting_standards / conventions / key_venues / units_and_formulas_notes | 体裁、结构与写作规范（v1 八字段） |
+| `paper_capable` | 该学科是否以论文为主要产出 |
+| `contribution_forms` | 产出形式（可多值）：论文 / 学术专著 / 文学作品 / 艺术作品 / 软件与代码 / 专利 / 教案与教材 / 译文 / 报告 / 数据集 |
+| `tools` | 该学科用到的工具（软件/仪器/方法平台，如 LaTeX、PyTorch、PCR 仪） |
+| `category` | 学科门类（中国 14 门类：哲学/经济学/法学/教育学/文学/历史学/理学/工学/农学/医学/军事学/管理学/艺术学/交叉学科） |
+| `databases` | 优先论文库/数据库（如 OpenAlex、arXiv、PubMed、CNKI） |
+
+覆盖全部主流学科：数理、化学、生物与生态、医学与健康、工程与技术、计算机与信息、地球与环境、社会科学、人文与艺术、体育与军事、交叉与新兴——**MCP 不强制选学科**，venue_suggest / literature_review 等工具按文本语义自动路由。
+
+查询 API（大小写不敏感子串匹配）：
+
+```python
+from sciforge.disciplines import list_disciplines, get_discipline, list_by_category, list_by_contribution_form, list_by_tool, list_by_database
+
+list_by_category("理学")          # 全部理学门学科
+list_by_contribution_form("专利")  # 可产出专利的学科
+list_by_tool("PyTorch")            # 绑定 PyTorch 的学科
+list_by_database("PubMed")        # 优先 PubMed 的学科
+```
+
+---
 
 ## 科学数据查询（science）
 
-通过 41 个连接器，覆盖 7 大领域的公开科学数据库：
+通过 46 个连接器，覆盖 7 大领域的公开科学数据库：
 
 | 领域 | 连接器 |
 | --- | --- |
-| literature | openalex, arxiv, biorxiv, crossref, europepmc, pubmed, semantic-scholar |
+| literature | openalex, arxiv, biorxiv, crossref, europepmc, pubmed, semantic-scholar, unpaywall, core, opencitations-coci, cnki, wanfang |
 | proteins | uniprot, rcsb-pdb, pdbe, alphafold, interpro, sifts |
 | chemistry | chembl, pubchem, chebi, bindingdb, gtopdb, surechembl |
 | genomics | ensembl, eutils, mygene, myvariant, clinvar, dbsnp, gnomad |

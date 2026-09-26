@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "推理延迟用 ms；吞吐量用 samples/sec",
         "GPU 时用 GPU-hours；显存用 GB",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码"),
+    tools=("PyTorch", "TensorFlow", "Python", "Git"),
+    category="工学",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

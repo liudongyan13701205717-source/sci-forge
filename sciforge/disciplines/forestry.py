@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "林龄用年（age）或龄级（age class）",
         "生长率用 %/年 或 m³/ha/year",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("ArcGIS", "ENVI", "R", "生长锥", "林分模拟器"),
+    category="农学",
+    databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

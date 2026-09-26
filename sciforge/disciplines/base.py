@@ -24,6 +24,11 @@ class Discipline:
         conventions: 学科写作约定（定理环境、符号、图表、术语等）。
         key_venues: 代表性顶刊/顶会。
         units_and_formulas_notes: 单位与公式注记（SI、量纲、统计口径等）。
+        paper_capable: 该学科是否产出论文（False 表示以专著/作品等为主要产出）。
+        contribution_forms: 产出形式（可多值，取值见 contribution_forms 模块常量）。
+        tools: 该学科用到的工具（软件/仪器/方法平台等）。
+        category: 学科门类（如 "数学"、"物理"、"人文"；未分类时为 "未分类"）。
+        databases: 优先论文库/数据库（如 "OpenAlex"、"PubMed"）。
     """
 
     name: str = ""
@@ -34,3 +39,8 @@ class Discipline:
     conventions: tuple[str, ...] = ()
     key_venues: tuple[str, ...] = ()
     units_and_formulas_notes: tuple[str, ...] = ()
+    paper_capable: bool = True
+    contribution_forms: tuple[str, ...] = ("论文",)
+    tools: tuple[str, ...] = ()
+    category: str = "未分类"
+    databases: tuple[str, ...] = ()

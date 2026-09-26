@@ -66,4 +66,9 @@ DISCIPLINE = Discipline(
         "公差与配合按 ISO 286 标注；表面粗糙度 Ra/Rz 注明",
         "能量/功率单位区分有功与视在（W 与 VA）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("MATLAB", "AutoCAD", "ANSYS", "Python"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

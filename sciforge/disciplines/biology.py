@@ -63,4 +63,9 @@ DISCIPLINE = Discipline(
         "基因型命名按标准记法（如 c.123A>G, p.R45H）",
         "图像定量注明采集参数（曝光、显微镜型号）保持组间一致",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("BLAST", "GraphPad Prism", "显微镜", "PCR 仪"),
+    category="理学",
+    databases=("PubMed", "Europe PMC", "bioRxiv", "PubChem"),
 )

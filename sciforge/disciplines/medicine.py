@@ -79,4 +79,9 @@ DISCIPLINE = Discipline(
         "样本量计算给出检验效能、α 与最小临床重要差异（MCID）",
         "生存分析注明随访时长、删失规则与比例风险检验",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("SPSS", "R", "GraphPad Prism", "EndNote"),
+    category="医学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

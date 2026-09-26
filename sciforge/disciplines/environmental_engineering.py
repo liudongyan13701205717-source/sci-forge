@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "能耗 kWh/m³ 或 MJ/kg；碳足迹 kgCO2-eq",
         "亨利常数、分配系数给温度并注明单位",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("ArcGIS", "MATLAB", "Python"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

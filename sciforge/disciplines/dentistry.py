@@ -80,4 +80,9 @@ DISCIPLINE = Discipline(
         "样本量以牙位/患者为独立单位，必要时说明聚类（cluster）校正",
         "剂量（如氟化物 ppm F、麻醉 mg/kg）与给药途径完整",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("CAD/CAM 义齿设计软件", "CBCT", "万能试验机", "SPSS", "显微硬度计"),
+    category="医学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

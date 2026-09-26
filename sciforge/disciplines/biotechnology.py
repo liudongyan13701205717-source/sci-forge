@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "发酵产率用 g/L 或 mol/mol（摩尔转化率）",
         "基因拷贝数用 copies/cell 或 copies/ng DNA",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("发酵罐", "HPLC", "PCR 仪", "离心机"),
+    category="理学",
+    databases=("PubMed", "Europe PMC", "PubChem", "ChEMBL"),
 )

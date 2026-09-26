@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import urllib.parse
 import xml.etree.ElementTree as ET
 from sciforge.science import register as _register
@@ -197,6 +198,173 @@ def _semantic_scholar_search(query, limit):
     return out
 
 
+def _is_doi(q) -> bool:
+    q = q.strip()
+    if not q.startswith("10."):
+        return False
+    if "/" not in q:
+        return False
+    prefix = q.split("/", 1)[0]
+    return len(prefix) > 3 and prefix[3:].isdigit()
+
+
+def _to_year(v):
+    if v is None:
+        return None
+    try:
+        return int(str(v)[:4])
+    except (ValueError, TypeError):
+        return None
+
+
+def _clip(text) -> str:
+    if not text:
+        return ""
+    return str(text)[:600]
+
+
+def _unpaywall_search(query, limit):
+    doi = query.strip()
+    if not _is_doi(doi):
+        return []
+    url = ("https://api.unpaywall.org/v2/" + urllib.parse.quote(doi)
+           + "?email=research@localhost")
+    data = http_get_json(url)
+    if not data:
+        return []
+    loc = data.get("best_oa_location") or {}
+    auths = []
+    for a in (data.get("z_authors") or [])[:12]:
+        name = " ".join(filter(None, [a.get("given"), a.get("family")]))
+        if name:
+            auths.append(name)
+    return [{
+        "title": data.get("title", ""),
+        "year": data.get("year"),
+        "doi": data.get("doi"),
+        "url": loc.get("url_for_pdf") or loc.get("url") or "",
+        "venue": data.get("journal_name", ""),
+        "authors": auths,
+        "cited_by": 0,
+        "abstract": "",
+    }]
+
+
+def _core_search(query, limit):
+    key = os.environ.get("CORE_API_KEY", "").strip()
+    if not key:
+        return []
+    params = {"q": query, "limit": str(limit)}
+    url = "https://api.core.ac.uk/v3/search/works?" + urllib.parse.urlencode(params)
+    data = http_get_json(url, headers={"Authorization": "Bearer " + key})
+    if not data:
+        return []
+    out = []
+    for r in data.get("results", []):
+        auths = [a.get("name", "") for a in (r.get("authors") or [])[:12]]
+        auths = [x for x in auths if x]
+        out.append({
+            "title": r.get("title", ""),
+            "year": r.get("yearPublished"),
+            "doi": r.get("doi"),
+            "url": r.get("downloadUrl", ""),
+            "venue": r.get("publisher", ""),
+            "authors": auths,
+            "cited_by": r.get("citationCount") or 0,
+            "abstract": _clip(r.get("abstract")),
+        })
+    return out
+
+
+def _opencitations_coci_search(query, limit):
+    doi = query.strip()
+    if not _is_doi(doi):
+        return []
+    meta_url = ("https://opencitations.net/index/coci/api/v1/metadata/"
+                + urllib.parse.quote(doi))
+    meta = http_get_json(meta_url)
+    if not meta or not isinstance(meta, list) or not meta:
+        return []
+    m = meta[0]
+    cit_url = ("https://opencitations.net/index/coci/api/v1/citations/"
+               + urllib.parse.quote(doi))
+    cit = http_get_json(cit_url)
+    cited_by = len(cit) if isinstance(cit, list) else 0
+    auths = []
+    for name in str(m.get("author", "")).split(";"):
+        name = name.strip()
+        if name:
+            auths.append(name)
+        if len(auths) >= 12:
+            break
+    return [{
+        "title": m.get("title", ""),
+        "year": _to_year(m.get("year")),
+        "doi": m.get("doi") or doi,
+        "url": "https://doi.org/" + doi,
+        "venue": m.get("venue") or m.get("journal") or "",
+        "authors": auths,
+        "cited_by": cited_by,
+        "abstract": "",
+    }]
+
+
+def _map_records(data, limit):
+    if not data:
+        return []
+    if isinstance(data, dict):
+        for key in ("results", "data", "items", "list", "records", "result"):
+            v = data.get(key)
+            if isinstance(v, list):
+                data = v
+                break
+        else:
+            return []
+    if not isinstance(data, list):
+        return []
+    out = []
+    for r in data[:limit]:
+        if not isinstance(r, dict):
+            continue
+        authors = r.get("authors") or r.get("author") or r.get("Authors") or []
+        if isinstance(authors, str):
+            authors = [x.strip() for x in authors.replace(";", ",").split(",") if x.strip()]
+        elif isinstance(authors, list):
+            authors = [a.get("name", "") if isinstance(a, dict) else str(a) for a in authors]
+        authors = [x for x in authors if x][:12]
+        out.append({
+            "title": r.get("title") or r.get("Title") or "",
+            "year": _to_year(r.get("year") or r.get("pubYear") or r.get("Year")),
+            "doi": r.get("doi") or r.get("DOI"),
+            "url": r.get("url") or r.get("URL") or r.get("link") or "",
+            "venue": r.get("venue") or r.get("journal") or r.get("source") or "",
+            "authors": authors,
+            "cited_by": r.get("cited_by") or r.get("citedByCount") or r.get("citationCount") or 0,
+            "abstract": _clip(r.get("abstract") or r.get("Abstract")),
+        })
+    return out
+
+
+def _cnki_search(query, limit):
+    base = os.environ.get("CNKI_API_URL", "").strip()
+    if not base:
+        return []
+    params = {"q": query, "limit": str(limit)}
+    sep = "&" if "?" in base else "?"
+    url = base + sep + urllib.parse.urlencode(params)
+    return _map_records(http_get_json(url), limit)
+
+
+def _wanfang_search(query, limit):
+    base = os.environ.get("WANFANG_API_URL", "").strip()
+    if not base:
+        return []
+    params = {"query": query, "limit": str(limit)}
+    sep = "&" if "?" in base else "?"
+    url = base + sep + urllib.parse.urlencode(params)
+    return _map_records(http_get_json(url), limit)
+
+
 def register():
     specs = [
         ("openalex", "OpenAlex", "OpenAlex works catalog", _openalex_search),
@@ -206,6 +374,11 @@ def register():
         ("europepmc", "Europe PMC", "Europe PMC literature", _europepmc_search),
         ("pubmed", "PubMed", "PubMed biomedical literature", _pubmed_search),
         ("semantic-scholar", "Semantic Scholar", "Semantic Scholar papers", _semantic_scholar_search),
+        ("unpaywall", "Unpaywall", "Unpaywall OA metadata (DOI lookup)", _unpaywall_search),
+        ("core", "CORE", "CORE aggregator (需配置 CORE_API_KEY)", _core_search),
+        ("opencitations-coci", "OpenCitations COCI", "OpenCitations COCI citation data (DOI lookup)", _opencitations_coci_search),
+        ("cnki", "CNKI", "中国知网 (需配置 CNKI_API_URL)", _cnki_search),
+        ("wanfang", "Wanfang", "万方数据 (需配置 WANFANG_API_URL)", _wanfang_search),
     ]
     for cid, name, desc, fn in specs:
         _register(Connector(id=cid, name=name, domain="literature",

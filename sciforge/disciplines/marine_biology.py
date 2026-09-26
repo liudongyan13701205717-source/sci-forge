@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "生物量用 g/m² 或 kg/km²",
         "丰度用 ind/m²（个体密度）或 ind/haul（每网次）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("R", "MATLAB", "ArcGIS", "CTD 采样仪"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Zenodo"),
 )

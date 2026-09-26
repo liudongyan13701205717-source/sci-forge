@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "辐射 W/m²；热含量 J；海平面 mm",
         "时间尺度却给年年标准差或趋势斜率/显著性",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("Python (NumPy/SciPy)", "R", "MATLAB", "NCL", "GrADS"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Zenodo", "Semantic Scholar"),
 )

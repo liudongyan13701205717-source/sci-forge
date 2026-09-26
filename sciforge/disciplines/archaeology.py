@@ -37,4 +37,9 @@ DISCIPLINE = Discipline(
         "碳14年代用 BP（Before Present, 1950）或 cal BP/cal BC",
         "地层深度用 m below surface (mbs)；海拔用 m asl",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("GIS", "三维激光扫描", "碳十四测年", "Python", "R"),
+    category="历史学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

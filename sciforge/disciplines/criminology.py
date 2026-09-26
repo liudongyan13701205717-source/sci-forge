@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "时间序列用月/年数据；横截面用城市/国家层级",
         "效应量用 Cohen's d / odds ratio",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("Stata", "R", "Python", "SPSS", "NVivo"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

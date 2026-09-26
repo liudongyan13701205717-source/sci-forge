@@ -41,4 +41,9 @@ DISCIPLINE = Discipline(
         "相干时间 µs/ms；门时间 ns；保真度 %（附置信区间）",
         "保极化/交叉熵基准（XEB）注明 circuit 参数",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码"),
+    tools=("Qiskit", "Cirq", "Python", "LaTeX"),
+    category="交叉学科",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

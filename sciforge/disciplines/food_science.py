@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "色泽用 L*a*b* 值；色差用 ΔE",
         "微生物用 CFU/g 或 CFU/mL",
     ),
+    contribution_forms=("论文", "专利"),
+    tools=("HPLC", "质构仪", "SPSS", "Origin"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "PubMed", "CNKI"),
+    paper_capable=True,
 )

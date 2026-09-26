@@ -1,7 +1,7 @@
 """科学数据库 connector 装载：导入各来源插件并注册到全局 registry。
 
 `sciforge.science` 在导入时会加载本模块（见 science/__init__.py 末尾），
-从而把 41 个数据库 connector 注册进全局 ConnectorRegistry，避免
+从而把 46 个数据库 connector 注册进全局 ConnectorRegistry，避免
 science_list_dbs / science_search 在生产环境查询失效。
 """
 

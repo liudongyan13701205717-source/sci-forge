@@ -72,4 +72,9 @@ DISCIPLINE = Discipline(
         "延迟/吞吐给硬件环境与百分位（p50/p99）",
         "公式仅对被引用者编号；复杂度推导可在附录展开",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码"),
+    tools=("Python", "Git", "Docker", "Linux", "LaTeX"),
+    category="工学",
+    databases=("arXiv", "OpenAlex", "Crossref"),
 )

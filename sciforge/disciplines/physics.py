@@ -67,4 +67,9 @@ DISCIPLINE = Discipline(
         "光谱/能级以 cm⁻¹ 或 eV 表示并注明零点约定",
         "角度、磁感应强度等派生单位按 SI 导出单位书写（rad、T）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("LaTeX", "MATLAB", "Python (NumPy/SciPy)", "COMSOL", "Origin"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar", "Zenodo"),
 )

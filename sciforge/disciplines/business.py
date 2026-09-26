@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "效应量给 f² 或 R² 变化；调节效应画交互图",
         "财务数据给会计准则口径（IFRS/GAAP）与币种",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("SPSS", "Stata", "NVivo", "Tableau"),
+    category="管理学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

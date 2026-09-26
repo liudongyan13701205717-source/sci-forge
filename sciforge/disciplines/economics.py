@@ -68,4 +68,9 @@ DISCIPLINE = Discipline(
         "工具变量报告一阶段 F 统计量（如 Kleibergen-Paap）",
         "事件研究图给出基期约定与置信区间",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("Python", "R", "Stata", "MATLAB"),
+    category="经济学",
+    databases=("OpenAlex", "Crossref", "Semantic Scholar"),
 )

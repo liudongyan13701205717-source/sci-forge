@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "功率 mW/W；能量密度 mJ/cm²；强度 W/cm²（注明峰值/平均）",
         "损耗 dB；品质因数 Q=λ/Δλ；消光比 dB",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("LaTeX", "COMSOL", "MATLAB", "Zemax", "光谱仪"),
+    category="理学",
+    databases=("Crossref", "OpenAlex", "arXiv", "CNKI", "万方"),
 )

@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "人口增长率用 %/年 或 ‰/年",
         "总和生育率 TFR = Σfx（时期生育率之和）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("R", "Python", "Stata", "GIS", "LaTeX"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

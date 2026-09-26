@@ -63,4 +63,9 @@ DISCIPLINE = Discipline(
         "效应量与 CI 并列报告；相关给 r 与 p 并说明多重校正",
         "定位报告注明校正方式（如 p<0.05 FWE 校正，簇水平）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("MATLAB", "Python (NumPy/SciPy)", "SPM", "FSL"),
+    category="理学",
+    databases=("PubMed", "Europe PMC", "GEO", "Zenodo"),
 )

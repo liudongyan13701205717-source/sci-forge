@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "效价用 ED50/ED80",
         "杀伤活性用 % specific lysis",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("FlowJo", "流式细胞仪", "ELISA 仪", "GraphPad Prism"),
+    category="理学",
+    databases=("PubMed", "Europe PMC", "GEO", "Reactome"),
 )

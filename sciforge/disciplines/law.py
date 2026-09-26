@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "无实证数据时以规范与案例分析为主",
         "裁判数据统计给样本量与期间；比例给分母口径",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("Westlaw", "LexisNexis", "北大法宝", "LaTeX", "Zotero"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

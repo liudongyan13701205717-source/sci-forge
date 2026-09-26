@@ -64,4 +64,9 @@ DISCIPLINE = Discipline(
         "量子产率/转化率给百分数与测定方法（内标/参比）",
         "热分析（TGA/DSC）给升温速率与气氛",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("ChemDraw", "Gaussian", "Origin", "质谱仪", "光谱仪"),
+    category="理学",
+    databases=("Crossref", "OpenAlex", "PubChem", "Europe PMC", "CNKI"),
 )

@@ -63,4 +63,9 @@ DISCIPLINE = Discipline(
         "测量给量表条目数、计分方向与信度",
         "功效分析给出软件（G*Power/pwr）与参数",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("SPSS", "R", "NVivo", "E-Prime"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "Semantic Scholar", "CNKI"),
 )

@@ -13,7 +13,12 @@ from sciforge.disciplines import (
     list_disciplines,
     get_discipline,
     Discipline,
+    list_by_category,
+    list_by_contribution_form,
+    list_by_tool,
+    list_by_database,
 )
+from sciforge.disciplines.contribution_forms import CONTRIBUTION_FORMS
 
 
 # ---------- venue templates ----------
@@ -151,3 +156,56 @@ def test_autodiscovery():
     """新增学科文件零注册即被发现（registry 自动发现）。"""
     discs = list_disciplines()
     assert len(discs) >= 12
+
+
+# ---------- disciplines v2 字段（paper_capable / contribution_forms / tools / category / databases）----------
+def test_discipline_v2_fields():
+    """抽样学科的 v2 字段齐全：paper_capable、contribution_forms、tools、category、databases。"""
+    for name in [
+        "mathematics",
+        "physics",
+        "medicine",
+        "computer_science",
+        "quantum_computing",
+    ]:
+        d = get_discipline(name)
+        assert d.paper_capable is True
+        assert d.contribution_forms
+        assert "论文" in d.contribution_forms
+        assert len(d.tools) >= 2
+        assert d.category != "未分类"
+        assert len(d.databases) >= 2
+
+
+def test_discipline_v2_all_fields():
+    """全量 261 学科逐一校验 v2 字段完整性，无未分类、无空 tools/databases。"""
+    for d in list_disciplines():
+        assert isinstance(d.paper_capable, bool)
+        assert d.name
+        assert d.contribution_forms
+        assert "论文" in d.contribution_forms
+        assert len(d.tools) >= 2
+        assert d.category != "未分类"
+        assert len(d.databases) >= 2
+
+
+def test_registry_filters():
+    """四个 registry 过滤函数按 category / contribution_form / tool / database 检索。"""
+    assert len(list_by_contribution_form("论文")) == 261
+    assert len(list_by_category("理学")) > 0
+    assert len(list_by_category("工学")) > 0
+    assert len(list_by_tool("Python")) > 0
+    assert len(list_by_database("OpenAlex")) > 0
+    assert len(list_by_database("arXiv")) > 0
+
+
+def test_registry_count_261():
+    """registry 学科总数为 261。"""
+    assert len(list_disciplines()) == 261
+
+
+def test_contribution_forms_constants():
+    """贡献形式常量表为 10 项且含关键项。"""
+    assert len(CONTRIBUTION_FORMS) == 10
+    assert "论文" in CONTRIBUTION_FORMS
+    assert "软件与代码" in CONTRIBUTION_FORMS

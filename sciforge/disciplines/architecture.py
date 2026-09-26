@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "能耗 kWh/m²·yr；照度 lux；声压级 dB(A)；温度 °C",
         "窗墙比 WWR %；体形系数；热阻 R 值或 U 值 W/m²·K",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "艺术作品"),
+    tools=("AutoCAD", "Revit", "Rhino", "SketchUp"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

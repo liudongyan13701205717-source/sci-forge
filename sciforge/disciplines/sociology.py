@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "效应量与解释力（R²）并列报告；对数几率给 odds ratio 解释",
         "网络指标（中心性/密度）注明计算定义",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("Stata", "R", "Python", "NVivo", "SPSS"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

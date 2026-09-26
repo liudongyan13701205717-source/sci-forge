@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "等位基因频率用 % 或小数",
         "连锁不平衡用 r² 或 D'（无量纲，0-1）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "数据集"),
+    tools=("BLAST", "PLINK", "测序仪", "PCR 仪"),
+    category="理学",
+    databases=("PubMed", "Europe PMC", "Ensembl", "ClinVar"),
 )

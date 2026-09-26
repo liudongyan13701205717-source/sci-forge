@@ -39,4 +39,9 @@ DISCIPLINE = Discipline(
         "人口密度用 人/km²",
         "坡度用 °或 %",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("QGIS", "ArcGIS", "ENVI", "R"),
+    category="理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Zenodo"),
 )

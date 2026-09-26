@@ -40,4 +40,9 @@ DISCIPLINE = Discipline(
         "AUC 单位 ng·h/mL；清除率 L/h；分布容积 L/kg",
         "溶出度 %；溶解度 mg/mL（注明温度与 pH）",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "专利"),
+    tools=("ChemDraw", "HPLC", "AutoDock", "溶出仪"),
+    category="医学",
+    databases=("PubMed", "Crossref", "PubChem", "CNKI"),
 )

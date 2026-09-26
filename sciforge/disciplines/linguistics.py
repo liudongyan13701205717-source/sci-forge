@@ -41,4 +41,9 @@ DISCIPLINE = Discipline(
         "频率给每百万词（pmw）；效应量给 Cohen's d 或 odds ratio",
         "互信息/困惑度注明计算公式；显著性标注于图上",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著", "译文"),
+    tools=("Praat", "Python", "R", "LaTeX", "Zotero"),
+    category="文学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

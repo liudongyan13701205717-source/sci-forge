@@ -81,4 +81,9 @@ DISCIPLINE = Discipline(
         "抽样调查给出应答率、设计效应与加权方法",
         "时间序列注明病例定义变更对趋势比较的影响",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "报告"),
+    tools=("R", "SPSS", "ArcGIS", "Epi Info"),
+    category="医学",
+    databases=("PubMed", "OpenAlex", "CNKI"),
 )

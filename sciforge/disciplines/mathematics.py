@@ -66,4 +66,9 @@ DISCIPLINE = Discipline(
         "所有符号在首次出现处定义；集合/空间/映射记法全文一致",
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
+    paper_capable=True,
+    contribution_forms=("论文",),
+    tools=("LaTeX", "Mathematica", "SageMath", "MATLAB", "Python (NumPy/SciPy)"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar", "CNKI"),
 )

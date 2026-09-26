@@ -41,4 +41,9 @@ DISCIPLINE = Discipline(
         "表达量单位 TPM/FPKM/counts 口径统一；差异倍数 log2FC",
         "测序深度 Gb/Mreads；质量分 Q30 比例",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "软件与代码", "数据集"),
+    tools=("Python (Biopython)", "R (Bioconductor)", "GATK", "Galaxy"),
+    category="理学",
+    databases=("PubMed", "Ensembl", "GEO", "OpenAlex"),
 )

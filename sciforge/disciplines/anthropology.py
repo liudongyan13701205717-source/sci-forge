@@ -38,4 +38,9 @@ DISCIPLINE = Discipline(
         "无统计要求时以质性论证为主",
         "如含量化内容给样本与描述统计；网络分析给指标定义",
     ),
+    paper_capable=True,
+    contribution_forms=("论文", "学术专著"),
+    tools=("NVivo", "QDA Miner", "MAXQDA", "Python", "R"),
+    category="法学",
+    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )
