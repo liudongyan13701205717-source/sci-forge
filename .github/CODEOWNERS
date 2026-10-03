@@ -1,0 +1,26 @@
+# 代码所有者
+#
+# 这些规则决定谁会被请求评审。规则自上而下匹配，后面的规则覆盖前面的。
+# 语法说明：https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# 默认：所有文件由仓库所有者评审
+* @liudongyan13701205717-source
+
+# 核心契约层：改动会直接改变 MCP 契约，需要额外关注
+/sciforge/server.py         @liudongyan13701205717-source
+/sciforge/disciplines/      @liudongyan13701205717-source
+/sciforge/science/          @liudongyan13701205717-source
+/sciforge/core/             @liudongyan13701205717-source
+/sciforge/reproduce/        @liudongyan13701205717-source
+/sciforge/claims/           @liudongyan13701205717-source
+
+# 打包与依赖
+/pyproject.toml              @liudongyan13701205717-source
+
+# 文档与社区治理
+/docs/                      @liudongyan13701205717-source
+/README.md                  @liudongyan13701205717-source
+/README_EN.md               @liudongyan13701205717-source
+/CONTRIBUTING.md            @liudongyan13701205717-source
+/CODE_OF_CONDUCT.md         @liudongyan13701205717-source
+/SECURITY.md                @liudongyan13701205717-source

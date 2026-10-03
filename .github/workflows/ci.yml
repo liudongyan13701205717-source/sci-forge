@@ -1,0 +1,127 @@
+# 持续集成
+#
+# 目标：每次 push / PR 都在 Python 3.11 / 3.12 / 3.13 上验证 ruff lint 与全量测试。
+# 文档：https://docs.github.com/actions
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# 默认只读权限
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# 离线模式：测试不访问外部网络（文献与复现走桩数据）。
+# 与 CONTRIBUTING.md / README.md 中给出的本地测试命令保持一致。
+env:
+  SCI_FORGE_OFFLINE: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PYTHONWARNINGS: "ignore::DeprecationWarning"
+
+jobs:
+  lint:
+    name: Lint (ruff, py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install ruff
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ruff
+
+      - name: ruff check (blocking correctness rules)
+        # E9   语法 / IO 错误
+        # F63  比较两侧明显的无意义表达式
+        # F7   语法层面的可疑写法（如 assert on tuple）
+        # F82  未定义名称
+        # 这组规则误报率极低，先作为硬门禁。
+        run: ruff check --select E9,F63,F7,F82 .
+
+      - name: ruff check (full rule set, advisory)
+        # 全量规则目前仅作提示：代码库尚未落 ruff 配置，
+        # 开启硬门禁前先观察违规面。整改完成后把 continue-on-error 去掉。
+        continue-on-error: true
+        run: ruff check . || echo "::notice::全量 ruff 规则存在待整改项，暂不阻塞 CI"
+
+  test:
+    name: Test (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package with test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[reproduce,dev]"
+
+      - name: Collect test count
+        run: python -m pytest tests/ -q --collect-only
+
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
+      - name: Verify the CLI entry point is importable
+        run: |
+          python -c "import sciforge; print(sciforge.__version__)"
+          python -m sciforge --help
+
+  package:
+    name: Build check (sdist + wheel)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build
+
+      - name: Build distributions
+        run: python -m build
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error

@@ -1,0 +1,126 @@
+name: Bug 报告
+description: 报告 sci-forge 的缺陷或不符合预期的行为
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你花时间报告缺陷。
+
+        **请先确认这不是安全漏洞**：安全问题请按 `SECURITY.md` 走私密通道，不要在这里公开细节。
+
+  - type: input
+    id: version
+    attributes:
+      label: sci-forge 版本
+      description: 执行 `sci-forge --version` 的输出
+      placeholder: "sci-forge 0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python 版本
+      description: 执行 `python --version` 的输出
+      placeholder: "Python 3.12.4"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 操作系统
+      placeholder: Windows 11 / macOS 15.3 / Ubuntu 24.04
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-mode
+    attributes:
+      label: 安装方式
+      multiple: false
+      options:
+        - pip install "git+https://github.com/liudongyan13701205717-source/sci-forge.git"
+        - pip install -e ".[reproduce,dev]"
+        - pip install -e .
+        - 其他（见补充说明）
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 问题所属范围
+      multiple: false
+      options:
+        - 复现线（reproduce_paper / reproduce_status / review_code）
+        - 写作线（write_section / export_document）
+        - 研究线（ideate_paper / literature_review / research_plan 等）
+        - 评审核验线（run_panel / gate_2_5 / gate_4_5 / verify 等）
+        - 学科 registry（list_disciplines / get_discipline）
+        - 科学数据连接器（science_* 工具）
+        - 交付线（get_deliverables / package_submission）
+        - CLI / 安装 / MCP 接入
+        - 文档
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: tool-name
+    attributes:
+      label: 相关工具名
+      description: 若问题涉及具体工具，请填写工具名；否则留空
+      placeholder: science_fetch
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+      description: 你认为应该发生什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 实际发生了什么；请附上完整报错文本
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 最小复现步骤
+      description: 客户端配置、调用参数、返回结果
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境补充
+      description: |
+        以下信息有助于定位问题（不涉及任何密钥）：
+        - 是否配置了 `.sci-forge/env`（LLM 端点）
+        - `SCI_FORGE_OFFLINE` 的取值
+        - 是否在 CI / Docker / WSL 中运行
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已确认这不是安全漏洞（安全问题应走 SECURITY.md 私密通道）
+          required: true
+        - label: 我已搜索过现有 issue，没有相同问题
+          required: false
+        - label: 我未在报告中包含任何 API key、token 或凭据
+          required: true

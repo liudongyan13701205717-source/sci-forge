@@ -1,0 +1,28 @@
+# 赞助渠道
+#
+# GitHub 会读取本文件并在仓库的 "Sponsor" 按钮中展示已启用的渠道。
+# 文档：https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-sponsored-content
+#
+# 当前状态：未启用任何付费赞助平台。
+# 原因与替代支持方式见 .github/SUPPORT.md「赞助」一节。
+#
+# 如需启用，取消下面对应渠道的注释并填入真实账号/链接。
+# 可用渠道见 https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-sponsored-content#supported-platforms
+
+# GitHub Sponsors
+# github: [your-username]
+
+# Patreon
+# patreon: your-username
+
+# Open Collective
+# open_collective: your-collective
+
+# Ko-fi
+# ko_fi: your-username
+
+# Tidelift
+# tidelift: pypi/sci-forge.json
+
+# 自定义链接
+# custom: ["https://example.com/donate"]

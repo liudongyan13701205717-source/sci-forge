@@ -1,0 +1,56 @@
+name: 提问
+description: 使用 sci-forge 的过程中遇到的使用问题
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        如果只是想**讨论**（想法、方向、要不要做），更合适的地方是 [Discussions](https://github.com/liudongyan13701205717-source/sci-forge/discussions) 而不是 issue。
+
+        请不要用本模板报告缺陷——有明确错误表现的请用 **Bug 报告** 模板。
+        安全问题请按 `SECURITY.md` 走私密通道。
+
+  - type: textarea
+    id: question
+    attributes:
+      label: 问题
+      description: 你想知道什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景
+      description: 你在做什么、已经试过什么、期望达到什么效果
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: sci-forge 版本
+      description: 执行 `sci-forge --version` 的输出
+      placeholder: "sci-forge 0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: client
+    attributes:
+      label: 使用的 MCP 客户端
+      description: opencode / Claude Code / Cursor / 其他
+      placeholder: opencode
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已阅读 `docs/installation.md` 与 `docs/quickstart.md`
+          required: false
+        - label: 我确认这不是缺陷报告（缺陷请用 Bug 报告模板）
+          required: true

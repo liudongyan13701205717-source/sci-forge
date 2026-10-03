@@ -1,0 +1,154 @@
+# 发布工作流
+#
+# 触发方式：推送形如 `v*` 的 git tag。
+# 流程：校验 tag → 全量测试 → 构建 sdist/wheel → 生成 GitHub Release（附产物 + 变更日志片段）。
+#
+# 说明：
+# - 本工作流**不**发布到 PyPI。PyPI 发布流程属于路线图中的待办项
+#   （见 README.md「路线图」），待凭据与打包验证就绪后另行接入。
+# - 变更日志片段从 CHANGELOG.md 中抽取对应版本的段落。
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "要发布的 tag，例如 v2.0.1"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Derive version from tag
+        id: meta
+        run: |
+          set -euo pipefail
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Release version: ${VERSION}"
+
+  test:
+    name: Test (py${{ matrix.python-version }})
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    env:
+      SCI_FORGE_OFFLINE: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install package with test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[reproduce,dev]"
+
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
+  build:
+    name: Build distributions
+    needs: [verify, test]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: List built artifacts
+        run: ls -lh dist/
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: [verify, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Extract changelog section
+        id: changelog
+        run: |
+          set -euo pipefail
+          VERSION="${{ needs.verify.outputs.version }}"
+          {
+            echo "## ${VERSION}"
+            echo
+            # 取 CHANGELOG.md 中 "## [<version>]" 到下一个 "## [" 之间的内容
+            awk -v tag="## [${VERSION}]" '
+              $0 == tag { found = 1; next }
+              found && /^## \[/ { exit }
+              found { print }
+            ' CHANGELOG.md
+          } > release-notes.md
+          echo "--- release-notes.md ---"
+          cat release-notes.md
+          echo "------------------------"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.verify.outputs.version == '' && github.ref_name || format('v{0}', needs.verify.outputs.version) }}
+          name: ${{ format('sci-forge {0}', needs.verify.outputs.version) }}
+          body_path: release-notes.md
+          draft: true
+          prerelease: ${{ contains(needs.verify.outputs.version, '-') }}
+          files: dist/*
+          fail_on_unmatched_files: true

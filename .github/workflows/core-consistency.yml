@@ -1,0 +1,166 @@
+name: core-consistency
+
+# 校验两仓核心一致性。
+#
+# 本工作流做两件事：
+#   1. 校验本仓 scripts/sync_core.py 与 sciforge-desktop 同名文件是否逐字节一致（防两份副本漂移）。
+#   2. 克隆桌面端，跑 sync_core.py --check，把 core/ 投影漂移作为失败。
+#
+# ── 触发覆盖的实际限制（必读）────────────────────────────────────────────
+# 一个 GitHub Actions 工作流只能响应「本仓」事件，无法订阅另一仓库的 push/PR。
+# 因此：
+#   sciforge（本仓）        push / PR  -> 自动触发 ✅
+#   sciforge-desktop        push / PR  -> 不触发   ❌
+# 桌面端事件要获得自动校验，必须在桌面端也放一份等价工作流。
+# 桌面端事件发生后，可在本仓手动触发本工作流（workflow_dispatch）来校验。
+#
+# ── 首次落地的预期结果 ──────────────────────────────────────────────────
+# 在真正执行 `sync_core.py --apply` 之前，桌面端 core/ 只有一个 3 行 docstring 的 stub，
+# 因此 --check 必然检出漂移并失败（预期数百个 missing-in-target，
+# 外加 core/__init__.py 一条 content-differs）。
+# 这是「机制正常工作」的预期初始状态，不是配置错误：
+# 本工作流的职责正是让「桌面端还没投影」这件事在 CI 上可见。
+#
+# 桌面端仓库 slug 通过仓库变量 DESKTOP_REPO 配置（未设置时用下方默认值）。
+# 若默认值与实际 slug 不符，本工作流会显式失败并提示如何修正，不会静默跳过。
+# ────────────────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+# 同一分支的新 push 取消仍在跑的旧 run，避免重复消耗。
+concurrency:
+  group: core-consistency-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  core-consistency:
+    name: core projection consistency
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      # 桌面端仓库 slug。维护者可用仓库变量 DESKTOP_REPO 覆盖，无需改本文件。
+      DESKTOP_REPO: ${{ vars.DESKTOP_REPO || 'liudongyan13701205717-source/sciforge-desktop' }}
+      DESKTOP_REF: ${{ vars.DESKTOP_REF || 'main' }}
+      PYTHON_VERSION: '3.11'
+
+    steps:
+      - name: Checkout sciforge (source)
+        uses: actions/checkout@v4
+        with:
+          path: sciforge
+
+      - name: Checkout sciforge-desktop (consumer)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.DESKTOP_REPO }}
+          ref: ${{ env.DESKTOP_REF }}
+          path: sciforge-desktop
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Show resolved layout
+        run: |
+          echo "source repo : ${{ github.repository }} @ ${{ github.sha }}"
+          echo "desktop repo: ${DESKTOP_REPO} @ ${DESKTOP_REF}"
+          echo "python      : $(python --version 2>&1)"
+          test -f sciforge/scripts/sync_core.py \
+            || { echo "::error::源仓缺少 scripts/sync_core.py"; exit 1; }
+          test -f sciforge-desktop/scripts/sync_core.py \
+            || { echo "::error::桌面端缺少 scripts/sync_core.py（仓库 slug/分支可能不对：DESKTOP_REPO=${DESKTOP_REPO} DESKTOP_REF=${DESKTOP_REF}）"; exit 1; }
+
+      - name: Check the two sync_core.py copies are byte-identical
+        run: |
+          set -euo pipefail
+          src_sum=$(sha256sum sciforge/scripts/sync_core.py | cut -d' ' -f1)
+          dst_sum=$(sha256sum sciforge-desktop/scripts/sync_core.py | cut -d' ' -f1)
+          echo "source  sha256: ${src_sum}"
+          echo "desktop sha256: ${dst_sum}"
+          if [ "${src_sum}" != "${dst_sum}" ]; then
+            echo "::error::两仓 scripts/sync_core.py 不是逐字节一致的副本。请以源仓版本为准同步。"
+            diff -u sciforge/scripts/sync_core.py sciforge-desktop/scripts/sync_core.py || true
+            exit 1
+          fi
+          echo "OK: 两份脚本逐字节一致。"
+
+      - name: Print sync manifest
+        run: python sciforge/scripts/sync_core.py --list-manifest
+
+      - name: Check core projection for drift
+        id: drift
+        run: |
+          set -uo pipefail
+          python sciforge/scripts/sync_core.py \
+            --check \
+            --max-list 20 \
+            --source   sciforge/sciforge \
+            --target   sciforge-desktop/core
+          code=$?
+          echo "exit_code=${code}" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Explain result
+        if: always()
+        run: |
+          set -euo pipefail
+          code="${{ steps.drift.outputs.exit_code }}"
+          {
+            echo "## core-consistency"
+            echo ""
+            echo "- 源仓：\`${{ github.repository }}\` @ \`${{ github.sha }}\`"
+            echo "- 桌面端：\`${DESKTOP_REPO}\` @ \`${DESKTOP_REF}\`"
+            echo "- \`sync_core.py --check\` 退出码：\`${code}\`"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          case "${code}" in
+            0)
+              echo "✅ 未检出漂移：桌面端 core/ 与源仓核心逐字节一致（target-only 文件不计入漂移）。" \
+                >> "$GITHUB_STEP_SUMMARY"
+              ;;
+            1)
+              echo "❌ 检出漂移：桌面端 core/ 与源仓核心不一致。" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "处理方式（按意图选择其一）：" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "1. **本仓改了核心，桌面端还没跟上** → 在源仓跑一次投影后一起提交：" >> "$GITHUB_STEP_SUMMARY"
+              echo ""   >> "$GITHUB_STEP_SUMMARY"
+              echo '   ```bash' >> "$GITHUB_STEP_SUMMARY"
+              echo '   python scripts/sync_core.py --dry-run   # 先看差异' >> "$GITHUB_STEP_SUMMARY"
+              echo '   python scripts/sync_core.py --apply      # 再落盘' >> "$GITHUB_STEP_SUMMARY"
+              echo '   ```' >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "2. **桌面端 \`core/\` 被手改** → 撤销该改动。投影是逐字节复制的，桌面端改动会在下次同步被覆盖。" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "3. **首次落地前的预期失败** → 若 \`sciforge-desktop/core/\` 仍只有那个 3 行 docstring 的 stub，" >> "$GITHUB_STEP_SUMMARY"
+              echo "   本工作流失败属正常：它正是用来暴露「桌面端还没投影」这一状态的。完成首次 \`--apply\` 后转绿。" >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "注意：投影只保证**字节一致**，不保证**导入可解析**。桌面端为 6 个平铺顶层包" >> "$GITHUB_STEP_SUMMARY"
+              echo "（\`agent\`/\`api\`/\`cli\`/\`core\`/\`gui\`/\`sessions\`），而源仓有 482 处 \`sciforge.\` 绝对导入" >> "$GITHUB_STEP_SUMMARY"
+              echo "（2026-09-26 实测，分布 320 个文件），导入适配需另行处理，详见" >> "$GITHUB_STEP_SUMMARY"
+              echo "\`docs/architecture/core-sync.md\` 第 7 节。" >> "$GITHUB_STEP_SUMMARY"
+              ;;
+            *)
+              echo "⚠️ \`--check\` 返回退出码 \`${code}\`（2 = 用法/环境错误，如源根不存在、源与目标同路径、目标位于源内部）。" \
+                >> "$GITHUB_STEP_SUMMARY"
+              echo "" >> "$GITHUB_STEP_SUMMARY"
+              echo "这不是漂移，而是环境问题。请检查 \`--source\`/\`--target\` 路径与上方打印的布局。" \
+                >> "$GITHUB_STEP_SUMMARY"
+              ;;
+          esac
+
+      - name: Fail on drift
+        if: steps.drift.outputs.exit_code != '0'
+        run: |
+          echo "::error::核心投影校验未通过（sync_core.py --check 退出码 ${{ steps.drift.outputs.exit_code }}），详见上方步骤摘要。"
+          exit 1

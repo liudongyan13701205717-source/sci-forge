@@ -1,0 +1,69 @@
+# Dependabot 配置
+#
+# 目的：跟踪运行时依赖、开发依赖与 GitHub Actions 的安全更新。
+# 文档：https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+#
+# 注意：Dependabot 只负责提 PR，不会自动合并。
+# 合入前请确认 CI 全绿（SCI_FORGE_OFFLINE=1 python -m pytest tests/ -q）。
+
+version: 2
+
+updates:
+  # ── Python 依赖 ──────────────────────────────────────────────
+  # 基础依赖仅 mcp；数值依赖（pymupdf / numpy / matplotlib）在 reproduce extra 中。
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "deps(pip)"
+    groups:
+      # 运行时与工具链的小版本一起升，便于一次性验证
+      mcp:
+        patterns:
+          - "mcp"
+      reproduce-deps:
+        patterns:
+          - "pymupdf"
+          - "numpy"
+          - "matplotlib"
+      dev-deps:
+        patterns:
+          - "pytest"
+          - "ruff"
+          - "mypy"
+
+  # ── GitHub Actions ────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "deps(actions)"
+
+  # ── 单独提高安全更新的频率 ────────────────────────────────────
+  # 安全更新使用独立的 ecosystem 条目覆盖上面的 schedule。
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps): security"
