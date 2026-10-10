@@ -68,14 +68,8 @@ DISCIPLINE = Discipline(
         "时间用统一格式",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "译文"),
-    tools=(
-        "SDL Trados 翻译记忆",
-        "OmegaT 翻译记忆与术语管理",
-        "ParaCrawl 语料对齐",
-        "AntConc 语料检索与搭配分析",
-        "LaTeX 译文排版",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("SDL Trados 翻译记忆", "OmegaT 翻译记忆与术语管理", "ParaCrawl 语料对齐", "AntConc 语料检索与搭配分析", "LaTeX 译文排版", "memoQ", "Phrase TMS", "Trados Studio", "Sketch Engine", "WordStat", "LAWCOR", "Noosa XL", "DeepL", "Google Translate", "Microsoft Translator", "BLEU", "COMET", "Zotero", "R", "Corpus Builder"),
     category="文学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

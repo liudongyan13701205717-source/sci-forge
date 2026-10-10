@@ -6,7 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="bibliometrics",
-    aliases=("bibliometrics", "文献计量学", "引文分析", "文献计量", "bibliometric analysis"),
+    aliases=(
+        "bibliometrics",
+        "文献计量学",
+        "引文分析",
+        "文献计量",
+        "bibliometric analysis",
+        "citation analysis",
+        "科学计量学",
+        "科学引文索引",
+        "科学计量",
+        "science mapping",
+        "research frontiers",
+        "scimetrics",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -32,7 +45,7 @@ DISCIPLINE = Discipline(
             "references",
         ),
     },
-    citation_style="APA 样式（作者-年份；Scientometrics 遵循 Springer 规范）",
+    citation_style="APA 7（作者-年份；Scientometrics 遵循 Springer 规范）",
     reporting_standards={
         "bibliometric": "文献计量研究遵循 PRISMA-S 检索报告规范",
         "network_analysis": "共现/共引网络遵循网络研究报告规范",
@@ -46,6 +59,7 @@ DISCIPLINE = Discipline(
         "计量指标（h 指数、影响因子等）须定义",
         "数据清洗与去重流程须说明",
         "分析工具与版本须注明",
+        "网络指标（中心性、密度、聚类系数）须说明计算方法",
     ),
     key_venues=(
         "Scientometrics",
@@ -54,6 +68,9 @@ DISCIPLINE = Discipline(
         "Quantitative Science Studies",
         "Research Evaluation",
         "Journal of Documentation",
+        "Journal of Informetrics",
+        "Journal of Science and Technology",
+        "International Journal of Science and Technology",
     ),
     units_and_formulas_notes=(
         "指标无量纲；比例用 %；时间用年份",
@@ -63,8 +80,8 @@ DISCIPLINE = Discipline(
         "网络指标给出显著性检验结果",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("文献计量软件（CiteSpace）", "R 包 Bibliometrix", "Python 数据分析（Pandas）"),
-    category="交叉学科",
-    databases=("OpenAlex", "Crossref", "Semantic Scholar", "arXiv"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("VOSviewer", "CiteSpace", "SciMAT (SciMaps4EU)", "Bibliometrix (R package)", "Biblioshiny (R package)", "BibliOmeter", "Sci2Tool", "Sci2++", "HistCite (Incites)", "Incites (Clarivate)", "Lens.org (Orchard)", "OpenCitations (COCI, ALCI)", "Scite.ai", "SciSpace", "Mendeley Reference Manager", "Zotero", "EndNote", "RefWorks", "Connected Papers", "Semantic Scholar", "Microsoft Academic", "Altmetric", "Gephi", "Cytoscape", "yFiles", "visNetwork (R)", "NetworkX (Python)", "igraph (R)", "igraph (Python)", "R (Bibliometrix)", "R (Biblioshiny)", "R (VosviewerR)", "R (igraph)", "R (visNetwork)", "R (Shiny)", "Python (Pandas, NumPy)", "Python (SciPy, scikit-learn)", "Python (NetworkX, PyVis)"),
+    category="管理学",
+    databases=("OpenAlex", "Crossref", "Semantic Scholar", "arXiv", "Web of Science", "Scopus", "Scopus (Elsevier)", "Dimensions (Digital Science)", "PubMed"),
 )

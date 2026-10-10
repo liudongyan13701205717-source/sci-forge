@@ -6,33 +6,12 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="neuroscience",
-    aliases=("neuroscience", "神经科学", "脑科学", "brain", "fMRI", "脑成像",
+    aliases=("neuroscience", "神经科学", "脑科学", "brain science", "fMRI",
              "电生理", "electrophysiology", "神经回路", "neural circuit"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction",
-            "results（结果先行，按证据链组织图版）",
-            "discussion（解释、局限与模型含义）",
-            "methods（被试、采集、预处理与分析，可入文末）",
-            "references",
-        ),
-        "methods_paper": (
-            "abstract",
-            "introduction（方法动机与适用范围）",
-            "results（方法验证与对比）",
-            "discussion",
-            "methods（实现细节与参数）",
-            "references",
-        ),
-        "resource": (
-            "abstract",
-            "introduction（数据集/工具动机）",
-            "results（数据集构成与质量控制）",
-            "discussion（使用建议与局限）",
-            "methods",
-            "references",
-        ),
+        "research": ("abstract", "introduction（背景、动机与神经问题）", "methodology（被试/采集/分析）", "results（结果先行，按证据链组织图版）", "discussion（解释、局限与模型含义）", "references"),
+        "methods_paper": ("abstract", "introduction（方法动机与适用范围）", "methodology（实现细节与参数）", "results（方法验证与对比）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（机制与模型综述）", "evidence synthesis（实证与模型证据综合）", "future directions", "references"),
     },
     citation_style="编号（Nature 系列样式）或作者-年份视期刊",
     reporting_standards={
@@ -60,12 +39,11 @@ DISCIPLINE = Discipline(
         "电生理单位 mV/ms/Hz；信噪比给出定义口径",
         "影像分辨率给 mm 与体素尺寸；TR/TE 等序列参数完整给出",
         "统计图给出 n（被试/单元/独立重复）与误差棒含义",
-        "效应量与 CI 并列报告；相关给 r 与 p 并说明多重校正",
         "定位报告注明校正方式（如 p<0.05 FWE 校正，簇水平）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("MATLAB", "Python (NumPy/SciPy)", "SPM", "FSL"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Python (NumPy/SciPy)", "SPM", "FSL", "FreeSurfer", "BrainVoyager", "MRI", "fMRI", "EEG", "MEG", "PET", "SPECT", "NIRS", "ERP", "EMG", "Patch Clamp", "Multi-electrode Array", "Two-photon Imaging", "Calcium Imaging", "Optogenetics"),
     category="理学",
-    databases=("PubMed", "Europe PMC", "GEO", "Zenodo"),
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

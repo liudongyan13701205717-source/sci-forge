@@ -31,7 +31,7 @@
 | 1 | `core/` | `core/`（根，**锚点**） | `workspace_root()`、`.sci-forge` 布局 `Layout`、项目记忆、可选 LLM 连接层 | 投影后会**覆盖**桌面端现有的 `core/__init__.py` stub；该 stub 是桌面端 `core/` 目前**唯一**的文件 |
 | 2 | `claims/` | `core/claims/` | claim→source 核验、Stage 2.5 / 4.5 完整性门、Material Passport、bypass 审批 | 依赖源仓 `sciforge.*` 绝对导入；门控逻辑为 fail-closed |
 | 3 | `deliver/` | `core/deliver/` | 交付物清单、投稿材料打包（zip + cover letter + checklist） | 打包路径约定指向 `.sci-forge/tasks/`，桌面端需保证同名工作区存在 |
-| 4 | `disciplines/` | `core/disciplines/` | 学科 registry，**261 门**，14 个门类，零注册自动发现 | 目录下实测 **264 个 `.py`**（多出 3 个为 `__init__.py` 等包结构文件，非学科条目）；`list_by_category()` 用子串匹配，`"理学"` 会连带命中 `"管理学"` |
+| 4 | `disciplines/` | `core/disciplines/` | 学科 registry，**1538 门**，14 个门类，零注册自动发现 | 目录下实测 **1541 个 `.py`**（多出 3 个为 `__init__.py` 等包结构文件，非学科条目）；`list_by_category()` 用子串匹配，`"理学"` 会连带命中 `"管理学"` |
 | 5 | `export/` | `core/export/` | Markdown / LaTeX / HTML / DOCX 导出、PDF 渲染 | PDF 导出在无 LaTeX 引擎时回退内置 PyMuPDF；渲染属重 I/O，桌面端调用宜放线程 |
 | 6 | `parse/` | `core/parse/` | 论文 PDF 解析（PyMuPDF） | 依赖 `pymupdf>=1.24`，属 `reproduce` extra，桌面端默认不装 —— 投影后**导入即失败**，需按需安装 |
 | 7 | `reproduce/` | `core/reproduce/` | 五步复现闭环：任务、代码生成、沙箱、编排、静态点评 | 依赖 `numpy>=1.26`、`matplotlib>=3.8`（同属 `reproduce` extra）；含子进程调用 —— 与「同步脚本禁 subprocess」的约束无关，该约束只针对 `sync_core.py` |
@@ -47,7 +47,7 @@
 
 | 项 | 位置 | 排除理由 |
 | --- | --- | --- |
-| `server.py` | 源包根层 | MCP server 传输层入口（FastMCP、65 个 `@mcp.tool`、2 个 `@mcp.resource`），仅源仓有意义 |
+| `server.py` | 源包根层 | MCP server 传输层入口（FastMCP、75 个 `@mcp.tool`、2 个 `@mcp.resource`），仅源仓有意义 |
 | `cli.py` | 源包根层 | `sci-forge` 命令入口（stdio / `--version` / `--help`），仅源仓有意义 |
 | `__main__.py` | 源包根层 | `python -m sciforge` 入口，仅源仓有意义 |
 | `__init__.py` | 源包根层 | 包级导出面；其绝对导入路径在桌面端包布局下不成立 |
@@ -67,7 +67,7 @@
 | 纳入同步的目录数 | 12 |
 | 排除的源包根层散文件 | 4 |
 | 桌面端 `core/` 现有文件 | 1（`__init__.py` stub，3 行 docstring） |
-| 首次 `--apply` 预期写入 | 12 个目录下的全部 `.py`；`disciplines/` 单独贡献 264 个文件，故总量为**数百个文件** |
+| 首次 `--apply` 预期写入 | 12 个目录下的全部 `.py`；`disciplines/` 单独贡献 1541 个文件，故总量为**数百个文件** |
 | 首次 `--check`（apply 前）预期结果 | 必然失败：桌面端几乎全部文件为 `missing-in-target`，`core/__init__.py` 为 `content-differs` |
 | 桌面端是否已有可执行核心代码 | 无 |
 
@@ -82,7 +82,7 @@
 
 | 优先级 | 目录 | 原因 |
 | --- | --- | --- |
-| 高 | `disciplines/` | 文件基数最大（264 个 `.py`），学科条目按数据新增，漂移面积最大 |
+| 高 | `disciplines/` | 文件基数最大（1541 个 `.py`），学科条目按数据新增，漂移面积最大 |
 | 高 | `venue/` | 期刊模板与匹配规则为数据表，更新频繁 |
 | 中 | `science/sources/` | 46 个连接器各自演化，含 API 端点与字段变动 |
 | 中 | `research/` | 29 个 `.py`，工具集持续扩充 |

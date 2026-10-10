@@ -6,9 +6,10 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="cosmology",
-    aliases=("cosmology", "宇宙学", "物理宇宙学", "physical cosmology",
-             "宇宙微波背景", "cosmic microwave background", "暗能量", "dark energy",
-             "大爆炸", "Big Bang"),
+    aliases=(
+        "宇宙学", "物理宇宙学", "宇宙微波背景", "Cosmology",
+        "Physical Cosmology", "CMB Cosmology", "暗能量", "Dark Energy",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -70,8 +71,8 @@ DISCIPLINE = Discipline(
         "数值结果给出中心值与置信区间（如 H_0 = 67.4 ± 0.5 km/s/Mpc）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("Python (Astropy/NumPy/SciPy)", "MATLAB", "R", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("CAMB（Code for Linear Perturbation Theory）", "CLASS（Cosmic Linear Anisotropy Solving System）", "CosmoMC（宇宙学参数估计工具）", "CosmoSIS（宇宙学参数估计工具）", "CMBFast（快速 CMB 计算）", "CosmoSim（宇宙学模拟）", "Boltzmann code（Boltzmann 方程求解器）", "CosmoGridAgility（宇宙网格生成器）", "MCMCPack（MCMC 采样工具）", "CMBAnalyze（CMB 数据分析）", "Healpix（球面数据处理库）", "Ntrepid（大尺度结构模拟）", "Gadget（N 体模拟）", "AREPO（流体与引力模拟）", "RAMSES（自适应网格模拟）", "CosmoSIS（宇宙学参数估计）", "CMBPower（CMB 功率谱计算）", "Planck Cosmology（普朗克宇宙学工具）", "CosmoLib（宇宙学数值库）", "PyMC（贝叶斯推断框架）", "NumPy（数值计算）", "SciPy（科学计算）", "Astropy（天文数据工具）", "Matplotlib（科学可视化）", "LaTeX（科学排版）", "Mathematica（符号计算）", "R（统计分析）"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar", "Zenodo"),
 )

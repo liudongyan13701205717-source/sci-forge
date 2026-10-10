@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "疗效分析给出 RR/OR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("皮肤镜", "皮肤共聚焦显微镜", "皮肤病理切片工作站", "窄谱 UVB 光疗仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("皮肤镜", "皮肤共聚焦显微镜", "皮肤病理切片工作站", "窄谱 UVB 光疗仪", "窄谱 UVA 光疗仪", "UVA 日光浴床", "脉冲染料激光", "CO₂ 激光", "调Q 激光", "铒:钇铝石榴石激光", "强脉冲光治疗仪", "射频皮肤治疗仪", "微波治疗仪", "冷冻治疗仪", "SPSS", "R (RStudio)", "ImageJ", "Adobe Photoshop", "Dermascore", "Cornea Master"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC"),
 )

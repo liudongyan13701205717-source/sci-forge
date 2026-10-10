@@ -6,7 +6,21 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="blockchain",
-    aliases=("blockchain", "区块链", "分布式账本", "智能合约"),
+    aliases=(
+        "blockchain",
+        "block_chain",
+        "distributed_ledger_technology",
+        "smart_contracts",
+        "consensus_protocols",
+        "permissioned_blockchain",
+        "defi_research",
+        "区块链",
+        "分布式账本",
+        "智能合约",
+        "共识机制",
+        "联盟链",
+        "Web3",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -66,8 +80,8 @@ DISCIPLINE = Discipline(
         "Gas 成本用 gas 单位并注明价格",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python", "Solidity", "Ethereum", "Geth"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python", "Solidity", "Vyper", "Ethereum", "Geth（Go-Ethereum）", "Nethermind", "Hardhat", "Foundry", "Truffle", "Remix IDE", "Ganache", "OpenZeppelin", "web3.js", "ethers.js", "Hyperledger Fabric", "Hyperledger Besu", "Corda", "Quorum", "Substrate（Polkadot SDK）", "Cosmos SDK", "AvalancheGo", "Solana 工具链（Rust）", "Etherscan", "Tenderly", "Slither（静态分析）", "MythX（合约静态分析）", "Semgrep", "Certora（形式化验证）", "Fulmio（形式化验证）", "Golang (Go)"),
     category="工学",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    databases=("arXiv", "OpenAlex", "Crossref", "DBLP", "Google Patents"),
 )

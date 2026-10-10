@@ -6,7 +6,8 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="aesthetics",
-    aliases=("aesthetics", "美学", "审美学", "艺术哲学"),
+    aliases=("aesthetics", "aesthetics", "美学", "审美学", "艺术哲学",
+             "art philosophy", "art criticism", "art theory", "艺术批评", "审美"),
     paper_types={
         "research": (
             "abstract",
@@ -66,13 +67,8 @@ DISCIPLINE = Discipline(
         "术语用原文并注译",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=(
-        "LaTeX 美学论著排版",
-        "图像与文本分析工具",
-        "Gephi 艺术网络可视化",
-        "Zotero 文献管理",
-    ),
-    category="哲学",
+    contribution_forms=("论文", "学术专著", "艺术作品", "教案与教材", "报告", "数据集"),
+    tools=("LaTeX", "Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Zotero", "EndNote", "Mendeley", "NVivo", "MAXQDA", "ATLAS.ti", "Gephi", "VOSviewer", "ImageJ", "Tableau", "Power BI", "SPSS", "R", "Qualtrics", "SurveyMonkey", "Google Forms", "Miro", "Lucidchart", "Procreate", "Canva"),
+    category="艺术学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

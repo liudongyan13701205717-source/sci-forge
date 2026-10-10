@@ -6,8 +6,14 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="chemistry",
-    aliases=("chemistry", "化学", "有机", "organic", "催化", "catalysis", "合成",
-             "synthesis", "高分子", "polymer", "电化学", "electrochemistry"),
+    aliases=(
+        "chemistry", "化学", "化学学科", "化学总论",
+        "organic chemistry", "无机化学", "inorganic chemistry",
+        "analytical chemistry", "分析化学",
+        "physical chemistry", "物理化学",
+        "chemical synthesis", "化学合成", "高分子化学", "高分子",
+        "electrochemistry", "电化学", "催化化学",
+    ),
     paper_types={
         "communication": (
             "abstract",
@@ -56,6 +62,9 @@ DISCIPLINE = Discipline(
         "Nature Chemistry",
         "Chemical Science",
         "Chemical Reviews",
+        "Journal of Organic Chemistry",
+        "Chemistry of Materials",
+        "Chinese Journal of Chemistry",
     ),
     units_and_formulas_notes=(
         "浓度记作 mol·L⁻¹（或 M）；波数 cm⁻¹；化学位移 δ（ppm，相对 TMS）",
@@ -65,8 +74,8 @@ DISCIPLINE = Discipline(
         "热分析（TGA/DSC）给升温速率与气氛",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("ChemDraw", "Gaussian", "Origin", "质谱仪", "光谱仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Gaussian", "ORCA", "ChemDraw", "VASP", "Gaussian View", "Multiwfn", "MOLUSPES / Avogadro", "Molekel", "MarvinSketch", "InChI Key / SMILES 处理库（RDKit）", "OriginLab", "ImageJ / Fiji（谱图处理）", "SDD 单晶衍射仪（Bruker D8）", "核磁共振波谱仪（Bruker Avance）", "质谱仪（Thermo Fisher Q Exactive）", "液相色谱-质谱联用仪（LC-MS）", "红外光谱仪（Nicolet iS50 FTIR）", "紫外-可见分光光度计（Shimadzu UV-2600）", "气相色谱仪（GCMS-QP2010）", "原子吸收光谱仪（AAS）", "电化学工作站（BioLogic VMP3）", "透射电子显微镜（TEM JEOL JEM-2100）", "扫描电子显微镜（SEM Hitachi S-4800）", "热重分析仪（TG/DSC TA Q600）", "X 射线光电子能谱仪（XPS）", "量子化学软件 Q-Chem", "分子动力学软件 LAMMPS", "分子动力学软件 GROMACS", "计算化学平台 Turbomole", "计算化学平台 CP2K", "计算化学平台 nwchem", "晶体结构精修 SHELXL", "晶体结构精修 OLEX2", "晶体结构解析 CheckCIF", "分子动力学可视化 VMD", "分子动力学可视化 PyMOL", "文献计量软件 CiteSpace", "文献管理 EndNote", "文献管理 Zotero", "绘图软件 Adobe Illustrator", "绘图软件 BioRender（结构示意）", "科学可视化 Paraview", "化学绘图 Chemfig", "化学绘图 mhchem（LaTeX）", "LaTeX 排版", "数据处理 R", "数据分析 Python（pandas）", "数据分析 MATLAB"),
     category="理学",
-    databases=("Crossref", "OpenAlex", "PubChem", "Europe PMC", "CNKI"),
+    databases=("Crossref", "OpenAlex", "PubChem", "ChemSpider", "SciFinder", "CNKI", "Web of Science", "化合物数据库 PubChem", "化合物数据库 ChemSpider", "化合物数据库 Reaxys", "化合物数据库 SciFinder", "化合物数据库 CCDC", "晶体结构数据库 Materials Project", "催化数据库 CatKing"),
 )

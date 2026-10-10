@@ -6,9 +6,7 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="polymer_chemistry",
-    aliases=("polymer chemistry", "高分子化学", "聚合物科学", "polymer science",
-             "高分子物理", "polymer physics", "高分子合成", "polymer synthesis",
-             "材料化学", "materials chemistry"),
+    aliases=("polymer chemistry", "高分子化学", "聚合物科学", "polymer science", "高分子物理", "polymer physics", "高分子合成", "polymer synthesis", "材料化学", "materials chemistry"),
     paper_types={
         "research": (
             "abstract",
@@ -66,8 +64,8 @@ DISCIPLINE = Discipline(
         "数值结果给出均值与误差（如 M_n = 45.2 kDa, PDI = 1.12）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("Python (NumPy/SciPy)", "MATLAB", "Origin", "ChemDraw", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy/SciPy)", "MATLAB", "Origin", "ChemDraw", "LaTeX", "Gaussian", "VASP", "LAMMPS", "Materials Studio", "GaussView", "Avogadro", "Molden", "Multiwfn", "Mercury", "Diamond Light Source", "Bruker NMR", "Agilent GPC", "Thermo Fisher DSC", "NETZSCH TGA", "R"),
     category="理学",
     databases=("Crossref", "OpenAlex", "PubChem", "Semantic Scholar", "CNKI"),
 )

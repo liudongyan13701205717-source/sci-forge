@@ -7,7 +7,9 @@ from sciforge.disciplines.base import Discipline
 DISCIPLINE = Discipline(
     name="botany",
     aliases=("botany", "植物学", "植物生理学", "plant physiology", "植物分类学",
-             "plant taxonomy", "植物生态学", "plant ecology", "植物解剖学", "plant anatomy"),
+             "plant taxonomy", "植物生态学", "plant ecology", "植物解剖学", "plant anatomy",
+             "植物遗传学", "plant genetics", "分子植物学", "molecular plant biology",
+             "plant molecular biology", "系统植物学", "systematic botany"),
     paper_types={
         "research": (
             "abstract",
@@ -47,6 +49,7 @@ DISCIPLINE = Discipline(
         "光合参数符号（A、g_s、E、Fv/Fm）统一",
         "生长条件（光周期、PPFD）规范报告",
         "标本馆缩写（K、PE 等）遵循 Index Herbariorum",
+        "分类等级按界-门-纲-目-科-属-种顺序列示",
     ),
     key_venues=(
         "New Phytologist",
@@ -55,6 +58,10 @@ DISCIPLINE = Discipline(
         "Annals of Botany",
         "American Journal of Botany",
         "Journal of Experimental Botany",
+        "Plant Journal",
+        "Plant Cell & Environment",
+        "Molecular Plant",
+        "Plant Molecular Biology",
     ),
     units_and_formulas_notes=(
         "光合速率用 μmol CO2 m^-2 s^-1；蒸腾用 mmol H2O m^-2 s^-1",
@@ -64,14 +71,8 @@ DISCIPLINE = Discipline(
         "数值结果给出均值 ± SE 与样本量",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "光学显微镜",
-        "植物标本数字化扫描仪",
-        "LI-6400 便携式光合测定仪",
-        "气相色谱-质谱（GC-MS）",
-        "R (ggplot2)",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("光学显微镜", "共聚焦显微镜", "扫描电子显微镜（SEM）", "透射电子显微镜（TEM）", "LI-6400 便携式光合测定仪", "LI-6800 光呼吸测定仪", "植物标本数字化扫描仪", "气相色谱-质谱（GC-MS）", "液相色谱-质谱（LC-MS）", "高分辨质谱（HRMS）", "核磁共振（NMR）", "ImageJ / Fiji", "ZEN (Zeiss)", "NIS-Elements (Nikon)", "QuPath", "CellProfiler", "CellPose", "Python", "R (ggplot2)", "QGIS"),
     category="理学",
     databases=(
         "PubMed",
@@ -79,5 +80,8 @@ DISCIPLINE = Discipline(
         "bioRxiv",
         "Zenodo",
         "CNKI",
+        "GBIF",
+        "iDigBio",
+        "World Plants",
     ),
 )

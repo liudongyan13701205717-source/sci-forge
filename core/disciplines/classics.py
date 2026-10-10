@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="classics",
-    aliases=("classics", "古典学", "古典语文学", "古希腊罗马研究"),
+    aliases=(
+        "classics", "古典学", "古典语文学", "古希腊罗马研究",
+        "Greek and Roman Studies", "古典研究", "Classical Philology",
+        "古典文献学", "Hellenic Studies", "Roman Studies",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -57,6 +61,8 @@ DISCIPLINE = Discipline(
         "Journal of Roman Studies",
         "American Journal of Philology",
         "Transactions of the American Philological Association",
+        "Classical Review",
+        "Hellenica",
     ),
     units_and_formulas_notes=(
         "引文给出标准编号（如行号）",
@@ -66,13 +72,8 @@ DISCIPLINE = Discipline(
         "度量用统一单位",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "译文"),
-    tools=(
-        "古文献数据库检索工具",
-        "语料库检索工具",
-        "EndNote 文献管理",
-        "LaTeX 排版",
-    ),
+    contribution_forms=("论文", "学术专著", "教案与教材", "译文", "报告", "数据集"),
+    tools=("语料库检索工具", "EndNote 文献管理", "LaTeX 排版", "Perseus Digital Library", "Packard Humanities Institute", "Open Philology", "Logos Bible Software", "EpiDoc", "Sketch Engine", "AntConc", "CQPweb", "Pleiades Ancient Place Names", "Wikisource", "Wiktionary", "Noosa-6", "LAWC", "Trismegistos", "Perseus 古希腊语辞典", "PHI Greek Inscriptions", "Topos Text Editor"),
     category="历史学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "JSTOR", "Perseus", "古文献数据库检索工具", "Ovid 古希腊罗马文学数据库"),
 )

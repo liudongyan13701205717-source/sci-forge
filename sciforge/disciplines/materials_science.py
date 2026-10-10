@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "力学/热学性能给测试标准（ASTM/ISO）与升温/加载速率",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("X 射线衍射仪", "扫描电镜（SEM）", "Origin", "Materials Studio"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("X 射线衍射仪（Bruker D8 Advance）", "扫描电镜（SEM, FEI Quanta）", "透射电镜（TEM, JEOL 2100F）", "Raman 光谱仪", "X 射线光电子能谱（XPS）", "原子力显微镜（AFM）", "热分析仪 DSC/TGA", "万能材料试验机（Instron）", "电化学工作站（CHI/Zolix）", "Origin Pro", "Materials Studio", "VASP", "CASTEP", "Thermocalc", "Avizo", "ImageJ", "Python (NumPy/SciPy)", "Microsoft Excel", "Microsoft Visio", "LaTeX/BibTeX"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

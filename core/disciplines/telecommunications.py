@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "误码率/误帧率给出置信区间",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("MATLAB/Simulink", "HFSS", "CST Studio Suite", "Python", "OPNET"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB/Simulink", "HFSS", "CST Studio Suite", "Python", "OPNET", "COMSOL Multiphysics", "Keysight ADS", "ATLAS ELEKTRONIK WavePro", "RF Studio", "GNU Radio", "SDRPlay", "UHD", "NI Multisim", "LTspice", "Qucs-S", "NS-3", "Mininet", "SymPy", "SciPy", "TikZ"),
     category="工学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI"),
 )

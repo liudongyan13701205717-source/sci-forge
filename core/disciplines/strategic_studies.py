@@ -63,13 +63,8 @@ DISCIPLINE = Discipline(
         "定性判断须给出证据来源与置信度",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "报告"),
-    tools=(
-        "情景模拟软件（MATLAB/Python）",
-        "GIS 空间分析（ArcGIS）",
-        "兵棋推演平台",
-        "SPSS 统计分析",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("情景模拟软件（MATLAB/Python）", "GIS 空间分析（ArcGIS）", "兵棋推演平台", "SPSS 统计分析", "QGIS", "Google Earth Pro", "Tableau", "Power BI", "Python (pandas)", "R", "Gephi", "NVivo", "Atlas.ti", "NetLogo", "AnyLogic", "STATA", "Excel", "LaTeX", "Zotero", "Miro"),
     category="军事学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

@@ -6,8 +6,18 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="applied_mathematics",
-    aliases=("applied mathematics", "应用数学", "应用分析", "数学建模",
-             "applied math", "渐近分析"),
+    aliases=(
+        "applied mathematics",
+        "applied mathematics",
+        "应用数学",
+        "应用分析",
+        "数学建模",
+        "applied math",
+        "渐近分析",
+        "数学物理",
+        "mathematical physics",
+        "computational mathematics",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -59,6 +69,7 @@ DISCIPLINE = Discipline(
         "Studies in Applied Mathematics",
         "European Journal of Applied Mathematics",
         "Applied Mathematics Letters",
+        "Journal of Applied Mechanics",
     ),
     units_and_formulas_notes=(
         "使用 amsmath/amsthm/amssymb：对齐用 align/gather，多行推导按 = 号对齐",
@@ -68,8 +79,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("MATLAB", "Mathematica", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Mathematica", "Python", "Julia", "Maple", "Octave", "R", "SageMath", "SciPy", "NumPy", "SymPy", "COMSOL Multiphysics", "FEniCS", "Firedrake", "deal.II", "OpenFOAM", "Nektar++", "VMD", "ParaView", "Gmsh", "CGAL", "AMOS (Automatic Model Optimisation System)", "LaTeX", "Overleaf"),
     category="理学",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    databases=("arXiv", "OpenAlex", "Crossref", "MathSciNet", "zbMATH", "DBLP"),
 )

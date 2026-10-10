@@ -1,4 +1,4 @@
-"""物联网学科论文支持：感知/通信/应用体裁、IEEE 引用样式与能耗度量记法注记。"""
+"""物联网（IoT）学科论文支持：感知、网络、平台与嵌入式研究。"""
 
 from __future__ import annotations
 
@@ -6,68 +6,41 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="internet_of_things",
-    aliases=("internet_of_things", "物联网", "IoT", "边缘感知"),
+    aliases=("internet of things", "IoT", "物联网", "传感器网络", "嵌入式系统", "边缘计算", "M2M", "万物互联"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与问题）",
-            "related work（相关工作）",
-            "system design（系统设计）",
-            "implementation（实现）",
-            "evaluation（评估）",
-            "references",
-        ),
-        "application_paper": (
-            "abstract",
-            "introduction",
-            "background（背景：应用场景）",
-            "system architecture（系统架构）",
-            "deployment（部署）",
-            "evaluation（评估与现场数据）",
-            "references",
-        ),
-        "survey": (
-            "abstract",
-            "introduction",
-            "scope and method（综述范围与方法）",
-            "taxonomy（分类体系）",
-            "gaps and outlook（缺口与展望）",
-            "references",
-        ),
+        "research": ("abstract", "introduction（背景、问题与贡献）", "methodology（系统设计、实现与实验）", "results（性能评估与对比）", "discussion（局限与展望）", "references"),
+        "case_study": ("abstract", "introduction", "case description（部署场景与架构）", "analysis（性能、安全与能耗分析）", "results（实测数据）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（IoT 体系结构演进）", "evidence synthesis（协议、平台、场景证据）", "future directions", "references"),
     },
-    citation_style="IEEE 样式（编号制；IoT-J/INFOCOM 遵循 IEEE 规范）",
+    citation_style="IEEE 会议与期刊样式（编号引用）",
     reporting_standards={
-        "experimental": "实验遵循物联网系统评估规范",
-        "field_deployment": "现场部署遵循真实环境报告规范",
-        "benchmark": "基准测试遵循标准协议报告规范",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-        "security": "安全评估遵循威胁模型报告规范",
+        "k1": "系统架构给分层图与关键模块",
+        "k2": "实验环境给硬件、协议、拓扑与规模",
+        "k3": "性能指标给吞吐、延迟、能耗与覆盖率",
     },
     conventions=(
-        "协议栈（感知/网络/应用层）须明确",
-        "硬件平台与传感器型号须报告",
-        "能耗与电池寿命须报告",
-        "通信协议（LoRa/NB-IoT/ZigBee 等）须说明",
-        "现场数据与仿真数据须区分",
+        "节点、网关、平台、应用分层图示",
+        "协议栈分层图示（物理层到应用层）",
+        "能量模型与数据速率公式给出符号定义",
+        "实验与仿真分别给出配置",
+        "开源资源与代码链接给出"
     ),
     key_venues=(
         "IEEE Internet of Things Journal",
-        "ACM/IEEE International Conference on Internet of Things Design and Implementation (IoTDI)",
-        "IEEE International Conference on Communications (ICC)",
-        "IEEE INFOCOM",
+        "IEEE Transactions on Industrial Informatics",
         "ACM Transactions on Sensor Networks",
-        "IEEE Sensors Journal",
+        "IEEE Internet of Computing",
+        "IEEE Transactions on Cybernetics"
     ),
     units_and_formulas_notes=(
-        "能耗用 mJ 或 mAh；功率用 mW；传输距离用 m",
-        "数据率用 kbps/Mbps；采样率用 Hz",
-        "公式用 amsmath；能耗模型公式须编号",
-        "数值结果给出均值 ± 标准差与样本量",
-        "电池寿命用天（d）或月（mo）",
+        "延迟单位 ms 或 μs，吞吐 kbps 或 Mbps，能耗 mJ/bit 或 mW",
+        "电池容量 mAh 与循环次数",
+        "覆盖率用 % 或 m² 明确",
+        "无线信道给 dBm、dB、Hz"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "专利"),
-    tools=("Arduino", "STM32", "Python", "MATLAB"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Arduino", "Raspberry Pi", "ESP32", "STM32", "NodeMCU", "FreeRTOS", "Zephyr RTOS", "Node-RED", "ThingsBoard", "Azure IoT Hub", "AWS IoT Core", "Google Cloud IoT Core", "Eclipse Mosquitto", "libcoap", "The Things Stack", "Zigbee", "Home Assistant", "OpenHAB", "TensorFlow Lite", "NS-3"),
     category="工学",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

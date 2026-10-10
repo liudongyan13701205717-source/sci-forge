@@ -1,4 +1,4 @@
-"""创意写作学科论文支持：创作/教学/批评体裁、MLA 引用样式与人文学科注记。"""
+"""创意写作学科论文支持：创作/教学/批评/译作体裁、MLA 引用样式与人文学科注记。"""
 
 from __future__ import annotations
 
@@ -6,7 +6,16 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="creative_writing",
-    aliases=("creative_writing", "创意写作", "创作学", "写作学"),
+    aliases=(
+        "creative_writing",
+        "creative writing",
+        "创意写作",
+        "创作学",
+        "写作学",
+        "写作研究",
+        "writing studies",
+        "文学创作",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -35,6 +44,24 @@ DISCIPLINE = Discipline(
             "discussion（讨论）",
             "references",
         ),
+        "criticism": (
+            "abstract",
+            "introduction",
+            "theoretical framework",
+            "close reading",
+            "interpretation",
+            "conclusion",
+            "references",
+        ),
+        "translation": (
+            "abstract",
+            "introduction",
+            "source analysis",
+            "translation strategy",
+            "translation",
+            "postscript",
+            "references",
+        ),
     },
     citation_style="MLA 样式（作者-页码；New Writing 遵循 MLA 规范）",
     reporting_standards={
@@ -45,11 +72,12 @@ DISCIPLINE = Discipline(
         "systematic_review": "系统综述遵循 PRISMA 声明",
     },
     conventions=(
-        "作品与创作过程须区分",
-        "教学设计与评估须说明",
-        "引文给出页码",
-        "理论框架须明确",
-        "反思性须讨论",
+        "作品与创作过程须区分，创作手记不替代论证明词",
+        "教学设计与评估须说明评估工具与评分标准",
+        "引文给出页码；版本与版次须注明",
+        "理论框架须明确；反思性结论须讨论其限度",
+        "作品版本号与提交稿日期须标注",
+        "字数用字/词计数并说明计数口径",
     ),
     key_venues=(
         "New Writing",
@@ -58,6 +86,10 @@ DISCIPLINE = Discipline(
         "Creative Writing: Teaching Theory & Practice",
         "Writing in Practice",
         "Journal of Writing Research",
+        "Contemporary Literature",
+        "PMLA",
+        "The Review of English Studies",
+        "Poetics Today",
     ),
     units_and_formulas_notes=(
         "引文给出页码",
@@ -67,14 +99,8 @@ DISCIPLINE = Discipline(
         "百分比给出基数",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "文学作品"),
-    tools=(
-        "Scrivener 长文写作管理",
-        "Microsoft Word 文稿编辑",
-        "LaTeX 作品排版",
-        "Zotero 文献管理",
-        "NVivo 创作过程质性编码",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "艺术作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("Scrivener 长文写作管理", "Microsoft Word 文稿编辑", "Google Docs 协作写作", "LaTeX 作品排版", "Overleaf 在线 LaTeX", "Zotero 文献管理", "Mendeley 文献管理", "NVivo 创作过程质性编码", "ATLAS.ti 质性文本分析", "MAXQDA 质性研究分析", "Adobe InDesign 作品集排版", "Adobe Acrobat 书稿审校", "Adobe Photoshop 插图处理", "Canva 封面与装帧设计", "ProWritingAid 文风诊断", "Grammarly 语法检查", "Hemingway Editor 可读性分析", "MWriter 极简写作", "Ulysses 章节写作", "iA Writer 写作环境", "Obsidian 笔记与素材库", "Notion 项目与流程管理", "LanguageTool 多语言校对", "Turnitin 查重", "iThenticate 学术查重"),
     category="文学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "MLA International Bibliography"),
 )

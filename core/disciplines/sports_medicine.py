@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "疗效分析给出 RR/OR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("运动心电图仪", "肌骨超声", "体成分分析仪", "SPSS", "R"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("运动心电图仪", "肌骨超声", "体成分分析仪", "SPSS", "R", "双能 X 射线吸收法 (DXA)", "骨密度扫描仪 (Hologic)", "心脏磁共振 (CMR)", "MRI 系统", "CT 计算机断层扫描", "表面肌电图仪 (Delsys)", "等速测力仪 (Biodex)", "Holter 24 小时心电", "运动心电超声心动图", "CPET 心肺运动试验", "血乳酸分析仪 (Lactate Pro)", "血气分析仪 (Radiometer)", "关节活动度量尺", "GaitRite 步态分析", "Omron 血压监测"),
     category="医学",
     databases=("PubMed", "OpenAlex", "Europe PMC", "CNKI"),
 )

@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "金额用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集", "报告"),
-    tools=("ArcGIS Pro", "QGIS", "R（spdep 空间统计）", "Python（geopandas/UrbanSim）", "SPSS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("ArcGIS Pro", "QGIS", "R（spdep 空间统计）", "Python（geopandas/UrbanSim）", "SPSS", "GeoDa", "DepthmapX (Space Syntax)", "MATSim", "Vensim（系统动力学）", "Gephi（网络分析）", "NVivo", "ATLAS.ti", "Stata", "TransCAD", "ENVI-met", "Adobe Illustrator", "SketchUp", "Tableau", "Power BI", "Zotero"),
     category="工学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Zenodo"),
 )

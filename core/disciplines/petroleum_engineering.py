@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "采收率用 %；储量用 MMbbl 或 10⁴ t",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("ECLIPSE 油藏模拟器", "Python", "SeisSpace", "Petrel"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("ECLIPSE 油藏模拟器", "CMG STARS", "Petrel", "Move", "SeisSpace", "Intergraph", "IPRES", "OLGA", "PipeSim", "WITS", "MCS", "GeoModel", "ResQ", "Petrosoft", "Landmark", "Python", "R", "STATA", "SPSS", "MATLAB"),
     category="工学",
     databases=("OpenAlex", "Crossref", "Zenodo", "CNKI"),
 )

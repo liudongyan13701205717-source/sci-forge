@@ -66,9 +66,8 @@ DISCIPLINE = Discipline(
         "带隙用 eV；粒径分布用 PDI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利", "数据集"),
-    tools=("透射电镜（TEM）", "扫描电镜（SEM）", "原子力显微镜（AFM）",
-           "X 射线衍射仪（XRD）", "Python（NumPy/SciPy）"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("透射电镜（TEM）", "扫描电镜（SEM）", "原子力显微镜（AFM）", "扫描隧道显微镜（STM）", "X 射线衍射仪（XRD）", "小角 X 射线散射（SAXS）", "紫外-可见分光光度计（UV-Vis）", "傅里叶变换红外光谱仪（FTIR）", "拉曼光谱仪", "能量色散 X 射线光谱仪（EDS）", "凝胶电泳（PAGE）", "比表面积分析仪（BET）", "接触角测量仪", "原子层沉积设备（ALD）", "化学气相沉积设备（CVD）", "光刻设备", "纳米压痕仪", "质谱仪（MS）", "Python（NumPy/SciPy/Matplotlib）", "OriginLab"),
     category="工学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI", "万方"),
 )

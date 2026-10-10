@@ -6,8 +6,8 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](./pyproject.toml)
-[![MCP Tools](https://img.shields.io/badge/MCP%20tools-65-green.svg)](./docs/mcp-tools.md)
-[![Disciplines](https://img.shields.io/badge/disciplines-261-green.svg)](./docs/disciplines.md)
+[![MCP Tools](https://img.shields.io/badge/MCP%20tools-75-green.svg)](./docs/mcp-tools.md)
+[![Disciplines](https://img.shields.io/badge/disciplines-1538-green.svg)](./docs/disciplines.md)
 [![Connectors](https://img.shields.io/badge/connectors-46-green.svg)](./docs/connectors.md)
 
 [English](README_EN.md) · [安装](docs/installation.md) · [快速开始](docs/quickstart.md) · [MCP 工具清单](docs/mcp-tools.md) · [学科体系](docs/disciplines.md) · [科学数据连接器](docs/connectors.md) · [贡献指南](CONTRIBUTING.md) · [行为准则](CODE_OF_CONDUCT.md) · [安全策略](SECURITY.md) · [变更日志](CHANGELOG.md)
@@ -20,14 +20,14 @@
 
 `sci-forge` 是一个**完全本地自建**的 [Model Context Protocol](https://modelcontextprotocol.io) server，把「读一篇论文」到「交出一篇可投稿论文」之间的整段路，压缩成一组可以被 AI 客户端直接调用的工具。
 
-它不是聊天机器人，不是一段提示词模板，而是一个常驻进程：**261 门学科的论文规范知识**、**46 个公开科学数据库的直连连接器**、**五步复现闭环**、**fail-closed 的完整性与引用核验门**，全部以 MCP 工具的形式暴露出来。
+它不是聊天机器人，不是一段提示词模板，而是一个常驻进程：**1538 门学科的论文规范知识**、**46 个公开科学数据库的直连连接器**、**五步复现闭环**、**fail-closed 的完整性与引用核验门**，全部以 MCP 工具的形式暴露出来。
 
 ### 价值主张
 
 | 你要做的事 | sci-forge 提供的 |
 | --- | --- |
 | 复现一篇论文的实验 | 拿到 PDF → 解析 → 抽超参 → 生成 numpy/torch 代码 → 沙箱运行 → 与论文数值比对 → 交付 `results.json` + 图 + 源码 |
-| 从零写一篇论文 | 学科感知的章节结构模板（按 261 门学科的 `paper_types`）+ 引导式撰写 + LaTeX/PDF/DOCX 导出 |
+| 从零写一篇论文 | 学科感知的章节结构模板（按 1538 门学科的 `paper_types`）+ 引导式撰写 + LaTeX/PDF/DOCX 导出 |
 | 找选题、找缺口 | 免 key 的 OpenAlex/arXiv 检索 → 主题侦察 → 聚类 → 研究缺口 → 候选假设 → 实验计划 |
 | 投出去之前自查 | 模拟同行评审（4 维评分）、期刊匹配度评分、修订教练、rebuttal 审计、期刊/会议推荐 |
 | 守住学术诚信底线 | claim→source 核验、参考文献 DOI 批量核验、Stage 2.5 / 4.5 完整性门、Material Passport |
@@ -47,8 +47,8 @@
 
 - [快速开始](#快速开始)
 - [架构](#架构)
-- [MCP 工具清单](#mcp-工具清单65-个)
-- [学科覆盖概览](#学科覆盖概览261-门)
+- [MCP 工具清单](#mcp-工具清单75-个)
+- [学科覆盖概览](#学科覆盖概览1538-门)
 - [科学数据连接器](#科学数据连接器46-个)
 - [与桌面版的关系](#与桌面版的关系双仓)
 - [路线图](#路线图)
@@ -139,13 +139,13 @@ export_document("demo", "pdf")        # 产出 .sci-forge/projects/demo/doc.pdf
                         ┌───────────────────▼─────────────────────┐
                         │  sciforge/server.py                      │
                         │  FastMCP("sci-forge")                    │
-                        │  65 @mcp.tool  +  2 @mcp.resource        │
+                        │  75 @mcp.tool  +  2 @mcp.resource        │
                         └──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┘
        ┌────────────────────┘   │   │   │   │   │   │   │   │   └──────────────┐
        ▼                        ▼   │   │   │   │   │   │   ▼                  ▼
  ┌───────────┐  ┌───────────┐  ┌────▼─┐ │ ┌─────▼─┐ │ ┌─────▼──┐  ┌──────────────────┐
  │reproduce/ │  │research/  │  │write/ │ │ │export/ │ │ │deliver/│  │  disciplines/    │
- │ 五步复现   │  │ 研究线     │  │DocStore│ │ │md→tex  │ │ │投稿打包 │  │  261 门学科       │
+ │ 五步复现   │  │ 研究线     │  │DocStore│ │ │md→tex  │ │ │投稿打包 │  │  1538 门学科       │
  │ 闭环+点评  │  │ 工具集     │  │模板   │ │ │/pdf    │ │ │交付清单 │  │  零注册自动发现    │
  └───────────┘  └───────────┘  └───────┘ │ └───────┘ │ └────────┘  └──────────────────┘
                                            │ ┌─────▼──┐
@@ -200,9 +200,9 @@ MODEL=...
 
 ---
 
-## MCP 工具清单（65 个）
+## MCP 工具清单（75 个）
 
-> 静态 `@mcp.tool()` 装饰器计数 65，运行时 `mcp.list_tools()` 计数 65，两者一致。另有 2 个 resource：静态 `science://databases` 与参数化模板 `science://databases/{domain}`。
+> 静态 `@mcp.tool()` 装饰器计数 75，运行时 `mcp.list_tools()` 计数 75，两者一致。另有 2 个 resource：静态 `science://databases` 与参数化模板 `science://databases/{domain}`。
 > 逐个工具的参数签名与行为细节见 [docs/mcp-tools.md](./docs/mcp-tools.md)。
 
 ### 复现线（2）
@@ -330,9 +330,9 @@ MODEL=...
 
 ---
 
-## 学科覆盖概览（261 门）
+## 学科覆盖概览（1538 门）
 
-`sciforge/disciplines/` 内置 **261 门学科**的论文支持 registry，采用零注册自动发现：新增学科 = 在该包内新增一个模块文件并声明一个模块级 `Discipline` 实例（或 `Discipline` 数据类子类），发现机制会自动收录，无需修改 registry 代码。
+`sciforge/disciplines/` 内置 **1538 门学科**的论文支持 registry，采用零注册自动发现：新增学科 = 在该包内新增一个模块文件并声明一个模块级 `Discipline` 实例（或 `Discipline` 数据类子类），发现机制会自动收录，无需修改 registry 代码。
 
 ### 门类分布
 
@@ -345,7 +345,7 @@ MODEL=...
 | 医学 | 30 | 历史学 | 4 |
 | 交叉学科 | 23 | 教育学 | 4 |
 | 法学 | 12 | 经济学 | 3 |
-| 文学 | 11 | **合计** | **261** |
+| 文学 | 11 | **合计** | **1538** |
 | 哲学 | 9 | | |
 | 管理学 | 7 | | |
 | 艺术学 | 6 | | |
@@ -358,7 +358,7 @@ MODEL=...
 
 | 产出形式 | 包含该形式的学科数 | 产出形式 | 学科数 |
 | --- | --- | --- | --- |
-| 论文 | 261（100%） | 报告 | 27 |
+| 论文 | 1538（100%） | 报告 | 27 |
 | 数据集 | 95 | 艺术作品 | 7 |
 | 软件与代码 | 49 | 文学作品 | 5 |
 | 学术专著 | 41 | 译文 | 4 |
@@ -416,7 +416,7 @@ from sciforge.disciplines import (
     list_by_database,            # 按优先数据库过滤
 )
 
-len(DISCIPLINES)                    # 261
+len(DISCIPLINES)                    # 1538
 d = get_discipline("machine_learning")
 d.contribution_forms               # ('论文', '软件与代码', '数据集')
 list_by_contribution_form("专利")   # 可产出专利的学科
@@ -463,7 +463,7 @@ list_by_database("PubMed")         # 优先 PubMed 的学科
 | 维度 | `sci-forge`（本仓，MCP 版） | `sciforge-desktop`（桌面版） |
 | --- | --- | --- |
 | 定位 | 核心库 + MCP stdio server | 桌面 GUI 客户端 + 本地 agent 工具 |
-| 提供能力 | 65 个 MCP 工具、2 个 MCP 资源、261 门学科、46 个连接器 | 6 个本地 agent 工具、会话存储、GUI 外壳 |
+| 提供能力 | 75 个 MCP 工具、2 个 MCP 资源、1538 门学科、46 个连接器 | 6 个本地 agent 工具、会话存储、GUI 外壳 |
 | Python 依赖 | `mcp>=1.29.0` | `PySide6>=6.6` |
 | 命令 | `sci-forge` | `sciforge-desktop` |
 | 通信方式 | 被调用方（stdio server） | 调用方（JSON-RPC 2.0 over stdio） |
@@ -484,9 +484,9 @@ list_by_database("PubMed")         # 优先 PubMed 的学科
 
 ### 已具备
 
-- 261 门学科 registry（Discipline v2 字段体系）
+- 1538 门学科 registry（Discipline v2 字段体系）
 - 46 个科学数据库连接器 / 7 领域
-- 65 个 MCP 工具 + 2 个 MCP 资源
+- 75 个 MCP 工具 + 2 个 MCP 资源
 - 复现 / 写作 / 研究 / 评审核验 / 交付 / 科学数据 六条线闭环
 - 268 个 pytest 用例（v2 回归基线）
 - 免 key 可用的核心链路 + 可选 LLM 增强

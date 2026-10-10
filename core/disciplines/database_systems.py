@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="database_systems",
-    aliases=("database_systems", "数据库系统", "数据库", "数据管理"),
+    aliases=(
+        "database_systems", "数据库系统", "数据库", "数据管理",
+        "data management", "数据库管理", "数据建模",
+        "database management systems", "DBMS",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -57,6 +61,7 @@ DISCIPLINE = Discipline(
         "ACM Transactions on Database Systems",
         "The VLDB Journal",
         "IEEE Transactions on Knowledge and Data Engineering",
+        "PACMMOD (Proceedings of the ACM on Management of Data)",
     ),
     units_and_formulas_notes=(
         "吞吐量用 tps；延迟用 ms；数据量用 GB/TB",
@@ -66,8 +71,8 @@ DISCIPLINE = Discipline(
         "复杂度用 O(·) 记法",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("PostgreSQL", "MySQL", "DuckDB", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("PostgreSQL", "MySQL", "MariaDB", "Oracle Database", "Microsoft SQL Server", "SQLite", "DuckDB", "MongoDB", "Redis", "Apache Cassandra", "CockroachDB", "TimescaleDB", "Neo4j", "Apache Spark SQL", "Apache Flink", "ClickHouse", "Databend", "Doris (Apache)", "TiDB", "OceanBase", "StarRocks", "Elasticsearch", "Amazon RDS", "Google Cloud Spanner", "Azure Cosmos DB", "IBM DB2", "SAP HANA", "Teradata", "Informix", "Firebird", "OpenGauss"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

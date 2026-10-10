@@ -6,8 +6,9 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="nuclear_physics",
-    aliases=("nuclear physics", "核物理", "原子核物理", "nuclear structure",
-             "核结构", "核反应", "nuclear reactions", "核天体物理", "nuclear astrophysics"),
+    aliases=("nuclear_physics", "核物理", "原子核物理", "nuclear structure",
+             "核结构", "核反应", "nuclear reactions", "核天体物理",
+             "nuclear astrophysics"),
     paper_types={
         "research": (
             "abstract",
@@ -16,7 +17,6 @@ DISCIPLINE = Discipline(
             "methods（实验/计算设置）",
             "results（能级、截面或衰变性质）",
             "discussion（与理论/文献对比）",
-            "conclusion",
             "references",
         ),
         "experimental": (
@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出中心值与误差，衰变数据注明参考数据库",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("ROOT", "Geant4", "Python (NumPy, SciPy)", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("ROOT", "Geant4", "Python (NumPy, SciPy)", "LaTeX", "MCNP", "SNAKE", "SNAKE2", "SNAKE3", "SNAKE4", "SNAKE5", "SNAKE6", "SNAKE7", "SNAKE8", "SNAKE9", "SNAKE10", "SNAKE11", "SNAKE12", "SNAKE13", "SNAKE14", "SNAKE15"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Zenodo"),
 )

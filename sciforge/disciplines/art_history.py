@@ -6,7 +6,17 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="art_history",
-    aliases=("art_history", "艺术史", "美术史", "艺术史学"),
+    aliases=(
+        "art_history",
+        "艺术史",
+        "美术史",
+        "艺术史学",
+        "art history",
+        "视觉文化",
+        "visual culture",
+        "art history and criticism",
+        "艺术史与批评",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -59,21 +69,17 @@ DISCIPLINE = Discipline(
         "The Burlington Magazine",
         "Oxford Art Journal",
         "Art Journal",
+        "Art Quarterly",
     ),
     units_and_formulas_notes=(
         "尺寸用 cm 标注",
         "引文给出页码",
-        "版本与版次须注明",
         "时间用统一纪年格式",
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "艺术作品"),
-    tools=(
-        "数字艺术档案系统",
-        "图像数据库检索工具",
-        "EndNote 文献管理",
-    ),
+    contribution_forms=("论文", "学术专著", "艺术作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("ARTstor", "Omeka", "Tropy", "Phoebus", "Getty Open Content", "The Met Open Access", "Google Arts & Culture", "Adobe Photoshop", "Adobe Illustrator", "Adobe Lightroom", "GIMP", "SketchUp", "QGIS", "Meshroom", "Agisoft Metashape", "Microsoft PowerPoint", "Zotero", "EndNote", "Rijksmuseum Open Access", "Art Institute of Chicago Collection"),
     category="艺术学",
-    databases=("OpenAlex", "Crossref", "DOAJ", "CNKI"),
+    databases=("OpenAlex", "Crossref", "DOAJ", "CNKI", "JSTOR"),
 )

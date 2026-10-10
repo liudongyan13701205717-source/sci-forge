@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python (NetworkX)", "R", "MATLAB", "SageMath"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Python (NetworkX)", "SageMath", "GAP (Graph package)", "GraphTheory.jl", "igraph", "SNA Tools", "R igraph", "NetworkX", "Neo4j", "Gephi", "yFiles", "Graphviz", "TikZ", "LaTeX amsmath", "AMMATH amsthm", "Python (scipy)", "R (igraph/stats)", "SageMath (sage-all)", "Java (JGraphT)", "C++ (LEDA)"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

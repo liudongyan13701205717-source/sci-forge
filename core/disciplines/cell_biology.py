@@ -64,14 +64,8 @@ DISCIPLINE = Discipline(
         "数值结果给出均值 ± SD/SEM 与样本量",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "激光共聚焦显微镜",
-        "ImageJ / Fiji",
-        "流式细胞仪",
-        "超分辨显微镜（STED/SIM）",
-        "CRISPR 基因编辑",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("激光共聚焦显微镜", "超分辨显微镜（STED/SIM）", "透射电镜 TEM", "原子力显微镜 AFM", "流式细胞仪（BD FACSAria Fusion）", "ImageJ / Fiji", "CellProfiler", "FlowJo", "Metamorph 成像软件", "CRISPR-Cas9 基因编辑", "荧光定量 PCR（qPCR）", "高内涵成像（PerkinElmer ImageXpress）", "单细胞测序（10x Genomics Chromium）", "CellTiter-Glo 细胞活力检测", "细胞系 STR 鉴定", "荧光漂白恢复（FRAP）", "活细胞培养皿（MatTek）", "荧光探针标记（LifeACT / mCherry）", "共聚焦图像拼接（Z-stacking）", "光遗传学工具（ChR2）"),
     category="理学",
     databases=(
         "PubMed",

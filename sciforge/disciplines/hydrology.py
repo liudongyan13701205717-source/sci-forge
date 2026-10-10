@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "时间序列注明时间步长与时段",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("HEC-RAS", "Python", "R", "水文传感器"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("HEC-RAS", "SWAT", "Python", "R", "MATLAB", "水文传感器", "RainGauge 雨量计", "水位计", "流速仪", "Gauge 水位仪", "WMO 气象站", "QGIS", "ArcGIS", "Surfer", "GRASS GIS", "Jupyter Notebook", "LaTeX", "Excel", "EndNote", "Git"),
     category="理学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

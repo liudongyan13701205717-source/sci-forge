@@ -6,7 +6,9 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="cloud_computing",
-    aliases=("cloud_computing", "云计算", "云原生", "serverless"),
+    aliases=("cloud_computing", "云计算", "云原生", "serverless",
+             "Cloud Computing", "cloud-native", "分布式云", "云运维",
+             "多云", "边缘云"),
     paper_types={
         "research": (
             "abstract",
@@ -66,8 +68,8 @@ DISCIPLINE = Discipline(
         "资源利用率用百分比（%）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Docker", "Kubernetes", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("AWS (Amazon Web Services)", "Azure (Microsoft)", "Google Cloud Platform (GCP)", "Alibaba Cloud", "Tencent Cloud", "Docker", "Kubernetes", "Helm", "Ansible", "Terraform", "Prometheus", "Grafana", "Istio", "Etcd", "Ceph", "Kafka", "Redis", "Moby", "Mesos", "OpenStack", "Rancher", "Cloudflare Workers", "Pytest", "Python (boto3)"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

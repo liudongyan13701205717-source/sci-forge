@@ -114,7 +114,7 @@ sci-forge 是一个标准 MCP server（`FastMCP("sci-forge")`），以 stdio 方
 }
 ```
 
-注册后，客户端里应能看到 **65 个工具**与 **2 个资源**。可用的资源：
+注册后，客户端里应能看到 **75 个工具**与 **2 个资源**。可用的资源：
 
 - `science://databases` — 静态列表：全部 46 个连接器及其领域
 - `science://databases/{domain}` — 按领域读取，如 `science://databases/genomics`

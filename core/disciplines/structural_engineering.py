@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "位移用 mm；频率用 Hz",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("SAP2000", "ETABS", "ANSYS", "MATLAB"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SAP2000", "ETABS", "ANSYS", "MATLAB", "Midas Gen", "Tekla Structures", "STAAD.Pro", "ABAQUS", "OpenSees", "LUSAS", "FEM-Design", "CSI Bridge", "MIDAS Civil", "SAFE", "Perform-3D", "Robot Structural Analysis", "RISA-3D", "STAAD Foundation", "IDEA Steel", "RAM Concept"),
     category="工学",
     databases=("OpenAlex", "Crossref", "Zenodo", "CNKI"),
 )

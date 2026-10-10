@@ -6,7 +6,8 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="photonics",
-    aliases=("photonics", "光子学", "光子", "光学工程", "激光", "光纤光学"),
+    aliases=("photonics", "光子学", "光子", "光学工程", "激光", "光纤光学",
+             "激光物理", "laser physics", "集成光子", "integrated photonics", "光通信"),
     paper_types={
         "research": (
             "abstract",
@@ -40,14 +41,14 @@ DISCIPLINE = Discipline(
         "device": "器件表征遵循 IEEE 光子器件报告规范",
         "simulation": "光学仿真遵循 SPIE 仿真报告规范",
         "systematic_review": "系统综述遵循 PRISMA 声明",
-        "metrology": "计量遵循 NIST 光学计量规范",
+        "metrology": "计量遵循 NIST 光学计量规范"
     },
     conventions=(
         "波长/频率单位须规范（nm、THz）",
         "光源与探测器参数须完整报告",
         "功率/效率定义须明确（W、dBm、%）",
         "材料折射率与色散数据须注明来源",
-        "仿真软件与网格/边界条件须说明",
+        "仿真软件与网格/边界条件须说明"
     ),
     key_venues=(
         "Optica",
@@ -55,18 +56,18 @@ DISCIPLINE = Discipline(
         "Optics Letters",
         "Journal of Lightwave Technology",
         "Photonics Research",
-        "Applied Optics",
+        "Applied Optics"
     ),
     units_and_formulas_notes=(
         "波长用 nm；功率用 mW/dBm；效率用 %",
         "公式用 amsmath；耦合模与传输方程须编号",
         "显示公式仅在被引用时编号；行内公式避免复杂分式",
         "数值结果给出均值 ± 不确定度与样本量",
-        "dB 与线性单位换算须注明",
+        "dB 与线性单位换算须注明"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("Zemax", "COMSOL", "MATLAB", "Python（NumPy/SciPy）", "光谱仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Zemax OpticStudio", "CODE V", "LightTools", "ANSYS SPECS", "Lumerical FDTD Solutions", "Lumerical MODE Solutions", "COMSOL Multiphysics", "RSoft DesignKit", "FIMMWAVE", "MPB (Momentum)", "MEEP", "MATLAB (Optics Toolbox)", "Python (NumPy/SciPy)", "LPViewer", "光谱仪", "干涉仪", "光功率计", "光时域反射仪 (OTDR)", "光发射分析仪 (OSA)", "矢量网络分析仪 (VNA)"),
     category="工学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI"),
 )

@@ -23,9 +23,13 @@
 
 退出码
 ------
-  0  正常结束。--check 模式下表示两仓 core 完全一致。
+  0  正常结束。--check 模式下表示不存在「目标缺失」与「内容不一致」。
   1  --check 检出漂移（存在缺失或内容不一致的文件）。
   2  用法或环境错误（路径不存在、清单为空等）。
+
+注意：目标侧多出来的文件（如源侧重命名后遗留的孤儿 .py）按设计只报告、不删除，
+因此不计入漂移、也不影响退出码。清理孤儿需人工执行，不能只凭 --check 退出码为 0
+就断定目标侧没有多余文件。
 
 本脚本在两个仓库中各存一份，内容完全一致；运行时根据脚本自身位置推断默认路径，
 因此同一份文件既能在源仓跑，也能在消费方跑。
@@ -119,18 +123,20 @@ def walk_files(root: Path) -> list[Path]:
     return sorted(found, key=lambda p: p.relative_to(root).as_posix())
 
 
-def default_roots() -> tuple[Path, Path]:
+def default_roots(repo: Path | None = None) -> tuple[Path, Path]:
     """按脚本自身位置推断默认的源根与目标根。
 
     脚本位于 <repo>/scripts/sync_core.py，因此 <repo> = Path(__file__).parents[1]。
+    repo 参数仅供测试注入；省略时按 __file__ 推断。
 
-    * 若 <repo> 下存在 sciforge/sciforge/，说明脚本跑在源仓，
+    * 若 <repo>/sciforge 为目录（源仓的包目录就在仓根下），说明脚本跑在源仓，
       源根 = <repo>/sciforge，目标根 = <repo>/../sciforge-desktop/core。
     * 否则认为脚本跑在消费方仓，源根 = <repo>/../sciforge/sciforge，
       目标根 = <repo>/core。
     """
-    repo = Path(__file__).resolve().parent.parent
-    if (repo / "sciforge" / "sciforge").is_dir():
+    if repo is None:
+        repo = Path(__file__).resolve().parent.parent
+    if (repo / "sciforge").is_dir():
         return repo / "sciforge", repo.parent / "sciforge-desktop" / "core"
     return repo.parent / "sciforge" / "sciforge", repo / "core"
 

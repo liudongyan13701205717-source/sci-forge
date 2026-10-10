@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "事故率用 次/百万车公里",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("VISSIM", "Python", "MATLAB", "TransCAD"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("VISSIM", "Python", "MATLAB", "TransCAD", "AutoMOD", "SUMO", "AnyLogic", "NetLogo", "ArcGIS", "QGIS", "AutoCAD", "Civil 3D", "Synchro", "HEC-RAS", "SPSS", "R", "Stata", "Excel", "Tableau", "Google Earth Pro"),
     category="工学",
     databases=("OpenAlex", "Crossref", "Zenodo", "CNKI"),
 )

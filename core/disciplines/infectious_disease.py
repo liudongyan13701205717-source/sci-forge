@@ -65,8 +65,8 @@ DISCIPLINE = Discipline(
         "疗效分析给出 RR/OR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("PCR 仪", "病原培养设备", "流式细胞仪", "SPSS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("PCR 仪（qPCR/ddPCR 病原检测）", "病原培养设备（血液培养系统 BACTEC）", "流式细胞仪（免疫表型分析）", "SPSS（统计推断）", "R（生存分析与纵向数据）", "Stata", "Epi Info（暴发流行病学调查）", "SAS（临床数据管理）", "NextSeq（宏基因组测序）", "Illumina（病原基因测序）", "MALDI-TOF MS（病原鉴定）", "Cytometric 血细胞分析仪", "Meta-analyst（荟萃分析）", "RevMan（系统综述）", "EpiData（现场调查录入）", "Python（pandas 流行病学数据）", "SIR/SEIR 传播模型（R 包/自研）", "JMP（统计建模）", "Primer Premier（PCR 引物设计）", "ELISA 酶标仪（免疫定量）"),
     category="医学",
-    databases=("PubMed", "OpenAlex", "bioRxiv", "Europe PMC", "CNKI"),
+    databases=("PubMed", "OpenAlex", "bioRxiv", "Europe PMC", "CNKI", "CLSI 药敏标准数据库", "EUCAST 折点数据库"),
 )

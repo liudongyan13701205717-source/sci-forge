@@ -49,30 +49,24 @@ DISCIPLINE = Discipline(
         "引文给出页码",
         "译文给出原文页码",
         "跨文化语境须交代",
-        "理论框架须明确",
+        "理论框架须明确"
     ),
     key_venues=(
         "Comparative Literature",
         "World Literature Today",
         "Journal of World Literature",
         "Modern Language Quarterly",
-        "PMLA",
-        "Comparative Literature Studies",
+        "PMLA"
     ),
     units_and_formulas_notes=(
         "引文给出页码",
         "译文给出原文页码",
         "版本与版次须注明",
-        "时间用统一纪年格式",
-        "货币用统一币种并注明年份",
+        "时间用统一纪年格式"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "文学作品"),
-    tools=(
-        "语料库检索工具",
-        "EndNote 文献管理",
-        "LaTeX 排版",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("语料库检索工具", "EndNote 文献管理", "LaTeX 排版", "Mendeley", "Zotero", "ProCite", "Grammarly", "LanguageTool", "VOSviewer", "CiteSpace", "Connected Papers", "SciSpace", "ResearchRabbit", "Turnitin", "iThenticate", "Pandoc", "Overleaf (在线 LaTeX)", "Google Docs", "Notion", "Citeulike"),
     category="文学",
     databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

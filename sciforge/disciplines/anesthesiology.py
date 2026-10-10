@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "不良事件给出 RR/OR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("麻醉深度监测仪", "有创血压监测仪", "麻醉机", "神经肌肉传导监测仪", "R", "SPSS"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("NONMEM", "Certara Phoenix NLME", "Simcyp Simulator", "Monolix", "Pumas (R)", "Monetrix", "AnSim", "SIMBRIDGE", "Simbionics Virtual", "GraphPad Prism", "R", "SPSS", "Stata", "SAS", "RevMan", "OpenMetaAnalyst", "MetaViz", "Epic Clarity", "Avidity CarePoint eOR", "Orion Health", "MediTronics", "Philips IntelliVue MP70", "EDAN iMonitor NEX", "Criticare TruWave"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC"),
 )

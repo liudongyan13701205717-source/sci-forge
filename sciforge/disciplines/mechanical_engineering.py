@@ -6,34 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="mechanical_engineering",
-    aliases=("mechanical_engineering", "机械工程", "机械", "机械设计",
-             "机械制造", "mechanical design"),
+    aliases=("mechanical_engineering", "机械工程", "机械", "机械设计", "机械制造", "mechanical design", "mechanical manufacturing", "mechanical dynamics", "thermofluids"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与机械问题）",
-            "methods（建模、实验与参数）",
-            "results（性能与验证数据）",
-            "discussion（机理与工程意义）",
-            "references",
-        ),
-        "design": (
-            "abstract",
-            "introduction",
-            "design requirements（需求与约束）",
-            "conceptual design（方案与选型）",
-            "detailed design（尺寸、公差与校核）",
-            "validation（样机与试验）",
-            "references",
-        ),
-        "review": (
-            "abstract",
-            "introduction",
-            "scope and method（综述范围与方法）",
-            "state of the art（现状分类）",
-            "gaps and outlook（缺口与展望）",
-            "references",
-        ),
+        "research": ("abstract", "introduction（背景、动机与机械问题）", "methods（建模、实验与参数）", "results（性能与验证数据）", "discussion（机理与工程意义）", "references"),
+        "design": ("abstract", "introduction", "design requirements（需求与约束）", "conceptual design（方案与选型）", "detailed design（尺寸、公差与校核）", "validation（样机与试验）", "references"),
+        "review": ("abstract", "introduction", "scope and method（综述范围与方法）", "state of the art（现状分类）", "gaps and outlook（缺口与展望）", "references"),
     },
     citation_style="ASME 样式（作者-年份；ASME 期刊遵循 ASME 规范）",
     reporting_standards={
@@ -66,8 +43,8 @@ DISCIPLINE = Discipline(
         "模态/振动分析给出频率与阻尼比",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("SolidWorks", "ANSYS", "MATLAB", "Abaqus"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SolidWorks", "ANSYS", "MATLAB/Simulink", "Abaqus", "AutoCAD", "CATIA", "Siemens NX", "Pro/ENGINEER", "Fusion 360", "Solid Edge", "Autodesk Inventor", "COMSOL Multiphysics", "ANSYS Fluent", "ADAMS", "Revit", "3D Printing", "CNC Machining", "Additive Manufacturing", "FEM Analysis", "CFD Simulation"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

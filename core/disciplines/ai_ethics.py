@@ -6,7 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="ai_ethics",
-    aliases=("ai_ethics", "人工智能伦理", "AI 伦理", "负责任 AI", "AI ethics"),
+    aliases=(
+        "ai_ethics",
+        "人工智能伦理",
+        "AI 伦理",
+        "负责任 AI",
+        "AI ethics",
+        "machine learning ethics",
+        "算法伦理",
+        "AI governance",
+        "AI 治理",
+        "computational ethics",
+        "计算伦理",
+        "responsible AI",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -31,11 +44,20 @@ DISCIPLINE = Discipline(
             "outlook",
             "references",
         ),
+        "position": (
+            "abstract",
+            "introduction",
+            "position statement",
+            "argumentation",
+            "rebuttals",
+            "conclusions",
+            "references",
+        ),
     },
     citation_style="APA 样式（作者-年份；AI and Ethics 遵循 Springer 规范）",
     reporting_standards={
-        "case_study": "案例研究遵循案例研究报告规范",
-        "algorithmic_audit": "算法审计遵循审计报告规范",
+        "case_study": "案例研究遵循 COREQ/SRQR 报告规范",
+        "algorithmic_audit": "算法审计遵循审计报告规范与 NIST AI RMF",
         "policy_analysis": "政策分析遵循政策评估报告规范",
         "survey": "问卷调查遵循 AAPOR 报告规范",
         "systematic_review": "系统综述遵循 PRISMA 声明",
@@ -43,9 +65,11 @@ DISCIPLINE = Discipline(
     conventions=(
         "AI 系统范围与能力边界须明确",
         "伦理框架（公平、问责、透明等）须定义",
+        "伦理原则用中文术语表述（公平、问责、透明、可控）",
         "风险评估方法与指标须报告",
         "治理与合规机制须说明",
         "利益相关者与受影响群体须识别",
+        "模型与数据集的版权、署名与许可须披露",
     ),
     key_venues=(
         "AI and Ethics",
@@ -54,6 +78,7 @@ DISCIPLINE = Discipline(
         "Nature Machine Intelligence",
         "ACM FAccT (conference)",
         "Philosophy & Technology",
+        "Minds and Machines",
     ),
     units_and_formulas_notes=(
         "公平性指标无量纲；比例用 %",
@@ -63,8 +88,8 @@ DISCIPLINE = Discipline(
         "审计结果给出置信区间与敏感性",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=("公平性测试工具（AIF360/Fairlearn）", "模型审计框架", "偏差检测评测套件"),
-    category="交叉学科",
-    databases=("OpenAlex", "arXiv", "Crossref", "Semantic Scholar", "CNKI"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "译文", "报告", "数据集"),
+    tools=("Fairlearn", "AI Fairness 360", "LIME", "SHAP", "Counterfactuals", "IBM AI Fairness Toolkit", "Google AI Fairness Indicators", "Microsoft Responsible AI Toolbox", "Google Responsible AI Hub", "OpenAI Model Spec", "NIST AI RMF", "EU AI Act Toolkit", "UNESCO AI Ethics Framework", "OECD AI Policy Observatory", "Algorithmic Justice League Toolkit", "Responsible AI Toolkit", "Model Cards", "Data Cards", "Fairness Metrics", "RStudio", "Python"),
+    category="哲学",
+    databases=("OpenAlex", "arXiv", "Crossref", "Semantic Scholar", "CNKI", "PubMed"),
 )

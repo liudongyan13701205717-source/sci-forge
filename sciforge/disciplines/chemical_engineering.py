@@ -38,10 +38,11 @@ DISCIPLINE = Discipline(
         "热力学函数 kJ/mol；活度系数 γ；逸度 f",
         "反应速率 mol/(L·s)；空速 GHSV/LHSV h⁻¹",
         "传热系数 W/m²·K；传质系数 m/s",
+        "催化剂比表面积用 m²/g；收率用 %",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("Aspen Plus", "MATLAB", "ChemDraw", "COMSOL"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Aspen Plus", "Aspen HYSYS", "Aspen Custom Modeler", "ChemCAD", "DWSIM", "COMSOL Multiphysics", "ANSYS Fluent", "OpenFOAM", "MATLAB", "ChemDraw", "搅拌反应釜", "精馏塔", "膜分离装置", "分子筛吸附柱", "流化床反应器", "换热网络优化（HEN）", "Aspen Dynamics 动态模拟", "催化反应器", "色谱分析仪", "分子蒸馏装置"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

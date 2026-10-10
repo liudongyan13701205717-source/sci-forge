@@ -6,31 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="military_history",
-    aliases=("military_history", "军事史", "战争史", "战史", "war history"),
+    aliases=("military_history", "军事史", "战争史", "战史", "war_history", "military_archival", "battle_history", "campaign_history", "military_chronicle", "military_archives", "war_archives"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与军事史问题）",
-            "methods（史料与研究方法）",
-            "results（史实考证与叙事）",
-            "discussion（历史意义）",
-            "references",
-        ),
-        "case_study": (
-            "abstract",
-            "introduction",
-            "case background（战役/事件背景）",
-            "analysis（过程与因果分析）",
-            "conclusions（历史教训）",
-            "references",
-        ),
-        "review": (
-            "abstract",
-            "introduction",
-            "main developments（按主题综述）",
-            "outlook",
-            "references",
-        ),
+        "research": ("abstract", "introduction（背景、动机与军事史问题）", "methods（史料与研究方法）", "results（史实考证与叙事）", "discussion（历史意义）", "references"),
+        "case_study": ("abstract", "introduction", "case background（战役/事件背景）", "analysis（过程与因果分析）", "conclusions（历史教训）", "references"),
+        "review": ("abstract", "introduction", "main developments（按主题综述）", "outlook", "references"),
     },
     citation_style="Chicago 样式（作者-年份；J Mil Hist 遵循 Chicago 规范）",
     reporting_standards={
@@ -63,13 +43,8 @@ DISCIPLINE = Discipline(
         "数字引用须与原始史料核对",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=(
-        "史料数据库（军事档案）",
-        "GIS 历史地图（ArcGIS）",
-        "文献管理软件（EndNote）",
-        "历史数据统计（Python）",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("国家图书馆联合目录", "EndNote", "Zotero", "Mendeley", "Historical GIS (ArcGIS)", "QGIS", "Google Earth", "Historical Maps Project", "Text analysis (Python)", "Text analysis (R)", "NLP tools (spaCy)", "Network analysis (Gephi)", "Transcription tools (Audacity)", "Oral history recorder", "Photocopy equipment", "Digitization scanner", "Microfilm reader", "Reference library access", "Archive catalogue", "Whisper（语音转写）"),
     category="军事学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "军事档案数据库"),
 )

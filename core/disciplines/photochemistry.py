@@ -41,14 +41,14 @@ DISCIPLINE = Discipline(
         "quantum_yield": "量子产率须报告测定方法与标准物",
         "irradiation_conditions": "辐照时间、波长范围与反应器须完整",
         "transient_spectroscopy": "瞬态光谱须报告激发波长、时间窗口与拟合",
-        "actionmetry": "化学/物理光量计校准须说明",
+        "actinometry": "化学/物理光量计校准须说明"
     },
     conventions=(
         "激发态记号（S_0、S_1、T_1）与跃迁类型（π→π*、n→π*）统一",
         "量子产率符号 Φ 与下标（Φ_f、Φ_ISC）规范",
         "吸收/发射光谱标注波长（nm）与摩尔消光系数 ε",
         "Jablonski 图用于说明激发态过程",
-        "光催化条件（催化剂负载、光源、溶剂）完整",
+        "光催化条件（催化剂负载、光源、溶剂）完整"
     ),
     key_venues=(
         "Journal of the American Chemical Society",
@@ -56,18 +56,18 @@ DISCIPLINE = Discipline(
         "Photochemical & Photobiological Sciences",
         "Chemical Reviews",
         "Angewandte Chemie International Edition",
-        "Journal of Physical Chemistry A",
+        "Journal of Physical Chemistry A"
     ),
     units_and_formulas_notes=(
         "波长用 nm；能量用 eV（E = 1240/λ[nm] eV）",
         "摩尔消光系数 ε 用 L/(mol·cm)",
         "公式用 amsmath；速率常数与 Stern-Volmer 方程形式须明确",
         "显示公式仅在被引用时编号；行内公式避免复杂分式",
-        "数值结果给出均值与误差（如 Φ = 0.85 ± 0.03）",
+        "数值结果给出均值与误差（如 Φ = 0.85 ± 0.03）"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集", "专利"),
-    tools=("Python (NumPy/SciPy)", "MATLAB", "Origin", "紫外-可见分光光度计", "纳秒瞬态光谱仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy/SciPy)", "MATLAB", "Origin", "Gaussian", "ORCA", "紫外-可见分光光度计", "荧光分光光度计", "纳秒瞬态吸收光谱仪", "飞秒瞬态光谱仪", "Hamamatsu 光源与单色仪", "光量计（碘化异丙醇标准）", "电化学工作站 (Autolab)", "HPLC", "GC-MS", "拉曼光谱仪", "稳态荧光光谱仪", "光催化反应器", "光照度计", "Zolix 光量子产率仪", "Photosynthesis Action Spectrometer"),
     category="理学",
     databases=("Crossref", "OpenAlex", "PubChem", "Semantic Scholar", "CNKI"),
 )

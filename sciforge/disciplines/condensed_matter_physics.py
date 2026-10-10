@@ -6,8 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="condensed_matter_physics",
-    aliases=("condensed matter physics", "凝聚态物理", "固体物理", "solid state physics",
-             "材料物理", "materials physics", "强关联电子", "strongly correlated electrons"),
+    aliases=(
+        "condensed matter physics", "凝聚态物理", "固体物理", "solid state physics",
+        "材料物理", "materials physics", "强关联电子", "strongly correlated electrons",
+        "拓扑物态", "topological matter", "量子材料", "quantum materials",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -59,6 +62,7 @@ DISCIPLINE = Discipline(
         "Nature Materials",
         "Advanced Materials",
         "Nano Letters",
+        "npj Quantum Materials",
     ),
     units_and_formulas_notes=(
         "常用单位：长度 Å（1 Å = 10^-10 m），能量 eV，磁矩 \\mu_B",
@@ -68,8 +72,8 @@ DISCIPLINE = Discipline(
         "数值结果给出计算参数与误差估计",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("VASP", "Quantum ESPRESSO", "MATLAB", "Python (NumPy, SciPy)"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("VASP", "Quantum ESPRESSO", "LAMMPS", "ABINIT", "WIEN2k", "CASTEP", "SIESTA", "GK-MaxWell", "CP2K", "NWChem", "GPAW", "BoltzTraP", "SPHINX (NEB)", "PyProcar", "pymatgen", "Sumo", "ASE (Atomic Simulation Environment)", "VESTA", "Phonopy", "Wannier90"),
     category="理学",
-    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo"),
+    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "Materials Project"),
 )

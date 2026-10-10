@@ -5,7 +5,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="astrophysics",
-    aliases=("astrophysics", "astronomy", "cosmology", "astro", "stars", "galaxies"),
+    aliases=(
+        "astrophysics", "astronomy", "cosmology", "天体物理学", "天文学",
+        "宇宙学", "恒星物理", "星系", "星系团", "exoplanet",
+        "astrophysical fluid dynamics",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "observations/data", "analysis", "results", "discussion", "conclusions", "references"),
         "survey": ("abstract", "introduction", "survey design", "data release", "results", "references"),
@@ -24,14 +28,17 @@ DISCIPLINE = Discipline(
         "流量用 mJy/mag；光谱分辨率 R=λ/Δλ",
         "红移 z 定义与细胞距离约定明确",
         "望远镜/仪器名与 Proposal ID 须出现",
-        "图坐标轴用对数时须声明",
+        "图坐标轴用对数时须声明；数据须公开存档",
     ),
     key_venues=(
         "The Astrophysical Journal",
         "Astronomical Journal",
         "Monthly Notices of the Royal Astronomical Society",
         "Astronomy & Astrophysics",
-        "ApJ Letters",
+        "The Astrophysical Journal Letters",
+        "The Astrophysical Journal Supplement Series",
+        "Annual Review of Astronomy and Astrophysics",
+        "Research Notes of the AAS",
     ),
     units_and_formulas_notes=(
         "距离用 pc/kpc/Mpc；光度 erg/s 或 Lsun；质量 Msun",
@@ -39,8 +46,8 @@ DISCIPLINE = Discipline(
         "星等对数负数（数值越小越亮），测量须带误差棒",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("Python (NumPy/SciPy)", "LaTeX", "CASA", "DS9", "TOPCAT"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("CAMB", "CosmoMC", "GetDist", "Cobaya", "Monte Python", "CLASS (Cosmological Linear Anisotropy Solving System)", "CosmoSIS", "Gadget", "GIZMO", "AREPO", "RAMSES", "SWIFT", "ENZO", "IllustrisTNG", "Nbody6+", "yt", "CASA", "DS9", "TOPCAT", "Aladin Lite", "MAST", "astropy", "photutils", "XSPEC", "sherpa", "HEASoft", "SimFit", "Planck Pipeline", "Python (NumPy/SciPy)", "matplotlib"),
     category="理学",
-    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "HuggingFace"),
+    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "NASA/IPAC", "MAST", "HEASARC", "ESO Archive"),
 )

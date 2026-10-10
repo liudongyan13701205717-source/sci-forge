@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="film_studies",
-    aliases=("film_studies", "电影学", "电影研究", "影视研究"),
+    aliases=(
+        "film_studies", "电影学", "电影研究", "影视研究",
+        "film studies", "cinema studies",
+        "电影美学", "影视批评", "电影理论", "影像文化",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -68,11 +72,8 @@ DISCIPLINE = Discipline(
         "时间用统一纪年格式",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "艺术作品"),
-    tools=(
-        "FFmpeg 影像分析",
-        "影像档案数据库检索工具",
-    ),
+    contribution_forms=("论文", "学术专著", "艺术作品", "教案与教材", "报告", "数据集"),
+    tools=("FFmpeg 影像分析", "Adobe Premiere Pro", "DaVinci Resolve", "Final Cut Pro", "Avid Media Composer", "FFprobe", "MediaInfo", "MovieSleuth", "Frame.io", "FrameLine", "Adobe Photoshop", "Adobe Lightroom", "Endnote", "Zotero", "Mendeley", "SPSS", "R", "Python（pandas）", "Tableau", "SubEthaEdit 字幕编辑工具"),
     category="艺术学",
-    databases=("DOAJ", "OpenAlex", "Crossref", "CNKI"),
+    databases=("DOAJ", "OpenAlex", "Crossref", "CNKI", "影像档案数据库检索工具"),
 )

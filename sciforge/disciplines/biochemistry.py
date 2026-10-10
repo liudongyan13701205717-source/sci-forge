@@ -6,8 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="biochemistry",
-    aliases=("biochemistry", "生物化学", "酶学", "enzymology", "蛋白质化学",
-             "protein chemistry", "代谢", "metabolism", "分子生物学", "molecular biology"),
+    aliases=(
+        "biochemistry", "生物化学", "enzymology", "酶学", "protein chemistry",
+        "蛋白质化学", "metabolism", "代谢", "molecular biology", "分子生物学",
+        "structural biology", "结构生物学",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -55,6 +58,7 @@ DISCIPLINE = Discipline(
         "Nature Chemical Biology",
         "Cell Chemical Biology",
         "FEBS Journal",
+        "Structure",
     ),
     units_and_formulas_notes=(
         "浓度用 mol/L、mmol/L、μmol/L；酶活用 U/mg 或 kcat (s^-1)",
@@ -64,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出均值 ± SD/SEM 与样本量",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集", "专利"),
-    tools=("Python (Biopython/NumPy/SciPy)", "R", "Origin", "PyMOL", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("ChemDraw", "MarvinSketch", "Gaussian", "ORCA", "AMBER", "GROMACS", "CHARMM", "NAMD", "PyMOL", "ChimeraX", "UCSF Chimera", "Discovery Studio Visualizer", "AutoDock Vina", "MOE", "Schrodinger Glide", "Thermo Q Exactive (LC-MS)", "Agilent 6550 Q-TOF (GC-MS)", "Waters ACQUITY UPLC (HPLC)", "Shimadzu LC-20A (HPLC)", "Cytiva ÄKTA Pure (层析)", "Bio-Rad ChemiDoc (Western blot)", "Bio-Rad Gel Doc (凝胶成像)", "Thermo Sorvall 离心机", "Beckman Coulter Avanti (超速离心)", "NanoDrop 定量仪 (Thermo)", "Qubit 荧光定量 (Thermo)", "Thermo GeneAmp PCR", "Bio-Rad CFX Opus qPCR", "BioTek Synergy 酶标仪", "Shimadzu UV-1800 (UV-Vis)", "SpectraMax M5 (酶标仪)", "Thermo Scientific NanoDrop (UV-Vis)", "ImageJ / Fiji", "GraphPad Prism", "SigmaPlot", "Origin", "R", "Python (Biopython, NumPy, SciPy)", "LaTeX", "EndNote", "Zotero"),
     category="理学",
-    databases=("PubMed", "Europe PMC", "OpenAlex", "Crossref", "UniProt", "GEO"),
+    databases=("PubMed", "Europe PMC", "OpenAlex", "Crossref", "UniProt", "GEO", "PDB"),
 )

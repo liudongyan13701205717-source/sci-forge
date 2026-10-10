@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("MATLAB", "Mathematica", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Mathematica", "Python (NumPy/SciPy)", "Maple", "GNU Octave", "SymPy", "Wolfram Language", "FeynCalc/FeynArts", "Mathematica (Physics)", "Mathematica (Statistical)", "Mathematica (Quantum)", "Mathematica (Group)", "Mathematica (Tensor)", "Mathematica (Differential)", "JAX", "TensorFlow", "PyTorch", "Jupyter Notebook", "LaTeX", "BibTeX/Zotero"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

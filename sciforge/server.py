@@ -759,12 +759,14 @@ def get_discipline(name: str) -> dict:
     Returns:
         dict：学科配置对象。
     """
+    from dataclasses import asdict
+
     from sciforge.disciplines import get_discipline as _impl
 
     d = _impl(name)
     if d is None:
         return {"ok": False, "error": f"未知学科: {name}"}
-    return {"ok": True, "discipline": d.__dict__}
+    return {"ok": True, "discipline": asdict(d)}
 
 
 @mcp.tool()
@@ -1117,6 +1119,240 @@ def link_papers_to_code(topic: str, limit: int = 5) -> dict:
     from sciforge.research.code_link import link_papers_to_code as _impl
 
     return _impl(topic, limit=limit)
+
+
+# ---------- v3 backlog: retraction / citation-context / alerts / discovery / credibility / screening ----------
+
+def _layout_for(paper_id: str):
+    from sciforge.core import get_layout
+
+    lay = get_layout()
+    lay.ensure()
+    return lay
+
+
+@mcp.tool()
+def retraction_watch(paper_id: str, records: list, databases: list | None = None) -> dict:
+    """撤稿/更正监测 + 信任评分：检测一组文献是否已被撤稿或更正，并给可解释信任分。
+
+    Args:
+        paper_id: 项目标识。
+        records: DOI 字符串、标题字符串或 {doi,title} dict 的列表。
+        databases: 可选数据源白名单（联网时用）。
+
+    Returns:
+        dict：{ok, checked, retracted, corrected, suspicious, works, min_trust_score, verdict, offline}。
+    """
+    from sciforge.research.retraction import check_works
+
+    return check_works(
+        paper_id=paper_id, layout=_layout_for(paper_id), records=records,
+        sources=databases,
+    ).to_dict()
+
+
+@mcp.tool()
+def citation_context(sentences: list, paper_id: str = "") -> dict:
+    """引文上下文立场分类：判定每条引注是支持 / 对比 / 提及，附触发线索与置信度。
+
+    Args:
+        sentences: 含 [..] 引注标记的句子或段落列表。
+        paper_id: 可选项目标识（提供则持久化报告）。
+
+    Returns:
+        dict：{ok, spans, counts, verdict, method}。
+    """
+    from sciforge.research.citation_context import classify
+
+    layout = _layout_for(paper_id) if paper_id else None
+    return classify(sentences, paper_id=paper_id, layout=layout)
+
+
+@mcp.tool()
+def evidence_alert(paper_id: str, query: str = "", databases: list | None = None,
+                   limit: int = 25, alert_id: str = "",
+                   enabled: bool | None = None) -> dict:
+    """证据流监测：把已存检索式变成自更新告警，返回本次新增命中。
+
+    Args:
+        paper_id: 项目标识。
+        query: 检索式（alert_id 为空时用于创建监测）。
+        databases: 数据源白名单。
+        limit: 单轮条数上限。
+        alert_id: 既有监测 id（运行既有监测时传入）。
+        enabled: 传 False 停用该监测。
+
+    Returns:
+        dict：{ok, action, id, first_seen, new, new_count, cumulative_seen}。
+    """
+    from sciforge.research.alerts import list_alerts, remove_alert, run_alert
+
+    layout = _layout_for(paper_id)
+    action = (query or "").strip().lower()
+    if action == "list":
+        return list_alerts(layout=layout, paper_id=paper_id)
+    if action == "remove":
+        return remove_alert(layout=layout, paper_id=paper_id,
+                            alert_id=alert_id or query)
+    return run_alert(layout=layout, paper_id=paper_id, query=query,
+                     databases=databases, limit=limit, alert_id=alert_id,
+                     enabled=enabled)
+
+
+@mcp.tool()
+def discovery_curve(paper_id: str, query: str, databases: list | None = None,
+                    max_rounds: int = 8, min_new_per_round: int = 3,
+                    limit: int = 25) -> dict:
+    """迭代发现曲线 + 停止判据：逐轮检索，输出累计曲线与可辩护的饱和终止规则。
+
+    Args:
+        paper_id: 项目标识。
+        query: 检索式。
+        databases: 数据源白名单。
+        max_rounds: 轮数上限。
+        min_new_per_round: 每轮新增下限（连续 2 轮低于即判定 plateau）。
+        limit: 单轮条数上限。
+
+    Returns:
+        dict：{ok, rounds, total_unique, curve, new_per_round, stop_reason}。
+    """
+    from sciforge.research.discovery import evaluate
+
+    return evaluate(paper_id=paper_id, layout=_layout_for(paper_id), query=query,
+                    databases=databases, max_rounds=max_rounds,
+                    min_new_per_round=min_new_per_round, limit=limit)
+
+
+@mcp.tool()
+def credibility_score(paper_id: str, records: list) -> dict:
+    """引文可信度评分：载体质量 × 引用度 × 诚信记录 × 字段完备性，附可复算 breakdown。
+
+    Args:
+        paper_id: 项目标识。
+        records: 文献 dict 列表（title/doi/venue/cited_by/year/authors/status）。
+
+    Returns:
+        dict：{ok, items, ranked, mean_score}（tier A/B/C）。
+    """
+    from sciforge.research.credibility import score_works
+
+    return score_works(paper_id=paper_id, layout=_layout_for(paper_id),
+                       records=records)
+
+
+@mcp.tool()
+def blinded_screening(paper_id: str, records: list,
+                      reviewer_names: list | None = None,
+                      adjudications: dict | None = None) -> dict:
+    """双盲独立筛选 + 冲突裁决：多筛选人 κ 一致性、冲突清单与第三方终裁。
+
+    Args:
+        paper_id: 项目标识。
+        records: [{"id","title","decisions":[...]}] 形式。
+        reviewer_names: 筛选人名（用于报告标签）。
+        adjudications: {"<id>": "include"|"exclude"} 终裁。
+
+    Returns:
+        dict：{ok, n_items, pairwise, conflicts, kappa_overall, agreement}。
+    """
+    from sciforge.review.screening import screen
+
+    return screen(paper_id=paper_id, layout=_layout_for(paper_id), records=records,
+                  reviewer_names=reviewer_names, adjudications=adjudications)
+
+
+@mcp.tool()
+def grounded_compose(paper_id: str, sources: list, outline: list | None = None,
+                     text: str = "") -> dict:
+    """源约束写作：按大纲从来源生成草稿，并审计每句是否绑定来源 span（有违规则阻断）。
+
+    Args:
+        paper_id: 项目标识。
+        sources: 来源列表（{id, span/text} 或字符串）。
+        outline: [["小节标题", [句子/素材...]], ...]；缺省按来源逐条生成。
+        text: 直接审计既有正文（提供则跳过 draft，只做 audit）。
+
+    Returns:
+        dict：{ok, draft, violations, grounded_ratio, sentences}。
+        ok=False 表示存在未绑定来源的句子。
+    """
+    from sciforge.research.composer import audit, draft
+
+    layout = _layout_for(paper_id)
+    if text:
+        return audit(paper_id=paper_id, layout=layout, text=text, sources=sources)
+    d = draft(paper_id=paper_id, layout=layout, sources=sources, outline=outline)
+    if not d.get("ok"):
+        return d
+    a = audit(paper_id=paper_id, layout=layout, text=d["draft"], sources=sources)
+    a["draft"] = d["draft"]
+    return a
+
+
+@mcp.tool()
+def screening_audit(paper_id: str, records: list,
+                    reviewer_names: list | None = None,
+                    adjudications: dict | None = None,
+                    round_id: str = "") -> dict:
+    """筛选决定审计日志：盲筛 κ + 冲突 + 终裁，导出可引用的 JSON/Markdown。
+
+    Args:
+        paper_id: 项目标识。
+        records: [{"id","title","decisions":[...]}]。
+        reviewer_names: 筛选人名。
+        adjudications: {"<id>": "include"|"exclude"} 终裁。
+        round_id: 轮次标识（用于审计日志）。
+
+    Returns:
+        dict：{ok, round_id, counts, decisions, markdown, kappa_overall}。
+    """
+    from sciforge.review.screening import export_audit_log
+
+    return export_audit_log(paper_id=paper_id, layout=_layout_for(paper_id),
+                           records=records, reviewer_names=reviewer_names,
+                           adjudications=adjudications, round_id=round_id)
+
+
+@mcp.tool()
+def evidence_grade(paper_id: str, outcomes: list, rob: dict | None = None) -> dict:
+    """证据权重层：RoB2/ROBINS-I 偏倚汇总 + GRADE 确定性分级（降级/升级因素可复算）。
+
+    Args:
+        paper_id: 项目标识。
+        outcomes: [{outcome, design, downgrades, upgrades}]。
+            design: rct / cohort / case-control / case series ...
+            downgrades: risk_of_bias / inconsistency / indirectness /
+                        imprecision / publication_bias
+            upgrades: large_effect / dose_response / confounding_would_reduce
+        rob: {"tool": "rob2"|"robins-i", "domains": {"D1_...": "y"|"py"|"pn"|"n"|"ni"}}。
+
+    Returns:
+        dict：{ok, rows(含 start/downgrades/upgrades/certainty), rob, summary}。
+    """
+    from sciforge.research.grade import grade
+
+    return grade(paper_id=paper_id, layout=_layout_for(paper_id),
+                 outcomes=outcomes, rob=rob)
+
+
+@mcp.tool()
+def screening_triage(paper_id: str, records: list,
+                     saturation_window: int = 10) -> dict:
+    """主动学习式筛选分流：按启发式信息量排「先看谁」，并给饱和提示。
+
+    Args:
+        paper_id: 项目标识。
+        records: [{"id","title","abstract","doi","cited_by","year","decisions"}]。
+        saturation_window: 连续排除多少条触发饱和提示。
+
+    Returns:
+        dict：{ok, queue(按 score 降序), included_count, excluded_count,
+               unresolved_count, saturation_note, method}。
+    """
+    from sciforge.research.triage import triage
+
+    return triage(paper_id=paper_id, layout=_layout_for(paper_id),
+                  records=records, saturation_window=saturation_window)
 
 
 def run() -> None:

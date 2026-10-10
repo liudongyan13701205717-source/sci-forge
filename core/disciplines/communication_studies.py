@@ -6,7 +6,9 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="communication_studies",
-    aliases=("communication_studies", "传播学", "传播研究", "媒介研究"),
+    aliases=("communication_studies", "传播学", "传播研究", "媒介研究",
+             "communication science", "mass communication", "媒介效果研究",
+             "传播效果研究", "communications research", "传播与媒介研究"),
     paper_types={
         "research": (
             "abstract",
@@ -38,7 +40,7 @@ DISCIPLINE = Discipline(
             "references",
         ),
     },
-    citation_style="APA 样式（作者-年份；Journal of Communication 遵循 APA 规范）",
+    citation_style="APA 7（Journal of Communication 遵循 APA 规范）",
     reporting_standards={
         "experimental": "实验研究遵循实验报告规范",
         "survey": "调查研究遵循 AAPOR 报告规范",
@@ -60,6 +62,8 @@ DISCIPLINE = Discipline(
         "Journal of Computer-Mediated Communication",
         "New Media & Society",
         "Communication Theory",
+        "Communication Studies",
+        "Journal of Communication",
     ),
     units_and_formulas_notes=(
         "统计量给出 M/SD/SE/CI",
@@ -69,9 +73,8 @@ DISCIPLINE = Discipline(
         "百分比给出基数",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("NVivo（内容分析与编码）", "R（统计与文本分析）", "Python（scikit-learn/NLTK）", "SPSS",
-           "媒介内容抓取与语料库工具"),
+    contribution_forms=("论文", "学术专著", "文学作品", "艺术作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("NVivo", "R", "Python", "SPSS", "Stata", "MAXQDA", "Qualtrics", "Tableau", "ELAN", "MediaLab", "Weka", "Minitab", "AMOS", "LISREL", "EQS", "Google Analytics", "Adobe Premiere", "DaVinci Resolve", "OBS Studio", "Avid Media Composer"),
     category="文学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

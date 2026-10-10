@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "坐标用经纬度并注明基准",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("GIS", "MATLAB", "地震监测仪", "气体监测仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("GIS", "MATLAB", "地震监测仪", "气体监测仪", "GPS 形变监测仪", "InSAR 干涉测量系统", "火山温度监测仪", "火山气体分析仪", "火山地震仪", "火山热成像仪", "火山无人机", "火山遥感仪", "火山地质钻探仪", "火山岩石分析仪", "火山矿物分析仪", "火山同位素分析仪", "火山年代测定仪", "火山喷发模拟系统", "火山危险评估系统", "火山预警系统"),
     category="理学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

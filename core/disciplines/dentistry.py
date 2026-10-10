@@ -81,8 +81,8 @@ DISCIPLINE = Discipline(
         "剂量（如氟化物 ppm F、麻醉 mg/kg）与给药途径完整",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("CAD/CAM 义齿设计软件", "CBCT", "万能试验机", "SPSS", "显微硬度计"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("CAD/CAM 义齿设计软件", "CBCT", "口内扫描仪", "种植导板设计软件", "手术导航系统", "超声骨刀", "种植扭矩测试仪", "万能试验机", "显微硬度计", "X射线衍射仪", "色差仪", "体素显微镜", "3D 打印机（牙科树脂）", "CNC 切削机", "SPSS", "R (RStudio)", "Slicer", "Surgical Planning Software", "种植手术套件", "显微外科设备"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI"),
 )

@@ -65,8 +65,8 @@ DISCIPLINE = Discipline(
         "生存分析给出 HR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("血细胞分析仪", "流式细胞仪", "凝血分析仪", "SPSS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("血细胞分析仪", "流式细胞仪", "凝血分析仪", "SPSS", "R", "Python (SciPy)", "FlowJo", "FlowKit", "FACS Canto", "FACSVersa", "FACSCanto II", "BD FACSDiva", "NGS platform", "qPCR", "ELISA", "Western blot", "FISH", "Cytogenetics", "Hemoglobin electrophoresis", "Blood gas analyzer"),
     category="医学",
     databases=("PubMed", "OpenAlex", "GEO", "CNKI"),
 )

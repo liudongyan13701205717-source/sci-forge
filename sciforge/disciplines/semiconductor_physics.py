@@ -66,9 +66,8 @@ DISCIPLINE = Discipline(
         "带隙用 eV；温度用 K",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利", "数据集"),
-    tools=("Silvaco TCAD", "Vienna AB initio Simulation Package（VASP）",
-           "MATLAB", "Python（NumPy/SciPy）"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Silvaco TCAD", "Synopsys TCAD", "Vienna AB initio Simulation Package（VASP）", "Quantum ESPRESSO", "Wien2k", "ABINIT", "SIESTA", "QuantumATK", "Materials Studio", "CASTEP", "LAMMPS", "COMSOL Multiphysics", "KLayout", "Gnucad", "Gnucap", "Gnusim", "QucsStudio", "MATLAB", "Python（NumPy/SciPy）", "Atomic Simulation Environment（ASE）"),
     category="工学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI", "万方"),
 )

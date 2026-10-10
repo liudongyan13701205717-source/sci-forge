@@ -67,12 +67,8 @@ DISCIPLINE = Discipline(
         "译文给出原文页码",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=(
-        "经文数据库检索工具",
-        "EndNote 文献管理",
-        "LaTeX 排版",
-    ),
+    contribution_forms=("论文", "学术专著", "教案与教材", "译文", "报告", "数据集"),
+    tools=("Accordance Bible Software", "BibleWorks", "e-Sword", "Logos Bible Software", "Verbum Bible Software", "Transkribus（手稿识别）", "CollateX（校勘比对）", "Vino（手稿分析）", "Logosem（文本分析）", "AntConc（语料统计）", "Diligentia（词频语义）", "Vineyard（圣经文本研究）", "Theses & Dissertations 检索工具", "EndNote 文献管理", "Zotero 文献管理", "LaTeX 排版", "SALD（圣经典本数字库）", "Ccel（基督教经典电子图书馆）", "Papyri.info（纸草文献工具）", "Digital Scriptorium（电子手稿平台）"),
     category="哲学",
-    databases=("OpenAlex", "Crossref", "CNKI", "万方"),
+    databases=("OpenAlex", "Crossref", "CNKI", "万方", "经文数据库检索工具"),
 )

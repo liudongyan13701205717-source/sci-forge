@@ -37,8 +37,8 @@ DISCIPLINE = Discipline(
         "翼载用 kg/m² 或 lb/ft²；比冲 Isp 用 s",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("ANSYS", "CATIA", "MATLAB", "风洞试验"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("ANSYS", "CATIA", "MATLAB", "风洞试验", "NASTRAN", "ABAKUS", "LS-DYNA", "SolidWorks", "Siemens NX", "PTC Creo", "Altair HyperWorks", "STAR-CCM+", "ANSYS Fluent", "OpenFOAM", "MATLAB Simulink", "NASA CEA", "NASA LEWIND", "GT-PROPS", "MATLAB Aerospace Toolbox", "ADAMS", "RecurDyn", "OpenVSP", "GOM Atlas", "EOSINT", "SLM", "EOS MEX", "Zotero"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

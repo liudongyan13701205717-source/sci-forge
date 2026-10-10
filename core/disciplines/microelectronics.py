@@ -1,4 +1,4 @@
-"""微电子学学科论文支持：器件/工艺/集成电路体裁、IEEE 引用样式与微电子记法注记。"""
+"""微电子技术学科论文支持：器件、工艺与集成电路设计研究、案例与综述体裁。"""
 
 from __future__ import annotations
 
@@ -6,69 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="microelectronics",
-    aliases=("microelectronics", "微电子学", "微电子", "集成电路", "半导体器件",
-             "芯片"),
+    aliases=("microelectronics", "微电子技术", "microelectronics_technology", "semiconductor", "ic_design", "vlsi", "nanoelectronics", "microsystems", "integrated_circuits", "semiconductor_processing", "photolithography"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与微电子问题）",
-            "methods（工艺、器件与参数）",
-            "results（电学特性数据）",
-            "discussion（机理与工程意义）",
-            "references",
-        ),
-        "device_characterization": (
-            "abstract",
-            "introduction",
-            "device structure（器件结构）",
-            "fabrication（制备工艺）",
-            "measurement（测试方法）",
-            "results and analysis（结果与分析）",
-            "references",
-        ),
-        "review": (
-            "abstract",
-            "introduction",
-            "scope and method（综述范围与方法）",
-            "state of the art（现状分类）",
-            "gaps and outlook（缺口与展望）",
-            "references",
-        ),
+        "research": ("abstract", "introduction（背景、动机与问题）", "methodology（器件/电路设计与实验方法）", "results（结果）", "discussion（讨论）", "references"),
+        "case_study": ("abstract", "introduction", "case description（器件或工艺案例）", "analysis（性能与失效分析）", "results（结果）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（微电子理论与技术综述）", "evidence synthesis（证据综合）", "future directions", "references"),
     },
-    citation_style="IEEE 样式（编号制；IEEE 期刊遵循 IEEE 规范）",
-    reporting_standards={
-        "experimental": "器件测试遵循 IEEE 半导体测试规范",
-        "process": "工艺研究遵循 SEMI 标准",
-        "reliability": "可靠性遵循 JEDEC 标准",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-        "simulation": "TCAD 仿真遵循 IEEE 仿真报告规范",
-    },
-    conventions=(
-        "器件尺寸与工艺节点须注明",
-        "电学参数（阈值电压、迁移率）定义须一致",
-        "测试条件（温度、偏置）须报告",
-        "工艺步骤与材料须完整描述",
-        "可靠性试验条件须按 JEDEC 说明",
-    ),
-    key_venues=(
-        "IEEE Transactions on Electron Devices",
-        "IEEE Electron Device Letters",
-        "IEEE Journal of Solid-State Circuits",
-        "IEEE Transactions on Semiconductor Manufacturing",
-        "Solid-State Electronics",
-        "Microelectronics Reliability",
-    ),
-    units_and_formulas_notes=(
-        "电压用 V；电流用 A/μA；尺寸用 nm/μm",
-        "公式用 amsmath；器件方程（MOS、BJT）须编号",
-        "显示公式仅在被引用时编号；行内公式避免复杂分式",
-        "数值结果给出均值 ± 不确定度与样本量",
-        "迁移率用 cm²/V·s；掺杂浓度用 cm⁻³",
-    ),
+    citation_style="IEEE 样式（作者-年份；IEEE 电子器件/电路刊常用）",
+    reporting_standards={"k1": "器件实验遵循 IEEE 器件测试规范", "k2": "电路设计遵循 IEEE 标准与可复现性要求", "k3": "工艺报告遵循半导体工艺数据规范（含不确定度）"},
+    conventions=("器件参数（电压、电流、频率）须标注测试条件", "工艺步骤须注明设备与参数", "版图须注明尺度与层映射", "统计结果须给置信区间与样本量", "公式须编号并注明符号含义"),
+    key_venues=("IEEE Transactions on Electron Devices", "IEEE Journal of Solid-State Circuits", "Nature Electronics", "IET Microelectronics", "Semiconductor Science and Technology"),
+    units_and_formulas_notes=("电压用 V；电流用 mA；频率用 MHz/GHz", "掺杂浓度用 cm⁻³；尺寸用 nm/μm", "功率密度用 W/cm²", "公式用 amsmath；结果须给均值 ± 不确定度与样本量"),
     paper_capable=True,
-    contribution_forms=("论文", "专利", "软件与代码"),
-    tools=("Cadence Virtuoso", "Synopsys Design Compiler", "TCAD", "MATLAB",
-           "Python（NumPy/SciPy）"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SPICE", "Cadence Virtuoso", "Synopsys Design Compiler", "KLayout", "Photolithography scanner", "E-beam lithography", "CMP", "SEM", "TEM", "AFM", "Oscilloscope", "Signal generator", "Wafer fabrication line", "Dicing saw", "Wire bonder", "Characterization suite", "Python (NumPy, SciPy)", "MATLAB", "COMSOL Multiphysics", "TCAD (Sentaurus)"),
     category="工学",
-    databases=("OpenAlex", "Crossref", "arXiv", "CNKI", "万方"),
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

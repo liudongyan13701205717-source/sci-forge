@@ -413,8 +413,9 @@ def classify_findings(
         if f:
             findings.append(f)
         # negative-constraint-violation
-        f = _check_negative_constraint(claim, _extract_constraint_targets(""))
-        # TODO: 传入真实 constraint_targets
+        f = _check_negative_constraint(claim, constraint_targets)
+        if f:
+            findings.append(f)
         # fabricated-reference
         f = _check_fabricated_reference([c for cb in citations_by_sentence if cb["sentence_idx"] == claim["sentence_idx"] for c in cb["citations"]])
         if f:

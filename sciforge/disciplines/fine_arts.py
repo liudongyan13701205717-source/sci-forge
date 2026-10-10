@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="fine_arts",
-    aliases=("fine_arts", "美术", "造型艺术", "视觉艺术"),
+    aliases=(
+        "fine_arts", "美术", "造型艺术", "视觉艺术",
+        "fine art", "visual arts",
+        "绘画", "雕塑", "设计", "美术学",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -68,11 +72,8 @@ DISCIPLINE = Discipline(
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "艺术作品"),
-    tools=(
-        "数字画布（Photoshop/Procreate）",
-        "艺术档案数字化系统",
-    ),
+    contribution_forms=("论文", "学术专著", "艺术作品", "教案与教材", "报告", "数据集"),
+    tools=("Adobe Photoshop", "Adobe Illustrator", "Adobe InDesign", "Adobe Lightroom", "Procreate", "CorelDRAW", "Blender", "3ds Max", "Maya", "GIMP", "Inkscape", "Cinema 4D", "Unreal Engine 5", "Procreate Dreams", "3D 打印（FDM/SLA）", "喷墨打印机（艺术级）", "平板扫描仪", "Endnote", "Zotero", "NVivo"),
     category="艺术学",
     databases=("DOAJ", "OpenAlex", "Crossref", "CNKI"),
 )

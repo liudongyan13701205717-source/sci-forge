@@ -40,8 +40,8 @@ DISCIPLINE = Discipline(
         "自适应网格给标记准则与加密率",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python (NumPy/SciPy)", "MATLAB", "LaTeX", "Julia", "FEniCS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Mathematica", "Maple", "R (RStudio)", "Python (NumPy/SciPy)", "Julia", "FEniCS", "Octave", "SageMath", "SymPy", "TensorFlow", "PyTorch", "CPLEX", "Gurobi", "GLPK", "LaTeX", "CuPy", "Matplotlib", "ParaView", "VTK", "Dolfinx", "deal.II", "PETSc", "Trilinos", "SUNDIALS", "SciPy", "NumPy", "Numba", "Cython", "OpenMP"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "Semantic Scholar"),
 )

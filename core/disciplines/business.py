@@ -40,8 +40,8 @@ DISCIPLINE = Discipline(
         "财务数据给会计准则口径（IFRS/GAAP）与币种",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("SPSS", "Stata", "NVivo", "Tableau"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SAP", "Oracle E-Business Suite", "Oracle Financials", "用友 NC", "金蝶 K3", "SAS", "SPSS", "Stata", "R", "Python (pandas/scikit-learn)", "NVivo", "Tableau", "Power BI", "Excel (数据透视表)", "Minitab", "MATLAB", "EViews", "JMP", "QlikView", "Alteryx"),
     category="管理学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

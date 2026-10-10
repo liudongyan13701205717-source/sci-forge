@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出有效数字位数与误差估计",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("MATLAB", "Python (NumPy, SciPy)", "Mathematica"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "译文", "报告", "数据集"),
+    tools=("MATLAB", "MATLAB Symbolic Math Toolbox", "MATLAB Simscape Multibody", "Simulink", "Modelica (OpenModelica)", "Python (NumPy/SciPy)", "SciPy.integrate", "Julia", "DifferentialEquations.jl", "ModelingToolkit.jl", "SymPy", "SageMath", "Mathematica", "Maple", "MapleSim", "GNU Octave", "COMSOL Multiphysics", "OpenCASCADE", "FreeCAD", "ANSYS Mechanical", "ANSYS Fluent", "Abaqus Standard/Explicit", "OpenFOAM", "SU2", "Gmsh", "Code_Aster", "CalculiX", "FEBio", "Chaste", "Simbody (Stanford)", "OpenSim", "MuJoCo", "Bullet Physics", "ODE (Open Dynamics Engine)", "CasADi", "LaTeX", "GeoGebra", "TikZ", "Blender (Rigid Body)", "PyMOL", "ParaView", "VAPOR"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

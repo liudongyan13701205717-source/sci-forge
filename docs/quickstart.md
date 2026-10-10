@@ -22,7 +22,7 @@
 在 MCP 客户端的对话里直接问，或手动调用：
 
 ```text
-list_disciplines()               # 内置 261 门学科
+list_disciplines()               # 内置 1538 门学科
 science_list_dbs()               # 全部可用科学数据库
 science_list_dbs("literature")   # 只看文献域
 ```
@@ -231,4 +231,4 @@ python -m pytest tests/ -q        # 268 个用例应全绿
 
 ---
 
-<sub>观测日期 2026-09-26。以上流程对应的工具集合为 65 个工具 + 2 个资源。</sub>
+<sub>观测日期 2026-09-26。以上流程对应的工具集合为 75 个工具 + 2 个资源。</sub>

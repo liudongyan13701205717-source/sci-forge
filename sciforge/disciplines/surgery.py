@@ -65,8 +65,8 @@ DISCIPLINE = Discipline(
         "生存/复发分析给出 HR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("手术机器人（达芬奇系统）", "腹腔镜摄像系统", "手术录像分析软件", "高强度聚焦超声（HIFU）设备", "SPSS", "R"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("手术机器人（达芬奇系统）", "腹腔镜摄像系统", "手术录像分析软件", "高强度聚焦超声（HIFU）设备", "SPSS", "R", "术中超声", "CT 影像导航系统", "术中 MRI 系统", "手术安全核查系统", "手术风险评估工具（ASA 分级）", "麻醉气体监测仪", "术中生命体征监测仪", "超声刀", "电外科设备", "术中 3D 打印模型", "荧光手术显微镜（ICG）", "Stata", "RevMan 5（Meta 分析）", "手术录像回放系统"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC", "Semantic Scholar"),
 )

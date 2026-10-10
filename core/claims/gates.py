@@ -190,16 +190,24 @@ def run_gates(context: dict) -> dict:
 # ---------- fail-closed bypass ----------
 def request_bypass(gate: dict, reason: str) -> dict:
     """fail-closed：无理由拒绝放行；有理由记录放行。"""
+    if not isinstance(gate, dict):
+        raise TypeError("gate 必须为 dict（如 {'stage': 'g2.5', 'passed': False}）")
+    stage = gate.get("stage")
+    if not stage:
+        # 兼容只给了 id/name 的调用：按 id/name 兜底，避免抛裸 KeyError
+        stage = gate.get("id") or gate.get("name") or ""
+    if not stage:
+        raise ValueError("gate dict 缺少 'stage' 字段（可接受 'id'/'name' 兜底）")
     if gate.get("passed"):
-        return {"allowed": True, "stage": gate["stage"], "bypassed": False,
+        return {"allowed": True, "stage": stage, "bypassed": False,
                 "bypass_reason": "", "error": ""}
     reason = (reason or "").strip()
     if not reason:
-        return {"allowed": False, "stage": gate["stage"], "bypassed": False,
+        return {"allowed": False, "stage": stage, "bypassed": False,
                 "bypass_reason": "", "error": "bypass 必须记录理由（fail-closed）"}
     return {
         "allowed": True,
-        "stage": gate["stage"],
+        "stage": stage,
         "bypassed": True,
         "bypass_reason": reason,
         "error": "",
@@ -212,7 +220,7 @@ def build_passport(
     results: dict | None,
     runs: list | None,
     claims: list | None,
-    gate_results: dict,
+    gate_results: dict | None = None,
     hypothesis: str = "",
     negative_results: list | None = None,
     doc_text: str = "",
@@ -235,7 +243,7 @@ def build_passport(
     prov_text = json.dumps({"results": results, "runs": runs}, ensure_ascii=False)
     prov_tokens = set(content_tokens(prov_text))
 
-    for c in claims:
+    for c in claims_list:
         ctext = str(c)
         ctokens = set(content_tokens(str(c)))
         claim_nums = re.findall(r"\d+(?:\.\d+)?%?", ctext)
@@ -276,7 +284,7 @@ def build_passport(
         "artifact": "material_passport",
         "task_id": task_id,
         "created": as_of,
-        "stage_gates": {k: {"passed": v.get("passed"), "blocked": v.get("blocked_patterns")} for k, v in gate_results.items()},
+        "stage_gates": {k: {"passed": v.get("passed"), "blocked": v.get("blocked_patterns")} for k, v in (gate_results or {}).items()},
         "experiment_provenance": {
             "n_runs": len(runs or []),
             "run_ids": run_ids,

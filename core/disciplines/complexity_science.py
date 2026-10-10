@@ -6,7 +6,14 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="complexity_science",
-    aliases=("complexity_science", "复杂性科学", "复杂系统", "复杂性研究", "complex systems"),
+    aliases=(
+        "complexity_science", "复杂性科学", "复杂系统", "complexity science",
+        "复杂系统科学", "complex systems", "复杂性研究",
+        "emergent systems", "涌现系统", "nonlinear dynamics",
+        "非线性动力学", "self-organization", "自组织",
+        "network science", "网络科学", "agent-based modeling",
+        "基于主体建模", "complex adaptive systems", "复杂适应系统",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -63,13 +70,8 @@ DISCIPLINE = Discipline(
         "相变点给出临界值与误差估计",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=(
-        "Python 计算建模（NumPy/SciPy）",
-        "MATLAB 数值计算",
-        "Agent-Based 建模平台（NetLogo）",
-        "元胞自动机仿真",
-    ),
-    category="交叉学科",
-    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("NetLogo", "AnyLogic", "Gephi", "MATLAB", "Mathematica", "Python (NumPy/SciPy)", "Julia", "Vensim", "Stella Architect", "Pajek", "Graphviz", "Cytoscape", "D3.js", "Bokeh", "Logo", "GAMS", "NetworkX", "LaTeX", "Jupyter Notebook", "PyG (PyTorch Geometric)"),
+    category="理学",
+    databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "Semantic Scholar", "PubMed"),
 )

@@ -73,8 +73,8 @@ DISCIPLINE = Discipline(
         "公式仅对被引用者编号；复杂度推导可在附录展开",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python", "Git", "Docker", "Linux", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python", "Java", "C", "C++", "C#", "Go", "Rust", "JavaScript", "TypeScript", "VS Code", "Git", "GitHub", "GitLab", "Docker", "Kubernetes", "Linux", "LaTeX", "Postman", "LeetCode", "Jupyter Notebook", "PyTorch", "TensorFlow", "NumPy", "pandas", "PostgreSQL", "MongoDB", "Redis", "Kafka", "AWS", "Cloudflare Workers"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

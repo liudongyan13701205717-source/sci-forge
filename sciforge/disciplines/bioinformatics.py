@@ -6,15 +6,25 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="bioinformatics",
-    aliases=("bioinformatics", "genomics", "transcriptomics", "omics",
-             "生物信息", "组学", "测序", "pipeline"),
+    aliases=(
+        "bioinformatics", "生物信息学", "genomics", "组学",
+        "transcriptomics", "转录组学", "omics", "测序分析",
+        "sequencing analysis", "NGS", "next-generation sequencing",
+        "pipeline", "流程", "computational biology",
+    ),
     paper_types={
-        "research": ("abstract", "introduction", "methods（流程与参数）", "results",
-                     "validation", "discussion", "code and data availability", "references"),
-        "software": ("abstract", "introduction", "implementation", "availability",
-                     "benchmark", "use cases", "references"),
-        "database": ("abstract", "introduction", "data sources", "database design",
-                     "web interface", "use cases", "references"),
+        "research": (
+            "abstract", "introduction", "methods（流程与参数）", "results",
+            "validation", "discussion", "code and data availability", "references",
+        ),
+        "software": (
+            "abstract", "introduction", "implementation", "availability",
+            "benchmark", "use cases", "references",
+        ),
+        "database": (
+            "abstract", "introduction", "data sources", "database design",
+            "web interface", "use cases", "references",
+        ),
     },
     citation_style="Oxford 或 Nature style",
     reporting_standards={
@@ -36,14 +46,16 @@ DISCIPLINE = Discipline(
         "Genome Research",
         "Nucleic Acids Research",
         "Nature Methods",
+        "BMC Genomics",
+        "Biology Data",
     ),
     units_and_formulas_notes=(
         "表达量单位 TPM/FPKM/counts 口径统一；差异倍数 log2FC",
         "测序深度 Gb/Mreads；质量分 Q30 比例",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("Python (Biopython)", "R (Bioconductor)", "GATK", "Galaxy"),
+    contribution_forms=("论文", "学术专著", "文学作品", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("BLAST / BLAST+ (NCBI)", "BLASTn / BLASTp", "Biopython", "Bioconductor", "GATK (Genome Analysis Toolkit)", "Galaxy (平台)", "SAMtools", "BWA / BWA-MEM2", "STAR (RNA-seq 比对)", "HISAT2", "Bowtie2", "GATK Best Practices", "DESeq2", "edgeR", "limma", "Seurat", "Scanpy", "Cell Ranger (10x Genomics)", "UMI-tools", "FastQC", "MultiQC", "Kraken2 / Bracken", "HMMER", "DIAMOND", "MetaWrench", "PLINK (GWAS)", "VCFtools", "bcftools", "Picard Tools", "Trimmomatic", "Cutadapt", "Fastp", "Nextflow", "Snakemake", "Cromwell", "CWL (Common Workflow Language)", "WDL (Workflow Description Language)", "Docker", "Singularity / Apptainer", "R (Bioconductor)", "Python (Biopython, NumPy, SciPy, pandas)", "Julia (JuliaBio)", "C++ / CUDA", "LaTeX", "MATLAB", "Git / GitHub", "Jupyter"),
     category="理学",
-    databases=("PubMed", "Ensembl", "GEO", "OpenAlex"),
+    databases=("PubMed", "Ensembl", "GEO", "OpenAlex", "SRA", "ENA", "NCBI"),
 )

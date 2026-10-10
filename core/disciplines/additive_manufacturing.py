@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "孔隙率用 %；粗糙度用 Ra（μm）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("3D 打印机", "材料试验机", "SolidWorks", "ANSYS", "MATLAB"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("3D 打印机", "材料试验机", "SolidWorks", "ANSYS", "MATLAB", "EOSINT", "SLM280", "Renishaw", "Concept Laser", "Netfabb", "Magics", "nTopology", "Autodesk Fusion 360", "Cura", "Slic3r", "COMSOL", "ABAKUS", "LS-DYNA", "X-ray CT", "SEM (Scanning Electron Microscope)", "DIC (Digital Image Correlation)", "GOM Atlas", "Malvern Laser Particle Sizing", "Additive Build Manager", "VOLUMETRIX", "Zotero"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

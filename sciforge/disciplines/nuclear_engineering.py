@@ -6,32 +6,32 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="nuclear_engineering",
-    aliases=("nuclear_engineering", "核工程", "核能", "核反应堆", "核安全",
-             "辐射防护"),
+    aliases=("nuclear_engineering", "核工程", "核能", "核反应堆",
+             "核安全", "辐射防护", "reactor engineering", "reactor safety"),
     paper_types={
         "research": (
             "abstract",
             "introduction（背景、动机与核工程问题）",
-            "methods（建模、实验与参数）",
+            "methodology（建模、实验与参数）",
             "results（中子学/热工/安全数据）",
             "discussion（机理与工程意义）",
             "references",
         ),
-        "safety_analysis": (
+        "case_study": (
             "abstract",
             "introduction",
-            "plant model（电厂模型与假设）",
-            "methodology（事故序列/概率安全分析）",
+            "case description（电厂案例与事故背景）",
+            "analysis（事故序列与 PRA 分析）",
             "results（安全裕度与后果）",
-            "conclusions",
+            "discussion",
             "references",
         ),
         "review": (
             "abstract",
             "introduction",
-            "scope and method（综述范围与方法）",
-            "state of the art（现状分类）",
-            "gaps and outlook（缺口与展望）",
+            "theoretical overview（核工程理论综述）",
+            "evidence synthesis（证据综合）",
+            "future directions",
             "references",
         ),
     },
@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "燃耗用 MWd/tU；剂量用 mSv/a",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("MCNP", "ANSYS", "Python", "Serpent"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("MCNP", "Serpent", "OpenMC", "SCALE", "CASMO", "SIMULATE", "PARCS", "NEK5000", "K-MOC", "RELAP5", "APEX", "CFX", "FLUENT", "ANSYS", "NEK", "TWODANT", "MOCAP", "Python", "MATLAB", "SAM"),
     category="工学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI"),
 )

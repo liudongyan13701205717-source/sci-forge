@@ -6,7 +6,9 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="phenomenology",
-    aliases=("phenomenology", "现象学", "现象学哲学", "意识哲学"),
+    aliases=("phenomenology", "现象学", "现象学哲学", "意识哲学",
+             "intentionality", "胡塞尔", "胡塞尔现象学", "梅洛-庞蒂",
+             "生活世界", "lifeworld"),
     paper_types={
         "research": (
             "abstract",
@@ -17,21 +19,21 @@ DISCIPLINE = Discipline(
             "conclusions（结论）",
             "references",
         ),
-        "theoretical_paper": (
+        "case_study": (
             "abstract",
             "introduction",
-            "conceptual framework（概念框架）",
-            "argument（论证）",
-            "implications（启示）",
+            "case description（案例描述）",
+            "analysis（分析）",
+            "results（发现）",
+            "discussion",
             "references",
         ),
-        "textual_analysis": (
+        "review": (
             "abstract",
             "introduction",
-            "text（文本）",
-            "analysis（分析）",
-            "findings（发现）",
-            "conclusions（结论）",
+            "theoretical overview（理论综述）",
+            "evidence synthesis（证据综合）",
+            "future directions",
             "references",
         ),
     },
@@ -42,6 +44,7 @@ DISCIPLINE = Discipline(
         "qualitative": "质性研究遵循 COREQ/SRQR 报告规范",
         "survey": "调查研究遵循 AAPOR 报告规范",
         "systematic_review": "系统综述遵循 PRISMA 声明",
+        "phenomenological": "现象学描述遵循 Husserl/Merleau-Ponty 传统",
     },
     conventions=(
         "核心概念须定义",
@@ -49,6 +52,7 @@ DISCIPLINE = Discipline(
         "文本版本须注明",
         "引文给出页码",
         "术语用原文并注译",
+        "区分本质描述与经验报告",
     ),
     key_venues=(
         "Husserl Studies",
@@ -66,13 +70,8 @@ DISCIPLINE = Discipline(
         "术语用原文并注译",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=(
-        "LaTeX 哲学排版",
-        "现象学转录与编码工具",
-        "NVivo 质性编码",
-        "Zotero 文献管理",
-    ),
+    contribution_forms=("论文", "学术专著", "教案与教材", "译文", "报告", "数据集"),
+    tools=("LaTeX 哲学排版", "Overleaf 在线 LaTeX", "Zotero 文献管理", "EndNote", "Mendeley", "NVivo 质性编码", "MAXQDA 质性分析", "ATLAS.ti 质性分析", "QCA 定性比较分析", "Word（Microsoft Office）", "Stanford Encyclopedia of Philosophy (SEP)", "PhilArchive 预印本平台", "现象学转录与编码工具", "Otter.ai 转录工具", "Rev.com 转录服务", "LogicGator 逻辑证明", "LogiQA 逻辑工具", "CSL 引用样式管理", "Tweagoo 逻辑工具", "Lean 4（形式化证明）"),
     category="哲学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "PhilPapers", "JSTOR", "JSTOR 数据库", "PhilPapers 哲学数据库"),
 )

@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "复杂度用 O(·) 记法",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("JUnit", "pytest", "SonarQube", "Maven"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("JUnit", "pytest", "SonarQube", "Maven", "Selenium", "Appium", "JMeter", "Cucumber", "Jasmine", "Karma", "Codecov", "Coveralls", "Istanbul", "TestNG", "Robot Framework", "Postman", "OWASP ZAP", "Charles Proxy", "Diffblue Cover", "CMake"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

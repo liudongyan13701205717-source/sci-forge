@@ -69,8 +69,8 @@ DISCIPLINE = Discipline(
         "深度用 cm 并注明层次",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("R", "Python", "土壤养分分析仪", "离心机"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("R", "Python", "土壤养分分析仪", "离心机", "QGIS", "ArcGIS", "ENVI", "MATLAB", "SPSS", "SAS", "HYDRUS", "ROOTSOFAR", "Munsell Colorimeter", "Field Portable XRF", "FTIR Spectrometer", "ICP-MS", "XRD", "Laser Diffraction", "SEM", "TGA/DTA"),
     category="农学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

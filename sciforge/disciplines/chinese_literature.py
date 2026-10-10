@@ -6,7 +6,18 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="chinese_literature",
-    aliases=("chinese_literature", "中国文学", "中国现当代文学", "中国古代文学"),
+    aliases=(
+        "chinese_literature", "中国文学", "中国现当代文学", "中国古代文学",
+        "Chinese literature", "Chinese literature studies",
+        "Chinese literary studies", "Chinese poetics",
+        "诗学", "文学批评", "literary criticism",
+        "中国古典文学", "ancient Chinese literature",
+        "中国现代文学", "modern Chinese literature",
+        "中国当代文学", "contemporary Chinese literature",
+        "文学史", "literary history of China",
+        "文学理论", "literary theory",
+        "Chinese fiction", "Chinese poetry", "中国小说",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -50,14 +61,20 @@ DISCIPLINE = Discipline(
         "作品标题用书名号/斜体",
         "理论框架须明确",
         "文学史脉络须交代",
+        "文本引证遵循原刊版次与页码",
+        "译名/异体字给出原文与对照",
     ),
     key_venues=(
         "文学评论",
         "中国现代文学研究丛刊",
         "文学遗产",
+        "文艺研究",
+        "外国文学评论",
+        "中国比较文学",
+        "外国文学研究",
         "Journal of Chinese Literature and Culture",
         "Chinese Literature: Essays, Articles, Reviews",
-        "文艺研究",
+        "International Journal of Chinese Studies",
     ),
     units_and_formulas_notes=(
         "引文给出页码",
@@ -67,12 +84,8 @@ DISCIPLINE = Discipline(
         "时间用统一纪年格式",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "文学作品"),
-    tools=(
-        "语料库检索工具",
-        "EndNote 文献管理",
-        "LaTeX 排版",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "教案与教材", "译文", "报告", "数据集"),
+    tools=("CCL/BCC 语料库检索工具", "北京语言大学 BCC 现代汉语语料库", "清华 CTB 现代汉语平衡语料库", "CCB 古汉语语料库", "CTP 中国哲学书电子化计划古文献检索", "国学大师古籍全文检索", "维基文库 Chinese Text Project 古籍全文", "中华书局 中华古籍资源库", "国家图书馆 中华古籍资源库", "中国国家图书馆 中国历代典籍总目", "北京大学 国学网", "中国社会科学院语言研究所汉语方言语料库", "中国社科院文学研究所 中国文学理论研究中心", "上海图书馆 家谱总汇", "中国国家图书馆 家谱总汇", "中国第一历史档案馆 明清档案", "台北故宫博物院 藏品库", "国家图书馆 中国历代典籍总目", "EndNote 文献管理", "Zotero 文献管理", "LaTeX 排版", "LaTeX 古籍注释排版", "Python 文本分析（jieba）", "Python 中文自然语言处理库（HanLP）", "Python 中文分词库（SnowNLP）", "Python 文本挖掘库（TextBlob）", "Python 文本挖掘库（nltk）", "Python 中文文本挖掘库（spacy）", "Python 中文分词（jieba）", "Python 中文分词（pkuseg）", "Python 中文分词（HanLP）", "Python 中文分词（lcut）", "Python 中文分词（lcut2）", "Python 中文分词（jieba.posseg）", "Python 中文分词（jieba.analyse）", "Python 中文分词（jieba.tagger）", "Python 中文文本挖掘库（jieba.posseg.analyse）", "Python 中文文本挖掘库（jieba.posseg.tag）"),
     category="文学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "北京大学 中文系古籍数据库", "中国现代文学馆 馆藏数据库"),
 )

@@ -5,7 +5,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="atmospheric_science",
-    aliases=("atmospheric_science", "meteorology", "climatology", "大气科学", "气象学", "气候学"),
+    aliases=(
+        "atmospheric_science", "meteorology", "climatology",
+        "大气科学", "气象学", "气候学", "大气化学", "数值天气预报",
+        "nwp", "severe weather", "boundary layer meteorology",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "data and methods", "results", "discussion", "conclusions", "references"),
         "modeling": ("abstract", "introduction", "model description", "experiment design", "results", "evaluation", "discussion", "conclusions", "references"),
@@ -31,6 +35,11 @@ DISCIPLINE = Discipline(
         "Atmospheric Chemistry and Physics",
         "Journal of Climate",
         "Weather and Forecasting",
+        "Geophysical Research Letters",
+        "Journal of Geophysical Research: Atmospheres",
+        "Nature Climate Change",
+        "Climate Dynamics",
+        "Atmospheric Environment",
     ),
     units_and_formulas_notes=(
         "温度用 K 或 °C（须声明）；气压用 hPa；风速用 m/s",
@@ -39,8 +48,8 @@ DISCIPLINE = Discipline(
         "模式时间步长用 s；预报提前量用 h 或 days",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("WRF", "GrADS", "Python (NumPy/SciPy)", "NCL", "MATLAB"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("WRF", "NCAR WPS", "WRF-chem", "CMAQ", "GEOS-Chem", "MERRA-2", "ERA5", "JRA-55", "CMA-MEGHAN", "NMM-CHEM", "GrADS", "NCL", "xarray", "NetCDF", "Cartopy", "MetPy", "Python (NumPy/SciPy)", "MATLAB", "GDAL", "GMT", "QGIS", "ArcGIS", "CDO", "Panoply", "HDFView", "ECMWF OpenData", "PyPSolar", "radarsatpy"),
     category="理学",
-    databases=("OpenAlex", "Crossref", "Zenodo", "CNKI", "arXiv"),
+    databases=("OpenAlex", "Crossref", "Zenodo", "CNKI", "arXiv", "Pangaea", "Copernicus", "NOAA"),
 )

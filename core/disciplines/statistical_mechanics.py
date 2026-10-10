@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出统计误差（标准误）与样本独立性说明",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("Python (NumPy, SciPy)", "MATLAB", "LAMMPS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy, SciPy)", "MATLAB", "LAMMPS", "GROMACS 分子动力学", "OpenMM 分子动力学", "GPUMD GPU 分子动力学", "HOOMD-blue 软物质模拟", "NAMD 分子动力学", "AMBER 分子力场", "TensorFlow 深度学习", "PyTorch 深度学习", "JAX 自动微分", "Julia 科学计算", "Mathematica", "ROOT 数据框架", "VMD 分子可视化", "Ovito 可视化", "PyMOL 分子可视化", "MDAnalysis", "Slurm 集群调度"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

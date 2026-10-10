@@ -65,8 +65,8 @@ DISCIPLINE = Discipline(
         "数值结果给出精度与误差（如键长 2.045(3) Å）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("ChemDraw", "Origin", "Python (NumPy/SciPy)", "VESTA", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("ChemDraw", "GaussView", "Gaussian", "ORCA", "VASP", "Quantum ESPRESSO", "VESTA", "Diamond", "MERLIN", "SHELXTL", "Olex2", "PLATON", "CrystalMaker", "CrystalEngine", "MagSys", "CrystalX", "Origin", "Python (NumPy/SciPy)", "LaTeX", "XtalTools"),
     category="理学",
     databases=("Crossref", "OpenAlex", "PubChem", "Semantic Scholar", "CNKI"),
 )

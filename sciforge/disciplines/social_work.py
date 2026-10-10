@@ -6,7 +6,7 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="social_work",
-    aliases=("social_work", "社会工作", "社会福利", "社会服务"),
+    aliases=("social_work", "社会工作", "社会福利", "社会服务", "个案工作", "社区工作", "政策实务"),
     paper_types={
         "research": (
             "abstract",
@@ -58,18 +58,16 @@ DISCIPLINE = Discipline(
         "Journal of Social Work Education",
         "British Journal of Social Work",
         "Research on Social Work Practice",
-        "Child & Family Social Work",
     ),
     units_and_formulas_notes=(
         "统计量给出 M/SD/SE/CI",
         "效应量用 Cohen's d 或 η²",
         "量表分数给出范围与信度",
         "样本量须报告",
-        "百分比给出基数",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("SPSS", "NVivo（质性编码）", "心理测量与量表分析软件", "Stata", "AMOS（结构方程模型）"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "NVivo（质性编码）", "Mplus", "Stata", "AMOS（结构方程模型）", "R", "Python", "RStudio", "MAXQDA", "ATLAS.ti", "Microsoft Excel", "Google Docs", "Microsoft PowerPoint", "SurveyMonkey", "JASP", "Jamovi", "SAS", "Google Sheets", "Microsoft Teams", "Therabill"),
     category="法学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

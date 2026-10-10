@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "傅汝德数/雷诺数等无量纲数须定义",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("Nauticalics Nautilus", "MATLAB", "OpenFOAM", "AVEVA Marine"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Nauticalics Nautilus", "NAPA", "Maxsurf", "AVEVA Marine", "OpenFOAM", "ANSYS Fluent", "Star-CCM+", "ShipMotion", "DNV-Glint", "MATLAB", "Python（NumPy/SciPy）", "SolidWorks", "AutoCAD", "AutoCAD Marine", "拖曳水池", "空泡水槽", "风洞试验设备", "模型测力设备", "Excel", "LaTeX"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

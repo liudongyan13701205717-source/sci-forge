@@ -7,7 +7,7 @@ from sciforge.disciplines.base import Discipline
 DISCIPLINE = Discipline(
     name="toxicology",
     aliases=("toxicology", "毒理学", "毒理", "毒物学", "风险评估",
-             "risk assessment", "毒理研究"),
+             "risk assessment", "毒理研究", "环境毒理", "药物毒理"),
     paper_types={
         "research": (
             "abstract",
@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "剂量-反应曲线给出拟合参数",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("高效液相色谱仪（HPLC）", "质谱仪", "SPSS", "R"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("高效液相色谱仪（HPLC）", "质谱仪", "SPSS", "R", "气相色谱仪（GC）", "液相色谱-质谱联用仪（LC-MS/MS）", "电感耦合等离子体质谱仪（ICP-MS）", "热重分析仪（TGA）", "差示扫描量热仪（DSC）", "流式细胞仪", "酶标仪", "实时 PCR 仪", "Western blot 系统", "原子吸收光谱仪（AAS）", "红外光谱仪（FTIR）", "X 射线衍射仪（XRD）", "透射电子显微镜（TEM）", "扫描电子显微镜（SEM）", "Origin Pro", "SAS"),
     category="医学",
     databases=("PubMed", "OpenAlex", "PubChem", "Europe PMC", "CNKI"),
 )

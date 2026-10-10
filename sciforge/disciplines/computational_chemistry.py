@@ -70,8 +70,8 @@ DISCIPLINE = Discipline(
         "数值结果给出精度（如 MAE = 0.8 kcal/mol）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("Gaussian", "ORCA", "Python (NumPy/SciPy)", "VMD", "LaTeX"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Gaussian", "ORCA", "VASP", "Q-Chem", "TURBOMOLE", "CP2K", "LAMMPS", "GROMACS", "NAMD", "Amber", "MOLPRO", "Psi4", "Dmol3", "ADF", "VMD", "PyMOL", "ChemDraw", "Python (NumPy/SciPy)", "LaTeX", "Discovery Studio", "Materials Studio", "Avogadro", "OpenBabel", "Schrödinger Suite", "Quantum ESPRESSO", "ABINIT", "CRYSTAL", "DFTB+"),
     category="理学",
     databases=("Crossref", "OpenAlex", "PubChem", "Semantic Scholar", "Zenodo"),
 )

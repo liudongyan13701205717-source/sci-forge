@@ -5,7 +5,21 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="biotechnology",
-    aliases=("biotechnology", "biotech", "生物技术", "生物工程"),
+    aliases=(
+        "biotechnology",
+        "biotech",
+        "genetic_engineering",
+        "enzymatic_technology",
+        "cell_engineering",
+        "fermentation_engineering",
+        "生物医药技术",
+        "生物技术",
+        "生物工程",
+        "基因工程",
+        "酶工程",
+        "细胞工程",
+        "发酵工程",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "materials and methods", "results", "discussion", "conclusions", "references"),
         "process": ("abstract", "introduction", "process design", "optimization", "scale-up", "results", "conclusions", "references"),
@@ -39,8 +53,8 @@ DISCIPLINE = Discipline(
         "基因拷贝数用 copies/cell 或 copies/ng DNA",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("发酵罐", "HPLC", "PCR 仪", "离心机"),
-    category="理学",
-    databases=("PubMed", "Europe PMC", "PubChem", "ChEMBL"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SnapGene", "Benchling", "Vector NTI", "Geneious Prime", "Primer3", "Cytoscape", "COBRA Toolbox（MATLAB）", "gPROMS", "MATLAB", "Python", "R", "GraphPad Prism", "Thermo Fisher QuantStudio 5", "Bio-Rad T100", "Bio-Rad Gene Pulser XCE", "Sartorius BioFlo R400", "Sartorius MultiQBioractor", "Sartorius Infors HT BioShaker", "Bio-Tek Synergy HTX", "Bio-Tek Cytation 5", "Thermo Fisher FPG1600", "Cytiva ÄKTA pure 25", "Cytiva ÄKTA explore", "Thermo Scientific V350", "Thermo NanoDrop One", "Beckman Optima XPN", "BD FACSCanto II", "BD FACSAria Fusion", "Miltenyi MACS EasySep", "Waters ACQUITY UPLC I-Class", "Waters Xevo TQ-S", "Thermo Scientific Q Exactive"),
+    category="工学",
+    databases=("PubMed", "Europe PMC", "PubChem", "ChEMBL", "BRENDA", "UniProt", "OpenAlex"),
 )

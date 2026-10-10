@@ -6,7 +6,12 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="defense_studies",
-    aliases=("defense_studies", "国防研究", "防务研究", "国防政策", "defence studies"),
+    aliases=(
+        "defense_studies", "国防研究", "防务研究", "国防政策",
+        "defence studies", "defense policy", "military affairs",
+        "national defense studies", "military strategy",
+        "security policy", "armed forces studies", "military research",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -19,7 +24,7 @@ DISCIPLINE = Discipline(
         "policy_analysis": (
             "abstract",
             "introduction",
-            "policy background（政策背景）",
+            "policy_background（政策背景）",
             "analysis（政策选项评估）",
             "recommendations（政策建议）",
             "references",
@@ -27,8 +32,15 @@ DISCIPLINE = Discipline(
         "review": (
             "abstract",
             "introduction",
-            "main developments（按主题综述）",
+            "main_developments（按主题综述）",
             "outlook",
+            "references",
+        ),
+        "training": (
+            "abstract",
+            "introduction",
+            "curriculum（课程设计与教学目标）",
+            "assessment（考核标准与评估）",
             "references",
         ),
     },
@@ -63,13 +75,8 @@ DISCIPLINE = Discipline(
         "汇率与通胀调整须注明基准年",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "报告"),
-    tools=(
-        "政策文本分析工具（NVivo）",
-        "GIS 空间分析（ArcGIS）",
-        "兵棋推演软件",
-        "系统动力学模型（Vensim）",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("NVivo", "ArcGIS", "Vensim", "Python (pandas, networkx)", "R (RStudio)", "Stata", "Tableau", "Power BI", "Gephi", "UCINET", "AnyLogic", "NetLogo", "SIPRI Database", "IISS Military Balance", "GlobalData Defense", "Wind Financial Terminal", "QGIS", "Google Earth Pro", "Palantir Gotham", "Tableau Public"),
     category="军事学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

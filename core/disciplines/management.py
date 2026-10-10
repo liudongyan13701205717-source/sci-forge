@@ -6,7 +6,17 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="management",
-    aliases=("management", "管理学", "组织管理", "战略管理"),
+    aliases=(
+        "management",
+        "管理学",
+        "组织管理",
+        "战略管理",
+        "Management",
+        "组织行为学",
+        "战略",
+        "组织研究",
+        "管理科学",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -69,9 +79,8 @@ DISCIPLINE = Discipline(
         "样本量须报告",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("SPSS", "Stata（多层次与面板模型）", "NVivo（案例质性编码）", "AMOS（结构方程模型）",
-           "R（统计与可视化）"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "Stata（多层次与面板模型）", "R（统计与可视化）", "SAS", "Minitab", "AMOS（结构方程模型）", "Mplus", "NVivo（案例质性编码）", "MAXQDA", "Dedoose", "Python（pandas 与 scikit-learn）", "Microsoft Excel VBA", "Tableau", "Power BI", "Google Analytics", "Qualtrics", "Jira", "Confluence", "Lucidchart", "Miro"),
     category="管理学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

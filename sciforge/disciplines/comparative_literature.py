@@ -6,7 +6,12 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="comparative_literature",
-    aliases=("comparative_literature", "比较文学", "跨文化文学研究", "影响研究"),
+    aliases=("comparative_literature", "比较文学", "跨文化文学研究", "影响研究",
+              "comparative literature", "cross-cultural literary studies",
+              "influence study", "文学接受研究", "reception studies",
+              "世界文学", "world literature", "intercultural literature",
+              "跨文化文学", "literary translation studies", "文学翻译研究",
+              "比较诗学", "comparative poetics"),
     paper_types={
         "research": (
             "abstract",
@@ -67,14 +72,8 @@ DISCIPLINE = Discipline(
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "文学作品"),
-    tools=(
-        "AntConc 语料库检索",
-        "EndNote 文献管理",
-        "Gephi 文学关系网络可视化",
-        "LaTeX 注释与书目排版",
-        "Zotero 引文管理",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "软件与代码", "教案与教材", "译文", "报告", "数据集"),
+    tools=("AntConc", "Sketch Engine", "Lexica", "eHRAF (Yale)", "EndNote", "Zotero", "Mendeley", "LaTeX", "Overleaf", "Gephi", "Voyant Tools", "DeepL", "Google Books Ngram Viewer", "Trados", "RefWorks", "JabRef", "World Literature Today", "Python (NLTK/ spaCy)", "R (quanteda)", "Microsoft Excel", "Tableau", "ConText", "WordSmith Tools", "Babel Fish", "Google Translate", "GitHub"),
     category="文学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "JSTOR", "ProQuest", "Worldcat", "Google Scholar"),
 )

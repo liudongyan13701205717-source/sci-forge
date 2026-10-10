@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="dance",
-    aliases=("dance", "舞蹈学", "舞蹈研究", "编舞学"),
+    aliases=(
+        "dance", "舞蹈", "舞蹈学", "舞蹈研究", "编舞学", "舞蹈教育",
+        "choreography", "dance studies", "dance research", "dance history",
+        "舞蹈史", "舞蹈批评",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -46,10 +50,10 @@ DISCIPLINE = Discipline(
     },
     conventions=(
         "作品信息（编导/舞团/首演日期）须完整",
-        "记谱法须注明",
-        "演出语境须交代",
+        "记谱法须注明（如 Labanotation/BENNY 符号体系）",
+        "演出语境须交代（剧场、观众、时长）",
         "引文给出页码",
-        "分析框架须明确",
+        "分析框架须明确（如 Lysas/Allen/Deke 分析框架）",
     ),
     key_venues=(
         "Dance Research Journal",
@@ -58,6 +62,7 @@ DISCIPLINE = Discipline(
         "Dance Research",
         "Ballet Review",
         "Research in Dance Education",
+        "Journal of Aesthetic Education",
     ),
     units_and_formulas_notes=(
         "时长用 分:秒",
@@ -67,12 +72,8 @@ DISCIPLINE = Discipline(
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "艺术作品"),
-    tools=(
-        "Vicon 动作捕捉",
-        "运动学分析软件",
-        "演出录像分析软件",
-    ),
+    contribution_forms=("论文", "学术专著", "艺术作品", "教案与教材", "报告", "数据集"),
+    tools=("DanceForms", "Labanotation", "BENNY Motion Capture", "Vicon Vantage", "Motion Capture (Vicon/Vicon Shaker)", "Xsens MVN Animate", "OptiTrack", "Noitom Perception Neuron", "Rokoko SMPL-X", "CueMotion", "Pro-Dance (DanceNotationLab)", "Choreographer for Mac", "Final Cut Pro", "Adobe Premiere Pro", "Adobe After Effects", "DaVinci Resolve", "MAG3D", "Rokoko Studio", "Proximity (MoCap)", "MoCap Studio Pro", "DanceMotion Editor", "BodyBuilder (Choreo)", "Notate Me", "Labanotation Composer", "ChoreaTrack", "iDance"),
     category="艺术学",
     databases=("DOAJ", "OpenAlex", "Crossref", "CNKI"),
 )

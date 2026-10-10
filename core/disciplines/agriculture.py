@@ -1,4 +1,4 @@
-"""农学论文支持：田间试验、作物模型、土壤与养分管理。"""
+"""农学论文支持：田间试验、作物模型、土壤与养分管理，覆盖作物-土壤-植保-水利-农机综合方向。"""
 
 from __future__ import annotations
 
@@ -6,13 +6,46 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="agriculture",
-    aliases=("agriculture", "agronomy", "crop", "soil", "farming", "农学", "作物", "土壤"),
+    aliases=(
+        "agriculture",
+        "agronomy",
+        "crop",
+        "soil",
+        "farming",
+        "农学",
+        "作物",
+        "土壤",
+        "农田",
+        "大农业",
+        "农学综合",
+    ),
     paper_types={
-        "research": ("abstract", "introduction", "materials and methods（田间/温室设计）",
-                     "results", "discussion", "conclusions", "references"),
-        "field_trial": ("abstract", "introduction", "site description（土壤/气候）",
-                        "experimental design", "results", "yield analysis", "references"),
-        "review": ("abstract", "introduction", "scope", "findings", "research gaps", "references"),
+        "research": (
+            "abstract",
+            "introduction",
+            "materials and methods（田间/温室设计）",
+            "results",
+            "discussion",
+            "conclusions",
+            "references",
+        ),
+        "field_trial": (
+            "abstract",
+            "introduction",
+            "site description（土壤/气候/前茬）",
+            "experimental design",
+            "results",
+            "yield analysis",
+            "references",
+        ),
+        "review": (
+            "abstract",
+            "introduction",
+            "scope",
+            "findings",
+            "research gaps",
+            "references",
+        ),
     },
     citation_style="Elsevier numbered 或 ASA-CSSA-SSSA style",
     reporting_standards={
@@ -34,14 +67,18 @@ DISCIPLINE = Discipline(
         "Plant and Soil",
         "European Journal of Agronomy",
         "Nature Plants",
+        "Journal of Agricultural Science",
+        "Crop Science",
     ),
     units_and_formulas_notes=(
         "产量 t/ha 或 kg/ha；养分利用率（NUE/PFP）公式须给出",
         "水分利用效率 WUE = 产量/蒸散量；单位 kg/m³",
+        "公式用 amsmath；显示公式仅在被引用时编号",
+        "统计显著性水平 α=0.05；均值±SEM 报告",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("R", "DSSAT", "ArcGIS", "SPSS", "Origin"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("DSSAT", "APSIM", "STICS", "CERES", "WOFOST", "ArcGIS", "QGIS", "SPSS", "R", "Origin", "Microsoft Excel", "Google Earth", "Remote Sensing Satellite Landsat", "Remote Sensing Satellite Sentinel-2", "Sentinel-1", "Meteosat", "Plant Spectrometer SPAD-501", "LAI Scanner LiCor", "Soil Texture Analyzer", "Drone DJI Phantom", "Drone DJI Mavic", "Drone DJI Matrice", "Soil Erosion Simulator WEPP", "SWAT", "ImageJ", "MEGA"),
     category="农学",
-    databases=("OpenAlex", "Crossref", "CNKI", "万方"),
+    databases=("OpenAlex", "Crossref", "CNKI", "万方", "FAOSTAT", "NASA POWER", "HLS", "USDA NRCS"),
 )

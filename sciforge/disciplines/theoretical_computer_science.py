@@ -39,8 +39,8 @@ DISCIPLINE = Discipline(
         "下界证明须给路径（对手论证/信息论/转换图）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("LaTeX", "Coq", "Isabelle", "TLA+"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("LaTeX", "Coq", "Isabelle", "TLA+", "Lean 4", "Agda", "Alloy", "Prism（模型检测）", "Spot（LTL 检验）", "NuSMV（状态模型）", "UPPAAL（时序模型）", "CBMC（代码验证）", "KLEE（符号执行）", "Z3（定理证明器）", "Boolector（SMT 求解器）", "Yices（SMT 求解器）", "PACE（并行算法竞赛工具）", "DIMACS SAT 求解器", "Zotero", "EndNote"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

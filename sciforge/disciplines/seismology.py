@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "坐标用经纬度并注明基准",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("MATLAB", "R", "ObsPy", "地震台网"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "R", "ObsPy", "地震台网", "TauP 走时计算", "SAC 地震波分析", "Antelope Server", "EQcorrScan 震相识别", "SPECFEM3D 波传播模拟", "Hypoinverse 震源定位", "HypoDD 相对定位", "SEISAN 地震学软件包", "GFAST 矩张量求解", "PyLith 动态破裂模拟", "FDSNWS 波形数据服务", "SeisComP 观测与建模", "QuakeML 地震数据标准", "Pyrocko 地震学 Python 库", "GMT 地图与数据可视化", "GPlates 板块运动重建"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

@@ -68,9 +68,8 @@ DISCIPLINE = Discipline(
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告", "数据集"),
-    tools=("SimaPro（生命周期评估软件）", "R（指标综合与统计）", "SPSS", "GIS（QGIS/ArcGIS）",
-           "openLCA", "Python（NumPy/Pandas）"),
-    category="交叉学科",
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("SimaPro（生命周期评估软件）", "R（指标综合与统计）", "SPSS", "GIS（QGIS/ArcGIS）", "openLCA", "Python（NumPy/Pandas）", "GaBi（生命周期评估）", "Eco-indicator 99（生态指标评价）", "InVEST（生态系统服务模型）", "LEAP（局部环境评估）", "STAN（系统转型分析）", "GHG Protocol（温室气体核算工具）", "C2C 指标评价软件", "生命周期建模（CLIP-EX）", "循环经济评估（Blue Matrix）", "碳足迹计算工具（CarbonFoot）", "社会生命周期评价（S-LCA）", "物质流分析（MFA）软件", "气候情景模型（SSP-RCP）", "可持续性绩效指标平台"),
+    category="理学",
     databases=("OpenAlex", "Crossref", "CNKI", "Semantic Scholar", "Zenodo"),
 )

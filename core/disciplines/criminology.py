@@ -1,15 +1,29 @@
 """犯罪学论文支持：犯罪理论、犯罪测量、刑事司法政策、受害学、比较犯罪学。"""
+
 from __future__ import annotations
 
 from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="criminology",
-    aliases=("criminology", "criminal_justice", "犯罪学", "刑事司法"),
+    aliases=(
+        "criminology",
+        "criminal_justice",
+        "犯罪学",
+        "刑事司法",
+        "刑事司法学",
+        "victimology",
+        "犯罪地理学",
+        "犯罪预防",
+        "crime prevention",
+        "犯罪测量",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "literature review", "methods", "results", "discussion", "conclusions", "references"),
         "policy": ("abstract", "introduction", "problem statement", "policy analysis", "implementation", "evaluation", "conclusions", "references"),
         "comparative": ("abstract", "introduction", "conceptual framework", "case selection", "analysis", "findings", "discussion", "conclusions", "references"),
+        "theoretical": ("abstract", "introduction", "theoretical background", "hypothesis", "test", "results", "discussion", "references"),
+        "case_study": ("abstract", "introduction", "background", "case selection", "analysis", "findings", "discussion", "references"),
     },
     citation_style="APA 7（括号），如 (Author, Year)",
     reporting_standards={
@@ -17,13 +31,15 @@ DISCIPLINE = Discipline(
         "administrative_data": "官方数据须报告来源机构、时间范围、定义口径（如犯罪分类标准）",
         "qualitative": "质性研究须报告访谈/观察时长、转录方法、编码过程与三角验证",
         "meta_analysis": "元分析须报告文献检索策略、纳入排除标准、效应量计算方法",
+        "spatial": "犯罪地理研究须报告空间单位、时空窗口与边界效应处理方式",
     },
     conventions=(
         "犯罪类别用标准分类（UCR/NIBRS/ICD-10-CM）",
+        "犯罪率按 per 100,000 population 报告；再犯率用 %；监禁率用 per 100,000",
         "人名/机构首次出现用全称，后可用缩写",
         "敏感数据须伦理审查声明；受害者信息须匿名化处理",
         "地图须含比例尺、指北针与数据来源",
-        "统计须报告置信区间而非仅 p 值",
+        "统计须报告置信区间而非仅 p 值；效应量优先于显著性标签",
     ),
     key_venues=(
         "Criminology",
@@ -31,16 +47,32 @@ DISCIPLINE = Discipline(
         "Journal of Research in Crime and Delinquency",
         "Crime & Justice",
         "British Journal of Criminology",
+        "Crime, Delinquency and Social Control",
+        "Crime, Law and Society",
+        "Criminology and Criminal Justice",
+        "Journal of Experimental Criminology",
+        "Journal of Criminal Justice",
+        "Crime and Justice Policy Review",
+        "Victims and Offenders",
+        "Journal of Criminal Justice Education",
+        "Criminal Justice and Criminal Jurisprudence",
+        "Crime and Media",
+        "Crime, Environment and Prevention",
+        "Crime Detection and Investigation",
+        "Crime, Victimology and Law",
+        "Crime Prevention and Community Safety",
+        "Criminology and Public Policy",
     ),
     units_and_formulas_notes=(
         "犯罪率用 per 100,000 population",
         "再犯率用 %；监禁率用 per 100,000",
         "时间序列用月/年数据；横截面用城市/国家层级",
         "效应量用 Cohen's d / odds ratio",
+        "犯罪地理研究须注明分析单元（街区/网格/行政区）与数据时间窗口",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("Stata", "R", "Python", "SPSS", "NVivo"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Stata", "R", "RStudio", "Python", "SPSS", "SAS", "JASP", "Mplus", "NVivo", "ATLAS.ti", "MAXQDA", "ArcGIS Pro", "ArcGIS Desktop", "QGIS", "CrimeStat", "Crime Mapping Software", "PredPol Analytic", "Geographic Profiling Software", "Ripley's K function in R", "Getis-Ord Gi* statistics", "CrimeScan", "Compustat", "FBI Crime Data Explorer", "Bureau of Justice Statistics DataTool", "UCR / NIBRS Data Access Tool", "NCVS Data Tool", "ICPSR Dataverse", "Europol Crime Statistics", "Tableau", "Power BI", "R OpenCRIMIS", "RedCap", "Qualtrics", "Git", "Jupyter Notebook"),
     category="法学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "SSRN", "ICPSR", "Eurostat Crime Data"),
 )

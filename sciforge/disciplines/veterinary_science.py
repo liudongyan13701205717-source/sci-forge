@@ -81,8 +81,8 @@ DISCIPLINE = Discipline(
         "样本量给功效分析参数与实验单位数（heads/litters）",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("SPSS", "PCR 仪", "兽用超声诊断仪", "R", "酶联免疫分析仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "PCR 仪", "兽用超声诊断仪", "R", "酶联免疫分析仪", "MATLAB", "兽用X射线机", "兽用CT扫描仪", "兽用监护仪", "兽用麻醉机", "兽用呼吸机", "兽用电子血压计", "兽用生化分析仪", "兽用血气分析仪", "兽用内窥镜", "显微镜", "兽用超声心动图仪", "兽用内窥镜手术系统", "兽用电子手术刀", "兽用激光治疗仪"),
     category="农学",
     databases=("PubMed", "OpenAlex", "CNKI"),
 )

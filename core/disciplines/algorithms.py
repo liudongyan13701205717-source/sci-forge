@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "数值结果给出均值 ± 标准差与样本量",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python", "C", "LaTeX", "GAP"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python", "C", "C++", "Rust", "Go", "LaTeX", "MATLAB", "GAP", "NetworkX", "numpy", "scipy", "CP-SAT", "Google OR-Tools", "Gurobi", "Cplex", "GLPK", "Z3", "Yale SMV", "SPIN", "OpenMPI", "HPCX", "OpenCL", "CUDA", "LLVM", "GNU Bison", "Flex", "Graphviz", "Visallo", "Graph-tool", "Boost Graph Library", "igraph"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

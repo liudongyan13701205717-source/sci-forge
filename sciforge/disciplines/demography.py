@@ -1,15 +1,47 @@
 """人口学论文支持：人口结构、生育率、死亡率、迁移、人口预测。"""
+
 from __future__ import annotations
 
 from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="demography",
-    aliases=("demography", "demographics", "人口学", "人口统计学"),
+    aliases=(
+        "demography", "demographics", "人口学", "人口统计学",
+        "人口统计", "population studies", "人口预测",
+        "Population Demography", "population dynamics", "人口动态",
+        "population forecasting", "人口结构",
+    ),
     paper_types={
-        "research": ("abstract", "introduction", "data and methods", "results", "discussion", "conclusions", "references"),
-        "prospective": ("abstract", "introduction", "cohort description", "methods", "results", "discussion", "conclusions", "references"),
-        "policy": ("abstract", "introduction", "background", "policy analysis", "projections", "discussion", "conclusions", "references"),
+        "research": (
+            "abstract",
+            "introduction",
+            "data and methods",
+            "results",
+            "discussion",
+            "conclusions",
+            "references",
+        ),
+        "prospective": (
+            "abstract",
+            "introduction",
+            "cohort description",
+            "methods",
+            "results",
+            "discussion",
+            "conclusions",
+            "references",
+        ),
+        "policy": (
+            "abstract",
+            "introduction",
+            "background",
+            "policy analysis",
+            "projections",
+            "discussion",
+            "conclusions",
+            "references",
+        ),
     },
     citation_style="APA 7（括号），如 (Author, Year)",
     reporting_standards={
@@ -31,6 +63,9 @@ DISCIPLINE = Discipline(
         "Population and Development Review",
         "European Journal of Population",
         "Demographic Research",
+        "Population Research and Policy Review",
+        "Journal of Population Economics",
+        "Social Science & Medicine",
     ),
     units_and_formulas_notes=(
         "生育率 TFR 用 活产/妇女（无量纲）",
@@ -40,8 +75,8 @@ DISCIPLINE = Discipline(
         "总和生育率 TFR = Σfx（时期生育率之和）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("R", "Python", "Stata", "GIS", "LaTeX"),
-    category="法学",
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("R (RStudio)", "Python (pandas, pyarrow)", "Stata", "IBM SPSS Statistics", "SAS", "PopMod", "MxLab", "Spectra", "LaTeX", "ArcGIS", "QGIS", "Tableau", "Power BI", "PyHalo", "Demogratiser", "WHO Global Health Observatory", "UN DESA World Population Prospects", "Eurostat Database", "World Bank Data", "R package: pop (demographic data)"),
+    category="理学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

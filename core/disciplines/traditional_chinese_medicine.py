@@ -65,8 +65,8 @@ DISCIPLINE = Discipline(
         "疗效分析给出 RR/OR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("SPSS", "R", "中药成分分析平台（LC-MS）", "中药分子对接软件"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "R", "中药成分分析平台（LC-MS）", "中药分子对接软件", "气相色谱-质谱联用仪", "高效液相色谱仪", "红外热像仪", "中医舌诊仪", "中医脉诊仪", "电针仪", "艾灸器具", "经络探测仪", "Cytoscape", "STRING", "PyMOL", "AutoDock Vina", "RevMan（Cochrane）", "Stata", "Gaussian 16", "中药指纹图谱分析系统"),
     category="医学",
     databases=("PubMed", "CNKI", "OpenAlex", "万方", "PubChem"),
 )

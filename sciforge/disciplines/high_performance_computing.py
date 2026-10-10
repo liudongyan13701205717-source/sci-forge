@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "复杂度用 O(·) 记法",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python（NumPy）", "MATLAB", "CUDA", "OpenMPI"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy)", "MATLAB", "CUDA", "OpenMPI", "OpenACC", "MPI", "OpenMP", "Intel OneAPI", "GCC", "Clang", "LLVM", "PyTorch", "TensorFlow", "Keras", "JAX", "SciPy", "Scikit-learn", "Pandas", "Dask", "Apache Spark"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

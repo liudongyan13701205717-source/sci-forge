@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出有效数字与不确定度",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("Python (NumPy/SciPy)", "Origin", "SPSS", "R", "Chromeleon"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Agilent 1260 Infinity II UHPLC", "Waters ACQUITY UPLC", "Dionex UltiMate 3000 HPLC", "Agilent 7890B GC", "Thermo Fisher Trace 1300 GC-MS", "Shimadzu GCMS-QP2050", "Thermo Fisher Q Exactive", "Bruker maXis", "SCIEX QuantStudio", "Agilent Cary 50 UV-Vis", "Thermo Nicolet iS20 FTIR", "Agilent 5110 ICP-OES", "Agilent 7900 ICP-MS", "Bruker Ascend NMR", "WITec alpha300 Raman", "Panalytical Empyrean XRD", "Bio-Logic VMP3", "ChemDraw", "OriginLab", "Chromeleon", "Waters Empower", "Agilent OpenLab", "Thermo MS Discover", "AMDIS", "NIST Chemistry WebBook", "MassBank", "SPSS", "R"),
     category="理学",
     databases=("Crossref", "OpenAlex", "PubChem", "Semantic Scholar", "CNKI"),
 )

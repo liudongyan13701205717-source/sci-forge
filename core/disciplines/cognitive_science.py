@@ -6,7 +6,8 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="cognitive_science",
-    aliases=("cognitive_science", "认知科学", "认知研究", "心智科学", "cognitive science"),
+    aliases=("cognitive_science", "认知科学", "认知研究", "心智科学", "认知神经科学",
+             "cognitive science", "cognitive neuroscience", "心智研究", "认知建模"),
     paper_types={
         "research": (
             "abstract",
@@ -32,11 +33,12 @@ DISCIPLINE = Discipline(
             "references",
         ),
     },
-    citation_style="APA 样式（作者-年份；Cognitive Science 遵循 APA 规范）",
+    citation_style="APA 7 样式（作者-年份；Cognitive Science 遵循 APA 规范）",
     reporting_standards={
         "experimental": "实验研究遵循 APA 报告规范",
         "computational": "计算建模遵循模型设定报告规范",
-        "neuroimaging": "神经影像研究遵循 COBIDAS 报告规范",
+        "neuroimaging": "神经影像研究遵循 COBIDAS 与 MINIMA/AAAS 声明",
+        "fMRI": "fMRI 分析遵循 ARRIVE 与 NeuroVault 数据管理规范",
         "systematic_review": "系统综述遵循 PRISMA 声明",
         "preregistration": "预注册研究遵循预注册报告规范",
     },
@@ -63,13 +65,8 @@ DISCIPLINE = Discipline(
         "效应量给出 Cohen's d 或 η² 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "Python 心理计算（PsychoPy）",
-        "fMRI 脑成像设备",
-        "EEG 脑电采集系统",
-        "眼动追踪仪",
-    ),
-    category="交叉学科",
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("PsychoPy", "E-Prime 3", "MATLAB", "Psychtoolbox", "OSF", "SPSS", "R", "Stan", "PyMC", "PyTorch", "TensorFlow", "fSLR", "SPM", "FSL", "AFNI", "FreeSurfer", "EEGLAB", "MNE-Python", "EyeLink", "Tobii Eye Tracker", "OpenSesame", "PsychoJS", "GNU Octave"),
+    category="理学",
     databases=("PubMed", "arXiv", "OpenAlex", "Crossref"),
 )

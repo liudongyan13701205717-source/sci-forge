@@ -5,7 +5,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="biomedical_engineering",
-    aliases=("biomedical_engineering", "BME", "生物医学工程", "生物工程"),
+    aliases=(
+        "biomedical_engineering",
+        "BME",
+        "biomedical_device_engineering",
+        "medical_device_engineering",
+        "tissue_engineering",
+        "bioinstrumentation",
+        "生物医学工程",
+        "医学工程",
+        "生物医学器械",
+        "医疗器械工程",
+        "生物材料与组织工程",
+        "医学影像工程",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "materials and methods", "results", "discussion", "conclusions", "references"),
         "review": ("abstract", "introduction", "classification", "state-of-the-art", "challenges", "future directions", "conclusions", "references"),
@@ -31,6 +44,10 @@ DISCIPLINE = Discipline(
         "IEEE Transactions on Biomedical Engineering",
         "Journal of Biomechanical Engineering",
         "Tissue Engineering Part A/B/C",
+        "Acta Biomaterialia",
+        "Medical Image Analysis",
+        "Radiology",
+        "Journal of the Mechanical Behavior of Biomedical Materials",
     ),
     units_and_formulas_notes=(
         "力学强度用 MPa/GPa；弹性模量用 MPa/GPa",
@@ -39,8 +56,8 @@ DISCIPLINE = Discipline(
         "影像分辨率用 mm 或 μm/pixel",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("SolidWorks", "COMSOL", "MATLAB", "ImageJ"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "ANSYS Mechanical", "ANSYS Fluent", "COMSOL Multiphysics", "Abaqus", "MSC Nastran", "Altair HyperWorks", "SolidWorks", "SolidWorks Simulation", "OpenFOAM", "Gmsh", "ParaView", "Mimics（Materialise）", "3-matic（Materialise）", "3D Slicer", "ITK-SNAP", "SimpleITK", "Fiji（ImageJ）", "OpenCV", "CELLINK BioPlotter", "Zeiss Xradia 610", "Instron 5969", "Zeiss LSM 800", "Zeiss Sigma 300VP", "Cytiva AKTA pure 25", "Thermo Nanoindent G200", "Thermo Zetasizer Nano"),
     category="工学",
-    databases=("OpenAlex", "Crossref", "CNKI"),
+    databases=("OpenAlex", "Crossref", "PubMed", "PATENTSCOPE", "IEEE Xplore", "CNKI"),
 )

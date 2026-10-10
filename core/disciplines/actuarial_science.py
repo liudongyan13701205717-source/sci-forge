@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("R", "Python", "Excel", "LaTeX"),
-    category="理学",
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("R", "Python", "Excel", "LaTeX", "Prophet", "Stan", "PyMC", "JAGS", "WinBUGS", "MOSEL", "GSA", "Vitec", "SAS", "Stata", "SPSS", "CVXPY", "MOSEK", "Julia", "Solvency II Toolkit", "Actuarial Software (AXIS)"),
+    category="经济学",
     databases=("arXiv", "OpenAlex", "Crossref", "CNKI"),
 )

@@ -1,4 +1,4 @@
-"""心理学科论文支持：APA 7、预注册与效应量报告规范。"""
+"""心理学科论文支持：实证/元分析体裁、APA 7、预注册与效应量报告规范。"""
 
 from __future__ import annotations
 
@@ -6,31 +6,41 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="psychology",
-    aliases=("psychology", "心理学", "认知", "cognitive", "行为", "behavior",
-             "社会心理", "social psychology", "发展", "developmental"),
+    aliases=(
+        "psychology",
+        "心理学",
+        "Psychology",
+        "Cognitive psychology",
+        "Social psychology",
+        "认知",
+        "社会心理",
+        "发展",
+        "Developmental",
+    ),
     paper_types={
-        "empirical": (
+        "research": (
             "abstract",
             "introduction（理论与假设）",
-            "method（participants / materials / procedure / data analysis 分小节）",
+            "methodology（参与者、材料、程序与统计）",
             "results（检验、效应量与补充分析）",
             "discussion（解释、局限与理论意义）",
             "references",
         ),
-        "meta_analysis": (
+        "case_study": (
             "abstract",
             "introduction",
-            "method（检索、纳排、编码、效应量模型）",
-            "results（森林图、异质性、发表偏倚）",
+            "case description（个案描述）",
+            "analysis（心理评估与分析）",
+            "results（评估与干预结果）",
             "discussion",
             "references",
         ),
-        "registered_report": (
+        "review": (
             "abstract",
-            "introduction（理论与假设）",
-            "methods（阶段 1 预注册的分析计划）",
-            "results（阶段 2 按计划执行）",
-            "discussion",
+            "introduction",
+            "theoretical overview（理论综述）",
+            "evidence synthesis（证据综合与元分析）",
+            "future directions",
             "references",
         ),
     },
@@ -43,11 +53,11 @@ DISCIPLINE = Discipline(
         "ethics": "IRB 批准与知情同意；被试报酬说明",
     },
     conventions=(
-        "方法内分 participants/materials/procedure 小节；量表给出信度（Cronbach's α/ω）",
+        "被试招募与人口学信息须完整，量表给出信度（Cronbach's α/ω）",
         "p 值格式 APA：p = .03（去掉前导零），p < .001 单独表述",
         "统计符号斜体（M、SD、t、F、p、d、η²）",
-        "结果按假设顺序报告，每个假设对应明确检验",
-        "讨论先回应假设再谈局限，避免过度因果表述",
+        "预注册计划须公开，偏离须解释",
+        "统计模型选择须说明依据，效应量须报置信区间",
     ),
     key_venues=(
         "Psychological Science",
@@ -64,8 +74,8 @@ DISCIPLINE = Discipline(
         "功效分析给出软件（G*Power/pwr）与参数",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=("SPSS", "R", "NVivo", "E-Prime"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "R", "JASP", "PSPP", "NVivo", "ATLAS.ti", "MAXQDA", "E-Prime", "PsychoPy", "OpenSesame", "Inquisit", "Presentation", "E-SPS", "ECharts", "OSF", "Qualtrics", "SurveyMonkey", "G*Power", "Mplus", "Stata"),
     category="理学",
     databases=("OpenAlex", "Crossref", "Semantic Scholar", "CNKI"),
 )

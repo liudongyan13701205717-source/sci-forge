@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "NSE、KGE 等评价指标须定义",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("HEC-RAS", "SWAT", "MATLAB", "Python（NumPy/SciPy）", "水文测验仪器"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("HEC-RAS", "SWAT", "MATLAB", "Python（NumPy/SciPy）", "水文测验仪器", "HEC-HMS", "MIKE11", "MIKE21", "DRAINAGE", "SWMM", "RainFARM", "Python（xarray）", "R", "QGIS", "ArcGIS", "Surfer", "LaTeX", "Excel", "EndNote", "Git"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI", "万方", "Zenodo"),
 )

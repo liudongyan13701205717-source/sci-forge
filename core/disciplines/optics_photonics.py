@@ -1,4 +1,4 @@
-"""光学与光子学论文支持：光学系统设计、激光实验、光场表征。"""
+"""光学与光子学学科论文支持：光-物质相互作用、集成光子学与光子器件。"""
 
 from __future__ import annotations
 
@@ -6,43 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="optics_photonics",
-    aliases=("optics", "photonics", "laser", "光学", "光子学", "激光", "光通信"),
+    aliases=("optics_photonics", "光学与光子学", "光子学", "Optics & Photonics", "Photonics", "Integrated Photonics", "集成光子学", "Quantum Photonics", "量子光子学"),
     paper_types={
-        "research": ("abstract", "introduction", "principle/design", "methods（实验装置）",
-                     "results", "discussion", "conclusions", "references"),
-        "experiment": ("abstract", "introduction", "setup（光路图）", "characterization",
-                       "results", "uncertainty analysis", "references"),
-        "theory": ("abstract", "introduction", "formalism", "derivations", "numerical validation",
-                   "discussion", "references"),
+        "research": ("abstract", "introduction（引言）", "methodology（方法）", "results（结果）", "discussion（讨论）", "references"),
+        "case_study": ("abstract", "introduction", "case description（案例描述）", "analysis（分析）", "results（结果）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（理论综述）", "evidence synthesis（证据综合）", "future directions", "references"),
     },
-    citation_style="OSA/Optica style（编号）",
-    reporting_standards={
-        "setup": "光路图必须出现（元件型号/焦距/波长）；激光参数（功率/脉宽/重频）须列全",
-        "measurement": "探测器型号与带宽、噪声水平与积分时间须报告",
-        "uncertainty": "测量不确定度按 GUM 或 Monte Carlo 传播",
-        "simulation": "FDTD/FEM 网格收敛验证；材料光学常数来源（Palik/RefractiveIndex.info）",
-        "reproducibility": "样品制备与表征（SEM/AFM/XRD）参数给全",
-    },
-    conventions=(
-        "波长以 nm（可见/近红外）或 µm（中远红外）；单位在图轴注明",
-        "光路图元件用标准符号；偏振态给庞加莱球或琼斯矢量",
-        "光谱图给分辨率与积分时间；效率给绝对值与测量方法",
-        "无量纲数（菲涅耳数/光学厚度）定义首次出现处给出",
-    ),
-    key_venues=(
-        "Optica",
-        "Nature Photonics",
-        "Light: Science & Applications",
-        "Optics Letters",
-        "Physical Review Applied",
-    ),
-    units_and_formulas_notes=(
-        "功率 mW/W；能量密度 mJ/cm²；强度 W/cm²（注明峰值/平均）",
-        "损耗 dB；品质因数 Q=λ/Δλ；消光比 dB",
-    ),
+    citation_style="IEEE",
+    reporting_standards={"PREPRINT": "arXiv 预印本声明", "DATA_AVAIL": "器件结构/版图/代码可复现", "SUPPLEMENT": "补充材料（S 参数、光斑图）完整"},
+    conventions=("SI 单位制与符号体系严格一致", "波导模式用 TE/TM 与模式号标识", "损耗单位统一为 dB/cm 或 dB/m", "器件 S 参数与透射谱按标准格式给出", "实验平台图完整标注元件与波长"),
+    key_venues=("Nature Photonics", "Optica", "Optics Express", "Light: Science & Applications", "Photonics Research"),
+    units_and_formulas_notes=("长度 μm、波长 nm、波长周期 Λ、群速度 vg = c/n_g", "群折射率 n_g = n + λ dn/dλ", "波导损耗 α = (10/L) log₁₀(P₀/P)", "耦合损耗 η = P_out / P_in"),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("LaTeX", "COMSOL", "MATLAB", "Zemax", "光谱仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Synopsys Zemax OpticStudio", "Synopsys Code V", "MATLAB", "Python", "NumPy/SciPy", "Photon Engineering FRED", "Ansys Lumerical", "VPIphotonics", "RSoft BeamPROP", "MEEP", "Synopsys OptiLayer", "LaserSoft", "COMSOL Multiphysics", "Ansys OptiSystem", "LITE MODELS", "LaTeX", "Microsoft Excel", "OriginLab", "ImageJ/Fiji", "SageMath"),
     category="理学",
-    databases=("Crossref", "OpenAlex", "arXiv", "CNKI", "万方"),
+    databases=("OpenAlex", "Crossref", "arXiv", "IEEE Xplore"),
 )

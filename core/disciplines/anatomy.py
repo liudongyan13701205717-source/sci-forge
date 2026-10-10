@@ -64,18 +64,13 @@ DISCIPLINE = Discipline(
         "数值结果给出均值 ± SD 与范围",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=(
-        "三维显微解剖工作站",
-        "光学显微镜",
-        "断层解剖标本数字化平台",
-        "游标卡尺",
-        "3D Slicer",
-    ),
-    category="理学",
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Complete Anatomy", "Visible Body", "Anatomy Monster", "Kenhub App", "3D BOD Anatomy Suite", "Anatomage 3D System", "Vesalius3D", "ITK-SNAP", "3D Slicer", "Imaris", "Amira", "ImageJ / Fiji", "Nikon Ti2", "Zeiss LSM 980", "Leica SP8", "Zeiss CrossBeam", "Bruker SkyScan", "MorphoJ", "tpsDig", "Landmark3D", "CtAn", "Blender", "Meshlab", "Cloud Compare", "R (geomorph)", "SPSS"),
+    category="医学",
     databases=(
         "PubMed",
         "OpenAlex",
         "Crossref",
+        "FIP Terminologia Anatomica",
     ),
 )

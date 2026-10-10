@@ -6,70 +6,73 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="paleontology",
-    aliases=("paleontology", "古生物学", "化石", "古生态"),
+    aliases=(
+        "paleontology",
+        "古生物学",
+        "Paleontology",
+        "化石生物学",
+        "化石",
+        "古生态",
+        "Paleobiology",
+        "化石研究",
+        "paleobiology"
+    ),
     paper_types={
         "research": (
             "abstract",
-            "introduction（背景、动机与问题）",
-            "geological setting（地质背景）",
-            "materials and methods（材料与方法）",
+            "introduction（背景与问题）",
+            "methodology（材料与方法）",
             "results（结果）",
             "discussion（讨论）",
-            "references",
+            "references"
         ),
-        "taxonomic_description": (
+        "case_study": (
             "abstract",
             "introduction",
-            "systematic paleontology（系统古生物学）",
-            "description（描述）",
-            "comparison（比较）",
-            "discussion（讨论）",
-            "references",
-        ),
-        "phylogenetic_study": (
-            "abstract",
-            "introduction",
-            "taxon sampling（分类单元取样）",
-            "character matrix（性状矩阵）",
-            "analysis（系统发育分析）",
+            "case description（标本案例描述）",
+            "analysis（分析）",
             "results（结果）",
-            "discussion（讨论）",
-            "references",
+            "discussion",
+            "references"
+        ),
+        "review": (
+            "abstract",
+            "introduction",
+            "theoretical overview（理论综述）",
+            "evidence synthesis（证据综合）",
+            "future directions",
+            "references"
         ),
     },
     citation_style="Paleontological Society 样式（作者-年份；J Paleontol 遵循古生物学会规范）",
     reporting_standards={
-        "taxonomic": "分类描述遵循国际命名法规（ICZN/ICBN）",
-        "phylogenetic": "系统发育研究遵循矩阵与分析报告规范",
-        "observational": "观察研究遵循化石描述报告规范",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-        "data_descriptor": "数据论文遵循形态数据规范",
+        "k1": "新属新种描述遵循国际命名法规（ICZN/ICBN/ICNP）",
+        "k2": "系统发育研究遵循矩阵与分析报告规范",
+        "k3": "数据论文遵循形态与化石记录数据规范，综述遵循 PRISMA"
     },
     conventions=(
-        "化石产地与地层须报告",
-        "标本编号与存放机构须注明",
-        "命名须符合命名法规",
-        "系统发育分析参数须说明",
-        "地层年代须注明定年方法",
+        "化石产地、层位与标本编号须完整著录",
+        "标本存放机构与馆藏号须注明",
+        "系统发育分析须报告矩阵、权重、模型与统计支持值",
+        "地层年代须注明定年方法与国际年代地层表对应关系",
+        "测量数据须报告样品数、均值、标准差与样本量"
     ),
     key_venues=(
         "Journal of Paleontology",
         "Paleobiology",
         "Palaeontology",
         "Journal of Vertebrate Paleontology",
-        "Palaeogeography, Palaeoclimatology, Palaeoecology",
-        "Proceedings of the Royal Society B（古生物方向）",
+        "Palaeogeography, Palaeoclimatology, Palaeoecology"
     ),
     units_and_formulas_notes=(
-        "尺寸用 mm 或 cm；年代用 Ma",
-        "地层用阶/统并注明国际年代地层表",
-        "公式用 amsmath；分支图与矩阵须编号",
-        "数值结果给出均值 ± 标准差与样本量",
-        "坐标用经纬度并注明基准",
+        "尺寸以 mm 或 cm 报告，年代以 Ma 报告",
+        "地层年代须对应国际年代地层表并注明基准",
+        "坐标须注明经纬度与基准（如 WGS84）",
+        "系统发育支持值须报告（aLRT/UF-bootstrap/后验概率）"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("GIS", "CT 扫描", "古生物标本数字化", "MATLAB"),
-    category="历史学",
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("PhyloSuite", "T-REX", "MESQUITE", "PAUP*", "MrBayes", "RAxML", "MEGA", "MorphoTools", "geomorph", "MorphoDig", "TimeTree", "PaleobioDB", "GeoMap.org", "GPlates", "CT 扫描（微焦点 X 射线）", "3D 建模（Meshlab）", "QGIS", "R", "EndNote", "Microsoft Excel"),
+    category="理学",
     databases=("OpenAlex", "Crossref", "CNKI"),
 )

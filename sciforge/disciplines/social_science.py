@@ -66,8 +66,8 @@ DISCIPLINE = Discipline(
         "效应量与显著性并列报告，避免只报 p 值",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("Stata", "R", "Python", "SPSS", "NVivo"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("Stata", "R", "RStudio", "Python", "SPSS", "NVivo", "MAXQDA", "ATLAS.ti", "Dedoose", "Transana", "Mplus", "AMOS", "JASP", "jamovi", "Qualtrics", "SurveyMonkey", "Zotero", "Mendeley", "Tableau", "Gephi"),
     category="法学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

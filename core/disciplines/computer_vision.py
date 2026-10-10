@@ -6,12 +6,16 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="computer_vision",
-    aliases=("computer_vision", "计算机视觉", "CV", "图像理解", "视觉计算"),
+    aliases=(
+        "computer vision", "计算机视觉", "CV", "图像理解", "视觉计算",
+        "image understanding", "video understanding", "目标检测",
+        "object detection", "语义分割", "semantic segmentation",
+    ),
     paper_types={
         "research": (
             "abstract",
             "introduction（背景、动机与问题）",
-            "related work（相关工作）",
+            "related work",
             "method（方法）",
             "experiments（实验）",
             "conclusion（结论）",
@@ -57,6 +61,7 @@ DISCIPLINE = Discipline(
         "IEEE Transactions on Pattern Analysis and Machine Intelligence",
         "International Journal of Computer Vision",
         "IEEE Transactions on Image Processing",
+        "NeurIPS",
     ),
     units_and_formulas_notes=(
         "损失用 L；学习率用 η；IoU 阈值用 τ",
@@ -66,8 +71,8 @@ DISCIPLINE = Discipline(
         "分辨率用像素（px）；FLOPs 用 G",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("OpenCV", "PyTorch", "YOLO", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("OpenCV", "PyTorch", "TensorFlow", "YOLO", "Detectron2", "MMDetection", "MMsegmentation", "SAM (Segment Anything)", "CLIP", "FAISS", "RAFT", "PaddlePaddle", "Caffe2", "Scikit-image", "Albumentations", "LabelMe", "CVAT", "TorchMetrics", "Transformers (Hugging Face)", "Weights & Biases"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "HuggingFace", "Zenodo"),
 )

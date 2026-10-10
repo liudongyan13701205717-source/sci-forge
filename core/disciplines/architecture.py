@@ -6,8 +6,17 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="architecture",
-    aliases=("architecture", "building", "built environment", "建筑学",
-             "建筑", "城市设计", "urban design"),
+    aliases=(
+        "architecture",
+        "building",
+        "built environment",
+        "建筑学",
+        "建筑",
+        "建筑设计",
+        "architectural design",
+        "urban design",
+        "城市设计",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "context and literature", "methodology",
                      "case analysis", "findings", "design implications", "references"),
@@ -35,14 +44,17 @@ DISCIPLINE = Discipline(
         "Automation in Construction",
         "Journal of Architectural Education",
         "Frontiers of Architectural Research",
+        "Architectural Design",
     ),
     units_and_formulas_notes=(
         "能耗 kWh/m²·yr；照度 lux；声压级 dB(A)；温度 °C",
         "窗墙比 WWR %；体形系数；热阻 R 值或 U 值 W/m²·K",
+        "PMV/PPD 无量纲；UTCI °C",
+        "DGP %；采光因子 CF %；显色指数 Ra",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "艺术作品"),
-    tools=("AutoCAD", "Revit", "Rhino", "SketchUp"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("AutoCAD", "Revit", "Rhino", "Grasshopper", "SketchUp", "CityEngine", "3ds Max", "V-Ray", "Lumion", "Twinmotion", "Enscape", "DYNAMO", "Ladybug Tools", "EnergyPlus", "IES VE", "OpenSCAD", "FreeCAD", "Chief Architect", "Rhino.Compute", "D5 Render"),
     category="工学",
-    databases=("OpenAlex", "Crossref", "CNKI"),
+    databases=("OpenAlex", "Crossref", "CNKI", "DOAJ"),
 )

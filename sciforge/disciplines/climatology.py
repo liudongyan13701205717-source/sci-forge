@@ -5,8 +5,12 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="climatology",
-    aliases=("climate", "meteorology", "oceanography", "气候", "大气科学",
-             "海洋", "weather", "气候模拟", "extreme weather"),
+    aliases=(
+        "climate", "meteorology", "oceanography", "气候", "大气科学",
+        "海洋", "weather", "气候模拟", "extreme weather",
+        "Climatology", "气候学", "Climate Study", "气候分析",
+        "Weather and Climate", "天气与气候",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "data and methods", "results", "discussion", "conclusions", "references"),
         "simulation": ("abstract", "introduction", "model setup", "experiments", "results", "analysis", "references"),
@@ -33,15 +37,19 @@ DISCIPLINE = Discipline(
         "Geophysical Research Letters",
         "Climate Dynamics",
         "Bulletin of the American Meteorological Society",
+        "International Journal of Climatology",
+        "Climate Research",
+        "Journal of Geophysical Research",
     ),
     units_and_formulas_notes=(
         "温度 K 或 °C；降水 mm/day；气压 hPa",
         "辐射 W/m²；热含量 J；海平面 mm",
         "时间尺度却给年年标准差或趋势斜率/显著性",
+        "距离平基准期须声明（如 1991–2020），并给出面积权重",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("Python (NumPy/SciPy)", "R", "MATLAB", "NCL", "GrADS"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy/SciPy)", "R", "MATLAB", "NCL (NCAR Command Language)", "GrADS", "RStudio", "QGIS", "ArcGIS Pro", "Google Earth Engine", "WRF", "ECMWF", "Copernicus Climate Data Store", "Climate Data Online", "Matplotlib", "Plotly", "ERA5", "MetPy", "xarray", "CDO", "cf-xarray"),
     category="理学",
     databases=("OpenAlex", "Crossref", "CNKI", "Zenodo", "Semantic Scholar"),
 )

@@ -6,8 +6,10 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="mining_engineering",
-    aliases=("mining_engineering", "采矿工程", "采矿", "选矿", "岩石力学",
-             "矿山安全"),
+    aliases=(
+        "mining_engineering", "采矿工程", "采矿", "选矿", "岩石力学",
+        "矿山安全", "mining engineering", "rock mechanics", "矿山工程"
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -17,21 +19,21 @@ DISCIPLINE = Discipline(
             "discussion（机理与工程意义）",
             "references",
         ),
-        "mine_design": (
+        "case_study": (
             "abstract",
             "introduction",
-            "geology and resources（地质与资源）",
-            "mining method selection（采矿方法选择）",
-            "design（开拓/采准/回采设计）",
-            "economic analysis（经济分析）",
+            "case description（矿山工程案例）",
+            "analysis（采矿方法与支护）",
+            "results（工程性能与安全）",
+            "discussion",
             "references",
         ),
         "review": (
             "abstract",
             "introduction",
-            "scope and method（综述范围与方法）",
-            "state of the art（现状分类）",
-            "gaps and outlook（缺口与展望）",
+            "theoretical overview（采矿工程理论）",
+            "evidence synthesis（采矿技术综述）",
+            "future directions",
             "references",
         ),
     },
@@ -40,8 +42,6 @@ DISCIPLINE = Discipline(
         "experimental": "岩石力学实验遵循 ISRM 建议方法",
         "geotechnical": "岩土工程遵循 ISRM/ISSMGE 规范",
         "safety": "矿山安全遵循 MSHA 报告规范",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-        "economic_evaluation": "经济评价遵循 SME 经济评价规范",
     },
     conventions=(
         "矿体产状与储量分级（JORC/储量规范）须注明",
@@ -55,7 +55,6 @@ DISCIPLINE = Discipline(
         "International Journal of Mining Science and Technology",
         "Minerals Engineering",
         "International Journal of Rock Mechanics and Mining Sciences",
-        "Journal of the Southern African Institute of Mining and Metallurgy",
         "Mining, Metallurgy & Exploration",
     ),
     units_and_formulas_notes=(
@@ -63,11 +62,10 @@ DISCIPLINE = Discipline(
         "公式用 amsmath；强度准则与稳定性方程须编号",
         "显示公式仅在被引用时编号；行内公式避免复杂分式",
         "数值结果给出均值 ± 不确定度与样本量",
-        "储量用 Mt；回收率用 %",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("ANSYS", "3D MineDesign", "Python", "FLAC3D"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("ANSYS", "FLAC3D", "3D MineDesign", "Python", "MATLAB", "UDEC", "RS3 (Rock Sciences 3D)", "Dips (节理分析)", "MicMAC (三维建模)", "PitSlice", "Leapfrog Geology", "Surpac", "Datamine", "VentSim", "MinerSim", "岩石力学试验系统", "三维激光扫描仪", "无人机探测", "矿山压力监测系统", "R (数据处理)"),
     category="工学",
-    databases=("OpenAlex", "Crossref", "Zenodo", "CNKI"),
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

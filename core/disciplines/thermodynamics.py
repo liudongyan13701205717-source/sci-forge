@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "数值结果给出有效数字与单位，避免混用 kcal/kJ",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("MATLAB", "Python (Cantera)", "Python (NumPy, SciPy)"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Python (Cantera)", "Python (NumPy, SciPy)", "REFPROP", "CoolProp", "CyclePad（循环模拟）", "Aspen Plus", "HYSYS", "EES", "Cycle Tempo（CarnotCycle）", "ANSYS Fluent", "ANSYS CFX", "OpenFOAM", "CFD-Post", "NIST WebBook", "Thermocouple 数据获取", "MATLAB Thermodynamics Toolbox", "Mathematica", "LaTeX", "Origin"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

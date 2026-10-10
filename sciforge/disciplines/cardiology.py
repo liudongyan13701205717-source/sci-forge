@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "生存分析给出 HR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("心电监护仪", "超声心动图仪", "冠脉造影系统", "心脏 MRI 扫描仪", "SPSS", "R"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("GE 12 导联心电图机", "Philips 12L 心电监护", "GE Vivid 7 超声心动图", "Philips Epic 超声心动图", "西门子 Insignia 心脏 MRI", "GE Revolution CT 冠脉 CT", "Philips 冠脉造影系统", "雅培 核素心肌显像", "雅培 ICD 植入式除颤器", "美敦力 起搏器", "Hemodynamic 血流动力学监测", "SpO2 血氧仪", "血气分析仪", "心电事件记录器", "Holter 动态心电图", "冠脉 OCT 光断层", "SPSS", "R", "Python", "Excel"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC", "Semantic Scholar"),
 )

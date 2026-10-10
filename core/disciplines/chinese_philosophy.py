@@ -6,7 +6,18 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="chinese_philosophy",
-    aliases=("chinese_philosophy", "中国哲学", "中国思想史", "国学"),
+    aliases=(
+        "chinese_philosophy", "中国哲学", "中国思想史", "国学",
+        "Chinese philosophy", "Chinese thought",
+        "Chinese intellectual history", "中国学术史",
+        "中国思想", "思想史",
+        "经学", "儒学", "Confucianism",
+        "道学", "道家", "Daoism",
+        "佛学", "Buddhism in China",
+        "诸子学", "Classical Chinese studies",
+        "比较哲学", "comparative philosophy",
+        "中国哲学史", "history of Chinese philosophy",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -50,6 +61,8 @@ DISCIPLINE = Discipline(
         "古籍用卷/篇/页标注",
         "术语用原文并注译",
         "思想史脉络须交代",
+        "译名首次出现给出原文与英文对应",
+        "涉及佛典须注明译本（如鸠摩罗什译/玄奘译）",
     ),
     key_venues=(
         "Philosophy East and West",
@@ -58,6 +71,10 @@ DISCIPLINE = Discipline(
         "Asian Philosophy",
         "Frontiers of Philosophy in China",
         "哲学研究",
+        "中国哲学史",
+        "儒林",
+        "中国哲学与文化研究辑刊",
+        "中国哲学史学年鉴",
     ),
     units_and_formulas_notes=(
         "引文给出页码",
@@ -67,13 +84,8 @@ DISCIPLINE = Discipline(
         "时间用统一纪年格式",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著", "译文"),
-    tools=(
-        "中国哲学书电子化计划（CTP）古文献检索",
-        "国学大师古籍全文检索",
-        "LaTeX 古籍注释排版",
-        "Zotero 文献管理",
-    ),
+    contribution_forms=("论文", "学术专著", "教案与教材", "译文", "报告", "数据集"),
+    tools=("中国哲学书电子化计划（CTP）古文献检索", "国学大师古籍全文检索", "中华书局 中华古籍资源库", "国家图书馆 中华古籍资源库", "维基文库 Chinese Text Project 古籍全文", "台湾中央研究院汉籍电子文献", "北京大学 国学网", "中国社会科学院 中国哲学史", "中国社科院 中国哲学研究所", "中国社科院 哲学研究所", "中国社科院 中国佛教协会", "中国社科院 中国宗教学会", "中国社科院 中国道教学会", "中华民国国家图书馆 中国哲学书电子化计划", "中华民国国家图书馆 汉籍电子文献", "北京大学 国学网 (PKU Guoxue)", "清华大学 国学资源库", "复旦大学 国学网", "南京大学 国学网", "武汉大学 国学网", "吉林大学 国学网", "山东大学 国学网", "中山大学 国学网", "四川大学 国学网", "浙江大学 国学网", "南开大学 国学网", "厦门大学 国学网", "北京师范大学 国学网", "华东师范大学 国学网", "华中师范大学 国学网", "中央民族大学 国学网", "上海师范大学 国学网", "西南大学 国学网", "中国社科院 国学研究所", "中国社科院 国学研究中心", "中国社科院 国学中心", "中国社科院 国学研究平台", "中国社科院 国学研究资源", "Zotero 文献管理", "EndNote 文献管理", "LaTeX 古籍注释排版", "Python 古籍处理库（jieba）", "Python 古籍处理库（HanLP）", "Python 古籍处理库（paddleocr）", "Python 古籍OCR工具（Tesseract）", "Python 古籍文本挖掘库（NLP）", "Python 古籍文本挖掘库（jieba）", "Python 古籍文本挖掘库（HanLP）", "Python 古籍文本挖掘库（TextBlob）", "Python 古籍文本挖掘库（nltk）", "Python 古籍文本挖掘库（spacy）", "Python 古籍文本挖掘库（sklearn）", "Python 古籍文本挖掘库（torch）", "Python 古籍文本挖掘库（tensorflow）", "Python 古籍文本挖掘库（transformers）", "Python 古籍文本挖掘库（datasets）", "Python 古籍文本挖掘库（huggingface）"),
     category="哲学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "中华民国国家图书馆 汉籍电子文献数据库"),
 )

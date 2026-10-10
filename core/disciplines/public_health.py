@@ -82,8 +82,8 @@ DISCIPLINE = Discipline(
         "时间序列注明病例定义变更对趋势比较的影响",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("R", "SPSS", "ArcGIS", "Epi Info"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("R", "RStudio", "SPSS", "Stata", "SAS", "SAS Enterprise Guide", "ArcGIS", "QGIS", "Epi Info", "OpenEpi", "OpenClinica", "REDCap", "EpiTools", "JMP", "Minitab", "R Commander", "Python（pandas/statsmodels）", "Tableau", "SAS Visual Analytics", "MATLAB"),
     category="医学",
     databases=("PubMed", "OpenAlex", "CNKI"),
 )

@@ -1,4 +1,4 @@
-"""和平与冲突研究学科论文支持：冲突/和平/调解体裁、APA 引用样式与社科统计记法注记。"""
+"""和平与冲突研究学科论文支持：社会科学/国际关系体裁、APA 引用样式与冲突分析记法注记。"""
 
 from __future__ import annotations
 
@@ -6,70 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="peace_conflict_studies",
-    aliases=("peace_conflict_studies", "和平与冲突研究", "和平研究", "冲突研究"),
+    aliases=("peace conflict studies", "和平冲突研究", "和平与冲突", "和平学", "conflict studies", "冲突研究", "国际关系", "国际政治", "international relations"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与问题）",
-            "theory（理论框架）",
-            "hypotheses（假设）",
-            "data and methods（数据与方法）",
-            "results（结果）",
-            "discussion（讨论）",
-            "references",
-        ),
-        "case_study": (
-            "abstract",
-            "introduction",
-            "case selection（案例选择）",
-            "analysis（分析）",
-            "findings（发现）",
-            "discussion（讨论）",
-            "references",
-        ),
-        "policy_analysis": (
-            "abstract",
-            "introduction",
-            "conflict context（冲突背景）",
-            "analysis（分析）",
-            "recommendations（建议）",
-            "references",
-        ),
+        "research": ("abstract", "introduction（冲突背景与研究问题）", "methodology（数据/案例/分析框架）", "results（冲突演化与影响）", "discussion（和平建构启示）", "references"),
+        "case_study": ("abstract", "introduction", "case description（冲突当事方与时间线）", "analysis（动因、动力学与和谈）", "results（事件结果）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（和平学理论流派）", "evidence synthesis（干预与结果证据）", "future directions", "references"),
     },
-    citation_style="APA 样式（作者-年份；Journal of Conflict Resolution 遵循 SAGE/APA 规范）",
-    reporting_standards={
-        "quantitative": "定量研究遵循冲突数据报告规范",
-        "case_study": "案例研究遵循案例研究报告规范",
-        "qualitative": "质性研究遵循 COREQ/SRQR 报告规范",
-        "survey": "调查研究遵循 AAPOR 报告规范",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-    },
-    conventions=(
-        "冲突数据来源须注明",
-        "案例选择标准须说明",
-        "理论框架与假设须明确",
-        "伦理与安全须交代",
-        "局限与推广性须讨论",
-    ),
-    key_venues=(
-        "Journal of Conflict Resolution",
-        "Journal of Peace Research",
-        "Conflict Management and Peace Science",
-        "International Peacekeeping",
-        "Peace & Change",
-        "Journal of Peace Education",
-    ),
-    units_and_formulas_notes=(
-        "统计量给出 M/SD/SE/CI",
-        "冲突事件用频数与基数",
-        "回归系数给出标准误与显著性",
-        "样本量须报告",
-        "时间用统一格式",
-    ),
+    citation_style="APA 样式（国际关系/和平学主流；报告与政策文件按官方文号引用）",
+    reporting_standards={"casemethod": "案例研究须遵循 Yin/Seale 案例研究规范", "data": "冲突事件数据（UCDP/ACLED/Warpeace）须注明来源与编码规则", "ethics": "田野研究伦理审查与受访者知情同意须声明", "statistical": "定量分析须报告统计假设、稳健性与效应量"},
+    conventions=("冲突当事方按国际惯例（UN/UNHRC）命名", "时间线使用 ISO 8601", "术语（结构性暴力、直接暴力、建设和平）首次出现给出定义", "引用政府/NGO 报告注明日期与版本", "涉及敏感群体时须脱敏与匿名处理"),
+    key_venues=("International Studies Quarterly", "International Studies Review", "Peace & Change", "Journal of Peace Research", "Conflict, Security & Development", "Global Society"),
+    units_and_formulas_notes=("冲突强度按 UCDP 或 PRIO 分级定义须明确", "伤亡数据按来源与口径注明来源（Killed/Injured）", "地理坐标用经纬度（WGS84）与投影方法", "统计效应量用 Cohen's d/OR 与 95% CI"),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=("NVivo（质性与访谈编码）", "Stata（事件数据与生存分析）", "R（统计与可视化）", "Python（Pandas 冲突事件数据处理）",
-           "SPSS"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("UCDP/PRIO 数据集", "Warpeace 数据集", "Uppsala Conflict Data", "GeoBound 地理编码", "Gephi 网络分析", "NodeXL 网络分析", "ArcGIS 地理信息系统", "QGIS 地理信息系统", "NVivo 质性分析", "Atlas.ti 质性分析", "Lexicoder 主题编码", "Dedoose 质性分析", "SPSS 统计分析", "R (crayon, sf) 统计", "Stata 统计分析", "Google Earth Pro", "World Bank Data API", "Humanitarian Data Exchange", "GeoPandas（地理空间分析）", "OCHA 人道主义数据平台"),
     category="法学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
+    databases=("OpenAlex", "Crossref", "CNKI", "ACLED 冲突事件数据库", "NATIS 难民数据库"),
 )

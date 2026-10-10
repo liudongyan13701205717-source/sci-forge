@@ -6,8 +6,18 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="cryptography",
-    aliases=("cryptography", "密码学", "密码", "密码分析", "crypto",
-             "安全协议", "security proofs"),
+    aliases=(
+        "cryptography",
+        "密码学",
+        "密码分析",
+        "密码体制",
+        "密码协议",
+        "crypto",
+        "security proofs",
+        "安全证明",
+        "cryptanalysis",
+        "密码分析",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -68,8 +78,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Python", "SageMath", "OpenSSL (研究用)", "ProVerif", "C 密码库"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("OpenSSL", "GnuPG", "SageMath", "Botan", "libsodium", "NaCl (tweetnacl)", "Relic (RELIC toolkit)", "MIRACL", "liboqs (Open Quantum Safe)", "ProVerif", "Tamarin Prover", "Verificator", "Certifaude", "AVISPA", "hashcat", "John the Ripper", "Aircrack-ng", "Wireshark", "NIST CAVP (Cryptographic Algorithm Validation Program)", "F5 BIG-IP", "OpenSSL Speed", "CRYPTOGRAPHY (Python cryptography library)"),
     category="理学",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    databases=("arXiv", "OpenAlex", "Crossref", "DBLP", "Google Patents"),
 )

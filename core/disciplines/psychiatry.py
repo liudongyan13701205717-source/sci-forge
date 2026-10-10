@@ -1,4 +1,4 @@
-"""精神病学学科论文支持：精神临床/流行病体裁、APA 引用样式与精神医学记法注记。"""
+"""精神病学学科论文支持：精神临床/流行病学体裁、CONSORT 报告规范与精神医学注记。"""
 
 from __future__ import annotations
 
@@ -6,34 +6,45 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="psychiatry",
-    aliases=("psychiatry", "精神病学", "精神医学", "临床心理学",
-             "clinical psychiatry", "精神科"),
+    aliases=(
+        "psychiatry",
+        "精神病学",
+        "精神医学",
+        "Psychiatry",
+        "Mental health",
+        "精神卫生",
+        "临床精神病学",
+        "精神科",
+        "Psychopharmacology",
+    ),
     paper_types={
         "research": (
             "abstract",
-            "introduction（背景、动机与精神问题）",
-            "methods（研究设计与人群）",
+            "introduction（背景、动机与问题）",
+            "methodology（研究设计与人群）",
             "results（量表与统计结果）",
-            "discussion（机理与临床意义）",
+            "discussion（机制与临床意义）",
             "references",
         ),
-        "clinical_trial": (
+        "case_study": (
             "abstract",
             "introduction",
-            "methods（随机化、盲法与统计）",
-            "results（疗效与安全性终点）",
-            "discussion（与既往试验对比）",
+            "case description（病例描述）",
+            "analysis（鉴别与诊断分析）",
+            "results（诊疗结果）",
+            "discussion",
             "references",
         ),
         "review": (
             "abstract",
             "introduction",
-            "main developments（按主题综述）",
-            "outlook",
+            "theoretical overview（病因与机制综述）",
+            "evidence synthesis（证据综合）",
+            "future directions",
             "references",
         ),
     },
-    citation_style="APA 样式（作者-年份；Am J Psychiatry 遵循 APA 规范）",
+    citation_style="APA 7（作者-年份；Am J Psychiatry 遵循 APA 规范）",
     reporting_standards={
         "randomized_trial": "RCT 报告遵循 CONSORT 声明",
         "observational": "观察性研究遵循 STROBE 声明",
@@ -64,8 +75,8 @@ DISCIPLINE = Discipline(
         "效应量与 95% CI 须报告",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("精神科评定量表系统", "SPSS", "R", "心理量表录入与计分软件", "结构化临床访谈（SCID）"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SCID-5", "MINI", "HAMD", "HAMA", "PANSS", "YMRS", "Y-BOC", "BPRS", "CGI", "MADRS", "SCL-90", "PHQ-9", "GAD-7", "AUDIT", "NIMH Repository", "SPSS", "R", "SAS", "fMRI 脑功能成像", "G*Power"),
     category="医学",
-    databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC", "Semantic Scholar"),
+    databases=("PubMed", "OpenAlex", "CNKI", "Europe PMC", "Semantic Scholar", "DrugBank"),
 )

@@ -64,14 +64,8 @@ DISCIPLINE = Discipline(
         "效应量给出 Cohen's d 或 η²",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "体成分分析仪（InBody）",
-        "心率与生理监测仪（Polar）",
-        "气体分析仪与代谢车",
-        "R 语言统计分析",
-        "G*Power 样本量估算",
-    ),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("体成分分析仪（InBody）", "心率与生理监测仪（Polar）", "气体分析仪与代谢车", "R 语言统计分析", "G*Power 样本量估算", "Catapult 惯性传感器", "Wahoo 功率计", "Kistler 测力台", "Vicon Motion Capture", "OptiTrack 动作捕捉", "Whoop 恢复监测", "Oura Ring 睡眠监测", "血乳酸分析仪 (Lactate Pro)", "等速测力仪 (Biodex)", "Surface EMG (Delsys)", "TrainingPeaks", "MATLAB", "SPSS", "GraphPad Prism", "Tableau 数据可视化"),
     category="教育学",
     databases=("CNKI", "万方", "OpenAlex", "PubMed"),
 )

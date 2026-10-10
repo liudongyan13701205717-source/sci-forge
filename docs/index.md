@@ -27,7 +27,7 @@ docs/
 ├── index.md         ← 你在这里：文档入口与导航
 ├── installation.md  ← 安装、extras、MCP 客户端注册、安装故障排查
 ├── quickstart.md    ← 从零到产出一篇文档的端到端流程
-├── mcp-tools.md     ← 65 个 MCP 工具 + 2 个资源，按线分组，含参数与行为
+├── mcp-tools.md     ← 75 个 MCP 工具 + 2 个资源，按线分组，含参数与行为
 ├── disciplines.md   ← 学科 registry：字段体系、查询 API、统计口径、扩编指引
 └── connectors.md    ← 46 个科学数据连接器 / 7 领域，逐库说明
 ```
@@ -38,19 +38,21 @@ docs/
 
 ## 六条能力线
 
-sci-forge 的 65 个工具按职责分成六条线。完整参数见 [MCP 工具清单](mcp-tools.md)。
+sci-forge 的 75 个工具按职责分成十条线。完整参数见 [MCP 工具清单](mcp-tools.md)。
 
 | 线 | 工具数 | 入口工具 | 解决的问题 |
 | --- | --- | --- | --- |
 | 复现 | 2 | `reproduce_paper` | 从一篇 PDF 到可运行的复现结果与交付物 |
 | 写作 | 2 | `write_section` | 按学科规范生成章节，并导出为 PDF / DOCX（LaTeX 源始终生成） |
 | 研究 | 3 | `ideate_paper` | 从选题到研究缺口、假设与实验计划 |
-| 科研 / 论文 | 35 | `research_plan` | 计划、综述、润色、引文、统计、代码关联 |
-| 评审核验 | 10（含 3 个别名） | `run_panel` | 模拟评审、主张核验、完整性门、Material Passport（fail-closed） |
+| 科研 / 论文 | 31 | `research_plan` | 计划、综述、润色、引文、统计、代码关联 |
+| 评审核验 | 19 | `run_panel` | 模拟评审、主张核验、完整性门、Material Passport（fail-closed） |
 | 交付 | 2 | `package_submission` | 投稿材料打包与清单 |
 | 科学数据 | 5 | `science_search` | 46 个公开科学数据库的检索与跨库联查 |
-| 期刊匹配与学科 | 3 | `journal_fit` / `list_disciplines` | 期刊匹配度评分与学科 registry 查询 |
-| **合计** | **65** | | |
+| 期刊匹配与学科 | 4 | `journal_fit` / `list_disciplines` | 期刊匹配度评分、选题去向推荐与学科 registry 查询 |
+| 报告规范 | 2 | `select_reporting_guidelines` | 按研究类型选报告规范（含 CONSORT/STROBE/PRISMA） |
+| 监测与分流 | 5 | `retraction_watch` | 撤稿监测、引用语境、证据强度评分与选题分流 |
+| **合计** | **75** | | |
 
 ---
 
@@ -72,7 +74,7 @@ sci-forge 的 65 个工具按职责分成六条线。完整参数见 [MCP 工具
 
 ### 3. 声明式学科知识
 
-`sciforge/disciplines/` 里的 261 门学科是**数据**不是逻辑。新增一门学科 = 新增一个模块文件，发现机制自动收录，无需改动 registry 代码。详见 [学科体系](disciplines.md)。
+`sciforge/disciplines/` 里的 1538 门学科是**数据**不是逻辑。新增一门学科 = 新增一个模块文件，发现机制自动收录，无需改动 registry 代码。详见 [学科体系](disciplines.md)。
 
 ---
 

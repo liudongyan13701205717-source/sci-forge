@@ -6,7 +6,7 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="sociology",
-    aliases=("sociology", "social science", "社会学", "社会分层", "社会网络"),
+    aliases=("sociology", "social science", "社会学", "社会分层", "社会网络", "社会政策", "人口社会学"),
     paper_types={
         "research": ("abstract", "introduction", "theory and hypotheses", "data and methods",
                      "results", "discussion", "conclusion", "references"),
@@ -27,6 +27,7 @@ DISCIPLINE = Discipline(
         "表格三线制；变量定义表必须出现",
         "机制解释给反事实推理；避免生态谬误",
         "社会网络图给节点/边定义与布局算法",
+        "效应量与解释力须并列报告",
     ),
     key_venues=(
         "American Sociological Review",
@@ -38,10 +39,12 @@ DISCIPLINE = Discipline(
     units_and_formulas_notes=(
         "效应量与解释力（R²）并列报告；对数几率给 odds ratio 解释",
         "网络指标（中心性/密度）注明计算定义",
+        "人口比例给出基准年与口径",
+        "抽样误差用设计效应（deff）校正",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=("Stata", "R", "Python", "NVivo", "SPSS"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("Stata", "R", "Python", "NVivo", "SPSS", "Excel", "Word", "PowerPoint", "QGIS", "Gephi", "NetworkX", "igraph", "Qualtrics", "SurveyMonkey", "Tableau", "Matplotlib", "Seaborn", "RStudio", "Anaconda", "LaTeX"),
     category="法学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref"),
 )

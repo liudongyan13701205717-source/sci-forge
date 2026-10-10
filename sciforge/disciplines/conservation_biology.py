@@ -6,9 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="conservation_biology",
-    aliases=("conservation biology", "保护生物学", "物种保护", "species conservation",
-             "保护规划", "conservation planning", "生物多样性保护", "biodiversity conservation",
-             "恢复生态学", "restoration ecology"),
+    aliases=(
+        "conservation biology", "保护生物学", "物种保护", "species conservation",
+        "保护规划", "conservation planning", "生物多样性保护", "biodiversity conservation",
+        "恢复生态学", "restoration ecology", "栖息地保护", "habitat conservation",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -56,23 +58,18 @@ DISCIPLINE = Discipline(
         "Global Ecology and Conservation",
         "Journal of Applied Ecology",
         "Frontiers in Ecology and the Environment",
+        "Animal Conservation",
     ),
     units_and_formulas_notes=(
-        "面积用 km^2/ha；密度用 只/km^2",
+        "面积用 km²/ha；密度用 只/km²",
         "种群增长率 λ 无量纲；r 用 年^-1",
         "公式用 amsmath；种群增长与灭绝风险公式须明确",
         "显示公式仅在被引用时编号；行内公式避免复杂分式",
         "数值结果给出置信区间与不确定性",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "GIS (QGIS/ArcGIS)",
-        "R (terra/sf)",
-        "遥感影像（Landsat/Sentinel）",
-        "种群生存力分析软件",
-        "MaxEnt 生态位建模软件",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("ArcGIS", "QGIS", "MaxEnt", "Marxan with Variables", "Zonation", "R (terra/sf)", "R (Bioclim)", "R (RPreserve)", "PRISM", "CLIMEX", "ClimSurfer", "Google Earth Engine", "Sentinel-2", "Landsat", "VORTEX (Population Viability Analysis)", "Tessera", "BioGeoBears", "PRINCE", "OpenLand", "C-Plan"),
     category="理学",
     databases=(
         "OpenAlex",
@@ -80,5 +77,6 @@ DISCIPLINE = Discipline(
         "Zenodo",
         "Crossref",
         "DOAJ",
+        "IUCN Red List",
     ),
 )

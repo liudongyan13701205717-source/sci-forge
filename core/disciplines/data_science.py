@@ -5,7 +5,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="data_science",
-    aliases=("data_science", "data_analytics", "数据科学", "数据分析"),
+    aliases=(
+        "data_science", "data_analytics", "数据科学", "数据分析",
+        "data mining", "数据挖掘", "机器学习", "machine learning",
+        "statistics", "统计学", "big data",
+    ),
     paper_types={
         "research": ("abstract", "introduction", "related work", "method", "experiments", "results", "discussion", "conclusions", "references"),
         "application": ("abstract", "introduction", "domain background", "data description", "methodology", "deployment", "results", "lessons learned", "conclusions", "references"),
@@ -32,6 +36,8 @@ DISCIPLINE = Discipline(
         "NeurIPS",
         "Journal of Machine Learning Research",
         "Data Mining and Knowledge Discovery",
+        "IEEE Transactions on Knowledge and Data Engineering",
+        "ACM Computing Surveys",
     ),
     units_and_formulas_notes=(
         "数据规模用 rows × columns；内存用 GB/TB",
@@ -40,8 +46,8 @@ DISCIPLINE = Discipline(
         "F1-score/Precision/Recall 用小数（三位有效数字）",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("Python (NumPy/pandas)", "R", "SQL", "Git"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Python (NumPy/pandas)", "R", "RStudio", "SQL", "Git", "Jupyter Notebook", "JupyterLab", "Tableau", "Power BI", "Looker", "Qlik Sense", "Apache Spark", "Dask", "scikit-learn", "TensorFlow", "PyTorch", "Keras", "XGBoost", "LightGBM", "H2O.ai", "Kaggle", "Google Colab", "Anaconda", "Docker", "Streamlit", "Plotly", "D3.js", "Matplotlib", "Seaborn", "Pandas-Profiler", "Great Expectations"),
     category="工学",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    databases=("arXiv", "OpenAlex", "Crossref", "Kaggle"),
 )

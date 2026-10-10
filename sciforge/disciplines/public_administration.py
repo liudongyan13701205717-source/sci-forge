@@ -68,9 +68,8 @@ DISCIPLINE = Discipline(
         "货币用统一币种并注明年份",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("SPSS", "Stata（面板与因果推断）", "NVivo（政策文本质性编码）", "R（统计与可视化）",
-           "Python（Pandas/Statsmodels）"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("SPSS", "Stata", "NVivo", "R", "Python（Pandas/Statsmodels）", "Excel", "Word", "PowerPoint", "QGIS", "ArcGIS", "Tableau", "Minitab", "JMP", "EViews", "MATLAB", "Qualtrics", "SurveyMonkey", "EndNote", "Zotero", "LaTeX"),
     category="管理学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

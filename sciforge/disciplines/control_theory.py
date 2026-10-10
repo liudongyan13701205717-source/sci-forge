@@ -68,8 +68,8 @@ DISCIPLINE = Discipline(
         "括号尺寸用 \\bigl \\bigr \\Bigl 系列而非手动放大",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("MATLAB", "Simulink", "Python", "Scilab"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Simulink", "MATLAB Control System Toolbox", "MATLAB Robust Control Toolbox", "Python (NumPy/SciPy)", "SciPy", "CASADi", "Pyomo", "CVXPY", "OpenOpt", "IPOPT", "OSQP", "Gurobi", "CPLEX", "JuMP (Julia)", "Mathematica", "Maple", "SageMath", "Octave/Scilab", "ROS", "ROS 2", "Gazebo", "MuJoCo", "Bullet", "PyBullet", "Coq", "Lean 4", "Isabelle/HOL", "LAFFLE", "Sturm", "Polynomial toolbox (MATLAB)"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref"),
 )

@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "图像定量注明采集参数（曝光、显微镜型号）保持组间一致",
     ),
     paper_capable=True,
-    contribution_forms=("论文",),
-    tools=("BLAST", "GraphPad Prism", "显微镜", "PCR 仪"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("BLAST", "Primer3", "SnapGene", "Benchling", "Geneious Prime", "Cytoscape", "Galaxy Project", "QIIME 2", "Fiji（ImageJ）", "CellProfiler", "FlowJo", "GraphPad Prism", "R", "Python（Scanpy）", "Thermo Fisher QuantStudio 5", "Bio-Rad CFX96", "Beckman Optima XPN", "Olympus IX73", "Zeiss LSM 980", "BD FACSCanto II", "Bio-Tek Cytation 3", "Illumina NovaSeq 6000", "Oxford Nanopore MinION", "Western Blot 系统（Bio-Rad ChemiDoc）", "Tissue Processing（Leica TP1020）"),
     category="理学",
-    databases=("PubMed", "Europe PMC", "bioRxiv", "PubChem"),
+    databases=("PubMed", "Europe PMC", "bioRxiv", "GEO", "SRA", "PubChem", "Zenodo"),
 )

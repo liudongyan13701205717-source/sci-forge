@@ -46,32 +46,24 @@ DISCIPLINE = Discipline(
         "形态测量术语与缩写（TL、SL、BW）统一",
         "行为观测定义（ethogram）须给出",
         "地理坐标与采集日期规范记录",
-        "新种描述遵循 ICZN 命名法规",
+        "新种描述遵循 ICZN 命名法规"
     ),
     key_venues=(
         "Journal of Zoology",
         "Zoological Journal of the Linnean Society",
         "Journal of Experimental Biology",
         "Animal Behaviour",
-        "Biological Journal of the Linnean Society",
-        "Zoomorphology",
+        "Biological Journal of the Linnean Society"
     ),
     units_and_formulas_notes=(
         "体长用 mm/cm；体重用 g",
         "温度用 °C；时间用 h/min",
         "公式用 amsmath；异速生长与行为指标公式须明确",
-        "显示公式仅在被引用时编号；行内公式避免复杂分式",
-        "数值结果给出均值 ± SD/SE 与样本量",
+        "数值结果给出均值 ± SD/SE 与样本量"
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "R (lme4)",
-        "Python (NumPy/SciPy)",
-        "野外 GPS 定位追踪器",
-        "体视显微镜",
-        "行为观测摄像系统",
-    ),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("R (lme4)", "Python (NumPy/SciPy)", "野外 GPS 定位追踪器", "体视显微镜", "行为观测摄像系统", "扫描电镜 (SEM)", "透射电镜 (TEM)", "PCR 扩增仪", "DNA 测序仪 (Illumina)", "MEGA (分子进化分析)", "BLAST (序列比对)", "MaxEnt (生态位模型)", "ArcGIS", "QGIS", "Flow Cytometer (流式细胞术)", "ELISA (酶联免疫)", "Western Blot (免疫印迹)", "Gel Electrophoresis (凝胶电泳)", "基因测序仪 (DNA Sequencer)", "分子标记 (SNP/microsatellite)"),
     category="理学",
     databases=(
         "PubMed",

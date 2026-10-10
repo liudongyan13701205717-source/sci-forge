@@ -1,4 +1,4 @@
-"""量子计算论文支持：算法与复杂度、硬件实验、误差分析。"""
+"""量子计算学科论文支持：量子算法、量子硬件与量子软件开发。"""
 
 from __future__ import annotations
 
@@ -6,44 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="quantum_computing",
-    aliases=("quantum computing", "quantum", "qubit", "量子计算", "量子信息",
-             "量子算法", "vqe", "qaoa"),
+    aliases=("quantum_computing", "量子计算", "quantum computation", "quantum software", "quantum algorithm", "quantum information", "量子算法", "quantum systems", "quantum hardware"),
     paper_types={
-        "algorithm": ("abstract", "introduction", "preliminaries", "algorithm description",
-                      "analysis（复杂度/资源估计）", "numerical experiments", "conclusion", "references"),
-        "hardware": ("abstract", "introduction", "device architecture", "control and calibration",
-                     "results（保真度）", "error analysis", "references"),
-        "theory": ("abstract", "introduction", "formalism", "theorems and proofs",
-                   "discussion", "open problems", "references"),
+        "research": ("abstract", "introduction（引言）", "methodology（方法）", "results（结果）", "discussion（讨论）", "references"),
+        "case_study": ("abstract", "introduction", "case description（案例描述）", "analysis（分析）", "results（结果）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（理论综述）", "evidence synthesis（证据综合）", "future directions", "references"),
     },
-    citation_style="REVTeX（APS）或 ACM",
-    reporting_standards={
-        "gates": "门保真度给 randomized benchmarking（RB）结果与误差棒；两比特门单独报告",
-        "device": "量子比特数、拓扑（heavy-hex/格点）、相干时间 T1/T2 须列全",
-        "simulation": "经典模拟给状态向量/张量网络方法与规模限制；随机种子固定",
-        "resources": "资源估计（T-count/T-depth/电路深度）注明假设（全连通/all-to-all）",
-        "noise": "噪声模型（去极化/退相位）与误差缓解方法（ZNE/PEC）须描述",
-    },
-    conventions=(
-        "狄拉克记号一致；密度矩阵 ρ 与纯态 |ψ⟩ 区分使用",
-        "量子线路图用标准门符号；测量基说明（计算基/泡利基）",
-        "保真度定义（态/门/过程）首次出现处说明",
-        "结果图给 shot 数与统计误差；暗计数与读出误差处理说明",
-    ),
-    key_venues=(
-        "Quantum",
-        "npj Quantum Information",
-        "Physical Review X",
-        "Physical Review A",
-        "PRX Quantum",
-    ),
-    units_and_formulas_notes=(
-        "相干时间 µs/ms；门时间 ns；保真度 %（附置信区间）",
-        "保极化/交叉熵基准（XEB）注明 circuit 参数",
-    ),
+    citation_style="APS",
+    reporting_standards={"k1": "量子电路使用 Qiskit 或 OpenQASM 2.0 规范", "k2": "基准测试报告含噪声模型与重复次数", "k3": "量子优势声明须列出对比经典基线"},
+    conventions=("量子电路使用 Dirac 符号", "门操作使用 |q⟩ 与 U 表记", "噪声模型与硬件平台须列出", "实验数据须包含重复采样次数", "算法复杂度以 O(n) 形式给出"),
+    key_venues=("Physical Review X", "Quantum", "IEEE Transactions on Quantum Engineering", "Nature Physics", "npj Quantum Information"),
+    units_and_formulas_notes=("量子比特数用 qubit 单位", "门保真度以百分比或小数报告", "运行时间以纳秒（ns）与微秒（μs）为单位", "相干时间以毫秒（ms）与微秒（μs）为单位"),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("Qiskit", "Cirq", "Python", "LaTeX"),
-    category="交叉学科",
-    databases=("arXiv", "OpenAlex", "Crossref"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Qiskit", "Cirq", "PennyLane", "QuTiP", "Q# SDK", "Azure Quantum", "AWS Braket", "IBM Qiskit Aer", "IBM Qiskit Metal", "Qiskit Pulse", "Qiskit Optimization", "Qiskit Runtime", "ProjectQ", "OpenQASM", "Rigetti Forest SDK", "IQM Quantum SDK", "QuEra Neutral Atom Platform", "Google Sycamore Hardware", "QuTech QuEra Emulator", "Quantum Inspire Software"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "CNKI"),
 )

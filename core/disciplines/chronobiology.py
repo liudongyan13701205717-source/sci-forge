@@ -63,13 +63,8 @@ DISCIPLINE = Discipline(
         "节律显著性给出 p 值与振幅置信区间",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=(
-        "睡眠与活动记录设备",
-        "生物节律数据分析工具（Cosinor）",
-        "光照干预装置（光照箱）",
-        "Python 时间序列分析",
-    ),
-    category="交叉学科",
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("ClockLab 节律分析仪", "Actogram Analyst", "Lima Clock 生物钟可视化", "Chronoclock", "Chronoscope", "Actiware Activity/Rest Analysis", "Oral T (Oral T Sleep Monitor)", "Oral C (Oral T Corp)", "Ambulatory Blood Pressure Monitor (ABPM)", "Actigraphy 腕带式活动记录仪（ActiGraph GT9X）", "ActiGraph wGT9X Link", "Axivity AX3/AX6", "Bioniq iButton", "Luxmeter (照度计)", "Circadian Lighting System (Light Therapeutics)", "Sensotronics 2008", "Luminex 200/300 (褪黑素/皮质醇 ELISA)", "Bio-Techne Enzyme-Linked Immunosorbent Assay", "Enzyme Linked Immunosorbent Assay (ELISA)", "Real-time PCR (Bio-Rad CFX96)", "QuantStudio 5 (Applied Biosystems)", "Thermal Cycler (Mettler TOPTec)", "Western Blot (Bio-Rad ChemiDoc)", "Flow Cytometer (BD FACSCanto II)", "qPCR 引物设计", "R 时间序列分析", "Python (NumPy/SciPy/Chronobiology)", "Chronos (时间序列工具)", "cosinor R 包", "cosinor_4", "cosinor_5", "cosinor_6", "Rhythm", "JChrono", "ChronoS", "Chronos (Google Research)", "Chronos (ChronoStats)", "ChronoStats", "TimeGazer", "TimeGazer (Spectral Analysis)", "SpectrAnalysis Rhythm R 包", "Spectral Density (Welch's method)", "Fast Fourier Transform (FFT)", "Short-Time Fourier Transform", "MATLAB Signal Processing Toolbox", "OriginLab", "GraphPad Prism", "IBM SPSS Statistics", "SAS (SAS Institute)", "Statistica", "GEO (NCBI Gene Expression Omnibus)", "Metaboanalyst", "Molecular Modeler", "PyMOL", "UCSF ChimeraX", "ChimeraX Volume Analysis"),
+    category="理学",
     databases=("PubMed", "OpenAlex", "Crossref", "GEO"),
 )

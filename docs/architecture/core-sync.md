@@ -42,7 +42,7 @@ reproduce/  research/  review/  science/  venue/  write/
 
 | 文件 | 排除理由 |
 | --- | --- |
-| `sciforge/server.py` | MCP server 传输层入口（FastMCP、65 个 `@mcp.tool`），仅源仓有意义 |
+| `sciforge/server.py` | MCP server 传输层入口（FastMCP、75 个 `@mcp.tool`），仅源仓有意义 |
 | `sciforge/cli.py` | `sci-forge` 命令入口（stdio / `--version` / `--help`），仅源仓有意义 |
 | `sciforge/__main__.py` | `python -m sciforge` 入口，仅源仓有意义 |
 | `sciforge/__init__.py` | 包级导出面，其绝对导入路径在桌面端不成立 |
@@ -137,6 +137,19 @@ python scripts/sync_core.py --check --json
 python scripts/sync_core.py --list-manifest
 ```
 
+### 默认路径推断
+
+不带 `--source` / `--target` 时，脚本按**自身所在位置**（而非当前工作目录）推断：
+
+| 脚本运行位置 | 判据 | 源 | 目标 |
+| --- | --- | --- | --- |
+| 源仓 `sciforge/scripts/` | `scripts/` 的上级存在包目录 `sciforge/` | `sciforge/sciforge` | `../sciforge-desktop/core` |
+| 消费方 `sciforge-desktop/scripts/` | 上级无包目录 | `../sciforge/sciforge` | 本仓 `core/` |
+
+该推断由 `tests/test_core_sync.py` 兜底：源仓布局下不带 `--target` 时必须打到
+桌面仓 `core/`，不得回落到源仓自己的 `core/` 镜像。
+CI 与非标准布局一律显式传绝对路径。
+
 显式指定路径（CI 与非标准布局用）：
 
 ```bash
@@ -149,9 +162,13 @@ python scripts/sync_core.py --check \
 
 | 码 | 含义 |
 | --- | --- |
-| `0` | 正常结束；`--check` 下表示两侧一致 |
-| `1` | `--check` 检出漂移 |
+| `0` | 正常结束；`--check` 下表示不存在「目标缺失」与「内容不一致」 |
+| `1` | `--check` 检出漂移（存在缺失或内容不一致的文件） |
 | `2` | 用法或环境错误（源根不存在、源与目标同路径、目标位于源内部等） |
+
+注意：`target-only` 孤儿（源侧重命名/删除后的残留）按设计只报告、不计漂移，
+因此退出码 `0` **不**代表目标侧没有多余文件。清理孤儿需人工执行，
+判定必须另取 JSON 报告的 `summary.target_only`，不能只凭退出码。
 
 ### 安全护栏
 
@@ -191,14 +208,14 @@ python scripts/sync_core.py --check \
 | --- | --- |
 | 源包核心目录数 | 12 |
 | 源包根层散文件（排除） | 4 |
-| `disciplines/` 学科注册表 | 261 门 |
-| `disciplines/` 目录下 `.py` 文件 | 264 个（多出的 3 个为 `__init__.py` 等包结构文件，非学科条目） |
+| `disciplines/` 学科注册表 | 1538 门 |
+| `disciplines/` 目录下 `.py` 文件 | 1541 个（多出的 3 个为 `__init__.py`、`base.py`、`contribution_forms.py`，非学科条目） |
 | `science/` 连接器 | 46 个 / 7 个领域 |
 | `research/` 目录下 `.py` 文件 | 29 个 |
-| 桌面端 `core/` 内容 | 仅 1 个 `__init__.py`，3 行 docstring |
-| 桌面端 `core/` 是否有可执行代码 | 无 |
+| 桌面端 `core/` 内容 | 与源仓 `core/` 内容逐字节一致（同一 MANIFEST 全量投影） |
+| 桌面端 `core/` 是否有可执行代码 | 有，`import core.disciplines` 等可正常导入 |
 
-`disciplines/` 的 264 与 261 是**两个不同口径**：前者是文件数，后者是 registry 条目数。
+`disciplines/` 的 1541 与 1538 是**两个不同口径**：前者是 `.py` 文件数，后者是 registry 条目数（差额 3 = `__init__.py`/`base.py`/`contribution_forms.py`）。
 本仓 README 记载 `list_by_category()` 使用子串匹配，`"理学"` 会连带命中 `"管理学"`，
 因此按门类统计时须用精确相等。本文件不对门类数量作断言。
 
@@ -244,7 +261,7 @@ python scripts/sync_core.py --check \
 在真正执行 `--apply` 之前，桌面端 `core/` 仅有 1 个 stub 文件，
 因此 CI 的 `--check` **必然报漂移并失败**：12 个目录下的源文件几乎全部为 `missing-in-target`，
 `core/__init__.py` 为一条 `content-differs`。总量为数百个文件量级
-（其中 `disciplines/` 单独贡献 264 个 `.py`；确切总数以脚本实际运行输出为准，本文不断言精确值）。
+（其中 `disciplines/` 单独贡献 1541 个 `.py`；确切总数以脚本实际运行输出为准，本文不断言精确值）。
 这是机制的**预期初始状态**，不是配置错误：CI 的作用正是让「桌面端还没投影」这件事可见。
 完成首次 `--apply` 后 CI 转绿。
 

@@ -67,8 +67,8 @@ DISCIPLINE = Discipline(
         "参数量用 B（十亿）；词表用 V",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("HuggingFace Transformers", "spaCy", "LANGCHAIN", "Python"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "译文", "报告", "数据集"),
+    tools=("HuggingFace Transformers", "spaCy", "PyTorch", "TensorFlow", "Stanza", "NLTK", "SentencePiece", "HuggingFace Tokenizers", "AllenNLP", "LangChain", "vLLM", "HuggingFace Datasets", "Weights & Biases", "Jupyter Notebook", "Python（NumPy/Pandas）", "scikit-learn", "OpenAI API", "Label Studio（标注工具）", "EleutherAI LM-eval", "GLUE/SuperGLUE 评测"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "HuggingFace", "Zenodo"),
 )

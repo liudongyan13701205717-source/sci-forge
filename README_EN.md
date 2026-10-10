@@ -6,8 +6,8 @@
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](./pyproject.toml)
-[![MCP Tools](https://img.shields.io/badge/MCP%20tools-65-green.svg)](./docs/mcp-tools.md)
-[![Disciplines](https://img.shields.io/badge/disciplines-261-green.svg)](./docs/disciplines.md)
+[![MCP Tools](https://img.shields.io/badge/MCP%20tools-75-green.svg)](./docs/mcp-tools.md)
+[![Disciplines](https://img.shields.io/badge/disciplines-1538-green.svg)](./docs/disciplines.md)
 [![Connectors](https://img.shields.io/badge/connectors-46-green.svg)](./docs/connectors.md)
 
 [中文](README.md) · [Installation](docs/installation.md) · [Quickstart](docs/quickstart.md) · [MCP Tool Catalogue](docs/mcp-tools.md) · [Discipline System](docs/disciplines.md) · [Scientific Data Connectors](docs/connectors.md) · [Contributing](CONTRIBUTING.md) · [Code of Conduct](CODE_OF_CONDUCT.md) · [Security Policy](SECURITY.md) · [Changelog](CHANGELOG.md)
@@ -20,14 +20,14 @@
 
 `sci-forge` is a **fully local, self-hosted** [Model Context Protocol](https://modelcontextprotocol.io) server that compresses everything between "reading a paper" and "handing in a submittable paper" into a set of tools an AI client can call directly.
 
-It is not a chatbot and not a prompt template — it is a resident process: **paper-convention knowledge for 261 disciplines**, **direct connectors to 46 public scientific databases**, a **five-step reproduction loop**, and **fail-closed integrity and citation gates**, all exposed as MCP tools.
+It is not a chatbot and not a prompt template — it is a resident process: **paper-convention knowledge for 1538 disciplines**, **direct connectors to 46 public scientific databases**, a **five-step reproduction loop**, and **fail-closed integrity and citation gates**, all exposed as MCP tools.
 
 ### Value proposition
 
 | What you want to do | What sci-forge gives you |
 | --- | --- |
 | Reproduce a paper's experiments | Get the PDF → parse → extract hyper-parameters → generate numpy/torch code → run in a sandbox → compare against the paper's numbers → deliver `results.json` + figures + source |
-| Write a paper from scratch | Discipline-aware section templates (driven by the `paper_types` of all 261 disciplines) + guided authoring + LaTeX/PDF/DOCX export |
+| Write a paper from scratch | Discipline-aware section templates (driven by the `paper_types` of all 1538 disciplines) + guided authoring + LaTeX/PDF/DOCX export |
 | Find a topic or a gap | Key-free OpenAlex/arXiv search → topic scouting → clustering → research gap → candidate hypotheses → experiment plan |
 | Self-check before submitting | Simulated peer review (4-dimension scoring), journal fit scoring, a revision coach, rebuttal auditing, journal/conference recommendations |
 | Hold the integrity line | claim→source verification, batch DOI verification of the reference list, Stage 2.5 / 4.5 integrity gates, Material Passport |
@@ -47,8 +47,8 @@ It is not a chatbot and not a prompt template — it is a resident process: **pa
 
 - [Quickstart](#quickstart)
 - [Architecture](#architecture)
-- [MCP tool catalogue](#mcp-tool-catalogue-65-tools)
-- [Discipline coverage](#discipline-coverage-261-disciplines)
+- [MCP tool catalogue](#mcp-tool-catalogue-75-tools)
+- [Discipline coverage](#discipline-coverage-1538-disciplines)
 - [Scientific data connectors](#scientific-data-connectors-46-connectors)
 - [Relationship to the desktop edition](#relationship-to-the-desktop-edition-two-repositories)
 - [Roadmap](#roadmap)
@@ -139,13 +139,13 @@ A fuller end-to-end walkthrough lives in [docs/quickstart.md](./docs/quickstart.
                         ┌───────────────────▼─────────────────────┐
                         │  sciforge/server.py                      │
                         │  FastMCP("sci-forge")                    │
-                        │  65 @mcp.tool  +  2 @mcp.resource        │
+                        │  75 @mcp.tool  +  2 @mcp.resource        │
                         └──┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┘
        ┌────────────────────┘   │   │   │   │   │   │   │   │   └──────────────┐
        ▼                        ▼   │   │   │   │   │   │   ▼                  ▼
  ┌───────────┐  ┌───────────┐  ┌────▼─┐ │ ┌─────▼─┐ │ ┌─────▼──┐  ┌──────────────────┐
  │reproduce/ │  │research/  │  │write/ │ │ │export/ │ │ │deliver/│  │  disciplines/    │
- │ five-step │  │ research  │  │DocStore│ │ │md→tex  │ │ │submission│  │  261 disciplines │
+ │ five-step │  │ research  │  │DocStore│ │ │md→tex  │ │ │submission│  │  1538 disciplines │
  │ loop+crit.│  │ tool set  │  │templates│ │ │/pdf   │ │ │packaging│  │  zero-reg auto    │
  └───────────┘  └───────────┘  └───────┘ │ └───────┘ │ └────────┘  └──────────────────┘
                                            │ ┌─────▼──┐
@@ -201,9 +201,9 @@ With nothing configured, tools such as `ideate_paper` / `write_section` / `peer_
 
 ---
 
-## MCP tool catalogue (65 tools)
+## MCP tool catalogue (75 tools)
 
-> The static `@mcp.tool()` decorator count is 65 and the runtime `mcp.list_tools()` count is also 65 — they agree. There are additionally 2 resources: the static `science://databases` and the parameterised template `science://databases/{domain}`.
+> The static `@mcp.tool()` decorator count is 75 and the runtime `mcp.list_tools()` count is also 75 — they agree. There are additionally 2 resources: the static `science://databases` and the parameterised template `science://databases/{domain}`.
 > Per-tool parameter signatures and behavioural details live in [docs/mcp-tools.md](./docs/mcp-tools.md).
 
 ### Reproduce line (2)
@@ -331,9 +331,9 @@ Compatibility aliases (behaviourally identical to the entries above, kept for ol
 
 ---
 
-## Discipline coverage (261 disciplines)
+## Discipline coverage (1538 disciplines)
 
-`sciforge/disciplines/` ships a paper-support registry for **261 disciplines**, using zero-registration auto-discovery: adding a discipline means adding a module file in that package that declares a module-level `Discipline` instance (or a `Discipline` dataclass subclass). The discovery mechanism picks it up on its own, with no registry code to change.
+`sciforge/disciplines/` ships a paper-support registry for **1538 disciplines**, using zero-registration auto-discovery: adding a discipline means adding a module file in that package that declares a module-level `Discipline` instance (or a `Discipline` dataclass subclass). The discovery mechanism picks it up on its own, with no registry code to change.
 
 ### Distribution by category
 
@@ -346,7 +346,7 @@ The `category` field uses Chinese subject-category naming, with 14 distinct valu
 | 医学 (Medicine) | 30 | 历史学 (History) | 4 |
 | 交叉学科 (Interdisciplinary) | 23 | 教育学 (Education) | 4 |
 | 法学 (Law) | 12 | 经济学 (Economics) | 3 |
-| 文学 (Literature) | 11 | **Total** | **261** |
+| 文学 (Literature) | 11 | **Total** | **1538** |
 | 哲学 (Philosophy) | 9 | | |
 | 管理学 (Management) | 7 | | |
 | 艺术学 (Arts) | 6 | | |
@@ -359,7 +359,7 @@ The `contribution_forms` field takes 10 fixed values (`sciforge/disciplines/cont
 
 | Contribution form | Disciplines including it | Contribution form | Count |
 | --- | --- | --- | --- |
-| 论文 (Paper) | 261 (100%) | 报告 (Report) | 27 |
+| 论文 (Paper) | 1538 (100%) | 报告 (Report) | 27 |
 | 数据集 (Dataset) | 95 | 艺术作品 (Artwork) | 7 |
 | 软件与代码 (Software & Code) | 49 | 文学作品 (Literary work) | 5 |
 | 学术专著 (Monograph) | 41 | 译文 (Translation) | 4 |
@@ -417,7 +417,7 @@ from sciforge.disciplines import (
     list_by_database,            # filter by preferred database
 )
 
-len(DISCIPLINES)                    # 261
+len(DISCIPLINES)                    # 1538
 d = get_discipline("machine_learning")
 d.contribution_forms               # ('论文', '软件与代码', '数据集')
 list_by_contribution_form("专利")   # disciplines that can produce patents
@@ -464,7 +464,7 @@ This repository, `sci-forge`, is the **MCP edition** (core library + server). It
 | Dimension | `sci-forge` (this repo, MCP edition) | `sciforge-desktop` (desktop edition) |
 | --- | --- | --- |
 | Role | Core library + MCP stdio server | Desktop GUI client + local agent tools |
-| Provides | 65 MCP tools, 2 MCP resources, 261 disciplines, 46 connectors | 6 local agent tools, session storage, GUI shell |
+| Provides | 75 MCP tools, 2 MCP resources, 1538 disciplines, 46 connectors | 6 local agent tools, session storage, GUI shell |
 | Python dependency | `mcp>=1.29.0` | `PySide6>=6.6` |
 | Command | `sci-forge` | `sciforge-desktop` |
 | Communication role | The callee (stdio server) | The caller (JSON-RPC 2.0 over stdio) |
@@ -485,9 +485,9 @@ The following are **planned directions**; they are not scheduled and carry no co
 
 ### Available today
 
-- A registry of 261 disciplines (the Discipline v2 field system)
+- A registry of 1538 disciplines (the Discipline v2 field system)
 - 46 scientific database connectors across 7 domains
-- 65 MCP tools + 2 MCP resources
+- 75 MCP tools + 2 MCP resources
 - Closed loops along six lines: reproduce / write / research / review-and-verify / deliver / scientific data
 - 268 pytest cases (the v2 regression baseline)
 - Key-free core paths with optional LLM enhancement

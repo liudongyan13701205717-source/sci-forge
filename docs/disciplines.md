@@ -1,293 +1,1569 @@
-# 学科体系（261 门）
+# 学科体系（1538 门）
 
-> 本文档记录  下所有 261 门学科的完整 v2 字段配置。
+> 本文档记录  下所有 1538 门学科的完整 v2 字段配置。
 > 每门学科是一个 Python 模块，声明一个  数据类实例。
 
 ## 门类分布
 
 | 门类 | 学科数 |
 | --- | --- |
-| 理学 | 87 |
-| 工学 | 56 |
-| 医学 | 30 |
-| 交叉学科 | 23 |
-| 法学 | 12 |
-| 文学 | 11 |
-| 哲学 | 9 |
-| 管理学 | 7 |
-| 艺术学 | 6 |
-| 军事学 | 5 |
-| 农学 | 4 |
-| 历史学 | 4 |
-| 教育学 | 4 |
-| 经济学 | 3 |
-| **合计** | **261** |
+| 工学 | 420 |
+| 理学 | 194 |
+| 医学 | 180 |
+| 农学 | 115 |
+| 教育学 | 130 |
+| 经济学 | 31 |
+| 法学 | 66 |
+| 管理学 | 177 |
+| 文学 | 59 |
+| 哲学 | 20 |
+| 艺术学 | 108 |
+| 军事学 | 10 |
+| 历史学 | 28 |
+| **合计** | **1538** |
 
 ## 学科明细
 
-| # | 学科名 | 别名（前5） | 门类 | 产出形式 | 工具数 | 数据库数 | 体裁数 | 论文主导 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | accounting | accounting, 会计学, 财务会计, 审计学 | 管理学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 2 | acoustics | acoustics, 声学, 声学工程, acoustical engineering, 超声 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 3 | actuarial_science | actuarial science, 精算, 精算学, 保险数学, actuarial | 理学 | 论文, 报告 | 4 | 4 | 3 | 是 |
-| 4 | additive_manufacturing | additive_manufacturing, 增材制造, 3D打印, 3D 打印, 快速成型 | 工学 | 论文, 专利 | 5 | 4 | 3 | 是 |
-| 5 | aerospace_engineering | aerospace, aeronautics, astronautics, 航空航天工程, 航空工程 | 工学 | 论文, 专利 | 4 | 3 | 3 | 是 |
-| 6 | aesthetics | aesthetics, 美学, 审美学, 艺术哲学 | 哲学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 7 | agriculture | agriculture, agronomy, crop, soil, farming | 农学 | 论文 | 5 | 4 | 3 | 是 |
-| 8 | ai_ethics | ai_ethics, 人工智能伦理, AI 伦理, 负责任 AI, AI ethics | 交叉学科 | 论文, 学术专著 | 3 | 5 | 3 | 是 |
-| 9 | algebra | algebra, 代数, 群论, 环论, 域论 | 理学 | 论文 | 4 | 3 | 3 | 是 |
-| 10 | algorithms | algorithms, 算法, 算法设计与分析, 计算复杂性 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 11 | analysis | analysis, 分析, 实分析, 复分析, 泛函分析 | 理学 | 论文 | 4 | 3 | 3 | 是 |
-| 12 | analytical_chemistry | analytical chemistry, 分析化学, 分离科学, separation science, 色谱 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 13 | anatomy | anatomy, 解剖学, 人体解剖学, human anatomy, 形态学 | 理学 | 论文 | 5 | 3 | 3 | 是 |
-| 14 | anesthesiology | anesthesiology, 麻醉学, 麻醉, 围术期医学, perioperative medicine | 医学 | 论文 | 6 | 4 | 3 | 是 |
-| 15 | anthropology | anthropology, ethnography, 人类学, 民族志, 田野 | 法学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 16 | applied_mathematics | applied mathematics, 应用数学, 应用分析, 数学建模, applied math | 理学 | 论文, 软件与代码 | 3 | 3 | 3 | 是 |
-| 17 | archaeology | archaeology, archeology, 考古学, 考古 | 历史学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 18 | architecture | architecture, building, built environment, 建筑学, 建筑 | 工学 | 论文, 艺术作品 | 4 | 3 | 3 | 是 |
-| 19 | art_history | art_history, 艺术史, 美术史, 艺术史学 | 艺术学 | 论文, 学术专著, 艺术作品 | 3 | 4 | 3 | 是 |
-| 20 | artificial_intelligence | artificial_intelligence, AI, machine_learning, 深度学习, 人工智能 | 工学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 21 | astrobiology | astrobiology, 天体生物学, 地外生命, 宜居性研究, astrobiology | 交叉学科 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 22 | astrophysics | astrophysics, astronomy, cosmology, astro, stars | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 23 | atmospheric_science | atmospheric_science, meteorology, climatology, 大气科学, 气象学 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 24 | automotive_engineering | automotive_engineering, 汽车工程, 汽车, 车辆工程, 整车开发 | 工学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 25 | behavioral_economics | behavioral_economics, 行为经济学, 行为金融, 实验经济学 | 经济学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 26 | bibliometrics | bibliometrics, 文献计量学, 引文分析, 文献计量, bibliometric analysis | 交叉学科 | 论文, 软件与代码, 数据集 | 3 | 4 | 3 | 是 |
-| 27 | biochemistry | biochemistry, 生物化学, 酶学, enzymology, 蛋白质化学 | 理学 | 论文, 数据集, 专利 | 5 | 6 | 3 | 是 |
-| 28 | bioethics | bioethics, 生命伦理, 医学伦理, 生物伦理, bioethics | 交叉学科 | 论文, 学术专著 | 3 | 4 | 3 | 是 |
-| 29 | bioinformatics | bioinformatics, genomics, transcriptomics, omics, 生物信息 | 理学 | 论文, 软件与代码, 数据集 | 4 | 4 | 3 | 是 |
-| 30 | biology | biology, 生物, 细胞, cell biology, 遗传 | 理学 | 论文 | 4 | 4 | 3 | 是 |
-| 31 | biomechanics | biomechanics, 生物力学, 人体力学, 运动生物力学, biomechanics | 交叉学科 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 32 | biomedical_engineering | biomedical_engineering, BME, 生物医学工程, 生物工程 | 工学 | 论文, 专利 | 4 | 3 | 3 | 是 |
-| 33 | bionics | bionics, 仿生学, 仿生设计, 生物启发工程, biomimetics | 交叉学科 | 论文, 专利 | 3 | 4 | 3 | 是 |
-| 34 | biotechnology | biotechnology, biotech, 生物技术, 生物工程 | 理学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 35 | blockchain | blockchain, 区块链, 分布式账本, 智能合约 | 工学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 36 | botany | botany, 植物学, 植物生理学, plant physiology, 植物分类学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 37 | business | management, business, strategy, 管理学, 工商管理 | 管理学 | 论文, 报告 | 4 | 4 | 3 | 是 |
-| 38 | cardiology | cardiology, 心脏病学, 心血管病学, 心血管内科, 心血管医学 | 医学 | 论文, 数据集 | 6 | 5 | 3 | 是 |
-| 39 | cell_biology | cell biology, 细胞生物学, 细胞信号, cell signaling, 细胞周期 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 40 | chemical_engineering | chemical engineering, process, reactors, separation, catalysis | 工学 | 论文, 专利 | 4 | 3 | 3 | 是 |
-| 41 | chemistry | chemistry, 化学, 有机, organic, 催化 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 42 | chinese_language | chinese_language, 中国语言学, 汉语语言学, 汉语言文字学 | 文学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 43 | chinese_literature | chinese_literature, 中国文学, 中国现当代文学, 中国古代文学 | 文学 | 论文, 学术专著, 文学作品 | 3 | 4 | 3 | 是 |
-| 44 | chinese_philosophy | chinese_philosophy, 中国哲学, 中国思想史, 国学 | 哲学 | 论文, 学术专著, 译文 | 4 | 4 | 3 | 是 |
-| 45 | chronobiology | chronobiology, 时间生物学, 生物节律, 昼夜节律, chronobiology | 交叉学科 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 46 | civil_engineering | civil, structural, bridge, geotechnical, construction | 工学 | 论文 | 4 | 3 | 3 | 是 |
-| 47 | classical_mechanics | classical mechanics, 经典力学, 分析力学, analytical mechanics, 刚体动力学 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 48 | classics | classics, 古典学, 古典语文学, 古希腊罗马研究 | 历史学 | 论文, 学术专著, 译文 | 4 | 4 | 3 | 是 |
-| 49 | climatology | climate, meteorology, oceanography, 气候, 大气科学 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 50 | cloud_computing | cloud_computing, 云计算, 云原生, serverless | 工学 | 论文, 软件与代码 | 3 | 3 | 3 | 是 |
-| 51 | cognitive_science | cognitive_science, 认知科学, 认知研究, 心智科学, cognitive science | 交叉学科 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 52 | combinatorics | combinatorics, 组合, 组合数学, 极值组合, 代数组合 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 53 | communication_studies | communication_studies, 传播学, 传播研究, 媒介研究 | 文学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 54 | comparative_literature | comparative_literature, 比较文学, 跨文化文学研究, 影响研究 | 文学 | 论文, 学术专著, 文学作品 | 5 | 4 | 3 | 是 |
-| 55 | complexity_science | complexity_science, 复杂性科学, 复杂系统, 复杂性研究, complex systems | 交叉学科 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 56 | computational_chemistry | computational chemistry, 计算化学, 分子模拟, molecular simulation, 电子结构计算 | 理学 | 论文, 软件与代码, 数据集 | 5 | 5 | 3 | 是 |
-| 57 | computational_mathematics | numerical, scientific computing, 数值分析, 偏微分方程, pde | 理学 | 论文, 软件与代码 | 5 | 5 | 3 | 是 |
-| 58 | computer_architecture | computer_architecture, 计算机体系结构, 微架构, 处理器设计 | 工学 | 论文, 软件与代码, 专利 | 4 | 3 | 3 | 是 |
-| 59 | computer_graphics | computer_graphics, 计算机图形学, 图形学, 渲染 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 60 | computer_networks | computer_networks, 计算机网络, 网络, 网络协议 | 工学 | 论文, 软件与代码, 专利 | 4 | 5 | 3 | 是 |
-| 61 | computer_science | computer science, 计算机, 机器学习, machine learning, 深度学习 | 工学 | 论文, 软件与代码 | 5 | 3 | 3 | 是 |
-| 62 | computer_vision | computer_vision, 计算机视觉, CV, 图像理解, 视觉计算 | 工学 | 论文, 软件与代码, 数据集 | 4 | 5 | 3 | 是 |
-| 63 | condensed_matter_physics | condensed matter physics, 凝聚态物理, 固体物理, solid state physics, 材料物理 | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 64 | conservation_biology | conservation biology, 保护生物学, 物种保护, species conservation, 保护规划 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 65 | control_theory | control theory, 控制理论, 控制, 自动控制, 系统与控制 | 理学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 66 | cosmology | cosmology, 宇宙学, 物理宇宙学, physical cosmology, 宇宙微波背景 | 理学 | 论文, 数据集 | 4 | 5 | 3 | 是 |
-| 67 | creative_writing | creative_writing, 创意写作, 创作学, 写作学 | 文学 | 论文, 文学作品 | 5 | 4 | 3 | 是 |
-| 68 | criminology | criminology, criminal_justice, 犯罪学, 刑事司法 | 法学 | 论文, 报告 | 5 | 4 | 3 | 是 |
-| 69 | cryptography | cryptography, 密码学, 密码, 密码分析, crypto | 理学 | 论文, 软件与代码 | 5 | 3 | 3 | 是 |
-| 70 | cultural_studies | cultural_studies, 文化研究, 文化批评, 大众文化研究 | 文学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 71 | cybersecurity | cybersecurity, 网络安全, 信息安全, 安全, 密码学应用 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 72 | dance | dance, 舞蹈学, 舞蹈研究, 编舞学 | 艺术学 | 论文, 艺术作品 | 3 | 4 | 3 | 是 |
-| 73 | data_ethics | data_ethics, 数据伦理, 数据治理, 数据隐私, data ethics | 交叉学科 | 论文, 学术专著 | 3 | 4 | 3 | 是 |
-| 74 | data_science | data_science, data_analytics, 数据科学, 数据分析 | 工学 | 论文, 软件与代码, 数据集 | 4 | 3 | 3 | 是 |
-| 75 | database_systems | database_systems, 数据库系统, 数据库, 数据管理 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 76 | deep_learning | deep_learning, 深度学习, 神经网络, 深度神经网络, DNN | 工学 | 论文, 软件与代码, 数据集 | 4 | 5 | 3 | 是 |
-| 77 | defense_studies | defense_studies, 国防研究, 防务研究, 国防政策, defence studies | 军事学 | 论文, 学术专著, 报告 | 4 | 4 | 3 | 是 |
-| 78 | demography | demography, demographics, 人口学, 人口统计学 | 法学 | 论文, 报告 | 5 | 4 | 3 | 是 |
-| 79 | dentistry | dentistry, 口腔医学, 口腔, 牙科, dental | 医学 | 论文 | 5 | 3 | 5 | 是 |
-| 80 | dermatology | dermatology, 皮肤病学, 皮肤科, 皮肤性病学, dermatology clinical | 医学 | 论文 | 4 | 4 | 3 | 是 |
-| 81 | development_studies | development_studies, 发展研究, 发展经济学, 国际发展 | 法学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 82 | developmental_biology | developmental biology, 发育生物学, 胚胎学, embryology, 模式形成 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 83 | distributed_systems | distributed_systems, 分布式系统, 分布式计算, 分布式 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 84 | dynamical_systems | dynamical systems, 动力系统, 遍历理论, 混沌, ergodic theory | 理学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 85 | earth_science | earth_science, geosciences, 地球科学, 地学 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 86 | ecology | ecology, conservation, biodiversity, population, community | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 87 | economics | economics, 经济学, 计量, econometrics, 金融 | 经济学 | 论文, 报告 | 4 | 3 | 3 | 是 |
-| 88 | education | education, 教育学, 教学, learning, pedagogy | 教育学 | 论文, 报告, 教案与教材 | 5 | 4 | 3 | 是 |
-| 89 | electrical_engineering | electrical_engineering, 电气工程, 电气, 电力系统, 电力电子 | 工学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 90 | electrochemistry | electrochemistry, 电化学, 电分析, electroanalysis, 电催化 | 理学 | 论文, 数据集, 专利 | 5 | 5 | 3 | 是 |
-| 91 | electromagnetism | electromagnetism, 电磁学, 电动力学, electrodynamics, 电磁场理论 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 92 | electronics_engineering | electronics_engineering, 电子工程, 电子, 集成电路, 电路设计 | 工学 | 论文, 专利, 软件与代码 | 4 | 4 | 3 | 是 |
-| 93 | endocrinology | endocrinology, 内分泌学, 内分泌科, 代谢病学, metabolism | 医学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 94 | energy_engineering | energy, power, renewable, solar, wind | 工学 | 论文, 专利 | 3 | 3 | 3 | 是 |
-| 95 | engineering | engineering, 工程, 机械, mechanical, 控制 | 工学 | 论文 | 4 | 3 | 3 | 是 |
-| 96 | english_literature | english_literature, 英语文学, 英国文学, 美国文学 | 文学 | 论文, 学术专著, 文学作品 | 4 | 4 | 3 | 是 |
-| 97 | entomology | entomology, 昆虫学, 昆虫分类学, insect taxonomy, 昆虫生态学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 98 | environmental_engineering | environmental, environmental engineering, 水处理, 给水排水, 污染控制 | 工学 | 论文, 专利 | 3 | 3 | 3 | 是 |
-| 99 | environmental_ethics | environmental_ethics, 环境伦理, 生态伦理, 环境哲学, environmental ethics | 交叉学科 | 论文, 学术专著 | 3 | 5 | 3 | 是 |
-| 100 | environmental_science | environmental_science, 环境科学, 环境工程, 污染控制 | 理学 | 论文, 数据集, 报告 | 6 | 5 | 3 | 是 |
-| 101 | epidemiology | epidemiology, 流行病学, 疾病流行病学, 临床流行病学, clinical epidemiology | 医学 | 论文, 数据集, 报告 | 5 | 5 | 3 | 是 |
-| 102 | epistemology | epistemology, 认识论, 知识论, 知识哲学 | 哲学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 103 | ergonomics | ergonomics, 人机工效学, 人因工程, 工效学, human factors | 交叉学科 | 论文, 数据集 | 3 | 4 | 3 | 是 |
-| 104 | ethics | ethics, 伦理学, 道德哲学, 应用伦理学 | 哲学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 105 | evolutionary_biology | evolutionary biology, 进化生物学, 系统发育, phylogenetics, 群体遗传学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 106 | film_studies | film_studies, 电影学, 电影研究, 影视研究 | 艺术学 | 论文, 艺术作品 | 2 | 4 | 3 | 是 |
-| 107 | finance | finance, asset pricing, corporate finance, 金融学, 金融 | 经济学 | 论文, 报告 | 4 | 3 | 3 | 是 |
-| 108 | fine_arts | fine_arts, 美术, 造型艺术, 视觉艺术 | 艺术学 | 论文, 艺术作品 | 2 | 4 | 3 | 是 |
-| 109 | food_science | food_science, food_technology, 食品科学, 食品工程 | 工学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 110 | forestry | forestry, forest_science, 林学, 林业科学 | 农学 | 论文 | 5 | 4 | 3 | 是 |
-| 111 | formal_methods | formal_methods, 形式化方法, 形式验证, 模型检测 | 工学 | 论文, 软件与代码 | 3 | 3 | 3 | 是 |
-| 112 | game_theory | game theory, 博弈论, 博弈, 机制设计, mechanism design | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 113 | gender_studies | gender_studies, 性别研究, 女性研究, 女性主义研究 | 法学 | 论文, 学术专著 | 5 | 5 | 3 | 是 |
-| 114 | genetics | genetics, 遗传学, 基因组学, genomics | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 115 | geobiology | geobiology, 地球生物学, 生物地球化学, 地质微生物学, geobiology | 交叉学科 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 116 | geodesy | geodesy, 大地测量学, GNSS, 测量学 | 理学 | 论文, 数据集 | 6 | 5 | 3 | 是 |
-| 117 | geography | geography, geosciences, 地理学, 地理科学 | 理学 | 论文 | 4 | 4 | 3 | 是 |
-| 118 | geology | geology, geophysics, petrology, geochemistry, tectonics | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 119 | geometry_topology | geometry, topology, 几何, 拓扑, 微分几何 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 120 | geotechnical_engineering | geotechnical_engineering, 岩土工程, 岩土, 土力学, 基础工程 | 工学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 121 | geriatrics | geriatrics, 老年医学, 老年科, 老年病学, geriatric medicine | 医学 | 论文, 数据集 | 3 | 4 | 3 | 是 |
-| 122 | glaciology | glaciology, 冰川学, 冰川, 冰盖 | 理学 | 论文, 数据集 | 6 | 5 | 3 | 是 |
-| 123 | graph_theory | graph theory, 图论, 图, 网络科学, graph | 理学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 124 | green_chemistry | green chemistry, 绿色化学, 可持续化学, sustainable chemistry, 绿色合成 | 理学 | 论文, 专利 | 5 | 5 | 3 | 是 |
-| 125 | hematology | hematology, 血液学, 血液科, 血液病学, haematology | 医学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 126 | high_performance_computing | high_performance_computing, 高性能计算, HPC, 并行计算, 超级计算 | 工学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 127 | history | history, 历史学, 史学, 历史研究 | 历史学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 128 | human_computer_interaction | human_computer_interaction, 人机交互, HCI, 交互设计, 可用性 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 129 | hydrology | hydrology, 水文学, 水文科学, 水资源 | 理学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 130 | hydrology_engineering | hydrology_engineering, 水文工程, 水文学, 水文, 水资源 | 工学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 131 | immunology | immunology, 免疫学, immune_system, immunity | 理学 | 论文 | 4 | 4 | 3 | 是 |
-| 132 | infectious_disease | infectious_disease, 感染病学, 感染科, 传染病学, infectious diseases | 医学 | 论文, 数据集 | 4 | 5 | 3 | 是 |
-| 133 | information_science | information_science, 信息科学, 情报学, 信息管理 | 管理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 134 | information_theory | information theory, 信息论, 香农, 编码理论, Shannon | 理学 | 论文, 软件与代码 | 3 | 4 | 3 | 是 |
-| 135 | inorganic_chemistry | inorganic chemistry, 无机化学, 配位化学, coordination chemistry, 金属有机 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 136 | international_relations | international_relations, 国际关系, 国际政治, 外交学 | 法学 | 论文, 学术专著 | 5 | 5 | 3 | 是 |
-| 137 | internet_of_things | internet_of_things, 物联网, IoT, 边缘感知 | 工学 | 论文, 软件与代码, 专利 | 4 | 3 | 3 | 是 |
-| 138 | journalism | journalism, 新闻学, 新闻研究, 新闻传播 | 文学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 139 | kinesiology | kinesiology, 运动机能学, 人体运动学, 动作科学, human movement science | 教育学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 140 | law | law, legal, jurisprudence, 法学, 法律 | 法学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 141 | library_science | library_science, 图书馆学, 图书馆情报, 图书情报 | 管理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 142 | limnology | limnology, 湖沼学, 淡水生态学, freshwater ecology, 湖泊学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 143 | linguistics | linguistics, 语言学, 语料, corpus, phonology | 文学 | 论文, 学术专著, 译文 | 5 | 4 | 3 | 是 |
-| 144 | logic | logic, 逻辑, 数理逻辑, 集合论, 模型论 | 理学 | 论文 | 5 | 3 | 3 | 是 |
-| 145 | machine_learning | machine_learning, 机器学习, ML, 统计学习, 模式识别 | 工学 | 论文, 软件与代码, 数据集 | 4 | 5 | 3 | 是 |
-| 146 | management | management, 管理学, 组织管理, 战略管理 | 管理学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 147 | marine_biology | marine_biology, 海洋生物学, ocean_biology, marine_ecology | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 148 | marketing | marketing, 市场营销, 营销学, 消费者行为 | 管理学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 149 | materials_science | materials science, 材料科学, 材料, materials, 纳米 | 工学 | 论文, 专利 | 4 | 3 | 3 | 是 |
-| 150 | mathematical_physics | mathematical physics, 数学物理, 理论物理, 统计力学严格结果, mathematical physics | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 151 | mathematics | math, 数学, 定理, 证明, 代数 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 152 | mechanical_engineering | mechanical_engineering, 机械工程, 机械, 机械设计, 机械制造 | 工学 | 论文, 专利 | 4 | 3 | 3 | 是 |
-| 153 | medicine | medicine, medical, 医学, 临床, clinical | 医学 | 论文 | 4 | 3 | 5 | 是 |
-| 154 | metaphysics | metaphysics, 形而上学, 本体论, 存在论 | 哲学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 155 | meteorology | meteorology, 气象学, 天气学, 大气科学 | 理学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 156 | microbiology | microbiology, 微生物学, 细菌学, bacteriology, 微生物组 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 157 | microelectronics | microelectronics, 微电子学, 微电子, 集成电路, 半导体器件 | 工学 | 论文, 专利, 软件与代码 | 5 | 5 | 3 | 是 |
-| 158 | military_history | military_history, 军事史, 战争史, 战史, war history | 军事学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 159 | military_science | military_science, 军事科学, 军事学, 作战研究, military studies | 军事学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 160 | mineralogy | mineralogy, 矿物学, 晶体学, 矿物成因 | 理学 | 论文, 数据集 | 3 | 3 | 3 | 是 |
-| 161 | mining_engineering | mining_engineering, 采矿工程, 采矿, 选矿, 岩石力学 | 工学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 162 | molecular_biology | molecular biology, 分子生物学, 基因表达, gene expression, 分子克隆 | 理学 | 论文, 数据集 | 5 | 6 | 3 | 是 |
-| 163 | musicology | musicology, 音乐学, 音乐研究, 民族音乐学 | 艺术学 | 论文, 学术专著, 艺术作品 | 4 | 4 | 3 | 是 |
-| 164 | mycology | mycology, 真菌学, 真菌分类学, fungal taxonomy, 真菌生理学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 165 | nanotechnology | nanotechnology, 纳米技术, 纳米, 纳米材料, 纳米器件 | 工学 | 论文, 专利, 数据集 | 5 | 5 | 3 | 是 |
-| 166 | natural_language_processing | natural_language_processing, 自然语言处理, NLP, 计算语言学, 文本挖掘 | 工学 | 论文, 软件与代码, 数据集 | 4 | 5 | 3 | 是 |
-| 167 | naval_architecture | naval_architecture, 船舶与海洋工程, 船舶工程, 船舶设计, 水动力 | 工学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 168 | naval_strategy | naval_strategy, 海军战略, 海权研究, 海上战略, naval warfare | 军事学 | 论文, 学术专著, 报告 | 4 | 4 | 3 | 是 |
-| 169 | network_science | network_science, 网络科学, 复杂网络, 图网络分析, network analysis | 交叉学科 | 论文, 软件与代码, 数据集 | 4 | 4 | 3 | 是 |
-| 170 | neurology | neurology, 神经病学, 神经内科, 临床神经科学, clinical neuroscience | 医学 | 论文, 数据集 | 6 | 5 | 3 | 是 |
-| 171 | neuroscience | neuroscience, 神经科学, 脑科学, brain, fMRI | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 172 | nuclear_engineering | nuclear_engineering, 核工程, 核能, 核反应堆, 核安全 | 工学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 173 | nuclear_physics | nuclear physics, 核物理, 原子核物理, nuclear structure, 核结构 | 理学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 174 | number_theory | number theory, 数论, 解析数论, 代数数论, 算术几何 | 理学 | 论文 | 4 | 3 | 3 | 是 |
-| 175 | numerical_analysis | numerical analysis, 数值分析, 数值方法, 科学计算, numerical methods | 理学 | 论文, 软件与代码 | 3 | 3 | 3 | 是 |
-| 176 | nursing | nursing, 护理, 护理学, nurse, 临床护理 | 医学 | 论文 | 3 | 3 | 5 | 是 |
-| 177 | nutrition | nutrition, diet, dietetics, 营养学, 膳食 | 医学 | 论文 | 4 | 3 | 3 | 是 |
-| 178 | obstetrics_gynecology | obstetrics_gynecology, 妇产科学, 妇产科, 产科, 妇科 | 医学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 179 | oceanography | oceanography, 海洋学, 物理海洋, 海洋科学 | 理学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 180 | oncology | oncology, 肿瘤学, 癌症研究, 肿瘤内科, 肿瘤外科 | 医学 | 论文, 数据集 | 6 | 6 | 3 | 是 |
-| 181 | open_science | open_science, 开放科学, 开放研究, 开放获取, open research | 交叉学科 | 论文, 报告 | 3 | 5 | 3 | 是 |
-| 182 | operating_systems | operating_systems, 操作系统, OS, 内核 | 工学 | 论文, 软件与代码 | 3 | 4 | 3 | 是 |
-| 183 | operations_research | operations research, 运筹学, OR, 管理科学, 数学规划 | 理学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 184 | ophthalmology | ophthalmology, 眼科学, 眼科, 视觉科学, visual science | 医学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 185 | optics_photonics | optics, photonics, laser, 光学, 光子学 | 理学 | 论文, 专利 | 5 | 5 | 3 | 是 |
-| 186 | optimization | optimization, 最优化, 优化, 数学规划, 凸优化 | 理学 | 论文, 软件与代码 | 5 | 3 | 3 | 是 |
-| 187 | organic_chemistry | organic chemistry, 有机化学, 有机合成, organic synthesis, 有机方法学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 188 | ornithology | ornithology, 鸟类学, 鸟类生态学, avian ecology, 鸟类行为学 | 理学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 189 | orthopedics | orthopedics, 骨科学, 骨科, 矫形外科学, 运动骨科 | 医学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 190 | otolaryngology | otolaryngology, 耳鼻咽喉科学, 耳鼻喉科, 头颈外科, otorhinolaryngology | 医学 | 论文 | 4 | 4 | 3 | 是 |
-| 191 | paleontology | paleontology, 古生物学, 化石, 古生态 | 历史学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 192 | particle_physics | particle physics, 粒子物理, 高能物理, high energy physics, 标准模型 | 理学 | 论文, 数据集 | 4 | 5 | 3 | 是 |
-| 193 | peace_conflict_studies | peace_conflict_studies, 和平与冲突研究, 和平研究, 冲突研究 | 法学 | 论文, 学术专著 | 5 | 5 | 3 | 是 |
-| 194 | pediatrics | pediatrics, 儿科学, 儿科, 儿童医学, 新生儿学 | 医学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 195 | performing_arts | performing_arts, 表演艺术, 戏剧学, 舞台艺术 | 艺术学 | 论文, 艺术作品 | 2 | 4 | 3 | 是 |
-| 196 | petroleum_engineering | petroleum_engineering, 石油工程, 石油, 油气藏工程, 钻井工程 | 工学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 197 | pharmacology | pharmacology, 药理学, 基础药理学, 临床药理学, clinical pharmacology | 医学 | 论文, 专利 | 4 | 5 | 3 | 是 |
-| 198 | pharmacy | pharmacy, pharmacology, pharmaceutics, drug, 药学 | 医学 | 论文, 专利 | 4 | 4 | 3 | 是 |
-| 199 | phenomenology | phenomenology, 现象学, 现象学哲学, 意识哲学 | 哲学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 200 | philosophy | philosophy, ethics, epistemology, metaphysics, logic | 哲学 | 论文, 学术专著 | 2 | 3 | 3 | 是 |
-| 201 | photochemistry | photochemistry, 光化学, 光物理, photophysics, 光催化 | 理学 | 论文, 数据集, 专利 | 5 | 5 | 3 | 是 |
-| 202 | photonics | photonics, 光子学, 光子, 光学工程, 激光 | 工学 | 论文, 专利 | 5 | 4 | 3 | 是 |
-| 203 | physical_chemistry | physical chemistry, 物理化学, 化学热力学, chemical thermodynamics, 化学动力学 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 204 | physical_education | physical_education, 体育教育, 学校体育, 体育教学, PE | 教育学 | 论文, 教案与教材 | 4 | 4 | 3 | 是 |
-| 205 | physics | physics, 物理, 量子, quantum, 粒子 | 理学 | 论文 | 5 | 5 | 3 | 是 |
-| 206 | physiology | physiology, 生理学, 人体生理学, human physiology, 器官生理 | 理学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 207 | planetary_science | planetary science, 行星科学, 行星学, planetology, 行星地质 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 208 | plasma_physics | plasma physics, 等离子体物理, 等离子体科学, plasma science, 磁约束聚变 | 理学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 209 | political_science | political science, politics, govt, 政治学, 公共行政 | 法学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 210 | polymer_chemistry | polymer chemistry, 高分子化学, 聚合物科学, polymer science, 高分子物理 | 理学 | 论文, 专利 | 5 | 5 | 3 | 是 |
-| 211 | probability_theory | probability, 概率论, 概率, 随机, probability theory | 理学 | 论文, 软件与代码 | 3 | 3 | 3 | 是 |
-| 212 | programming_languages | programming_languages, 程序设计语言, 编程语言, PL, 类型系统 | 工学 | 论文, 软件与代码 | 5 | 4 | 3 | 是 |
-| 213 | psychiatry | psychiatry, 精神病学, 精神医学, 临床心理学, clinical psychiatry | 医学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 214 | psychology | psychology, 心理学, 认知, cognitive, 行为 | 理学 | 论文, 学术专著 | 4 | 4 | 3 | 是 |
-| 215 | public_administration | public_administration, 公共管理, 行政管理, 公共政策 | 管理学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 216 | public_health | public health, 公共卫生, 预防医学, preventive medicine, global health | 医学 | 论文, 报告 | 4 | 3 | 5 | 是 |
-| 217 | quantum_computing | quantum computing, quantum, qubit, 量子计算, 量子信息 | 交叉学科 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 218 | quantum_mechanics | quantum mechanics, 量子力学, 量子理论, quantum theory, 量子信息 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 219 | radiology | radiology, 放射学, 医学影像学, 影像诊断, 介入放射学 | 医学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 220 | rehabilitation_medicine | rehabilitation_medicine, 康复医学, 康复科, 物理医学与康复, physical medicine and rehabilitation | 医学 | 论文 | 4 | 4 | 3 | 是 |
-| 221 | religious_studies | religious_studies, 宗教学, 宗教研究, 比较宗教学 | 哲学 | 论文, 学术专著 | 3 | 4 | 3 | 是 |
-| 222 | remote_sensing | remote_sensing, 遥感, 遥感科学, 对地观测 | 工学 | 论文, 数据集 | 5 | 5 | 3 | 是 |
-| 223 | research_methodology | research_methodology, 科研方法论, 研究方法论, 研究设计, research methods | 交叉学科 | 论文, 学术专著 | 3 | 5 | 3 | 是 |
-| 224 | robotics | robotics, robot, slam, manipulation, 机器人 | 工学 | 论文, 软件与代码, 专利 | 4 | 3 | 3 | 是 |
-| 225 | science_communication | science_communication, 科学传播, 科技传播, 科学普及, science communication | 交叉学科 | 论文, 报告, 教案与教材 | 3 | 5 | 3 | 是 |
-| 226 | science_technology_studies | science_technology_studies, 科学技术研究, STS, 科技与社会 | 交叉学科 | 论文, 学术专著 | 5 | 5 | 3 | 是 |
-| 227 | scientometrics | scientometrics, 科学计量学, 科研评价, 科学指标, scientometrics | 交叉学科 | 论文, 软件与代码, 数据集 | 3 | 4 | 3 | 是 |
-| 228 | seismology | seismology, 地震学, 震源机制, 地震波 | 理学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 229 | semiconductor_physics | semiconductor_physics, 半导体物理, 半导体, 能带理论, 半导体材料 | 工学 | 论文, 专利, 数据集 | 4 | 5 | 3 | 是 |
-| 230 | social_science | social science, 社会科学, 社会学, sociology, 政治学 | 法学 | 论文, 报告 | 5 | 4 | 3 | 是 |
-| 231 | social_work | social_work, 社会工作, 社会福利, 社会服务 | 法学 | 论文, 报告 | 5 | 5 | 3 | 是 |
-| 232 | sociology | sociology, social science, 社会学, 社会分层, 社会网络 | 法学 | 论文, 学术专著 | 5 | 4 | 3 | 是 |
-| 233 | software_engineering | software_engineering, 软件工程, 软件, 软件方法, 软件测试 | 工学 | 论文, 软件与代码 | 4 | 5 | 3 | 是 |
-| 234 | software_testing | software_testing, 软件测试, 测试, 软件质量保障 | 工学 | 论文, 软件与代码 | 4 | 4 | 3 | 是 |
-| 235 | soil_science | soil_science, 土壤学, 土壤科学, 土壤肥力 | 农学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 236 | sports_medicine | sports_medicine, 运动医学, 运动损伤, 运动康复, sports medicine | 医学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 237 | sports_science | sports_science, 运动科学, 运动训练学, 运动表现, sport science | 教育学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
-| 238 | statistical_mechanics | statistical mechanics, 统计力学, 统计物理, statistical physics, 系综理论 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 239 | statistics | statistics, biostatistics, biometrika, 数理统计, 计量经济 | 理学 | 论文, 软件与代码 | 5 | 5 | 3 | 是 |
-| 240 | stochastic_processes | stochastic processes, 随机过程, 随机分析, 鞅, 布朗运动 | 理学 | 论文, 软件与代码 | 4 | 3 | 3 | 是 |
-| 241 | strategic_studies | strategic_studies, 战略研究, 安全研究, 战略学, strategic analysis | 军事学 | 论文, 学术专著, 报告 | 4 | 4 | 3 | 是 |
-| 242 | structural_engineering | structural_engineering, 结构工程, 结构, 结构设计, 抗震工程 | 工学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 243 | surgery | surgery, 外科学, 外科, 普通外科, 手术学 | 医学 | 论文, 数据集 | 6 | 5 | 3 | 是 |
-| 244 | sustainability_science | sustainability_science, 可持续性科学, 可持续发展, 可持续 | 交叉学科 | 论文, 报告, 数据集 | 6 | 5 | 3 | 是 |
-| 245 | synthetic_biology | synthetic_biology, 合成生物学, 基因回路, 生物工程, synbio | 交叉学科 | 论文, 专利, 数据集 | 4 | 5 | 3 | 是 |
-| 246 | systems_biology | systems_biology, 系统生物学, 组学整合, 生物网络建模, systems biology | 交叉学科 | 论文, 软件与代码, 数据集 | 4 | 5 | 3 | 是 |
-| 247 | telecommunications | telecommunications, 电信, 通信工程, 通信, 无线通信 | 工学 | 论文, 专利 | 5 | 4 | 3 | 是 |
-| 248 | textile_engineering | textile_engineering, 纺织工程, 纺织, 纺织材料, 染整 | 工学 | 论文, 专利 | 3 | 4 | 3 | 是 |
-| 249 | theology | theology, 神学, 系统神学, 圣经研究 | 哲学 | 论文, 学术专著 | 3 | 4 | 3 | 是 |
-| 250 | theoretical_computer_science | tcs, theoretical cs, 算法, complexity, proof theory | 理学 | 论文, 软件与代码 | 4 | 3 | 2 | 是 |
-| 251 | thermodynamics | thermodynamics, 热力学, 工程热力学, engineering thermodynamics, 热力学第二定律 | 理学 | 论文 | 3 | 3 | 3 | 是 |
-| 252 | toxicology | toxicology, 毒理学, 毒理, 毒物学, 风险评估 | 医学 | 论文, 报告 | 4 | 5 | 3 | 是 |
-| 253 | traditional_chinese_medicine | traditional_chinese_medicine, 中医学, 中医, 中医药, TCM | 医学 | 论文 | 4 | 5 | 3 | 是 |
-| 254 | translation_studies | translation_studies, 翻译学, 翻译研究, 口译研究 | 文学 | 论文, 学术专著, 译文 | 5 | 4 | 3 | 是 |
-| 255 | transportation_engineering | transportation_engineering, 交通工程, 交通, 交通运输, 交通规划 | 工学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 256 | urban_studies | urban_studies, 城市研究, 城市规划, 城市科学 | 工学 | 论文, 数据集, 报告 | 5 | 5 | 3 | 是 |
-| 257 | urology | urology, 泌尿外科学, 泌尿外科, 泌尿科, 男科学 | 医学 | 论文, 数据集 | 4 | 4 | 3 | 是 |
-| 258 | veterinary_science | veterinary, veterinary science, 兽医学, 兽医, animal science | 农学 | 论文 | 5 | 3 | 5 | 是 |
-| 259 | volcanology | volcanology, 火山学, 火山地质, 火山监测 | 理学 | 论文, 数据集 | 4 | 3 | 3 | 是 |
-| 260 | world_literature | world_literature, 世界文学, 比较文学, 跨文化文学 | 文学 | 论文, 学术专著, 文学作品 | 3 | 4 | 3 | 是 |
-| 261 | zoology | zoology, 动物学, 动物分类学, animal taxonomy, 动物行为学 | 理学 | 论文, 数据集 | 5 | 4 | 3 | 是 |
+| # | 学科名 | 门类 | 工具数 | 数据库数 | 产出形式数 | 论文主导 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | aboriginal_and_torres_strait_islander_culture_language_and_history | 法学 | 20 | 1 | 8 | 是 |
+| 2 | aboriginal_and_torres_strait_islander_education | 教育学 | 20 | 1 | 5 | 是 |
+| 3 | aboriginal_and_torres_strait_islander_environmental_knowledges_and_management | 工学 | 20 | 1 | 8 | 是 |
+| 4 | aboriginal_and_torres_strait_islander_health_and_wellbeing | 医学 | 20 | 1 | 7 | 是 |
+| 5 | aboriginal_and_torres_strait_islander_peoples_society_and_community | 法学 | 20 | 1 | 6 | 是 |
+| 6 | aboriginal_and_torres_strait_islander_sciences | 理学 | 20 | 1 | 6 | 是 |
+| 7 | abseiling | 教育学 | 20 | 1 | 5 | 是 |
+| 8 | accounting | 管理学 | 20 | 5 | 6 | 是 |
+| 9 | accounting_and_taxation | 管理学 | 20 | 1 | 5 | 是 |
+| 10 | accounting_auditing_and_accountability | 管理学 | 20 | 1 | 6 | 是 |
+| 11 | acoustics | 理学 | 20 | 5 | 7 | 是 |
+| 12 | acting_and_directing | 艺术学 | 20 | 1 | 8 | 是 |
+| 13 | actuarial_science | 经济学 | 20 | 4 | 6 | 是 |
+| 14 | acupuncture_and_oriental_medicine | 医学 | 20 | 1 | 8 | 是 |
+| 15 | additive_manufacturing | 工学 | 26 | 4 | 7 | 是 |
+| 16 | administration | 管理学 | 20 | 5 | 5 | 是 |
+| 17 | administrative_and_secretarial_services | 管理学 | 23 | 5 | 5 | 是 |
+| 18 | adult_literacy_and_numeracy_teacher | 教育学 | 22 | 5 | 5 | 是 |
+| 19 | adventure_based_activities | 教育学 | 24 | 5 | 5 | 是 |
+| 20 | advertising | 管理学 | 30 | 5 | 6 | 是 |
+| 21 | aeronautical_engineering | 工学 | 20 | 1 | 7 | 是 |
+| 22 | aerospace_engineering | 工学 | 27 | 3 | 7 | 是 |
+| 23 | aesthetics | 艺术学 | 24 | 4 | 6 | 是 |
+| 24 | agricultural_biotechnology | 农学 | 24 | 5 | 7 | 是 |
+| 25 | agricultural_businessagribusiness | 农学 | 28 | 5 | 7 | 是 |
+| 26 | agricultural_economics | 经济学 | 20 | 7 | 6 | 是 |
+| 27 | agricultural_sciences | 农学 | 20 | 8 | 7 | 是 |
+| 28 | agricultural_veterinary_and_food_sciences | 农学 | 20 | 9 | 7 | 是 |
+| 29 | agriculture | 农学 | 26 | 8 | 7 | 是 |
+| 30 | agriculture_forestry_fisheries_and | 农学 | 21 | 9 | 7 | 是 |
+| 31 | agriculture_land_and_farm_management | 经济学 | 20 | 8 | 6 | 是 |
+| 32 | agriculture_machinery_mechanics | 工学 | 20 | 7 | 7 | 是 |
+| 33 | agriculture_not_elsewhere | 农学 | 20 | 8 | 7 | 是 |
+| 34 | agriculture_not_elsewhere_classified | 农学 | 20 | 8 | 7 | 是 |
+| 35 | agriculture_not_further_defined | 农学 | 20 | 8 | 7 | 是 |
+| 36 | agronomy_and_crop_science | 农学 | 20 | 9 | 7 | 是 |
+| 37 | ai_ethics | 哲学 | 21 | 6 | 7 | 是 |
+| 38 | air_crew | 工学 | 31 | 4 | 7 | 是 |
+| 39 | air_pollution_control | 工学 | 51 | 5 | 7 | 是 |
+| 40 | air_traffic_control | 工学 | 104 | 4 | 7 | 是 |
+| 41 | air_traffic_safety | 工学 | 24 | 6 | 7 | 是 |
+| 42 | airconditioning_programmes | 工学 | 20 | 4 | 8 | 是 |
+| 43 | aircraft_engineering | 工学 | 22 | 4 | 8 | 是 |
+| 44 | aircraft_maintenance | 工学 | 21 | 5 | 8 | 是 |
+| 45 | aircraft_operation | 工学 | 20 | 4 | 8 | 是 |
+| 46 | alcohol_and_drug_abuse_counselling | 教育学 | 20 | 5 | 6 | 是 |
+| 47 | alcohol_tobacco_drugs_knowledge | 教育学 | 20 | 6 | 6 | 是 |
+| 48 | algebra | 理学 | 25 | 3 | 6 | 是 |
+| 49 | algorithms | 工学 | 31 | 4 | 7 | 是 |
+| 50 | allied_health_and_rehabilitation_science | 医学 | 22 | 4 | 8 | 是 |
+| 51 | ambulance_service | 医学 | 20 | 4 | 7 | 是 |
+| 52 | ambulance_technology | 工学 | 22 | 4 | 8 | 是 |
+| 53 | anaesthetics | 医学 | 21 | 4 | 8 | 是 |
+| 54 | analysis | 理学 | 22 | 3 | 6 | 是 |
+| 55 | analytical_chemistry | 理学 | 28 | 5 | 7 | 是 |
+| 56 | anatomy | 医学 | 26 | 4 | 7 | 是 |
+| 57 | anesthesiology | 医学 | 24 | 4 | 8 | 是 |
+| 58 | animal_breeding | 农学 | 25 | 4 | 7 | 是 |
+| 59 | animal_health_care | 农学 | 22 | 4 | 7 | 是 |
+| 60 | animal_husbandry | 农学 | 20 | 4 | 7 | 是 |
+| 61 | animal_production | 农学 | 20 | 4 | 7 | 是 |
+| 62 | animal_reproduction | 农学 | 22 | 6 | 8 | 是 |
+| 63 | animal_training | 农学 | 20 | 6 | 8 | 是 |
+| 64 | animation | 艺术学 | 24 | 5 | 7 | 是 |
+| 65 | anthropology | 法学 | 22 | 8 | 6 | 是 |
+| 66 | applied_and_developmental_psychology | 教育学 | 24 | 7 | 6 | 是 |
+| 67 | applied_computing | 工学 | 26 | 6 | 7 | 是 |
+| 68 | applied_economics | 经济学 | 20 | 9 | 6 | 是 |
+| 69 | applied_ethics | 哲学 | 20 | 8 | 6 | 是 |
+| 70 | applied_mathematics | 理学 | 24 | 6 | 6 | 是 |
+| 71 | applied_statistics | 理学 | 26 | 6 | 6 | 是 |
+| 72 | aquaculture | 农学 | 27 | 6 | 7 | 是 |
+| 73 | archaeology | 历史学 | 24 | 8 | 6 | 是 |
+| 74 | architectural_urban_design_and_planning | 工学 | 20 | 4 | 8 | 是 |
+| 75 | architecture | 工学 | 20 | 4 | 8 | 是 |
+| 76 | architecture_and_construction_not | 工学 | 20 | 4 | 8 | 是 |
+| 77 | architecture_and_town_planning | 工学 | 20 | 4 | 8 | 是 |
+| 78 | archival_sciences | 管理学 | 20 | 4 | 6 | 是 |
+| 79 | argumentation_and_presentation | 教育学 | 20 | 4 | 6 | 是 |
+| 80 | army_training | 军事学 | 20 | 4 | 7 | 是 |
+| 81 | aromatherapy | 医学 | 20 | 4 | 8 | 是 |
+| 82 | art_history | 艺术学 | 20 | 5 | 7 | 是 |
+| 83 | art_history_theory_and_criticism | 艺术学 | 20 | 5 | 7 | 是 |
+| 84 | art_studies | 艺术学 | 20 | 5 | 6 | 是 |
+| 85 | art_theory | 艺术学 | 20 | 5 | 7 | 是 |
+| 86 | artificial_insemination | 农学 | 20 | 4 | 8 | 是 |
+| 87 | artificial_intelligence | 工学 | 29 | 5 | 8 | 是 |
+| 88 | arts_and_humanities_not | 艺术学 | 23 | 6 | 7 | 是 |
+| 89 | arts_and_humanities_not_elsewhere | 艺术学 | 23 | 6 | 9 | 是 |
+| 90 | arts_and_humanities_not_further | 艺术学 | 23 | 6 | 6 | 是 |
+| 91 | arts_not_elsewhere_classified | 艺术学 | 26 | 6 | 6 | 是 |
+| 92 | arts_not_further_defined | 艺术学 | 26 | 6 | 7 | 是 |
+| 93 | assertiveness_training | 理学 | 24 | 6 | 6 | 是 |
+| 94 | assistant_nursing | 医学 | 29 | 6 | 7 | 是 |
+| 95 | astrobiology | 理学 | 34 | 7 | 6 | 是 |
+| 96 | astronomical_sciences | 理学 | 32 | 9 | 6 | 是 |
+| 97 | astronomy | 理学 | 46 | 9 | 6 | 是 |
+| 98 | astrophysics | 理学 | 30 | 8 | 6 | 是 |
+| 99 | atmospheric_science | 理学 | 28 | 8 | 6 | 是 |
+| 100 | atmospheric_sciences | 理学 | 27 | 8 | 6 | 是 |
+| 101 | atomic_molecular_and_optical_physics | 理学 | 26 | 7 | 7 | 是 |
+| 102 | auctioneering | 经济学 | 25 | 6 | 6 | 是 |
+| 103 | audiologyhearing_sciences | 医学 | 22 | 6 | 7 | 是 |
+| 104 | audiovisual_techniques_and | 艺术学 | 44 | 6 | 8 | 是 |
+| 105 | audiovisual_techniques_and_media | 艺术学 | 63 | 6 | 7 | 是 |
+| 106 | audiovisual_techniques_and_media_production | 艺术学 | 63 | 5 | 8 | 是 |
+| 107 | auditing | 管理学 | 44 | 7 | 6 | 是 |
+| 108 | auditory_prosthetics | 医学 | 29 | 6 | 7 | 是 |
+| 109 | automation | 工学 | 30 | 7 | 8 | 是 |
+| 110 | automotive_electrical_systems | 工学 | 26 | 6 | 8 | 是 |
+| 111 | automotive_engineering | 工学 | 24 | 7 | 7 | 是 |
+| 112 | aviation | 工学 | 27 | 8 | 7 | 是 |
+| 113 | avionics | 工学 | 24 | 7 | 7 | 是 |
+| 114 | ayurvedic_medicine | 医学 | 24 | 10 | 7 | 是 |
+| 115 | bacteriology | 医学 | 29 | 10 | 7 | 是 |
+| 116 | baking | 工学 | 23 | 6 | 8 | 是 |
+| 117 | ballet | 艺术学 | 25 | 7 | 7 | 是 |
+| 118 | bank_teller_studies | 管理学 | 25 | 7 | 6 | 是 |
+| 119 | banking_and_finance | 经济学 | 23 | 10 | 6 | 是 |
+| 120 | banking_finance_and_investment | 管理学 | 22 | 10 | 6 | 是 |
+| 121 | bar_service | 管理学 | 21 | 7 | 6 | 是 |
+| 122 | barbering | 管理学 | 45 | 4 | 8 | 是 |
+| 123 | bartendermixologist | 管理学 | 32 | 4 | 8 | 是 |
+| 124 | basic_nursing | 医学 | 36 | 11 | 7 | 是 |
+| 125 | basic_programmes_and | 教育学 | 35 | 5 | 6 | 是 |
+| 126 | basic_programmes_and_qualifications | 教育学 | 34 | 5 | 6 | 是 |
+| 127 | basic_remedial_programmes_for_youth | 教育学 | 35 | 5 | 6 | 是 |
+| 128 | basic_skills_in_agriculture | 农学 | 44 | 5 | 7 | 是 |
+| 129 | beauty_therapy | 管理学 | 40 | 4 | 8 | 是 |
+| 130 | beer_brewing | 工学 | 20 | 4 | 8 | 是 |
+| 131 | behavioral_economics | 经济学 | 32 | 6 | 6 | 是 |
+| 132 | behavioural_sciences | 理学 | 30 | 6 | 6 | 是 |
+| 133 | bibliometrics | 管理学 | 38 | 9 | 6 | 是 |
+| 134 | bicycle_production | 工学 | 37 | 4 | 7 | 是 |
+| 135 | bicycle_repair | 工学 | 29 | 4 | 7 | 是 |
+| 136 | binding_and_finishing | 工学 | 35 | 4 | 7 | 是 |
+| 137 | biochemical_technologies | 工学 | 53 | 6 | 7 | 是 |
+| 138 | biochemistry | 理学 | 41 | 7 | 7 | 是 |
+| 139 | biochemistry_and_cell_biology | 理学 | 39 | 7 | 7 | 是 |
+| 140 | bioethics | 哲学 | 31 | 5 | 6 | 是 |
+| 141 | bioinformatics | 理学 | 47 | 7 | 7 | 是 |
+| 142 | bioinformatics_and_computational_biology | 理学 | 48 | 9 | 6 | 是 |
+| 143 | biological_and_related_sciences | 理学 | 43 | 7 | 6 | 是 |
+| 144 | biological_and_related_sciences_not | 理学 | 44 | 8 | 6 | 是 |
+| 145 | biological_chemistry | 理学 | 51 | 8 | 7 | 是 |
+| 146 | biological_psychology | 理学 | 21 | 5 | 6 | 是 |
+| 147 | biological_sciences | 理学 | 24 | 7 | 7 | 是 |
+| 148 | biology | 理学 | 25 | 7 | 7 | 是 |
+| 149 | biomechanics | 工学 | 22 | 5 | 7 | 是 |
+| 150 | biomedical_and_clinical_sciences | 医学 | 23 | 5 | 8 | 是 |
+| 151 | biomedical_engineering | 工学 | 27 | 6 | 7 | 是 |
+| 152 | biometrics | 理学 | 24 | 6 | 6 | 是 |
+| 153 | bionics | 工学 | 25 | 5 | 8 | 是 |
+| 154 | biophysics | 理学 | 29 | 6 | 7 | 是 |
+| 155 | biotechnology | 工学 | 32 | 7 | 7 | 是 |
+| 156 | biotechnology_engineering | 工学 | 26 | 5 | 7 | 是 |
+| 157 | blockchain | 工学 | 30 | 5 | 8 | 是 |
+| 158 | boat_building | 工学 | 20 | 4 | 8 | 是 |
+| 159 | boilermaking_and_welding | 工学 | 20 | 5 | 7 | 是 |
+| 160 | bookbinding | 艺术学 | 20 | 5 | 6 | 是 |
+| 161 | bookkeeping | 管理学 | 20 | 5 | 6 | 是 |
+| 162 | bookmaking | 经济学 | 20 | 5 | 6 | 是 |
+| 163 | botany | 理学 | 20 | 8 | 6 | 是 |
+| 164 | brewing | 工学 | 20 | 5 | 8 | 是 |
+| 165 | bricklaying | 工学 | 20 | 4 | 7 | 是 |
+| 166 | brickwork_and_masonry | 工学 | 20 | 4 | 7 | 是 |
+| 167 | bridge_construction | 工学 | 20 | 4 | 8 | 是 |
+| 168 | broad_generic | 教育学 | 20 | 5 | 5 | 是 |
+| 169 | broadcast_journalism | 文学 | 20 | 5 | 8 | 是 |
+| 170 | broadcasting_electronics | 工学 | 25 | 4 | 7 | 是 |
+| 171 | building | 工学 | 27 | 5 | 8 | 是 |
+| 172 | building_and_civil_engineering | 工学 | 24 | 5 | 7 | 是 |
+| 173 | building_construction | 工学 | 24 | 5 | 7 | 是 |
+| 174 | building_design | 工学 | 25 | 5 | 8 | 是 |
+| 175 | building_engineering | 工学 | 24 | 5 | 7 | 是 |
+| 176 | building_maintenance | 工学 | 25 | 5 | 7 | 是 |
+| 177 | building_renovation | 工学 | 24 | 5 | 8 | 是 |
+| 178 | building_technology | 工学 | 24 | 5 | 7 | 是 |
+| 179 | built_environment_and_design | 工学 | 25 | 5 | 8 | 是 |
+| 180 | bus_and_coach_driving | 工学 | 21 | 4 | 7 | 是 |
+| 181 | business | 管理学 | 20 | 4 | 7 | 是 |
+| 182 | business_administration | 管理学 | 24 | 6 | 5 | 是 |
+| 183 | business_administration_and_law | 法学 | 20 | 7 | 5 | 是 |
+| 184 | business_administration_and_law_not | 法学 | 20 | 8 | 5 | 是 |
+| 185 | business_and_administration_not | 管理学 | 24 | 5 | 7 | 是 |
+| 186 | business_correspondence | 管理学 | 24 | 5 | 7 | 是 |
+| 187 | business_finance | 经济学 | 24 | 7 | 6 | 是 |
+| 188 | business_systems_in_context | 管理学 | 25 | 6 | 7 | 是 |
+| 189 | butchery | 农学 | 25 | 5 | 7 | 是 |
+| 190 | buying_and_selling | 管理学 | 26 | 5 | 6 | 是 |
+| 191 | cabin_crew_training | 教育学 | 25 | 5 | 6 | 是 |
+| 192 | cabinet_making | 工学 | 29 | 6 | 8 | 是 |
+| 193 | calligraphy | 艺术学 | 26 | 5 | 6 | 是 |
+| 194 | camera_operating | 艺术学 | 20 | 2 | 6 | 是 |
+| 195 | cane_willow_and_bamboo_work | 艺术学 | 20 | 2 | 6 | 是 |
+| 196 | cardiology | 医学 | 20 | 5 | 7 | 是 |
+| 197 | cardiovascular_medicine_and_haematology | 医学 | 20 | 5 | 7 | 是 |
+| 198 | care_of_disabled_adults | 医学 | 20 | 4 | 7 | 是 |
+| 199 | care_of_disabled_children | 医学 | 20 | 4 | 7 | 是 |
+| 200 | care_of_elderly_and_of_disabled_adults | 医学 | 20 | 4 | 7 | 是 |
+| 201 | care_of_the_elderly | 医学 | 20 | 4 | 7 | 是 |
+| 202 | care_of_the_elderly_and_of | 医学 | 20 | 4 | 7 | 是 |
+| 203 | care_of_the_elderly_and_of_disabled | 医学 | 20 | 4 | 7 | 是 |
+| 204 | career_advising | 教育学 | 20 | 4 | 6 | 是 |
+| 205 | caretaking_housekeeping_home | 管理学 | 20 | 3 | 5 | 是 |
+| 206 | carpentry | 工学 | 20 | 3 | 8 | 是 |
+| 207 | carpentry_and_joinery | 工学 | 20 | 3 | 7 | 是 |
+| 208 | cartography | 理学 | 20 | 3 | 7 | 是 |
+| 209 | catering | 管理学 | 20 | 3 | 6 | 是 |
+| 210 | cell_biology | 理学 | 20 | 5 | 7 | 是 |
+| 211 | cell_technology | 理学 | 20 | 4 | 7 | 是 |
+| 212 | cement_working | 工学 | 20 | 3 | 7 | 是 |
+| 213 | ceramics | 工学 | 20 | 3 | 8 | 是 |
+| 214 | charcoal_burning | 工学 | 20 | 3 | 7 | 是 |
+| 215 | cheese_production | 工学 | 20 | 4 | 7 | 是 |
+| 216 | chemical_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 217 | chemical_engineering_and | 工学 | 20 | 3 | 7 | 是 |
+| 218 | chemical_engineering_and_processes | 工学 | 113 | 6 | 8 | 是 |
+| 219 | chemical_physics | 理学 | 76 | 6 | 6 | 是 |
+| 220 | chemical_process_engineering | 工学 | 95 | 6 | 7 | 是 |
+| 221 | chemical_sciences | 理学 | 48 | 12 | 7 | 是 |
+| 222 | chemistry | 理学 | 48 | 14 | 7 | 是 |
+| 223 | child_care | 教育学 | 70 | 10 | 5 | 是 |
+| 224 | child_care_and_youth_services | 教育学 | 44 | 6 | 5 | 是 |
+| 225 | children_recreation_programmes | 教育学 | 55 | 9 | 7 | 是 |
+| 226 | chimney_sweeping | 工学 | 50 | 5 | 7 | 是 |
+| 227 | chinese_language | 文学 | 55 | 7 | 8 | 是 |
+| 228 | chinese_literature | 文学 | 38 | 6 | 7 | 是 |
+| 229 | chinese_philosophy | 哲学 | 57 | 5 | 6 | 是 |
+| 230 | chiropractic | 医学 | 20 | 4 | 7 | 是 |
+| 231 | choreography | 艺术学 | 20 | 3 | 6 | 是 |
+| 232 | chronobiology | 理学 | 56 | 4 | 6 | 是 |
+| 233 | cinematography | 艺术学 | 55 | 4 | 7 | 是 |
+| 234 | circus | 艺术学 | 32 | 3 | 6 | 是 |
+| 235 | city_planning | 工学 | 38 | 4 | 8 | 是 |
+| 236 | civics | 教育学 | 33 | 5 | 5 | 是 |
+| 237 | civil_engineering | 工学 | 69 | 5 | 7 | 是 |
+| 238 | civil_security | 法学 | 35 | 5 | 7 | 是 |
+| 239 | class_teacher_training | 教育学 | 45 | 5 | 6 | 是 |
+| 240 | classical_languages | 文学 | 53 | 5 | 8 | 是 |
+| 241 | classical_mechanics | 理学 | 42 | 3 | 7 | 是 |
+| 242 | classical_physics | 理学 | 20 | 3 | 7 | 是 |
+| 243 | classics | 历史学 | 20 | 8 | 6 | 是 |
+| 244 | cleaning | 工学 | 20 | 3 | 7 | 是 |
+| 245 | clerical_programmes | 管理学 | 20 | 2 | 6 | 是 |
+| 246 | clients_needs | 管理学 | 20 | 2 | 5 | 是 |
+| 247 | climate_change_impacts_and_adaptation | 理学 | 20 | 3 | 6 | 是 |
+| 248 | climate_change_science | 理学 | 20 | 3 | 6 | 是 |
+| 249 | climate_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 250 | climate_research | 理学 | 20 | 3 | 6 | 是 |
+| 251 | climatology | 理学 | 20 | 5 | 6 | 是 |
+| 252 | clinical_and_health_psychology | 医学 | 20 | 4 | 7 | 是 |
+| 253 | clinical_dentistry | 医学 | 20 | 3 | 7 | 是 |
+| 254 | clinical_medicine | 医学 | 20 | 5 | 7 | 是 |
+| 255 | clinical_medicine_professional | 医学 | 20 | 1 | 7 | 是 |
+| 256 | clinical_sciences | 医学 | 20 | 5 | 8 | 是 |
+| 257 | clothing_apparel_and_textile_working | 工学 | 20 | 4 | 7 | 是 |
+| 258 | clothing_industry | 工学 | 20 | 3 | 8 | 是 |
+| 259 | clothing_trades | 工学 | 21 | 3 | 8 | 是 |
+| 260 | cloud_computing | 工学 | 24 | 3 | 7 | 是 |
+| 261 | coachwork | 工学 | 20 | 4 | 7 | 是 |
+| 262 | coal_mining | 工学 | 22 | 4 | 7 | 是 |
+| 263 | cognitive_and_computational_psychology | 理学 | 23 | 5 | 6 | 是 |
+| 264 | cognitive_science | 理学 | 23 | 4 | 6 | 是 |
+| 265 | cognitive_sciences | 理学 | 23 | 4 | 6 | 是 |
+| 266 | combinatorics | 理学 | 24 | 3 | 6 | 是 |
+| 267 | commerce_management_tourism_and_services | 管理学 | 20 | 5 | 5 | 是 |
+| 268 | commercial_law | 法学 | 20 | 10 | 6 | 是 |
+| 269 | commercial_services | 管理学 | 20 | 5 | 5 | 是 |
+| 270 | communication_and_media_studies | 文学 | 20 | 5 | 8 | 是 |
+| 271 | communication_mass_wording_and | 文学 | 26 | 5 | 8 | 是 |
+| 272 | communication_studies | 文学 | 20 | 5 | 8 | 是 |
+| 273 | communications | 工学 | 20 | 5 | 7 | 是 |
+| 274 | communications_engineering | 工学 | 25 | 5 | 7 | 是 |
+| 275 | communications_equipment | 工学 | 25 | 5 | 8 | 是 |
+| 276 | communications_equipment_installation | 工学 | 27 | 4 | 7 | 是 |
+| 277 | communications_skills | 管理学 | 26 | 5 | 5 | 是 |
+| 278 | communications_systems | 工学 | 26 | 5 | 8 | 是 |
+| 279 | community_development | 管理学 | 30 | 6 | 5 | 是 |
+| 280 | community_nursing | 医学 | 28 | 7 | 7 | 是 |
+| 281 | community_planning | 管理学 | 30 | 6 | 6 | 是 |
+| 282 | community_sanitation | 工学 | 28 | 7 | 7 | 是 |
+| 283 | company_knowledge | 管理学 | 38 | 7 | 6 | 是 |
+| 284 | comparative_literature | 文学 | 26 | 8 | 8 | 是 |
+| 285 | complexity_science | 理学 | 20 | 6 | 6 | 是 |
+| 286 | compositing | 艺术学 | 20 | 5 | 7 | 是 |
+| 287 | composition | 艺术学 | 20 | 5 | 7 | 是 |
+| 288 | composition_equipment_operating | 工学 | 20 | 6 | 8 | 是 |
+| 289 | computational_chemistry | 理学 | 28 | 5 | 6 | 是 |
+| 290 | computational_mathematics | 理学 | 30 | 5 | 6 | 是 |
+| 291 | computer_administration_and | 工学 | 26 | 3 | 7 | 是 |
+| 292 | computer_architecture | 工学 | 22 | 3 | 8 | 是 |
+| 293 | computer_engineering | 工学 | 26 | 4 | 7 | 是 |
+| 294 | computer_game_production | 工学 | 26 | 4 | 8 | 是 |
+| 295 | computer_graphics | 工学 | 25 | 4 | 8 | 是 |
+| 296 | computer_media_applications | 工学 | 29 | 4 | 8 | 是 |
+| 297 | computer_network_installation_and | 工学 | 27 | 4 | 7 | 是 |
+| 298 | computer_networks | 工学 | 28 | 5 | 7 | 是 |
+| 299 | computer_programming | 工学 | 64 | 4 | 9 | 是 |
+| 300 | computer_repairing | 工学 | 31 | 4 | 7 | 是 |
+| 301 | computer_science | 工学 | 30 | 3 | 7 | 是 |
+| 302 | computer_software_use | 工学 | 40 | 4 | 8 | 是 |
+| 303 | computer_support | 工学 | 20 | 3 | 7 | 是 |
+| 304 | computer_systems_analysis | 工学 | 20 | 3 | 7 | 是 |
+| 305 | computer_systems_design | 工学 | 20 | 4 | 8 | 是 |
+| 306 | computer_typesetting | 工学 | 20 | 3 | 8 | 是 |
+| 307 | computer_use | 工学 | 20 | 4 | 7 | 是 |
+| 308 | computer_vision | 工学 | 20 | 5 | 7 | 是 |
+| 309 | computer_vision_and_multimedia_computation | 工学 | 20 | 4 | 8 | 是 |
+| 310 | condensed_matter_physics | 理学 | 20 | 5 | 7 | 是 |
+| 311 | conducting | 艺术学 | 20 | 3 | 6 | 是 |
+| 312 | confectionery | 工学 | 20 | 3 | 7 | 是 |
+| 313 | conservation_and_land_management | 理学 | 20 | 4 | 6 | 是 |
+| 314 | conservation_biology | 理学 | 20 | 6 | 6 | 是 |
+| 315 | conservation_of_cultural_material | 历史学 | 33 | 7 | 8 | 是 |
+| 316 | construction_equipment | 工学 | 39 | 6 | 7 | 是 |
+| 317 | construction_plant_operation | 工学 | 35 | 6 | 8 | 是 |
+| 318 | construction_technology | 工学 | 42 | 7 | 7 | 是 |
+| 319 | constructional_engineering | 工学 | 40 | 7 | 7 | 是 |
+| 320 | constructional_metalwork | 工学 | 50 | 6 | 7 | 是 |
+| 321 | consumer_behaviour | 管理学 | 46 | 7 | 6 | 是 |
+| 322 | consumer_economics | 经济学 | 41 | 8 | 6 | 是 |
+| 323 | consumer_services | 管理学 | 43 | 6 | 6 | 是 |
+| 324 | control_engineering | 工学 | 61 | 7 | 7 | 是 |
+| 325 | control_engineering_mechatronics_and_robotics | 工学 | 51 | 8 | 7 | 是 |
+| 326 | control_theory | 理学 | 31 | 3 | 6 | 是 |
+| 327 | conversational_therapy | 医学 | 20 | 5 | 7 | 是 |
+| 328 | cooking | 工学 | 20 | 6 | 8 | 是 |
+| 329 | cooperation | 管理学 | 20 | 6 | 7 | 是 |
+| 330 | cooperation_skills | 教育学 | 20 | 4 | 7 | 是 |
+| 331 | cosmetic_services | 管理学 | 20 | 4 | 7 | 是 |
+| 332 | cosmetology | 医学 | 20 | 4 | 7 | 是 |
+| 333 | cosmology | 理学 | 27 | 5 | 6 | 是 |
+| 334 | costume_design | 艺术学 | 20 | 4 | 6 | 是 |
+| 335 | counselling | 教育学 | 20 | 5 | 6 | 是 |
+| 336 | court_reporting | 法学 | 20 | 7 | 6 | 是 |
+| 337 | craft_programmes | 工学 | 25 | 4 | 8 | 是 |
+| 338 | crafts_folk_arts_and_artisan | 艺术学 | 20 | 6 | 7 | 是 |
+| 339 | crane_and_truck_driving | 工学 | 31 | 6 | 8 | 是 |
+| 340 | creative_and_performance_art | 艺术学 | 38 | 5 | 8 | 是 |
+| 341 | creative_and_professional_writing | 文学 | 32 | 6 | 8 | 是 |
+| 342 | creative_arts_and_writing | 文学 | 25 | 5 | 8 | 是 |
+| 343 | creative_writing | 文学 | 25 | 5 | 8 | 是 |
+| 344 | criminal_justice_studies | 法学 | 31 | 7 | 6 | 是 |
+| 345 | criminology | 法学 | 35 | 7 | 6 | 是 |
+| 346 | crisis_support | 医学 | 37 | 6 | 7 | 是 |
+| 347 | crop_and_livestock_production | 农学 | 37 | 9 | 7 | 是 |
+| 348 | crop_and_pasture_production | 农学 | 38 | 9 | 7 | 是 |
+| 349 | crop_growing_and_husbandry | 农学 | 48 | 9 | 7 | 是 |
+| 350 | croupier_training | 管理学 | 40 | 6 | 7 | 是 |
+| 351 | cryptography | 理学 | 22 | 5 | 7 | 是 |
+| 352 | culinary_arts | 管理学 | 21 | 4 | 6 | 是 |
+| 353 | cultural_geography | 理学 | 22 | 6 | 6 | 是 |
+| 354 | cultural_history | 历史学 | 20 | 9 | 6 | 是 |
+| 355 | cultural_studies | 文学 | 22 | 5 | 7 | 是 |
+| 356 | curatorial_studies | 艺术学 | 26 | 5 | 6 | 是 |
+| 357 | curriculum_and_pedagogy | 教育学 | 24 | 6 | 6 | 是 |
+| 358 | curriculum_development | 教育学 | 25 | 6 | 7 | 是 |
+| 359 | curriculum_studies | 教育学 | 22 | 7 | 6 | 是 |
+| 360 | custodiancaretaker | 管理学 | 24 | 5 | 8 | 是 |
+| 361 | custom_tailoring | 工学 | 25 | 5 | 8 | 是 |
+| 362 | customer_service_training | 管理学 | 26 | 5 | 6 | 是 |
+| 363 | customs_programmes | 经济学 | 20 | 4 | 6 | 是 |
+| 364 | cutting_and_tailoring | 艺术学 | 25 | 4 | 7 | 是 |
+| 365 | cybersecurity | 工学 | 20 | 5 | 7 | 是 |
+| 366 | cybersecurity_and_privacy | 工学 | 20 | 5 | 7 | 是 |
+| 367 | cytology | 医学 | 20 | 4 | 7 | 是 |
+| 368 | dairy_foods | 农学 | 20 | 4 | 7 | 是 |
+| 369 | dairy_retailing | 管理学 | 20 | 4 | 5 | 是 |
+| 370 | dairy_science | 农学 | 20 | 4 | 7 | 是 |
+| 371 | dance | 艺术学 | 26 | 4 | 6 | 是 |
+| 372 | data_analysis | 理学 | 30 | 3 | 6 | 是 |
+| 373 | data_entry | 管理学 | 32 | 4 | 7 | 是 |
+| 374 | data_ethics | 管理学 | 31 | 4 | 5 | 是 |
+| 375 | data_management_and_data_science | 工学 | 33 | 4 | 7 | 是 |
+| 376 | data_processing_technology | 工学 | 31 | 4 | 7 | 是 |
+| 377 | data_science | 工学 | 31 | 4 | 7 | 是 |
+| 378 | database_administrator_studies | 工学 | 33 | 4 | 8 | 是 |
+| 379 | database_and_network_design_and | 工学 | 30 | 4 | 8 | 是 |
+| 380 | database_and_network_design_and_administration | 工学 | 32 | 4 | 8 | 是 |
+| 381 | database_systems | 工学 | 31 | 4 | 7 | 是 |
+| 382 | day_care | 教育学 | 20 | 5 | 5 | 是 |
+| 383 | decorative_metal_crafts | 艺术学 | 20 | 4 | 7 | 是 |
+| 384 | deep_learning | 工学 | 20 | 5 | 8 | 是 |
+| 385 | deep_sea_fishing | 农学 | 20 | 4 | 7 | 是 |
+| 386 | defence_studies | 军事学 | 20 | 4 | 7 | 是 |
+| 387 | defense_studies | 军事学 | 20 | 4 | 7 | 是 |
+| 388 | demography | 理学 | 20 | 4 | 7 | 是 |
+| 389 | demographypopulation_studies | 理学 | 20 | 4 | 7 | 是 |
+| 390 | demolition | 工学 | 20 | 4 | 7 | 是 |
+| 391 | demonstration_techniques | 法学 | 20 | 4 | 5 | 是 |
+| 392 | dental_assisting | 医学 | 20 | 5 | 7 | 是 |
+| 393 | dental_hygiene | 医学 | 20 | 5 | 7 | 是 |
+| 394 | dental_laboratory_technology | 医学 | 20 | 4 | 8 | 是 |
+| 395 | dental_nursing | 医学 | 20 | 4 | 7 | 是 |
+| 396 | dental_science | 医学 | 20 | 4 | 7 | 是 |
+| 397 | dental_studies | 医学 | 20 | 7 | 7 | 是 |
+| 398 | dental_surgery | 医学 | 20 | 4 | 7 | 是 |
+| 399 | dental_technology | 医学 | 20 | 4 | 8 | 是 |
+| 400 | dentistry | 医学 | 20 | 3 | 7 | 是 |
+| 401 | dermatology | 医学 | 20 | 4 | 7 | 是 |
+| 402 | design | 艺术学 | 20 | 3 | 7 | 是 |
+| 403 | design_of_industrial_products | 工学 | 20 | 3 | 8 | 是 |
+| 404 | desktop_publishing | 工学 | 20 | 2 | 7 | 是 |
+| 405 | development_and_child_psychology | 理学 | 20 | 5 | 6 | 是 |
+| 406 | development_of_behavioural_skills | 理学 | 20 | 4 | 6 | 是 |
+| 407 | development_of_mental_skills | 理学 | 20 | 4 | 6 | 是 |
+| 408 | development_of_personal_organisational | 管理学 | 20 | 4 | 5 | 是 |
+| 409 | development_studies | 经济学 | 20 | 4 | 5 | 是 |
+| 410 | developmental_biology | 理学 | 20 | 4 | 6 | 是 |
+| 411 | didactics | 教育学 | 20 | 4 | 6 | 是 |
+| 412 | dietician_programmes | 医学 | 20 | 4 | 7 | 是 |
+| 413 | digital_technology | 工学 | 20 | 5 | 8 | 是 |
+| 414 | directing | 艺术学 | 20 | 3 | 7 | 是 |
+| 415 | disc_jockey_training | 艺术学 | 20 | 2 | 7 | 是 |
+| 416 | dispensing_pharmacy | 医学 | 20 | 4 | 8 | 是 |
+| 417 | distance_education_methodology | 教育学 | 20 | 4 | 5 | 是 |
+| 418 | distilling | 工学 | 20 | 4 | 7 | 是 |
+| 419 | distributed_computing_and_systems_software | 工学 | 20 | 5 | 7 | 是 |
+| 420 | distributed_systems | 工学 | 20 | 5 | 7 | 是 |
+| 421 | diving | 工学 | 20 | 4 | 8 | 是 |
+| 422 | dock_and_harbour_engineering | 工学 | 20 | 4 | 8 | 是 |
+| 423 | documentation | 工学 | 20 | 6 | 7 | 是 |
+| 424 | dog_breeding | 农学 | 20 | 4 | 7 | 是 |
+| 425 | domestic_science | 管理学 | 20 | 4 | 5 | 是 |
+| 426 | domestic_services | 管理学 | 20 | 4 | 5 | 是 |
+| 427 | drama | 艺术学 | 20 | 3 | 8 | 是 |
+| 428 | drawing | 艺术学 | 20 | 3 | 6 | 是 |
+| 429 | drawing_technical | 工学 | 20 | 4 | 8 | 是 |
+| 430 | dressmaking | 艺术学 | 20 | 3 | 7 | 是 |
+| 431 | drilling | 工学 | 20 | 4 | 7 | 是 |
+| 432 | driver_and_safety_teacher_education | 教育学 | 20 | 4 | 5 | 是 |
+| 433 | driving_instructor_training | 教育学 | 20 | 4 | 5 | 是 |
+| 434 | driving_training | 工学 | 20 | 4 | 7 | 是 |
+| 435 | drycleaning | 工学 | 20 | 4 | 7 | 是 |
+| 436 | dynamical_systems | 理学 | 20 | 3 | 6 | 是 |
+| 437 | early_childhood_teaching_within_formal | 教育学 | 20 | 4 | 5 | 是 |
+| 438 | earth_science | 理学 | 20 | 4 | 7 | 是 |
+| 439 | earth_sciences | 理学 | 20 | 4 | 7 | 是 |
+| 440 | ecological_applications | 农学 | 20 | 4 | 7 | 是 |
+| 441 | ecological_technology | 工学 | 20 | 4 | 7 | 是 |
+| 442 | ecology | 理学 | 20 | 4 | 6 | 是 |
+| 443 | econometrics | 经济学 | 20 | 7 | 6 | 是 |
+| 444 | economic_history | 经济学 | 20 | 7 | 5 | 是 |
+| 445 | economic_theory | 经济学 | 20 | 4 | 6 | 是 |
+| 446 | economics | 经济学 | 20 | 4 | 5 | 是 |
+| 447 | economics_business | 经济学 | 20 | 4 | 5 | 是 |
+| 448 | editing | 工学 | 20 | 3 | 7 | 是 |
+| 449 | education | 教育学 | 20 | 4 | 5 | 是 |
+| 450 | education_not_elsewhere | 教育学 | 20 | 4 | 5 | 是 |
+| 451 | education_not_elsewhere_classified | 教育学 | 20 | 4 | 5 | 是 |
+| 452 | education_not_further_defined | 教育学 | 20 | 4 | 5 | 是 |
+| 453 | education_policy_sociology_and_philosophy | 教育学 | 20 | 7 | 5 | 是 |
+| 454 | education_science | 教育学 | 20 | 4 | 5 | 是 |
+| 455 | education_systems | 教育学 | 20 | 4 | 5 | 是 |
+| 456 | education_technology | 教育学 | 20 | 4 | 6 | 是 |
+| 457 | educational_assessment_testing_and | 教育学 | 20 | 4 | 6 | 是 |
+| 458 | educational_evaluation_and_research | 教育学 | 20 | 7 | 6 | 是 |
+| 459 | educational_management | 教育学 | 20 | 7 | 5 | 是 |
+| 460 | elder_care_health | 医学 | 20 | 4 | 7 | 是 |
+| 461 | electrical_appliances_repairing | 工学 | 20 | 4 | 7 | 是 |
+| 462 | electrical_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 463 | electrical_fitting | 工学 | 20 | 4 | 7 | 是 |
+| 464 | electrical_power_generation | 工学 | 20 | 4 | 7 | 是 |
+| 465 | electrical_trades | 工学 | 20 | 4 | 8 | 是 |
+| 466 | electricity_and_energy | 工学 | 20 | 4 | 7 | 是 |
+| 467 | electrochemistry | 理学 | 20 | 4 | 7 | 是 |
+| 468 | electromagnetism | 理学 | 20 | 5 | 6 | 是 |
+| 469 | electronic_data_processing | 工学 | 20 | 5 | 7 | 是 |
+| 470 | electronic_engineering | 工学 | 20 | 4 | 8 | 是 |
+| 471 | electronic_equipment_servicing | 工学 | 20 | 4 | 7 | 是 |
+| 472 | electronics_and_automation | 工学 | 20 | 4 | 7 | 是 |
+| 473 | electronics_engineering | 工学 | 20 | 4 | 8 | 是 |
+| 474 | electronics_sensors_and_digital_hardware | 工学 | 20 | 4 | 7 | 是 |
+| 475 | elementary_teacher_education | 教育学 | 20 | 4 | 5 | 是 |
+| 476 | elocution | 文学 | 20 | 3 | 7 | 是 |
+| 477 | embroidery | 艺术学 | 20 | 3 | 7 | 是 |
+| 478 | embroidery_and_needlework | 艺术学 | 20 | 3 | 7 | 是 |
+| 479 | emergency_paramedical_technologies | 医学 | 20 | 4 | 7 | 是 |
+| 480 | employment_management | 管理学 | 20 | 7 | 5 | 是 |
+| 481 | endocrinology | 医学 | 20 | 4 | 7 | 是 |
+| 482 | energy_efficiency | 工学 | 20 | 4 | 7 | 是 |
+| 483 | energy_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 484 | energy_studies | 工学 | 20 | 4 | 7 | 是 |
+| 485 | engineering | 工学 | 20 | 4 | 8 | 是 |
+| 486 | engineering_and_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 487 | engineering_and_engineering_trades | 工学 | 20 | 4 | 7 | 是 |
+| 488 | engineering_and_engineering_trades_not_elsewhere_classified | 工学 | 20 | 4 | 7 | 是 |
+| 489 | engineering_manufacturing_and | 工学 | 20 | 4 | 7 | 是 |
+| 490 | engineering_practice_and_education | 工学 | 20 | 4 | 7 | 是 |
+| 491 | english_literature | 文学 | 20 | 4 | 7 | 是 |
+| 492 | enhancing_personal_skills | 教育学 | 20 | 4 | 5 | 是 |
+| 493 | entomology | 农学 | 20 | 4 | 7 | 是 |
+| 494 | entrepreneurship | 管理学 | 20 | 7 | 6 | 是 |
+| 495 | environment_not_elsewhere | 工学 | 20 | 4 | 7 | 是 |
+| 496 | environment_not_further_defined | 工学 | 20 | 4 | 7 | 是 |
+| 497 | environmental_and_resources_law | 法学 | 20 | 4 | 5 | 是 |
+| 498 | environmental_biotechnology | 工学 | 20 | 4 | 7 | 是 |
+| 499 | environmental_control | 工学 | 20 | 4 | 7 | 是 |
+| 500 | environmental_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 501 | environmental_ethics | 哲学 | 20 | 4 | 6 | 是 |
+| 502 | environmental_management | 工学 | 20 | 4 | 7 | 是 |
+| 503 | environmental_protection | 工学 | 20 | 4 | 7 | 是 |
+| 504 | environmental_protection_technology | 工学 | 20 | 4 | 7 | 是 |
+| 505 | environmental_science | 理学 | 20 | 4 | 6 | 是 |
+| 506 | environmental_sciences | 理学 | 20 | 4 | 6 | 是 |
+| 507 | epidemiology | 医学 | 20 | 4 | 7 | 是 |
+| 508 | epistemology | 哲学 | 20 | 4 | 6 | 是 |
+| 509 | ergonomics | 工学 | 20 | 4 | 7 | 是 |
+| 510 | ergonomics_occupational_health_and | 医学 | 20 | 4 | 7 | 是 |
+| 511 | etching | 工学 | 20 | 4 | 7 | 是 |
+| 512 | ethics | 哲学 | 20 | 4 | 6 | 是 |
+| 513 | ethnology | 法学 | 20 | 4 | 5 | 是 |
+| 514 | evolutionary_biology | 理学 | 20 | 4 | 6 | 是 |
+| 515 | excavation_engineering | 工学 | 20 | 4 | 8 | 是 |
+| 516 | exogenous_languages | 文学 | 20 | 6 | 7 | 是 |
+| 517 | family_and_marriage_counselling | 法学 | 20 | 7 | 5 | 是 |
+| 518 | family_life_development_training | 教育学 | 20 | 7 | 5 | 是 |
+| 519 | farm_and_ranch_management | 农学 | 20 | 4 | 7 | 是 |
+| 520 | farm_maintenance | 农学 | 20 | 4 | 8 | 是 |
+| 521 | farming | 农学 | 20 | 4 | 7 | 是 |
+| 522 | fashion_design | 艺术学 | 20 | 3 | 7 | 是 |
+| 523 | fashion_interior_and_industrial | 艺术学 | 20 | 3 | 7 | 是 |
+| 524 | fashion_interior_and_industrial_design | 艺术学 | 20 | 3 | 7 | 是 |
+| 525 | fashion_modelling | 艺术学 | 20 | 4 | 6 | 是 |
+| 526 | fast_food_preparation | 工学 | 20 | 3 | 7 | 是 |
+| 527 | fibre_textile_and_weaving_arts | 艺术学 | 20 | 3 | 6 | 是 |
+| 528 | film_and_tv_editing | 艺术学 | 20 | 3 | 6 | 是 |
+| 529 | film_and_video_production | 艺术学 | 20 | 3 | 6 | 是 |
+| 530 | film_studies | 艺术学 | 20 | 5 | 6 | 是 |
+| 531 | finance | 经济学 | 20 | 3 | 5 | 是 |
+| 532 | finance_banking_and_insurance | 经济学 | 20 | 5 | 5 | 是 |
+| 533 | financial_management | 管理学 | 20 | 5 | 5 | 是 |
+| 534 | fine_art_printmaking | 艺术学 | 20 | 3 | 6 | 是 |
+| 535 | fine_arts | 艺术学 | 20 | 4 | 6 | 是 |
+| 536 | fire_technology | 工学 | 20 | 3 | 7 | 是 |
+| 537 | fireprotection | 工学 | 20 | 3 | 7 | 是 |
+| 538 | first_language_studies | 文学 | 20 | 3 | 7 | 是 |
+| 539 | fish_breeding | 农学 | 20 | 3 | 7 | 是 |
+| 540 | fish_farming | 农学 | 20 | 3 | 7 | 是 |
+| 541 | fish_husbandry | 农学 | 20 | 3 | 7 | 是 |
+| 542 | fisheries | 农学 | 20 | 3 | 7 | 是 |
+| 543 | fisheries_sciences | 农学 | 20 | 3 | 7 | 是 |
+| 544 | fishery_science_and_technology | 农学 | 20 | 3 | 7 | 是 |
+| 545 | fitness_and_weight_control | 医学 | 20 | 3 | 9 | 是 |
+| 546 | fitness_services | 管理学 | 20 | 3 | 5 | 是 |
+| 547 | flight_instructor_training | 工学 | 20 | 3 | 7 | 是 |
+| 548 | floor_and_wall_tiling | 工学 | 20 | 3 | 8 | 是 |
+| 549 | floor_covering | 工学 | 20 | 3 | 7 | 是 |
+| 550 | floriculture | 农学 | 20 | 3 | 7 | 是 |
+| 551 | floristry | 艺术学 | 20 | 3 | 5 | 是 |
+| 552 | fluid_mechanics_and_thermal_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 553 | flying_and_navigation | 工学 | 20 | 3 | 7 | 是 |
+| 554 | folklore_studies | 文学 | 20 | 3 | 7 | 是 |
+| 555 | food_and_drink_processing | 农学 | 20 | 3 | 7 | 是 |
+| 556 | food_and_hospitality_services | 管理学 | 20 | 3 | 5 | 是 |
+| 557 | food_handlinghygiene | 农学 | 20 | 3 | 7 | 是 |
+| 558 | food_preparation | 农学 | 20 | 3 | 7 | 是 |
+| 559 | food_preservation | 农学 | 20 | 3 | 7 | 是 |
+| 560 | food_processing | 农学 | 20 | 3 | 7 | 是 |
+| 561 | food_processing_industry | 工学 | 20 | 3 | 7 | 是 |
+| 562 | food_science | 农学 | 20 | 3 | 7 | 是 |
+| 563 | food_science_and_technology | 工学 | 20 | 3 | 7 | 是 |
+| 564 | food_sciences | 农学 | 20 | 3 | 7 | 是 |
+| 565 | food_serving | 管理学 | 20 | 3 | 5 | 是 |
+| 566 | food_techniques | 工学 | 20 | 3 | 7 | 是 |
+| 567 | football_playing | 教育学 | 20 | 2 | 5 | 是 |
+| 568 | footwear_making | 工学 | 20 | 3 | 7 | 是 |
+| 569 | foreign_language_secretary | 教育学 | 20 | 3 | 6 | 是 |
+| 570 | foreign_languages | 文学 | 20 | 3 | 7 | 是 |
+| 571 | forensic_medicine | 医学 | 20 | 3 | 7 | 是 |
+| 572 | forensic_medicine_technology | 医学 | 20 | 3 | 7 | 是 |
+| 573 | forensic_pathology | 医学 | 20 | 3 | 7 | 是 |
+| 574 | forensic_science | 医学 | 20 | 3 | 7 | 是 |
+| 575 | forest_keeping | 农学 | 20 | 4 | 7 | 是 |
+| 576 | forest_product_techniques | 农学 | 20 | 4 | 7 | 是 |
+| 577 | forest_ranging | 农学 | 20 | 4 | 7 | 是 |
+| 578 | forestry | 农学 | 20 | 4 | 7 | 是 |
+| 579 | forestry_sciences | 农学 | 20 | 4 | 7 | 是 |
+| 580 | forklift_truck_driving | 工学 | 20 | 2 | 7 | 是 |
+| 581 | formal_methods | 工学 | 20 | 3 | 7 | 是 |
+| 582 | fruit_growing | 农学 | 20 | 4 | 7 | 是 |
+| 583 | functional_literacy | 教育学 | 20 | 3 | 5 | 是 |
+| 584 | funeral_services_and_mortuary_science | 管理学 | 20 | 2 | 5 | 是 |
+| 585 | fur_making | 文学 | 20 | 3 | 7 | 是 |
+| 586 | furniture_crafts | 艺术学 | 20 | 3 | 6 | 是 |
+| 587 | furniture_making | 工学 | 20 | 3 | 7 | 是 |
+| 588 | furrier | 文学 | 20 | 3 | 8 | 是 |
+| 589 | futurology | 管理学 | 20 | 2 | 5 | 是 |
+| 590 | game_theory | 理学 | 20 | 3 | 7 | 是 |
+| 591 | garbage_disposal | 工学 | 20 | 3 | 7 | 是 |
+| 592 | gardening | 农学 | 21 | 3 | 7 | 是 |
+| 593 | garment_production | 工学 | 21 | 3 | 7 | 是 |
+| 594 | gas_distribution | 工学 | 21 | 3 | 7 | 是 |
+| 595 | gender_studies | 法学 | 20 | 9 | 5 | 是 |
+| 596 | general_medicine | 医学 | 20 | 6 | 7 | 是 |
+| 597 | general_nursing | 医学 | 20 | 6 | 7 | 是 |
+| 598 | general_programmes_and_qualification | 教育学 | 21 | 3 | 6 | 是 |
+| 599 | generic_programmes_and | 教育学 | 20 | 4 | 6 | 是 |
+| 600 | genetic_code_studies | 理学 | 20 | 3 | 7 | 是 |
+| 601 | genetic_engineering | 理学 | 20 | 3 | 7 | 是 |
+| 602 | genetics | 理学 | 20 | 7 | 6 | 是 |
+| 603 | geobiology | 理学 | 20 | 3 | 6 | 是 |
+| 604 | geochemistry | 理学 | 20 | 3 | 6 | 是 |
+| 605 | geodesy | 理学 | 20 | 3 | 6 | 是 |
+| 606 | geographic_information_systems | 理学 | 20 | 3 | 8 | 是 |
+| 607 | geography | 理学 | 20 | 3 | 6 | 是 |
+| 608 | geoinformatics | 工学 | 20 | 3 | 8 | 是 |
+| 609 | geology | 理学 | 20 | 3 | 6 | 是 |
+| 610 | geomatic_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 611 | geomatics | 工学 | 20 | 3 | 7 | 是 |
+| 612 | geometry | 理学 | 20 | 3 | 6 | 是 |
+| 613 | geometry_topology | 理学 | 20 | 3 | 6 | 是 |
+| 614 | geophysics | 理学 | 20 | 3 | 6 | 是 |
+| 615 | geoscience | 理学 | 20 | 3 | 7 | 是 |
+| 616 | geospatial_technology | 工学 | 20 | 3 | 7 | 是 |
+| 617 | geotechnical_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 618 | geriatrics | 医学 | 20 | 4 | 7 | 是 |
+| 619 | gerontological_services | 医学 | 20 | 4 | 7 | 是 |
+| 620 | gerontology | 理学 | 20 | 5 | 6 | 是 |
+| 621 | glaciology | 理学 | 20 | 4 | 6 | 是 |
+| 622 | glass_arts_and_craft | 工学 | 20 | 3 | 8 | 是 |
+| 623 | glass_production | 工学 | 20 | 4 | 7 | 是 |
+| 624 | glass_working | 工学 | 20 | 3 | 7 | 是 |
+| 625 | glazing | 工学 | 20 | 5 | 7 | 是 |
+| 626 | goldsmithing | 工学 | 20 | 4 | 7 | 是 |
+| 627 | goose_keeping | 农学 | 20 | 6 | 7 | 是 |
+| 628 | grain_growing | 农学 | 20 | 6 | 7 | 是 |
+| 629 | graph_theory | 理学 | 20 | 4 | 6 | 是 |
+| 630 | graphic_design | 艺术学 | 20 | 3 | 6 | 是 |
+| 631 | graphic_reproduction | 工学 | 20 | 3 | 8 | 是 |
+| 632 | graphics_augmented_reality_and_games | 工学 | 20 | 3 | 8 | 是 |
+| 633 | green_chemistry | 理学 | 20 | 3 | 6 | 是 |
+| 634 | green_keeping | 农学 | 20 | 3 | 7 | 是 |
+| 635 | greenhouse_operations | 农学 | 20 | 3 | 8 | 是 |
+| 636 | ground_crew_training | 工学 | 20 | 3 | 8 | 是 |
+| 637 | guiding_tour_leading | 管理学 | 20 | 3 | 6 | 是 |
+| 638 | gunsmithing | 工学 | 20 | 3 | 7 | 是 |
+| 639 | gymnastics | 教育学 | 20 | 3 | 6 | 是 |
+| 640 | gynaecology | 医学 | 20 | 3 | 7 | 是 |
+| 641 | haematology | 医学 | 20 | 3 | 7 | 是 |
+| 642 | hair_and_beauty_services | 艺术学 | 20 | 3 | 5 | 是 |
+| 643 | hairdressing | 艺术学 | 20 | 3 | 5 | 是 |
+| 644 | handicrafts | 艺术学 | 20 | 3 | 6 | 是 |
+| 645 | health_administration | 管理学 | 20 | 3 | 5 | 是 |
+| 646 | health_and_safety_in_the_work_place | 管理学 | 20 | 4 | 5 | 是 |
+| 647 | health_and_welfare_not_elsewhere | 医学 | 20 | 3 | 7 | 是 |
+| 648 | health_and_welfare_not_further | 医学 | 20 | 3 | 7 | 是 |
+| 649 | health_care_of_the_disabled | 医学 | 20 | 4 | 7 | 是 |
+| 650 | health_care_of_the_elderly | 医学 | 20 | 4 | 7 | 是 |
+| 651 | health_care_programmes | 医学 | 20 | 5 | 7 | 是 |
+| 652 | health_not_elsewhere_classified | 医学 | 20 | 4 | 7 | 是 |
+| 653 | health_not_further_defined | 医学 | 20 | 4 | 7 | 是 |
+| 654 | health_sciences | 医学 | 20 | 9 | 7 | 是 |
+| 655 | health_services_and_systems | 医学 | 20 | 3 | 7 | 是 |
+| 656 | hearing_aid_technology | 工学 | 20 | 3 | 7 | 是 |
+| 657 | heating_trades | 工学 | 20 | 3 | 7 | 是 |
+| 658 | helicopter_construction | 工学 | 20 | 3 | 7 | 是 |
+| 659 | hematology | 医学 | 20 | 4 | 7 | 是 |
+| 660 | herbalism | 医学 | 20 | 5 | 7 | 是 |
+| 661 | herbology | 农学 | 20 | 3 | 7 | 是 |
+| 662 | heritage_archive_and_museum_studies | 历史学 | 20 | 3 | 6 | 是 |
+| 663 | high_performance_computing | 工学 | 20 | 3 | 8 | 是 |
+| 664 | histology | 医学 | 20 | 3 | 7 | 是 |
+| 665 | historical_studies | 历史学 | 20 | 6 | 6 | 是 |
+| 666 | history | 历史学 | 20 | 5 | 6 | 是 |
+| 667 | history_and_archaeology | 历史学 | 20 | 3 | 6 | 是 |
+| 668 | history_and_philosophy_of_science_and | 历史学 | 20 | 4 | 7 | 是 |
+| 669 | history_and_philosophy_of_specific_fields | 历史学 | 20 | 5 | 6 | 是 |
+| 670 | history_heritage_and_archaeology | 历史学 | 20 | 3 | 6 | 是 |
+| 671 | history_of_art | 历史学 | 20 | 3 | 7 | 是 |
+| 672 | history_of_film_and_theatre | 历史学 | 20 | 4 | 8 | 是 |
+| 673 | history_of_law | 历史学 | 20 | 9 | 6 | 是 |
+| 674 | history_of_literature | 历史学 | 20 | 4 | 7 | 是 |
+| 675 | history_of_medicine | 历史学 | 20 | 7 | 6 | 是 |
+| 676 | history_of_music | 历史学 | 20 | 3 | 7 | 是 |
+| 677 | history_of_science_and_ideas | 历史学 | 20 | 4 | 6 | 是 |
+| 678 | history_of_technology | 历史学 | 20 | 4 | 7 | 是 |
+| 679 | holistic_medicine | 医学 | 20 | 3 | 7 | 是 |
+| 680 | home_economics | 管理学 | 20 | 3 | 5 | 是 |
+| 681 | home_language_teacher_training | 教育学 | 20 | 3 | 6 | 是 |
+| 682 | homeopathic_medicine | 医学 | 20 | 3 | 7 | 是 |
+| 683 | horse_breeding | 农学 | 20 | 4 | 7 | 是 |
+| 684 | horse_husbandry | 农学 | 20 | 4 | 7 | 是 |
+| 685 | horticultural_production | 农学 | 20 | 3 | 7 | 是 |
+| 686 | horticultural_techniques | 农学 | 20 | 3 | 7 | 是 |
+| 687 | horticulture | 农学 | 20 | 3 | 7 | 是 |
+| 688 | hospitality_services | 管理学 | 20 | 3 | 6 | 是 |
+| 689 | hotel_and_restaurant_studies | 管理学 | 20 | 3 | 6 | 是 |
+| 690 | hotel_receptionist_training | 管理学 | 20 | 3 | 6 | 是 |
+| 691 | hotel_restaurant_and_catering | 管理学 | 20 | 3 | 6 | 是 |
+| 692 | hotel_restaurants_and_catering | 管理学 | 20 | 3 | 6 | 是 |
+| 693 | hotel_services | 管理学 | 20 | 3 | 5 | 是 |
+| 694 | house_building | 工学 | 20 | 3 | 7 | 是 |
+| 695 | human_computer_interaction | 工学 | 20 | 3 | 7 | 是 |
+| 696 | human_geography | 理学 | 20 | 3 | 6 | 是 |
+| 697 | human_resources_and_industrial_relations | 管理学 | 20 | 5 | 5 | 是 |
+| 698 | human_resources_management | 管理学 | 20 | 3 | 5 | 是 |
+| 699 | human_rights | 法学 | 20 | 9 | 5 | 是 |
+| 700 | human_society | 教育学 | 20 | 5 | 5 | 是 |
+| 701 | humancentred_computing | 工学 | 20 | 3 | 7 | 是 |
+| 702 | humanities | 文学 | 20 | 6 | 7 | 是 |
+| 703 | humanities_not | 文学 | 20 | 6 | 7 | 是 |
+| 704 | hunting_and_trapping | 农学 | 20 | 3 | 7 | 是 |
+| 705 | hydraulics | 工学 | 20 | 3 | 7 | 是 |
+| 706 | hydrogeology | 理学 | 20 | 3 | 6 | 是 |
+| 707 | hydrology | 理学 | 20 | 3 | 6 | 是 |
+| 708 | hydrology_engineering | 工学 | 20 | 5 | 7 | 是 |
+| 709 | hygiene_and_occupational_health | 医学 | 20 | 3 | 7 | 是 |
+| 710 | hygiene_community | 医学 | 20 | 3 | 7 | 是 |
+| 711 | hygiene_medical | 医学 | 20 | 3 | 7 | 是 |
+| 712 | hygienic_standards | 医学 | 20 | 3 | 7 | 是 |
+| 713 | illustration | 艺术学 | 20 | 3 | 7 | 是 |
+| 714 | immunology | 理学 | 20 | 3 | 6 | 是 |
+| 715 | indigenous_crafts | 艺术学 | 20 | 3 | 6 | 是 |
+| 716 | indigenous_language_studies | 文学 | 20 | 3 | 7 | 是 |
+| 717 | indigenous_law | 法学 | 20 | 10 | 5 | 是 |
+| 718 | indigenous_studies | 历史学 | 20 | 3 | 6 | 是 |
+| 719 | indigenous_teacher_training | 教育学 | 20 | 3 | 5 | 是 |
+| 720 | industrial_abseiling | 工学 | 20 | 3 | 7 | 是 |
+| 721 | industrial_bakeryflour_production | 农学 | 20 | 3 | 7 | 是 |
+| 722 | industrial_biotechnology | 工学 | 20 | 3 | 7 | 是 |
+| 723 | industrial_design | 工学 | 20 | 3 | 8 | 是 |
+| 724 | industrial_diamond_production | 工学 | 20 | 3 | 7 | 是 |
+| 725 | industrial_discharge_control | 工学 | 20 | 3 | 7 | 是 |
+| 726 | industrial_relations | 管理学 | 20 | 7 | 5 | 是 |
+| 727 | industrial_welfare | 管理学 | 20 | 5 | 5 | 是 |
+| 728 | infant_hygiene | 医学 | 20 | 4 | 7 | 是 |
+| 729 | infectious_disease | 医学 | 20 | 7 | 7 | 是 |
+| 730 | informatics | 工学 | 20 | 5 | 7 | 是 |
+| 731 | information | 管理学 | 20 | 3 | 5 | 是 |
+| 732 | information_and_communication | 工学 | 20 | 3 | 7 | 是 |
+| 733 | information_and_communication_technologies_not_elsewhere_classified | 工学 | 20 | 3 | 7 | 是 |
+| 734 | information_and_computing_sciences | 工学 | 20 | 3 | 7 | 是 |
+| 735 | information_processingdata_entry | 管理学 | 20 | 4 | 6 | 是 |
+| 736 | information_science | 管理学 | 20 | 3 | 5 | 是 |
+| 737 | information_searching | 工学 | 20 | 3 | 7 | 是 |
+| 738 | information_systems | 管理学 | 20 | 3 | 6 | 是 |
+| 739 | information_technology_administration | 管理学 | 20 | 3 | 7 | 是 |
+| 740 | information_technology_security | 工学 | 20 | 3 | 7 | 是 |
+| 741 | information_theory | 理学 | 20 | 4 | 6 | 是 |
+| 742 | inorganic_chemistry | 理学 | 20 | 5 | 6 | 是 |
+| 743 | insulation | 工学 | 20 | 3 | 7 | 是 |
+| 744 | insurance | 经济学 | 20 | 3 | 5 | 是 |
+| 745 | interactive_media_design | 艺术学 | 20 | 3 | 6 | 是 |
+| 746 | interdisciplinary_programmes_and | 教育学 | 20 | 3 | 6 | 是 |
+| 747 | interdisciplinary_programmes_and_qualifications_involving_agriculture_forestry | 农学 | 20 | 3 | 7 | 是 |
+| 748 | interdisciplinary_programmes_and_qualifications_involving_arts_and_humanities | 艺术学 | 20 | 4 | 7 | 是 |
+| 749 | interdisciplinary_programmes_and_qualifications_involving_business | 管理学 | 20 | 3 | 6 | 是 |
+| 750 | interdisciplinary_programmes_and_qualifications_involving_education | 教育学 | 20 | 3 | 6 | 是 |
+| 751 | interdisciplinary_programmes_and_qualifications_involving_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 752 | interdisciplinary_programmes_and_qualifications_involving_health_and_welfare | 医学 | 20 | 7 | 7 | 是 |
+| 753 | interdisciplinary_programmes_and_qualifications_involving_information_and | 工学 | 20 | 3 | 7 | 是 |
+| 754 | interdisciplinary_programmes_and_qualifications_involving_natural_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 755 | interdisciplinary_programmes_and_qualifications_involving_services | 管理学 | 20 | 3 | 6 | 是 |
+| 756 | interdisciplinary_programmes_and_qualifications_involving_social_sciences | 法学 | 20 | 4 | 6 | 是 |
+| 757 | interior_architecture | 工学 | 20 | 3 | 8 | 是 |
+| 758 | interior_decorating | 艺术学 | 20 | 3 | 6 | 是 |
+| 759 | interior_design | 工学 | 20 | 3 | 8 | 是 |
+| 760 | internal_medicine | 医学 | 20 | 7 | 7 | 是 |
+| 761 | international_and_comparative_law | 法学 | 20 | 7 | 5 | 是 |
+| 762 | international_economics | 经济学 | 20 | 3 | 5 | 是 |
+| 763 | international_relations | 法学 | 20 | 4 | 5 | 是 |
+| 764 | internet_of_things | 工学 | 20 | 3 | 7 | 是 |
+| 765 | internet_use_programmes | 教育学 | 20 | 4 | 6 | 是 |
+| 766 | interpretation_programmes | 文学 | 20 | 3 | 8 | 是 |
+| 767 | introductory_courses_at_work | 教育学 | 20 | 3 | 5 | 是 |
+| 768 | investment_analysis | 经济学 | 20 | 3 | 5 | 是 |
+| 769 | investments_and_securities | 经济学 | 20 | 3 | 5 | 是 |
+| 770 | irrigation_and_drainage | 农学 | 20 | 3 | 7 | 是 |
+| 771 | irrigation_techniques | 农学 | 20 | 3 | 7 | 是 |
+| 772 | islamic_sharia_law | 法学 | 20 | 8 | 5 | 是 |
+| 773 | jewellery_design | 艺术学 | 20 | 3 | 6 | 是 |
+| 774 | jewellery_making | 艺术学 | 20 | 3 | 6 | 是 |
+| 775 | job_safety | 工学 | 20 | 4 | 7 | 是 |
+| 776 | jobseeking_programmes | 教育学 | 20 | 5 | 6 | 是 |
+| 777 | jockeying | 农学 | 20 | 3 | 7 | 是 |
+| 778 | joinery_and_carpentry | 工学 | 20 | 3 | 7 | 是 |
+| 779 | journalism | 文学 | 20 | 5 | 7 | 是 |
+| 780 | journalism_and_information_not | 文学 | 20 | 8 | 7 | 是 |
+| 781 | journalism_and_reporting | 文学 | 20 | 3 | 7 | 是 |
+| 782 | jurisprudence | 法学 | 20 | 9 | 5 | 是 |
+| 783 | keyboard_skills | 教育学 | 20 | 4 | 5 | 是 |
+| 784 | kinesiology | 医学 | 20 | 3 | 7 | 是 |
+| 785 | knitting | 工学 | 20 | 3 | 7 | 是 |
+| 786 | laboratory_assistant_programmes | 理学 | 20 | 3 | 7 | 是 |
+| 787 | laboratory_technician_programmes | 理学 | 20 | 3 | 6 | 是 |
+| 788 | laboratory_technology | 理学 | 20 | 3 | 7 | 是 |
+| 789 | labour_law | 法学 | 20 | 8 | 5 | 是 |
+| 790 | labour_protection | 工学 | 20 | 3 | 7 | 是 |
+| 791 | labour_security | 工学 | 20 | 3 | 7 | 是 |
+| 792 | labour_welfare | 管理学 | 20 | 3 | 5 | 是 |
+| 793 | land_surveying | 工学 | 20 | 3 | 7 | 是 |
+| 794 | landscape_architecture | 艺术学 | 20 | 3 | 6 | 是 |
+| 795 | landscape_gardening | 农学 | 20 | 3 | 8 | 是 |
+| 796 | language_acquisition | 教育学 | 20 | 3 | 6 | 是 |
+| 797 | language_communication_and_culture | 文学 | 20 | 3 | 7 | 是 |
+| 798 | language_studies | 文学 | 20 | 3 | 7 | 是 |
+| 799 | languages_not_elsewhere | 文学 | 20 | 3 | 7 | 是 |
+| 800 | languages_not_elsewhere_classified | 文学 | 20 | 3 | 7 | 是 |
+| 801 | languages_not_further_defined | 文学 | 20 | 3 | 7 | 是 |
+| 802 | lapidary_and_jewellery | 艺术学 | 20 | 3 | 6 | 是 |
+| 803 | laundry | 工学 | 20 | 3 | 7 | 是 |
+| 804 | law | 法学 | 20 | 7 | 5 | 是 |
+| 805 | law_and_legal_studies | 法学 | 20 | 8 | 5 | 是 |
+| 806 | law_enforcement | 法学 | 20 | 3 | 5 | 是 |
+| 807 | law_in_context | 法学 | 20 | 6 | 5 | 是 |
+| 808 | layout | 艺术学 | 20 | 3 | 6 | 是 |
+| 809 | leather_goods_production | 工学 | 20 | 3 | 7 | 是 |
+| 810 | leather_processing | 工学 | 20 | 3 | 7 | 是 |
+| 811 | leather_trades | 经济学 | 20 | 3 | 5 | 是 |
+| 812 | legal_practice | 法学 | 20 | 6 | 5 | 是 |
+| 813 | legal_secretary_programmes | 法学 | 20 | 6 | 6 | 是 |
+| 814 | legal_studies | 法学 | 20 | 8 | 5 | 是 |
+| 815 | legal_systems | 法学 | 20 | 8 | 5 | 是 |
+| 816 | leisure_and_tourism | 管理学 | 20 | 3 | 5 | 是 |
+| 817 | librarianship_training | 教育学 | 20 | 4 | 5 | 是 |
+| 818 | library_and_information_studies | 管理学 | 20 | 7 | 5 | 是 |
+| 819 | library_information_and_archival | 历史学 | 20 | 3 | 6 | 是 |
+| 820 | library_information_and_archival_studies | 管理学 | 20 | 7 | 5 | 是 |
+| 821 | library_programmes | 管理学 | 20 | 3 | 6 | 是 |
+| 822 | library_science | 管理学 | 20 | 5 | 5 | 是 |
+| 823 | life_guarding | 医学 | 20 | 3 | 7 | 是 |
+| 824 | life_orientation_programmes | 教育学 | 20 | 3 | 7 | 是 |
+| 825 | life_sciences | 理学 | 20 | 4 | 6 | 是 |
+| 826 | limnology | 理学 | 20 | 5 | 6 | 是 |
+| 827 | linguistics | 文学 | 20 | 4 | 8 | 是 |
+| 828 | linguistics_general | 文学 | 20 | 4 | 7 | 是 |
+| 829 | literacy | 教育学 | 20 | 3 | 5 | 是 |
+| 830 | literacy_and_numeracy | 教育学 | 20 | 3 | 5 | 是 |
+| 831 | literary_studies | 文学 | 20 | 6 | 7 | 是 |
+| 832 | literature | 文学 | 20 | 6 | 7 | 是 |
+| 833 | literature_and_linguistics | 文学 | 20 | 3 | 7 | 是 |
+| 834 | literature_history | 历史学 | 20 | 6 | 7 | 是 |
+| 835 | lithography | 工学 | 20 | 3 | 7 | 是 |
+| 836 | local_public_administration | 管理学 | 20 | 3 | 5 | 是 |
+| 837 | locksmithing_and_safe_repairing | 工学 | 20 | 3 | 7 | 是 |
+| 838 | logging | 农学 | 20 | 3 | 8 | 是 |
+| 839 | logic | 哲学 | 20 | 3 | 7 | 是 |
+| 840 | logistic_management | 管理学 | 20 | 3 | 6 | 是 |
+| 841 | lower_secondary_teacher_training | 教育学 | 20 | 3 | 5 | 是 |
+| 842 | machine_learning | 工学 | 20 | 3 | 8 | 是 |
+| 843 | macro_economics | 经济学 | 20 | 3 | 5 | 是 |
+| 844 | macromolecular_and_materials_chemistry | 理学 | 20 | 3 | 7 | 是 |
+| 845 | mail_operations | 管理学 | 20 | 3 | 6 | 是 |
+| 846 | maintaining_sports_turf | 农学 | 20 | 3 | 7 | 是 |
+| 847 | makeup | 艺术学 | 20 | 3 | 6 | 是 |
+| 848 | maltreatment | 医学 | 20 | 3 | 7 | 是 |
+| 849 | management | 管理学 | 20 | 5 | 5 | 是 |
+| 850 | management_and_administration | 管理学 | 20 | 3 | 5 | 是 |
+| 851 | management_of_education | 教育学 | 20 | 3 | 5 | 是 |
+| 852 | management_science | 管理学 | 20 | 3 | 7 | 是 |
+| 853 | management_skills | 管理学 | 20 | 3 | 5 | 是 |
+| 854 | management_support_services | 管理学 | 20 | 3 | 5 | 是 |
+| 855 | manicure | 艺术学 | 20 | 3 | 6 | 是 |
+| 856 | manufacturing_and_processing_not | 工学 | 20 | 3 | 7 | 是 |
+| 857 | manufacturing_engineering | 工学 | 20 | 5 | 7 | 是 |
+| 858 | mariculture | 农学 | 20 | 5 | 7 | 是 |
+| 859 | marine_biology | 理学 | 20 | 5 | 6 | 是 |
+| 860 | marine_construction | 工学 | 20 | 5 | 7 | 是 |
+| 861 | marine_engineering | 工学 | 20 | 5 | 7 | 是 |
+| 862 | marine_science | 理学 | 20 | 5 | 6 | 是 |
+| 863 | maritime_engineering | 工学 | 20 | 5 | 8 | 是 |
+| 864 | market_research | 管理学 | 20 | 5 | 5 | 是 |
+| 865 | marketing | 管理学 | 20 | 5 | 5 | 是 |
+| 866 | marketing_and_advertising | 管理学 | 20 | 5 | 5 | 是 |
+| 867 | masonry_and_tile_setting | 工学 | 20 | 4 | 7 | 是 |
+| 868 | mass_communication_wording_and | 文学 | 20 | 5 | 7 | 是 |
+| 869 | massage | 医学 | 20 | 3 | 7 | 是 |
+| 870 | materials | 工学 | 20 | 3 | 7 | 是 |
+| 871 | materials_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 872 | materials_glass_paper_plastic | 工学 | 20 | 3 | 7 | 是 |
+| 873 | materials_glass_paper_plastic_and | 工学 | 20 | 3 | 7 | 是 |
+| 874 | materials_science | 工学 | 20 | 3 | 8 | 是 |
+| 875 | mathematical_physics | 理学 | 20 | 3 | 6 | 是 |
+| 876 | mathematical_sciences | 理学 | 20 | 5 | 6 | 是 |
+| 877 | mathematical_statistics | 理学 | 20 | 4 | 6 | 是 |
+| 878 | mathematics | 理学 | 20 | 5 | 6 | 是 |
+| 879 | mathematics_and_statistics_not | 理学 | 20 | 4 | 6 | 是 |
+| 880 | meat_processing | 农学 | 20 | 3 | 7 | 是 |
+| 881 | mechanical_engineering | 工学 | 20 | 3 | 8 | 是 |
+| 882 | mechanical_trades | 工学 | 20 | 3 | 8 | 是 |
+| 883 | mechanics_and_metal_trades | 工学 | 20 | 3 | 7 | 是 |
+| 884 | media_techniques | 艺术学 | 20 | 3 | 7 | 是 |
+| 885 | medical_and_biological_physics | 医学 | 20 | 3 | 7 | 是 |
+| 886 | medical_biochemistry_and_metabolomics | 医学 | 20 | 3 | 7 | 是 |
+| 887 | medical_biotechnology | 医学 | 20 | 3 | 7 | 是 |
+| 888 | medical_diagnostic_and_treatment | 医学 | 20 | 3 | 7 | 是 |
+| 889 | medical_diagnostic_and_treatment_technology | 医学 | 20 | 3 | 7 | 是 |
+| 890 | medical_laboratory_technology | 医学 | 20 | 3 | 7 | 是 |
+| 891 | medical_microbiology | 医学 | 20 | 3 | 7 | 是 |
+| 892 | medical_physics | 医学 | 20 | 3 | 7 | 是 |
+| 893 | medical_physiology | 医学 | 20 | 3 | 7 | 是 |
+| 894 | medical_science | 医学 | 20 | 4 | 7 | 是 |
+| 895 | medical_secretary_programmes | 管理学 | 20 | 3 | 6 | 是 |
+| 896 | medical_technology | 工学 | 20 | 3 | 7 | 是 |
+| 897 | medical_training | 教育学 | 20 | 3 | 5 | 是 |
+| 898 | medicinal_and_biomolecular_chemistry | 理学 | 20 | 3 | 6 | 是 |
+| 899 | medicine | 医学 | 20 | 4 | 7 | 是 |
+| 900 | medieval_and_renaissance_studies | 历史学 | 20 | 3 | 6 | 是 |
+| 901 | mental_health_services | 医学 | 20 | 3 | 7 | 是 |
+| 902 | merchandising | 管理学 | 20 | 3 | 5 | 是 |
+| 903 | metal_casting_and_patternmaking | 工学 | 20 | 3 | 7 | 是 |
+| 904 | metal_fitting_turning_and_machining | 工学 | 20 | 3 | 7 | 是 |
+| 905 | metal_trades | 工学 | 20 | 3 | 8 | 是 |
+| 906 | metallurgical_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 907 | metallurgical_technology | 工学 | 20 | 3 | 8 | 是 |
+| 908 | metaphysics | 哲学 | 20 | 4 | 6 | 是 |
+| 909 | meteorology | 理学 | 20 | 4 | 6 | 是 |
+| 910 | microbiology | 理学 | 20 | 3 | 6 | 是 |
+| 911 | microelectronics | 工学 | 20 | 3 | 8 | 是 |
+| 912 | micromechanics | 工学 | 20 | 3 | 7 | 是 |
+| 913 | midwifery | 医学 | 20 | 4 | 8 | 是 |
+| 914 | military_and_defence | 军事学 | 20 | 3 | 8 | 是 |
+| 915 | military_history | 军事学 | 20 | 5 | 7 | 是 |
+| 916 | military_science | 军事学 | 20 | 3 | 8 | 是 |
+| 917 | mineral_technology | 工学 | 20 | 3 | 7 | 是 |
+| 918 | mineralogy | 理学 | 20 | 3 | 7 | 是 |
+| 919 | mining_and_extraction | 工学 | 20 | 3 | 7 | 是 |
+| 920 | mining_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 921 | mining_of_minerals | 工学 | 20 | 3 | 7 | 是 |
+| 922 | mining_technology | 工学 | 20 | 3 | 7 | 是 |
+| 923 | mobbing | 管理学 | 20 | 3 | 5 | 是 |
+| 924 | molecular_biology | 理学 | 20 | 3 | 7 | 是 |
+| 925 | morals | 哲学 | 20 | 3 | 6 | 是 |
+| 926 | mother_craft_nursing | 医学 | 20 | 3 | 8 | 是 |
+| 927 | motor_vehicles_ships_and_aircraft | 工学 | 20 | 3 | 8 | 是 |
+| 928 | motorcycle_engineering | 工学 | 20 | 3 | 8 | 是 |
+| 929 | motorcycle_mechanics | 工学 | 20 | 3 | 7 | 是 |
+| 930 | mtauranga_mori | 教育学 | 20 | 3 | 5 | 是 |
+| 931 | multimedia_production | 艺术学 | 20 | 3 | 7 | 是 |
+| 932 | museology | 艺术学 | 20 | 3 | 5 | 是 |
+| 933 | museum_documentation | 艺术学 | 20 | 3 | 6 | 是 |
+| 934 | museum_studies | 艺术学 | 20 | 3 | 5 | 是 |
+| 935 | music | 艺术学 | 20 | 3 | 6 | 是 |
+| 936 | music_and_performing_arts | 艺术学 | 20 | 3 | 7 | 是 |
+| 937 | music_conducting | 艺术学 | 20 | 3 | 6 | 是 |
+| 938 | musical_instruments_making_repairing | 工学 | 20 | 3 | 8 | 是 |
+| 939 | musicology | 艺术学 | 20 | 4 | 6 | 是 |
+| 940 | mycology | 理学 | 20 | 5 | 6 | 是 |
+| 941 | nanotechnology | 工学 | 20 | 5 | 7 | 是 |
+| 942 | national_accounts | 经济学 | 20 | 6 | 5 | 是 |
+| 943 | national_parks_and_wildlife_management | 农学 | 20 | 5 | 7 | 是 |
+| 944 | national_security | 管理学 | 20 | 5 | 5 | 是 |
+| 945 | natural_environments_and_wildlife | 理学 | 20 | 5 | 6 | 是 |
+| 946 | natural_language_processing | 工学 | 20 | 5 | 8 | 是 |
+| 947 | natural_sciences_mathematics | 理学 | 20 | 5 | 6 | 是 |
+| 948 | natural_sciences_mathematics_and | 理学 | 20 | 5 | 6 | 是 |
+| 949 | nature_conservation | 理学 | 20 | 5 | 6 | 是 |
+| 950 | naturopathic_medicine | 医学 | 20 | 5 | 7 | 是 |
+| 951 | nautical_science | 工学 | 20 | 4 | 7 | 是 |
+| 952 | naval_architecture | 工学 | 20 | 4 | 8 | 是 |
+| 953 | naval_engineering | 工学 | 20 | 3 | 8 | 是 |
+| 954 | naval_strategy | 军事学 | 20 | 3 | 7 | 是 |
+| 955 | navigation_technologies | 工学 | 20 | 3 | 7 | 是 |
+| 956 | navy_training | 军事学 | 20 | 3 | 7 | 是 |
+| 957 | needle_craft | 艺术学 | 20 | 3 | 6 | 是 |
+| 958 | needlework | 艺术学 | 20 | 3 | 6 | 是 |
+| 959 | network_administration | 工学 | 20 | 3 | 8 | 是 |
+| 960 | network_design | 工学 | 20 | 3 | 8 | 是 |
+| 961 | network_science | 理学 | 20 | 3 | 6 | 是 |
+| 962 | network_technology | 工学 | 20 | 3 | 7 | 是 |
+| 963 | neurology | 医学 | 20 | 3 | 7 | 是 |
+| 964 | neuroscience | 理学 | 20 | 3 | 6 | 是 |
+| 965 | neurosciences | 理学 | 20 | 4 | 6 | 是 |
+| 966 | news_reporting | 文学 | 20 | 3 | 8 | 是 |
+| 967 | ng_mtauranga_taiao_o_te_mori | 农学 | 20 | 3 | 7 | 是 |
+| 968 | ng_ptaiao_mori | 理学 | 20 | 3 | 6 | 是 |
+| 969 | ng_tngata_te_porihanga_me_ng_hapori_o_te_mori | 历史学 | 20 | 3 | 6 | 是 |
+| 970 | noise_pollution_control | 工学 | 20 | 3 | 7 | 是 |
+| 971 | notarynotarys_practise | 法学 | 20 | 3 | 5 | 是 |
+| 972 | nuclear_and_plasma_physics | 理学 | 20 | 4 | 6 | 是 |
+| 973 | nuclear_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 974 | nuclear_hydraulic_and_thermal_energy | 工学 | 20 | 4 | 7 | 是 |
+| 975 | nuclear_medicine_technologies | 医学 | 20 | 4 | 7 | 是 |
+| 976 | nuclear_physics | 理学 | 20 | 4 | 6 | 是 |
+| 977 | number_theory | 理学 | 20 | 3 | 6 | 是 |
+| 978 | numeracy | 教育学 | 20 | 3 | 6 | 是 |
+| 979 | numerical_analysis | 理学 | 20 | 3 | 6 | 是 |
+| 980 | numerical_and_computational_mathematics | 理学 | 20 | 3 | 7 | 是 |
+| 981 | nursery_management | 农学 | 20 | 3 | 7 | 是 |
+| 982 | nursing | 医学 | 20 | 6 | 7 | 是 |
+| 983 | nursing_aideorderly | 医学 | 20 | 3 | 7 | 是 |
+| 984 | nursing_and_midwifery | 医学 | 20 | 6 | 7 | 是 |
+| 985 | nursing_teacher_training | 医学 | 20 | 4 | 7 | 是 |
+| 986 | nutrition | 医学 | 20 | 5 | 7 | 是 |
+| 987 | nutrition_and_dietetics | 医学 | 20 | 3 | 7 | 是 |
+| 988 | nutrition_science | 理学 | 20 | 4 | 6 | 是 |
+| 989 | obstetrics_and_gynaecology | 医学 | 20 | 3 | 7 | 是 |
+| 990 | obstetrics_gynecology | 医学 | 20 | 3 | 7 | 是 |
+| 991 | occupational_health_and_industrial | 管理学 | 20 | 3 | 5 | 是 |
+| 992 | occupational_health_and_safety | 管理学 | 20 | 3 | 5 | 是 |
+| 993 | occupational_therapy | 医学 | 20 | 3 | 7 | 是 |
+| 994 | ocean_life_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 995 | oceanography | 理学 | 20 | 3 | 6 | 是 |
+| 996 | odontology | 医学 | 20 | 3 | 7 | 是 |
+| 997 | office_automation | 工学 | 20 | 3 | 7 | 是 |
+| 998 | office_management | 管理学 | 20 | 3 | 5 | 是 |
+| 999 | oil_and_gas_drilling | 工学 | 20 | 3 | 7 | 是 |
+| 1000 | oil_and_gas_extraction | 工学 | 20 | 3 | 7 | 是 |
+| 1001 | oil_refining | 工学 | 20 | 3 | 7 | 是 |
+| 1002 | oilgaspetrochemicals_processing | 工学 | 20 | 3 | 7 | 是 |
+| 1003 | olive_growing | 农学 | 20 | 3 | 7 | 是 |
+| 1004 | oncology | 医学 | 20 | 3 | 7 | 是 |
+| 1005 | oncology_and_carcinogenesis | 医学 | 20 | 3 | 7 | 是 |
+| 1006 | open_science | 管理学 | 20 | 6 | 5 | 是 |
+| 1007 | operating_systems | 工学 | 20 | 3 | 8 | 是 |
+| 1008 | operation_of_office_machines | 管理学 | 20 | 3 | 6 | 是 |
+| 1009 | operational_research | 理学 | 20 | 3 | 7 | 是 |
+| 1010 | operations_research | 理学 | 20 | 3 | 7 | 是 |
+| 1011 | ophthalmology | 医学 | 20 | 3 | 7 | 是 |
+| 1012 | ophthalmology_and_optometry | 医学 | 20 | 3 | 7 | 是 |
+| 1013 | optical_lens_making | 工学 | 20 | 4 | 7 | 是 |
+| 1014 | optical_prosthetics | 医学 | 20 | 4 | 7 | 是 |
+| 1015 | optical_technology | 工学 | 20 | 4 | 7 | 是 |
+| 1016 | optics | 理学 | 20 | 4 | 6 | 是 |
+| 1017 | optics_photonics | 理学 | 20 | 4 | 6 | 是 |
+| 1018 | optimization | 理学 | 20 | 4 | 7 | 是 |
+| 1019 | optometry | 医学 | 20 | 4 | 7 | 是 |
+| 1020 | oral_surgery | 医学 | 20 | 4 | 7 | 是 |
+| 1021 | orchards_construction | 农学 | 20 | 4 | 7 | 是 |
+| 1022 | organic_chemistry | 理学 | 20 | 4 | 6 | 是 |
+| 1023 | organisation_at_work | 管理学 | 20 | 4 | 5 | 是 |
+| 1024 | organisational_theory_and_behaviour | 管理学 | 20 | 4 | 5 | 是 |
+| 1025 | ornamental_plant_production | 农学 | 20 | 3 | 7 | 是 |
+| 1026 | ornithology | 理学 | 20 | 3 | 6 | 是 |
+| 1027 | orthodontics | 医学 | 20 | 3 | 7 | 是 |
+| 1028 | orthopaedic_prosthetics | 医学 | 20 | 3 | 7 | 是 |
+| 1029 | orthopedics | 医学 | 20 | 3 | 7 | 是 |
+| 1030 | osteopathy | 医学 | 20 | 4 | 7 | 是 |
+| 1031 | other_agricultural_veterinary_and_food_sciences | 农学 | 20 | 3 | 7 | 是 |
+| 1032 | other_biological_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 1033 | other_biomedical_and_clinical_sciences | 医学 | 20 | 4 | 8 | 是 |
+| 1034 | other_built_environment_and_design | 工学 | 20 | 3 | 8 | 是 |
+| 1035 | other_chemical_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 1036 | other_commerce_management_tourism_and_services | 管理学 | 20 | 3 | 6 | 是 |
+| 1037 | other_creative_arts_and_writing | 艺术学 | 20 | 3 | 7 | 是 |
+| 1038 | other_earth_sciences | 理学 | 20 | 3 | 7 | 是 |
+| 1039 | other_economics | 经济学 | 20 | 3 | 6 | 是 |
+| 1040 | other_education | 教育学 | 20 | 3 | 6 | 是 |
+| 1041 | other_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 1042 | other_environmental_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 1043 | other_health_sciences | 医学 | 20 | 6 | 7 | 是 |
+| 1044 | other_history_heritage_and_archaeology | 历史学 | 20 | 4 | 6 | 是 |
+| 1045 | other_human_society | 法学 | 20 | 3 | 5 | 是 |
+| 1046 | other_indigenous_data_methodologies_and_global_indigenous_studies | 法学 | 20 | 4 | 5 | 是 |
+| 1047 | other_indigenous_studies | 法学 | 20 | 4 | 6 | 是 |
+| 1048 | other_information_and_computing_sciences | 工学 | 20 | 3 | 7 | 是 |
+| 1049 | other_language_communication_and_culture | 文学 | 20 | 4 | 7 | 是 |
+| 1050 | other_law_and_legal_studies | 法学 | 20 | 6 | 5 | 是 |
+| 1051 | other_mathematical_sciences | 理学 | 20 | 4 | 6 | 是 |
+| 1052 | other_philosophy_and_religious_studies | 哲学 | 20 | 3 | 6 | 是 |
+| 1053 | other_physical_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 1054 | other_psychology | 理学 | 20 | 4 | 6 | 是 |
+| 1055 | otolaryngology | 医学 | 20 | 4 | 7 | 是 |
+| 1056 | pacific_peoples_culture_language_and_history | 历史学 | 20 | 3 | 6 | 是 |
+| 1057 | pacific_peoples_education | 教育学 | 20 | 3 | 5 | 是 |
+| 1058 | pacific_peoples_environmental_knowledges | 农学 | 20 | 3 | 7 | 是 |
+| 1059 | pacific_peoples_health_and_wellbeing | 医学 | 20 | 5 | 7 | 是 |
+| 1060 | pacific_peoples_sciences | 理学 | 20 | 3 | 7 | 是 |
+| 1061 | pacific_peoples_society_and_community | 教育学 | 20 | 3 | 5 | 是 |
+| 1062 | paedagogical_sciences | 教育学 | 20 | 3 | 5 | 是 |
+| 1063 | paediatrics | 医学 | 20 | 5 | 7 | 是 |
+| 1064 | painting | 艺术学 | 20 | 3 | 7 | 是 |
+| 1065 | painting_and_wall_covering | 工学 | 20 | 3 | 8 | 是 |
+| 1066 | palaeontology | 理学 | 20 | 3 | 6 | 是 |
+| 1067 | paleontology | 理学 | 20 | 3 | 6 | 是 |
+| 1068 | panel_beating | 工学 | 20 | 3 | 7 | 是 |
+| 1069 | paper_manufacturing_and_processing | 工学 | 20 | 3 | 7 | 是 |
+| 1070 | paralegal_studies | 法学 | 20 | 6 | 5 | 是 |
+| 1071 | parasitology | 医学 | 20 | 3 | 7 | 是 |
+| 1072 | parenting_courses | 教育学 | 20 | 3 | 6 | 是 |
+| 1073 | parole_officer_training | 法学 | 20 | 8 | 5 | 是 |
+| 1074 | particle_and_high_energy_physics | 理学 | 20 | 3 | 7 | 是 |
+| 1075 | particle_physics | 理学 | 20 | 3 | 7 | 是 |
+| 1076 | pastry_cooking | 工学 | 20 | 3 | 7 | 是 |
+| 1077 | pathology | 医学 | 20 | 3 | 7 | 是 |
+| 1078 | peace_and_conflict_studies | 法学 | 20 | 5 | 5 | 是 |
+| 1079 | peace_conflict_studies | 法学 | 20 | 5 | 5 | 是 |
+| 1080 | pearl_cultivating | 农学 | 20 | 3 | 7 | 是 |
+| 1081 | pediatrics | 医学 | 20 | 4 | 7 | 是 |
+| 1082 | pedicure | 医学 | 20 | 4 | 7 | 是 |
+| 1083 | pelt_worker | 工学 | 20 | 3 | 7 | 是 |
+| 1084 | pension_insurance | 法学 | 20 | 4 | 5 | 是 |
+| 1085 | performance_appraisal | 管理学 | 20 | 3 | 6 | 是 |
+| 1086 | performing_arts | 艺术学 | 20 | 3 | 7 | 是 |
+| 1087 | personal_care_of_adults | 医学 | 20 | 3 | 7 | 是 |
+| 1088 | personal_career_planning | 教育学 | 20 | 3 | 5 | 是 |
+| 1089 | personal_development | 教育学 | 20 | 3 | 5 | 是 |
+| 1090 | personal_services_not_elsewhere | 管理学 | 20 | 3 | 5 | 是 |
+| 1091 | personal_services_not_further_defined | 管理学 | 20 | 3 | 5 | 是 |
+| 1092 | personal_skills | 教育学 | 20 | 3 | 5 | 是 |
+| 1093 | personal_skills_and_development | 教育学 | 20 | 3 | 5 | 是 |
+| 1094 | personnel_administration | 管理学 | 20 | 3 | 5 | 是 |
+| 1095 | personnel_management | 管理学 | 20 | 3 | 5 | 是 |
+| 1096 | petroleum_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 1097 | petrology | 理学 | 20 | 7 | 6 | 是 |
+| 1098 | pharmacology | 医学 | 20 | 8 | 7 | 是 |
+| 1099 | pharmacology_and_pharmaceutical_sciences | 医学 | 20 | 7 | 7 | 是 |
+| 1100 | pharmacy | 医学 | 20 | 6 | 7 | 是 |
+| 1101 | phenomenology | 哲学 | 20 | 8 | 6 | 是 |
+| 1102 | philology | 文学 | 20 | 6 | 7 | 是 |
+| 1103 | philosophy | 哲学 | 20 | 7 | 6 | 是 |
+| 1104 | philosophy_and_ethics | 哲学 | 20 | 7 | 6 | 是 |
+| 1105 | philosophy_and_religious_studies | 哲学 | 20 | 8 | 6 | 是 |
+| 1106 | philosophy_of_art | 哲学 | 20 | 9 | 7 | 是 |
+| 1107 | phonetics | 文学 | 20 | 5 | 7 | 是 |
+| 1108 | photo_developing | 艺术学 | 20 | 5 | 6 | 是 |
+| 1109 | photochemistry | 理学 | 20 | 5 | 7 | 是 |
+| 1110 | photography | 艺术学 | 20 | 4 | 6 | 是 |
+| 1111 | photonics | 工学 | 20 | 4 | 7 | 是 |
+| 1112 | physical_chemistry | 理学 | 20 | 5 | 7 | 是 |
+| 1113 | physical_education | 教育学 | 20 | 4 | 5 | 是 |
+| 1114 | physical_education_teacher_training | 教育学 | 20 | 4 | 5 | 是 |
+| 1115 | physical_geography_and_environmental_geoscience | 理学 | 20 | 5 | 6 | 是 |
+| 1116 | physical_sciences | 理学 | 20 | 5 | 7 | 是 |
+| 1117 | physical_sciences_not_elsewhere | 理学 | 20 | 4 | 6 | 是 |
+| 1118 | physical_sciences_not_further | 理学 | 20 | 4 | 6 | 是 |
+| 1119 | physical_training | 教育学 | 20 | 4 | 6 | 是 |
+| 1120 | physics | 理学 | 20 | 5 | 7 | 是 |
+| 1121 | physiology | 医学 | 20 | 3 | 7 | 是 |
+| 1122 | physiotherapy | 医学 | 20 | 3 | 7 | 是 |
+| 1123 | picture_framing | 艺术学 | 20 | 3 | 6 | 是 |
+| 1124 | pig_farming | 农学 | 20 | 3 | 7 | 是 |
+| 1125 | pipe_fitting | 工学 | 20 | 3 | 7 | 是 |
+| 1126 | planetary_science | 理学 | 20 | 3 | 6 | 是 |
+| 1127 | planetary_sciences | 理学 | 20 | 3 | 6 | 是 |
+| 1128 | plant_and_machine_operation | 农学 | 20 | 3 | 8 | 是 |
+| 1129 | plant_biology | 理学 | 20 | 3 | 6 | 是 |
+| 1130 | plasma_physics | 理学 | 20 | 3 | 6 | 是 |
+| 1131 | plastering | 工学 | 20 | 3 | 7 | 是 |
+| 1132 | plastic_manufacturing | 工学 | 20 | 3 | 8 | 是 |
+| 1133 | plastic_surgery | 医学 | 20 | 4 | 7 | 是 |
+| 1134 | plumbing | 工学 | 20 | 3 | 7 | 是 |
+| 1135 | police_work | 法学 | 20 | 5 | 5 | 是 |
+| 1136 | policing_studies | 法学 | 20 | 5 | 5 | 是 |
+| 1137 | policy_and_administration | 管理学 | 20 | 5 | 5 | 是 |
+| 1138 | political_economics | 经济学 | 20 | 5 | 5 | 是 |
+| 1139 | political_history | 历史学 | 20 | 5 | 6 | 是 |
+| 1140 | political_science | 法学 | 20 | 5 | 6 | 是 |
+| 1141 | political_sciences_and_civics | 法学 | 20 | 5 | 5 | 是 |
+| 1142 | politics | 法学 | 20 | 5 | 5 | 是 |
+| 1143 | pollution_and_contamination | 工学 | 20 | 5 | 7 | 是 |
+| 1144 | polymer_chemistry | 理学 | 20 | 5 | 7 | 是 |
+| 1145 | positive_thinking | 理学 | 20 | 3 | 6 | 是 |
+| 1146 | postal_services | 管理学 | 20 | 3 | 6 | 是 |
+| 1147 | poultry_husbandry | 农学 | 20 | 3 | 7 | 是 |
+| 1148 | power_line_installation_and_maintenance | 工学 | 20 | 3 | 7 | 是 |
+| 1149 | power_production | 工学 | 20 | 3 | 7 | 是 |
+| 1150 | practical_paedagogical_courses | 教育学 | 20 | 3 | 5 | 是 |
+| 1151 | precision_mechanics | 工学 | 20 | 3 | 7 | 是 |
+| 1152 | prepress_operations | 工学 | 20 | 3 | 8 | 是 |
+| 1153 | preprimary_teacher_training | 教育学 | 20 | 3 | 6 | 是 |
+| 1154 | presentation_skills | 教育学 | 20 | 3 | 5 | 是 |
+| 1155 | preservation_of_artistic_heritage | 艺术学 | 20 | 3 | 7 | 是 |
+| 1156 | preventive_and_social_medicine | 医学 | 20 | 3 | 7 | 是 |
+| 1157 | primary_level_programmes_and | 教育学 | 20 | 4 | 6 | 是 |
+| 1158 | primary_teaching_without_subject | 教育学 | 20 | 4 | 5 | 是 |
+| 1159 | print_finishing_and_binding | 工学 | 20 | 3 | 7 | 是 |
+| 1160 | printing | 工学 | 20 | 3 | 7 | 是 |
+| 1161 | printing_machining | 工学 | 20 | 3 | 8 | 是 |
+| 1162 | prison_work | 法学 | 20 | 3 | 5 | 是 |
+| 1163 | private_law_and_civil_obligations | 法学 | 20 | 7 | 5 | 是 |
+| 1164 | probability_theory | 理学 | 20 | 4 | 6 | 是 |
+| 1165 | probation_officer_training | 法学 | 20 | 3 | 5 | 是 |
+| 1166 | process_technology | 工学 | 20 | 3 | 8 | 是 |
+| 1167 | production_of_ornamental_plants | 农学 | 20 | 3 | 7 | 是 |
+| 1168 | programming | 工学 | 20 | 4 | 7 | 是 |
+| 1169 | programming_languages | 工学 | 20 | 4 | 8 | 是 |
+| 1170 | programming_languages_development | 工学 | 20 | 4 | 8 | 是 |
+| 1171 | programming_languages_visual_basic | 工学 | 20 | 3 | 8 | 是 |
+| 1172 | property_sales | 管理学 | 20 | 3 | 5 | 是 |
+| 1173 | prosthetic_technology | 工学 | 20 | 4 | 7 | 是 |
+| 1174 | protection_of_persons_and | 管理学 | 20 | 3 | 5 | 是 |
+| 1175 | protection_of_persons_and_property | 管理学 | 20 | 3 | 5 | 是 |
+| 1176 | psychiatric_nursing | 医学 | 20 | 3 | 7 | 是 |
+| 1177 | psychiatry | 医学 | 20 | 6 | 7 | 是 |
+| 1178 | psychoanalysis | 理学 | 20 | 3 | 6 | 是 |
+| 1179 | psychology | 理学 | 20 | 4 | 6 | 是 |
+| 1180 | psychotherapy | 理学 | 20 | 4 | 6 | 是 |
+| 1181 | public_administration | 管理学 | 20 | 5 | 5 | 是 |
+| 1182 | public_and_institution_management | 管理学 | 20 | 3 | 5 | 是 |
+| 1183 | public_health | 医学 | 20 | 3 | 7 | 是 |
+| 1184 | public_law | 法学 | 20 | 7 | 5 | 是 |
+| 1185 | public_policy_studies | 管理学 | 20 | 3 | 5 | 是 |
+| 1186 | public_relations | 文学 | 20 | 3 | 7 | 是 |
+| 1187 | public_security | 法学 | 20 | 3 | 5 | 是 |
+| 1188 | public_speaking | 教育学 | 20 | 3 | 5 | 是 |
+| 1189 | publishing | 文学 | 20 | 3 | 8 | 是 |
+| 1190 | publishing_design | 艺术学 | 20 | 3 | 6 | 是 |
+| 1191 | purchasing | 管理学 | 20 | 3 | 5 | 是 |
+| 1192 | purchasing_procurement_and_contracts | 管理学 | 20 | 3 | 5 | 是 |
+| 1193 | pure_mathematics | 理学 | 20 | 3 | 6 | 是 |
+| 1194 | quality_assurance | 管理学 | 20 | 3 | 5 | 是 |
+| 1195 | quality_management | 管理学 | 20 | 3 | 5 | 是 |
+| 1196 | quantity_surveying | 工学 | 20 | 3 | 7 | 是 |
+| 1197 | quantum_computing | 工学 | 20 | 3 | 7 | 是 |
+| 1198 | quantum_mechanics | 理学 | 20 | 3 | 6 | 是 |
+| 1199 | quantum_physics | 理学 | 20 | 3 | 7 | 是 |
+| 1200 | quarry_supervision | 工学 | 20 | 3 | 7 | 是 |
+| 1201 | race_horse_care | 农学 | 20 | 3 | 7 | 是 |
+| 1202 | radio_and_tv_production | 艺术学 | 20 | 3 | 6 | 是 |
+| 1203 | radiography | 医学 | 20 | 3 | 7 | 是 |
+| 1204 | radiology | 医学 | 20 | 3 | 7 | 是 |
+| 1205 | radiology_technology | 医学 | 20 | 3 | 7 | 是 |
+| 1206 | radiotherapy | 医学 | 20 | 3 | 7 | 是 |
+| 1207 | railway_operations | 工学 | 20 | 3 | 8 | 是 |
+| 1208 | raw_material_extraction | 工学 | 20 | 3 | 7 | 是 |
+| 1209 | realestate_business | 管理学 | 20 | 3 | 5 | 是 |
+| 1210 | receptionist_training | 管理学 | 20 | 3 | 5 | 是 |
+| 1211 | recorded_music_production | 艺术学 | 20 | 3 | 6 | 是 |
+| 1212 | recreation_and_leisure | 管理学 | 20 | 3 | 5 | 是 |
+| 1213 | recreation_management | 管理学 | 20 | 3 | 5 | 是 |
+| 1214 | recruitment | 管理学 | 20 | 3 | 5 | 是 |
+| 1215 | recycling | 工学 | 20 | 3 | 7 | 是 |
+| 1216 | reflexology | 医学 | 20 | 3 | 7 | 是 |
+| 1217 | refrigeration | 工学 | 20 | 3 | 7 | 是 |
+| 1218 | refuse_collection | 工学 | 20 | 3 | 7 | 是 |
+| 1219 | refusesewage_disposal | 工学 | 20 | 3 | 7 | 是 |
+| 1220 | regional_cultures | 文学 | 20 | 5 | 7 | 是 |
+| 1221 | rehabilitation | 医学 | 20 | 4 | 7 | 是 |
+| 1222 | rehabilitation_medicine | 医学 | 20 | 4 | 7 | 是 |
+| 1223 | religion | 哲学 | 20 | 6 | 6 | 是 |
+| 1224 | religion_and_theology | 哲学 | 20 | 6 | 6 | 是 |
+| 1225 | religious_history | 历史学 | 20 | 6 | 6 | 是 |
+| 1226 | religious_studies | 哲学 | 20 | 6 | 6 | 是 |
+| 1227 | remote_sensing | 工学 | 20 | 5 | 8 | 是 |
+| 1228 | reporting | 文学 | 20 | 4 | 7 | 是 |
+| 1229 | reproductive_medicine | 医学 | 20 | 4 | 8 | 是 |
+| 1230 | research_methodology | 教育学 | 20 | 5 | 5 | 是 |
+| 1231 | resources_engineering_and_extractive_metallurgy | 工学 | 20 | 3 | 7 | 是 |
+| 1232 | retailing | 管理学 | 20 | 3 | 5 | 是 |
+| 1233 | road_building | 工学 | 20 | 3 | 7 | 是 |
+| 1234 | road_motor_vehicle_operations | 工学 | 20 | 3 | 8 | 是 |
+| 1235 | robotics | 工学 | 20 | 3 | 7 | 是 |
+| 1236 | roof_fixing | 工学 | 20 | 3 | 7 | 是 |
+| 1237 | rubber_processing | 工学 | 20 | 3 | 7 | 是 |
+| 1238 | rural_development | 经济学 | 20 | 3 | 5 | 是 |
+| 1239 | rye_and_wheat_growing | 农学 | 20 | 3 | 7 | 是 |
+| 1240 | sacred_books_study_of | 文学 | 20 | 3 | 7 | 是 |
+| 1241 | saddlery | 艺术学 | 20 | 3 | 5 | 是 |
+| 1242 | sales_and_marketing | 管理学 | 20 | 3 | 5 | 是 |
+| 1243 | sales_representatives | 管理学 | 20 | 3 | 5 | 是 |
+| 1244 | salon_services | 医学 | 20 | 3 | 7 | 是 |
+| 1245 | sanitation | 工学 | 20 | 3 | 7 | 是 |
+| 1246 | scaffolding_work | 工学 | 20 | 3 | 7 | 是 |
+| 1247 | science_communication | 教育学 | 20 | 5 | 5 | 是 |
+| 1248 | science_technology_studies | 教育学 | 20 | 8 | 6 | 是 |
+| 1249 | scientometrics | 管理学 | 20 | 9 | 5 | 是 |
+| 1250 | screen_and_digital_media | 艺术学 | 20 | 3 | 6 | 是 |
+| 1251 | screen_printing | 工学 | 20 | 3 | 7 | 是 |
+| 1252 | sculpture | 艺术学 | 20 | 3 | 6 | 是 |
+| 1253 | sea_food_breeding | 农学 | 20 | 3 | 7 | 是 |
+| 1254 | seamanship | 工学 | 20 | 3 | 7 | 是 |
+| 1255 | seamens_programmes | 工学 | 20 | 3 | 7 | 是 |
+| 1256 | second_languages | 文学 | 20 | 3 | 7 | 是 |
+| 1257 | secondary_teaching | 教育学 | 20 | 3 | 5 | 是 |
+| 1258 | secretarial_and_office_work | 管理学 | 20 | 3 | 5 | 是 |
+| 1259 | secretarial_programmes | 管理学 | 20 | 3 | 6 | 是 |
+| 1260 | security_and_loss_prevention_services | 管理学 | 20 | 4 | 5 | 是 |
+| 1261 | security_guarding | 管理学 | 20 | 4 | 5 | 是 |
+| 1262 | security_services_not_elsewhere | 管理学 | 20 | 4 | 5 | 是 |
+| 1263 | security_services_not_further_defined | 管理学 | 20 | 4 | 5 | 是 |
+| 1264 | seismology | 理学 | 20 | 3 | 6 | 是 |
+| 1265 | selfconfidence | 教育学 | 20 | 3 | 5 | 是 |
+| 1266 | selfesteem_skills | 教育学 | 20 | 3 | 5 | 是 |
+| 1267 | semantics_first_language | 文学 | 20 | 3 | 7 | 是 |
+| 1268 | semantics_foreign_languages | 文学 | 20 | 3 | 7 | 是 |
+| 1269 | semiconductor_physics | 工学 | 20 | 5 | 7 | 是 |
+| 1270 | services_not_elsewhere_classified | 管理学 | 20 | 3 | 5 | 是 |
+| 1271 | services_not_further_defined | 管理学 | 20 | 3 | 5 | 是 |
+| 1272 | sewing | 艺术学 | 20 | 3 | 5 | 是 |
+| 1273 | sheep_farming | 农学 | 20 | 3 | 7 | 是 |
+| 1274 | sheet_metal_working | 工学 | 20 | 3 | 7 | 是 |
+| 1275 | shellfish_breeding | 农学 | 20 | 3 | 7 | 是 |
+| 1276 | ship_operation | 工学 | 20 | 3 | 8 | 是 |
+| 1277 | shipbuilding | 工学 | 20 | 5 | 8 | 是 |
+| 1278 | shipping | 管理学 | 20 | 5 | 6 | 是 |
+| 1279 | shoemaking_and_repairing | 工学 | 20 | 5 | 8 | 是 |
+| 1280 | shorthand | 文学 | 20 | 4 | 7 | 是 |
+| 1281 | sign_language_interpreting | 文学 | 20 | 5 | 7 | 是 |
+| 1282 | sign_languages | 文学 | 20 | 5 | 7 | 是 |
+| 1283 | silversmithing | 艺术学 | 20 | 4 | 5 | 是 |
+| 1284 | simple_literacy | 教育学 | 20 | 5 | 5 | 是 |
+| 1285 | sketching | 艺术学 | 20 | 5 | 6 | 是 |
+| 1286 | skins_and_leather_production | 工学 | 20 | 4 | 7 | 是 |
+| 1287 | social_and_behavioural_sciences | 管理学 | 20 | 6 | 6 | 是 |
+| 1288 | social_and_behavioural_sciences_not | 管理学 | 20 | 6 | 6 | 是 |
+| 1289 | social_and_personality_psychology | 理学 | 20 | 3 | 6 | 是 |
+| 1290 | social_anthropology | 法学 | 20 | 3 | 5 | 是 |
+| 1291 | social_care | 法学 | 20 | 3 | 5 | 是 |
+| 1292 | social_competence | 教育学 | 20 | 3 | 5 | 是 |
+| 1293 | social_conflict_theory | 法学 | 20 | 3 | 5 | 是 |
+| 1294 | social_geography | 理学 | 20 | 3 | 6 | 是 |
+| 1295 | social_insurance | 经济学 | 20 | 3 | 5 | 是 |
+| 1296 | social_policy | 法学 | 20 | 3 | 5 | 是 |
+| 1297 | social_practice | 教育学 | 20 | 3 | 5 | 是 |
+| 1298 | social_science | 法学 | 20 | 4 | 5 | 是 |
+| 1299 | social_sciences | 法学 | 20 | 3 | 5 | 是 |
+| 1300 | social_sciences_journalism_and | 文学 | 20 | 3 | 7 | 是 |
+| 1301 | social_theory | 法学 | 20 | 3 | 5 | 是 |
+| 1302 | social_work | 法学 | 20 | 5 | 5 | 是 |
+| 1303 | social_work_and_counselling | 法学 | 20 | 3 | 5 | 是 |
+| 1304 | sociology | 法学 | 20 | 4 | 5 | 是 |
+| 1305 | sociology_and_cultural_studies | 法学 | 20 | 4 | 5 | 是 |
+| 1306 | soft_furnishings | 艺术学 | 20 | 3 | 5 | 是 |
+| 1307 | software_and_applications | 工学 | 20 | 4 | 7 | 是 |
+| 1308 | software_and_applications_development_and_analysis | 工学 | 20 | 4 | 7 | 是 |
+| 1309 | software_development | 工学 | 20 | 4 | 7 | 是 |
+| 1310 | software_engineering | 工学 | 20 | 5 | 7 | 是 |
+| 1311 | software_for_calculating | 工学 | 20 | 3 | 7 | 是 |
+| 1312 | software_for_data_processing_use_of | 工学 | 20 | 4 | 7 | 是 |
+| 1313 | software_for_desktop_publishing_use_of | 工学 | 20 | 3 | 7 | 是 |
+| 1314 | software_for_word_processing_use_of | 管理学 | 20 | 3 | 6 | 是 |
+| 1315 | software_localisation | 工学 | 20 | 3 | 7 | 是 |
+| 1316 | software_programming | 工学 | 20 | 4 | 7 | 是 |
+| 1317 | software_testing | 工学 | 20 | 4 | 7 | 是 |
+| 1318 | soil_and_water_conservation | 农学 | 20 | 3 | 7 | 是 |
+| 1319 | soil_and_water_technician_programmes | 农学 | 20 | 3 | 7 | 是 |
+| 1320 | soil_fertility | 农学 | 20 | 3 | 7 | 是 |
+| 1321 | soil_science | 农学 | 20 | 3 | 7 | 是 |
+| 1322 | soil_sciences | 农学 | 20 | 3 | 7 | 是 |
+| 1323 | solar_energy | 工学 | 20 | 3 | 7 | 是 |
+| 1324 | solar_power | 工学 | 20 | 3 | 7 | 是 |
+| 1325 | sound_and_vision | 艺术学 | 20 | 3 | 7 | 是 |
+| 1326 | sound_techniques | 工学 | 20 | 3 | 7 | 是 |
+| 1327 | space_science | 理学 | 20 | 3 | 7 | 是 |
+| 1328 | space_sciences | 理学 | 20 | 3 | 7 | 是 |
+| 1329 | special_education_teaching | 教育学 | 20 | 3 | 5 | 是 |
+| 1330 | specialised_nursing | 医学 | 20 | 3 | 7 | 是 |
+| 1331 | specialised_subject_teaching | 教育学 | 20 | 3 | 5 | 是 |
+| 1332 | specialist_studies_in_education | 教育学 | 20 | 3 | 5 | 是 |
+| 1333 | speech_and_rhetorical_studies_first | 文学 | 20 | 3 | 7 | 是 |
+| 1334 | speech_pathology_and_therapy | 医学 | 20 | 3 | 8 | 是 |
+| 1335 | spinning | 工学 | 20 | 3 | 7 | 是 |
+| 1336 | sport_leadership | 管理学 | 20 | 3 | 5 | 是 |
+| 1337 | sport_trainer_training | 教育学 | 20 | 3 | 5 | 是 |
+| 1338 | sports | 教育学 | 20 | 4 | 5 | 是 |
+| 1339 | sports_coaching | 教育学 | 20 | 4 | 5 | 是 |
+| 1340 | sports_grounds_maintenance | 农学 | 20 | 3 | 7 | 是 |
+| 1341 | sports_instructor_training | 教育学 | 20 | 4 | 5 | 是 |
+| 1342 | sports_medicine | 医学 | 20 | 4 | 7 | 是 |
+| 1343 | sports_science | 教育学 | 20 | 4 | 5 | 是 |
+| 1344 | sports_science_and_exercise | 医学 | 20 | 4 | 7 | 是 |
+| 1345 | stage_designing | 艺术学 | 20 | 3 | 6 | 是 |
+| 1346 | start_your_own_businesscourses | 管理学 | 20 | 4 | 6 | 是 |
+| 1347 | statistical_mechanics | 理学 | 20 | 3 | 6 | 是 |
+| 1348 | statistics | 理学 | 20 | 5 | 6 | 是 |
+| 1349 | steel_production | 工学 | 20 | 3 | 7 | 是 |
+| 1350 | stenography | 文学 | 20 | 4 | 7 | 是 |
+| 1351 | stewardesssteward_training | 管理学 | 20 | 3 | 5 | 是 |
+| 1352 | stochastic_processes | 理学 | 20 | 3 | 7 | 是 |
+| 1353 | stockbroking | 经济学 | 20 | 3 | 5 | 是 |
+| 1354 | stockkeeping | 管理学 | 20 | 3 | 6 | 是 |
+| 1355 | stomatology | 医学 | 20 | 5 | 7 | 是 |
+| 1356 | stomatology_professional | 医学 | 20 | 1 | 7 | 是 |
+| 1357 | stone_carving | 艺术学 | 20 | 4 | 6 | 是 |
+| 1358 | stone_cutting_precious | 工学 | 20 | 3 | 7 | 是 |
+| 1359 | stonemasonry | 工学 | 20 | 3 | 7 | 是 |
+| 1360 | strategic_studies | 军事学 | 20 | 4 | 7 | 是 |
+| 1361 | strategy_management_and_organisational_behaviour | 管理学 | 20 | 4 | 5 | 是 |
+| 1362 | street_cleaning | 管理学 | 20 | 3 | 5 | 是 |
+| 1363 | stress_management | 医学 | 20 | 5 | 7 | 是 |
+| 1364 | structural_architecture | 工学 | 20 | 3 | 8 | 是 |
+| 1365 | structural_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 1366 | sugar_cane_growing | 农学 | 20 | 3 | 7 | 是 |
+| 1367 | supply_change_management | 管理学 | 20 | 3 | 5 | 是 |
+| 1368 | surgery | 医学 | 20 | 5 | 7 | 是 |
+| 1369 | survey_design | 理学 | 20 | 3 | 7 | 是 |
+| 1370 | survey_sampling | 理学 | 20 | 3 | 6 | 是 |
+| 1371 | surveying | 工学 | 20 | 3 | 7 | 是 |
+| 1372 | sustainability_science | 理学 | 20 | 5 | 6 | 是 |
+| 1373 | switchboard_operating | 工学 | 20 | 3 | 8 | 是 |
+| 1374 | synchrotrons_and_accelerators | 理学 | 20 | 3 | 6 | 是 |
+| 1375 | synthetic_biology | 理学 | 20 | 6 | 7 | 是 |
+| 1376 | synthetic_fibre_manufacturing | 工学 | 20 | 3 | 7 | 是 |
+| 1377 | systems_biology | 理学 | 20 | 7 | 6 | 是 |
+| 1378 | tailoring | 艺术学 | 20 | 3 | 5 | 是 |
+| 1379 | tax_accounting | 管理学 | 20 | 7 | 6 | 是 |
+| 1380 | tax_management | 管理学 | 20 | 5 | 5 | 是 |
+| 1381 | te_ahurea_reo_me_te_htori_o_te_mori | 文学 | 20 | 4 | 7 | 是 |
+| 1382 | te_hauora_me_te_oranga_o_te_mori | 医学 | 20 | 4 | 7 | 是 |
+| 1383 | teacher_training | 教育学 | 20 | 5 | 5 | 是 |
+| 1384 | teacher_training_courses_for_university | 教育学 | 20 | 5 | 5 | 是 |
+| 1385 | teacher_training_in_arts_and_crafts | 教育学 | 20 | 5 | 6 | 是 |
+| 1386 | teacher_training_in_commercial_subjects | 教育学 | 20 | 3 | 5 | 是 |
+| 1387 | teacher_training_in_music | 艺术学 | 20 | 3 | 6 | 是 |
+| 1388 | teacher_training_in_nursing | 医学 | 20 | 3 | 7 | 是 |
+| 1389 | teacher_training_in_physical_training | 教育学 | 20 | 3 | 5 | 是 |
+| 1390 | teacher_training_in_second_languages | 教育学 | 20 | 3 | 6 | 是 |
+| 1391 | teacher_training_in_specific_theoretical | 教育学 | 20 | 3 | 5 | 是 |
+| 1392 | teacher_training_in_technical_subjects | 工学 | 20 | 3 | 7 | 是 |
+| 1393 | teacher_training_in_vocational_subjects | 管理学 | 20 | 3 | 5 | 是 |
+| 1394 | teacher_training_lower_secondary | 教育学 | 20 | 3 | 5 | 是 |
+| 1395 | teacher_training_preschool | 教育学 | 20 | 3 | 5 | 是 |
+| 1396 | teacher_training_primary | 教育学 | 20 | 3 | 5 | 是 |
+| 1397 | teacher_training_with_subject | 教育学 | 20 | 3 | 5 | 是 |
+| 1398 | teacher_training_with_subject_specialisation | 教育学 | 20 | 4 | 5 | 是 |
+| 1399 | teacher_training_without_subject | 教育学 | 20 | 4 | 5 | 是 |
+| 1400 | teacher_training_without_subject_specialisation | 教育学 | 20 | 4 | 5 | 是 |
+| 1401 | teamwork | 管理学 | 20 | 4 | 5 | 是 |
+| 1402 | technical_drawing | 工学 | 20 | 3 | 8 | 是 |
+| 1403 | technical_teaching | 教育学 | 20 | 4 | 5 | 是 |
+| 1404 | technology | 工学 | 20 | 4 | 7 | 是 |
+| 1405 | telecommunication_technology | 工学 | 20 | 4 | 7 | 是 |
+| 1406 | telecommunications | 工学 | 20 | 4 | 7 | 是 |
+| 1407 | telephone_selling | 管理学 | 20 | 4 | 5 | 是 |
+| 1408 | television_and_radio_repairing | 工学 | 20 | 3 | 7 | 是 |
+| 1409 | textile_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 1410 | textile_techniques | 工学 | 20 | 3 | 7 | 是 |
+| 1411 | textile_trades | 管理学 | 20 | 3 | 5 | 是 |
+| 1412 | textiles | 工学 | 20 | 3 | 7 | 是 |
+| 1413 | textiles_clothes_footwear_and | 工学 | 20 | 3 | 7 | 是 |
+| 1414 | textiles_clothing_and_footwear | 艺术学 | 20 | 3 | 6 | 是 |
+| 1415 | theatre | 艺术学 | 20 | 2 | 7 | 是 |
+| 1416 | theology | 哲学 | 20 | 5 | 6 | 是 |
+| 1417 | theoretical_and_computational_chemistry | 理学 | 20 | 3 | 6 | 是 |
+| 1418 | theoretical_computer_science | 理学 | 20 | 3 | 6 | 是 |
+| 1419 | theory_of_computation | 理学 | 20 | 3 | 6 | 是 |
+| 1420 | therapy_and_rehabilitation | 医学 | 20 | 4 | 7 | 是 |
+| 1421 | thermodynamics | 理学 | 20 | 3 | 7 | 是 |
+| 1422 | three_dimensional_design | 艺术学 | 20 | 3 | 7 | 是 |
+| 1423 | timber_technology | 工学 | 20 | 3 | 7 | 是 |
+| 1424 | time_management | 管理学 | 20 | 3 | 6 | 是 |
+| 1425 | tissue_culture_technology | 农学 | 20 | 3 | 7 | 是 |
+| 1426 | tobacco_processing | 工学 | 20 | 3 | 7 | 是 |
+| 1427 | tool_and_die_making | 工学 | 20 | 3 | 8 | 是 |
+| 1428 | topography | 理学 | 20 | 3 | 7 | 是 |
+| 1429 | tourism | 管理学 | 20 | 5 | 5 | 是 |
+| 1430 | town_and_country_planning | 工学 | 20 | 3 | 7 | 是 |
+| 1431 | toxicology | 医学 | 20 | 5 | 7 | 是 |
+| 1432 | trade_union_courses | 法学 | 20 | 7 | 5 | 是 |
+| 1433 | traditional_and_complementary | 医学 | 20 | 5 | 7 | 是 |
+| 1434 | traditional_and_complementary_medicine_and_therapy | 医学 | 20 | 5 | 7 | 是 |
+| 1435 | traditional_chinese_medicine | 医学 | 20 | 5 | 7 | 是 |
+| 1436 | traditional_complementary_and_integrative_medicine | 医学 | 20 | 5 | 7 | 是 |
+| 1437 | traditional_medicine | 医学 | 20 | 5 | 7 | 是 |
+| 1438 | train_repair_and_maintenance | 工学 | 20 | 5 | 7 | 是 |
+| 1439 | training_for_preschool_teachers | 教育学 | 20 | 5 | 5 | 是 |
+| 1440 | training_management | 管理学 | 20 | 5 | 5 | 是 |
+| 1441 | training_of_doctors | 医学 | 20 | 5 | 7 | 是 |
+| 1442 | training_of_driving_instructors | 教育学 | 20 | 5 | 5 | 是 |
+| 1443 | training_of_physicians | 医学 | 20 | 5 | 7 | 是 |
+| 1444 | training_of_trainers_with_subject | 教育学 | 20 | 5 | 5 | 是 |
+| 1445 | training_of_trainers_without_subject | 教育学 | 20 | 5 | 5 | 是 |
+| 1446 | translation_programmes | 教育学 | 20 | 3 | 7 | 是 |
+| 1447 | translation_studies | 文学 | 20 | 4 | 7 | 是 |
+| 1448 | transport_services | 管理学 | 20 | 3 | 5 | 是 |
+| 1449 | transport_studies | 管理学 | 20 | 3 | 5 | 是 |
+| 1450 | transportation_engineering | 工学 | 20 | 4 | 7 | 是 |
+| 1451 | transportation_logistics_and_supply_chains | 管理学 | 20 | 3 | 5 | 是 |
+| 1452 | travel_agency_services | 管理学 | 20 | 3 | 5 | 是 |
+| 1453 | travel_and_tourism | 管理学 | 20 | 3 | 5 | 是 |
+| 1454 | travel_services | 管理学 | 20 | 3 | 6 | 是 |
+| 1455 | travel_tourism_and_leisure | 管理学 | 20 | 3 | 5 | 是 |
+| 1456 | tree_felling | 农学 | 20 | 3 | 7 | 是 |
+| 1457 | truck_driving | 工学 | 20 | 3 | 8 | 是 |
+| 1458 | turf_cultivation | 农学 | 20 | 4 | 7 | 是 |
+| 1459 | turf_management | 农学 | 20 | 4 | 7 | 是 |
+| 1460 | typesetting | 工学 | 20 | 3 | 7 | 是 |
+| 1461 | typing | 管理学 | 20 | 3 | 5 | 是 |
+| 1462 | umpires_and_other_sports_officials | 教育学 | 20 | 4 | 5 | 是 |
+| 1463 | upholstery | 工学 | 20 | 3 | 7 | 是 |
+| 1464 | urban_and_regional_planning | 工学 | 20 | 5 | 7 | 是 |
+| 1465 | urban_planning | 工学 | 20 | 4 | 8 | 是 |
+| 1466 | urban_studies | 工学 | 20 | 5 | 7 | 是 |
+| 1467 | urology | 医学 | 20 | 4 | 7 | 是 |
+| 1468 | varnisherssprayers | 工学 | 20 | 3 | 8 | 是 |
+| 1469 | vegetable_plantation | 农学 | 20 | 4 | 7 | 是 |
+| 1470 | vehicle_and_motor_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 1471 | vehicle_building | 工学 | 20 | 3 | 7 | 是 |
+| 1472 | vehicle_diagnostics | 工学 | 20 | 3 | 7 | 是 |
+| 1473 | vehicle_electrical_systems | 工学 | 20 | 3 | 8 | 是 |
+| 1474 | vehicle_mechanics | 工学 | 20 | 3 | 7 | 是 |
+| 1475 | vehicle_painting | 工学 | 20 | 3 | 8 | 是 |
+| 1476 | vehicle_repairing | 工学 | 20 | 3 | 7 | 是 |
+| 1477 | vehicle_trimming | 工学 | 20 | 3 | 8 | 是 |
+| 1478 | vehicle_varnisherssprayers | 工学 | 20 | 3 | 7 | 是 |
+| 1479 | ventilation | 工学 | 20 | 3 | 7 | 是 |
+| 1480 | veterinary | 农学 | 20 | 4 | 7 | 是 |
+| 1481 | veterinary_assisting | 农学 | 20 | 4 | 7 | 是 |
+| 1482 | veterinary_medicine | 医学 | 20 | 3 | 7 | 是 |
+| 1483 | veterinary_nursing | 医学 | 20 | 3 | 7 | 是 |
+| 1484 | veterinary_science | 农学 | 20 | 3 | 7 | 是 |
+| 1485 | veterinary_sciences | 农学 | 20 | 3 | 7 | 是 |
+| 1486 | vineyard_construction | 工学 | 20 | 3 | 8 | 是 |
+| 1487 | virology | 医学 | 20 | 3 | 7 | 是 |
+| 1488 | visual_arts | 艺术学 | 20 | 3 | 6 | 是 |
+| 1489 | viticulture | 农学 | 20 | 3 | 7 | 是 |
+| 1490 | vocational_counselling | 教育学 | 20 | 3 | 6 | 是 |
+| 1491 | vocational_guidance | 教育学 | 20 | 3 | 6 | 是 |
+| 1492 | vocational_rehabilitation | 医学 | 20 | 3 | 7 | 是 |
+| 1493 | volcanology | 理学 | 20 | 3 | 6 | 是 |
+| 1494 | vulcanology | 理学 | 20 | 3 | 6 | 是 |
+| 1495 | waiting_and_bar_service | 管理学 | 20 | 3 | 6 | 是 |
+| 1496 | war_theory | 军事学 | 20 | 3 | 7 | 是 |
+| 1497 | warehousing | 管理学 | 20 | 3 | 6 | 是 |
+| 1498 | waste_management | 工学 | 20 | 3 | 7 | 是 |
+| 1499 | watchmaking | 工学 | 20 | 3 | 7 | 是 |
+| 1500 | water_pollution_control | 工学 | 20 | 3 | 7 | 是 |
+| 1501 | water_supply | 工学 | 20 | 3 | 7 | 是 |
+| 1502 | water_supply_and_sewerage | 工学 | 20 | 3 | 7 | 是 |
+| 1503 | water_technology_and_engineering | 工学 | 20 | 3 | 7 | 是 |
+| 1504 | weaving | 工学 | 20 | 3 | 7 | 是 |
+| 1505 | web_design | 工学 | 20 | 3 | 8 | 是 |
+| 1506 | welding | 工学 | 20 | 3 | 7 | 是 |
+| 1507 | welfare_not_elsewhere_classified | 法学 | 20 | 6 | 5 | 是 |
+| 1508 | welfare_not_further_defined | 法学 | 20 | 3 | 5 | 是 |
+| 1509 | wholesale_and_retail_sales | 管理学 | 20 | 3 | 5 | 是 |
+| 1510 | wholesaling | 管理学 | 20 | 3 | 5 | 是 |
+| 1511 | wig_making | 艺术学 | 20 | 3 | 6 | 是 |
+| 1512 | wildlife_management | 农学 | 20 | 3 | 7 | 是 |
+| 1513 | wildlife_ranger_studies | 农学 | 20 | 3 | 7 | 是 |
+| 1514 | wind_turbines | 工学 | 20 | 3 | 7 | 是 |
+| 1515 | window_cleaning | 管理学 | 20 | 3 | 5 | 是 |
+| 1516 | window_dressing | 管理学 | 20 | 3 | 6 | 是 |
+| 1517 | wine_growing | 农学 | 20 | 3 | 7 | 是 |
+| 1518 | wine_production | 农学 | 20 | 4 | 7 | 是 |
+| 1519 | wine_science | 农学 | 20 | 4 | 7 | 是 |
+| 1520 | wine_storingmaturing | 农学 | 20 | 4 | 7 | 是 |
+| 1521 | womens_studies | 法学 | 20 | 4 | 5 | 是 |
+| 1522 | wood_machining_and_turning | 工学 | 20 | 3 | 7 | 是 |
+| 1523 | wood_technology | 工学 | 20 | 3 | 7 | 是 |
+| 1524 | woodcarving | 艺术学 | 20 | 4 | 6 | 是 |
+| 1525 | woodwork_trades | 工学 | 20 | 3 | 7 | 是 |
+| 1526 | woodworking_and_carpentry | 工学 | 20 | 3 | 7 | 是 |
+| 1527 | wool_science | 工学 | 20 | 3 | 7 | 是 |
+| 1528 | work_development | 管理学 | 20 | 4 | 5 | 是 |
+| 1529 | work_environment | 管理学 | 20 | 4 | 5 | 是 |
+| 1530 | work_place_skills | 管理学 | 20 | 3 | 5 | 是 |
+| 1531 | work_skills | 管理学 | 20 | 3 | 5 | 是 |
+| 1532 | working_life | 管理学 | 20 | 3 | 5 | 是 |
+| 1533 | world_literature | 文学 | 20 | 4 | 7 | 是 |
+| 1534 | xray_technology | 医学 | 20 | 3 | 7 | 是 |
+| 1535 | youth_recreation_programmes | 教育学 | 20 | 3 | 6 | 是 |
+| 1536 | youth_services | 教育学 | 20 | 3 | 5 | 是 |
+| 1537 | youth_worker_programmes | 教育学 | 20 | 3 | 6 | 是 |
+| 1538 | zoology | 理学 | 20 | 4 | 6 | 是 |
 
 ## 字段说明
 
@@ -320,7 +1596,7 @@ from sciforge.disciplines import (
     list_by_database,            # 按优先数据库过滤
 )
 
-len(DISCIPLINES)                    # 261
+len(DISCIPLINES)                    # 1538
 d = get_discipline("machine_learning")
 d.contribution_forms               # ("论文", "软件与代码", "数据集")
 list_by_contribution_form("专利")   # 可产出专利的学科

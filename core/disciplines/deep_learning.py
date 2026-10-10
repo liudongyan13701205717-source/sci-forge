@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="deep_learning",
-    aliases=("deep_learning", "深度学习", "神经网络", "深度神经网络", "DNN"),
+    aliases=(
+        "deep_learning", "深度学习", "神经网络", "深度神经网络", "DNN",
+        "Deep Neural Network", "Neural Network", "Neural Networks",
+        "Deep Learning", "Artificial Neural Network", "ANN",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -66,8 +70,8 @@ DISCIPLINE = Discipline(
         "参数量用 M（百万）；FLOPs 用 G",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码", "数据集"),
-    tools=("PyTorch", "TensorFlow", "JAX", "Python"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("PyTorch", "TensorFlow", "JAX", "Keras", "scikit-learn", "Hugging Face Transformers", "OpenCV", "NumPy", "SciPy", "Matplotlib", "CUDA Toolkit", "cuDNN", "DeepSpeed", "Megatron-LM", "Weights & Biases", "MLflow", "Hugging Face Hub", "ONNX", "TensorFlow Extended (TFX)", "Ray"),
     category="工学",
     databases=("arXiv", "OpenAlex", "Crossref", "HuggingFace", "Zenodo"),
 )

@@ -56,7 +56,6 @@ DISCIPLINE = Discipline(
         "Fibers and Polymers",
         "Journal of Engineered Fibers and Fabrics",
         "Cellulose",
-        "Textile Research Journal (TRJ)",
     ),
     units_and_formulas_notes=(
         "细度用 dtex/denier；强力用 cN/dtex 或 N",
@@ -66,8 +65,8 @@ DISCIPLINE = Discipline(
         "透气率用 mm/s；克重用 g/m²",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("SolidWorks", "Instron 万能材料试验机", "纺织品检测仪器（透气率/色牢度）"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("SolidWorks", "Instron 万能材料试验机", "纺织品检测仪器（透气率/色牢度）", "ATLAS 织物强力机", "Martindale 磨耗仪", "Datacolor 分光测色仪", "织物起球仪（ISO 12947）", "Hounsfield 拉力机", "氧指数仪", "Mimaki 数码印花机", "Optitex", "Lectra Modaris", "Gerber AccuMark", "CLO 3D", "MATLAB", "扫描电子显微镜", "偏光显微镜", "R", "LabVIEW", "静电测试仪"),
     category="工学",
     databases=("OpenAlex", "Crossref", "CNKI", "万方"),
 )

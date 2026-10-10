@@ -1,4 +1,4 @@
-"""开放科学学科论文支持：开放科学/开放研究体裁、APA 引用样式与开放科学记法注记。"""
+"""开放科学学科论文支持：开放获取、数据共享与科研透明度。"""
 
 from __future__ import annotations
 
@@ -6,65 +6,20 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="open_science",
-    aliases=("open_science", "开放科学", "开放研究", "开放获取", "open research"),
+    aliases=("open_science", "开放科学", "Open Research", "Open Access", "开放获取", "开放数据", "Open Data", "Research Transparency"),
     paper_types={
-        "research": (
-            "abstract",
-            "introduction（背景、动机与开放科学问题）",
-            "methods（研究设计与数据）",
-            "results（开放实践数据）",
-            "discussion（开放科学意义）",
-            "references",
-        ),
-        "policy_analysis": (
-            "abstract",
-            "introduction",
-            "policy background（政策背景）",
-            "analysis（政策选项评估）",
-            "recommendations（政策建议）",
-            "references",
-        ),
-        "review": (
-            "abstract",
-            "introduction",
-            "main developments（按主题综述）",
-            "outlook",
-            "references",
-        ),
+        "research": ("abstract", "introduction（引言）", "methodology（方法）", "results（结果）", "discussion（讨论）", "references"),
+        "case_study": ("abstract", "introduction", "case description（案例描述）", "analysis（分析）", "results（结果）", "discussion", "references"),
+        "review": ("abstract", "introduction", "theoretical overview（理论综述）", "evidence synthesis（证据综合）", "future directions", "references"),
     },
-    citation_style="APA 样式（作者-年份；R Soc Open Sci 遵循 Royal Society 规范）",
-    reporting_standards={
-        "policy_analysis": "政策分析遵循政策评估报告规范",
-        "survey": "问卷调查遵循 AAPOR 报告规范",
-        "case_study": "案例研究遵循案例研究报告规范",
-        "systematic_review": "系统综述遵循 PRISMA 声明",
-        "preregistration": "预注册研究遵循预注册报告规范",
-    },
-    conventions=(
-        "开放实践（预注册、数据共享等）须明确",
-        "数据与代码可用性声明须完整",
-        "许可与版权信息须注明",
-        "开放获取状态须报告",
-        "利益冲突与资助声明须完整",
-    ),
-    key_venues=(
-        "Royal Society Open Science",
-        "PLOS ONE",
-        "Research Integrity and Peer Review",
-        "Quantitative Science Studies",
-        "Science and Public Policy",
-        "F1000Research",
-    ),
-    units_and_formulas_notes=(
-        "比例用 %；时间用年份",
-        "公式用 amsmath；开放度指标计算式须明确",
-        "显示公式仅在被引用时编号；行内公式避免复杂分式",
-        "数值结果给出均值 ± SD 与样本量",
-        "显著性给出 p 值与效应量",
-    ),
+    citation_style="APA 7",
+    reporting_standards={"k1": "开放数据共享规范", "k2": "FAIR原则（可发现、可访问、可互操作、可重用）", "k3": "开放获取出版政策"},
+    conventions=("数据DOI标注", "代码仓库链接", "CC BY许可声明", "预注册信息引用"),
+    key_venues=("Journal of Open Research", "PLoS One", "Scientific Data", "开放科学评论", "F1000Research"),
+    units_and_formulas_notes=("开放获取率以%", "引用计量用H指数", "数据引用次数", "出版延迟天数"),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("数据管理规划工具（DMPTool）", "FAIR 合规检查器", "版本控制（Git）"),
-    category="交叉学科",
-    databases=("OpenAlex", "Crossref", "Zenodo", "DOAJ", "arXiv"),
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("R (OpenCRAN)", "Python", "Zenodo", "Figshare", "GitHub", "OSF (Open Science Framework)", "DataCite", "Semantic Scholar", "CiteULike", "Mendeley", "Zotero", "EndNote", "JOS (Journal of Open Science)", "OpenRefine", "Citable Data (DSpace)", "PeerJ", "BioRxiv", "Dataverse", "OpenAIRE", "PRISMA（系统综述流程工具）"),
+    category="管理学",
+    databases=("OpenAlex", "Crossref", "CNKI", "Scholar (Google Scholar)", "OpenAlex API", "Crossref API"),
 )

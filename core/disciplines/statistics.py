@@ -39,8 +39,8 @@ DISCIPLINE = Discipline(
         "Bayes 推断给先验和后验；先验敏感性分析必做",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "软件与代码"),
-    tools=("R", "Python (NumPy/SciPy)", "LaTeX", "Stata", "MATLAB"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("R", "Python (NumPy/SciPy)", "LaTeX", "Stata", "MATLAB", "SAS", "SPSS", "Minitab", "JASP", "jamovi", "Stan 概率编程", "PyMC 贝叶斯", "JAGS", "RStudio", "Jupyter Notebook", "Julia", "Mathematica", "GraphPad Prism", "scikit-learn", "TensorFlow"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Zenodo", "CNKI"),
 )

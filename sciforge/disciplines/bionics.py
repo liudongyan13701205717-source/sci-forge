@@ -6,7 +6,19 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="bionics",
-    aliases=("bionics", "仿生学", "仿生设计", "生物启发工程", "biomimetics"),
+    aliases=(
+        "bionics",
+        "biomimetics",
+        "biomimetics",
+        "bioinspired_engineering",
+        "biologically_inspired_design",
+        "仿生学",
+        "仿生设计",
+        "仿生工程",
+        "生物启发工程",
+        "仿生机理",
+        "仿生制造",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -63,8 +75,8 @@ DISCIPLINE = Discipline(
         "性能对比给出提升百分比与显著性",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "专利"),
-    tools=("生物力学分析软件", "三维扫描与 3D 打印设备", "运动捕捉系统（Vicon）"),
-    category="交叉学科",
-    databases=("OpenAlex", "Crossref", "arXiv", "Zenodo"),
+    contribution_forms=("论文", "学术专著", "艺术作品", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("Bruker Skyscan 1272（Micro-CT）", "Zeiss Xradia 610（Micro-CT）", "Zeiss Axio Observer 7（荧光显微镜）", "Olympus VS170（体视显微镜）", "Leica STEMI 2000 M", "JEOL JSM-6510LV（SEM）", "Thermo iRAM One（Raman 光谱）", "Correlated Solutions VIC-3D（DIC）", "IDT 6022 同步相机", "Stratasys Fortus 450（FDM 3D 打印）", "UP Vatool Pro（DLP 光固化）", "Formlabs Form 3+", "Asiga MAX S20", "Carbon DMM Pro（多材料喷射）", "Artec Leo（3D 扫描）", "Shining 3D FreeScan UE Pro", "Fusion 360", "nTopology（点阵与生成式设计）", "Grasshopper（Rhinoceros 参数化）", "Altair Inspire（拓扑优化）", "Altair OptiStruct", "SimScale", "MATLAB", "Python（NumPy / SciPy）", "Bruker Dimension Icon AFM"),
+    category="工学",
+    databases=("OpenAlex", "Crossref", "arXiv", "Zenodo", "DOAJ"),
 )

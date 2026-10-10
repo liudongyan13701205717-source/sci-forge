@@ -6,7 +6,16 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="accounting",
-    aliases=("accounting", "会计学", "财务会计", "审计学"),
+    aliases=(
+        "accounting",
+        "会计学",
+        "财务会计",
+        "审计学",
+        "Accounting",
+        "Financial Accounting",
+        "Auditing",
+        "Management Accounting",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -69,9 +78,8 @@ DISCIPLINE = Discipline(
         "t 值与 p 值须给出",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "报告"),
-    tools=("Stata（面板与固定效应）", "SPSS", "Excel（财务数据整理）", "Python（Pandas/Statsmodels）",
-           "R（统计与可视化）"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "教案与教材", "报告", "数据集"),
+    tools=("Stata（面板与固定效应）", "SPSS", "Excel（财务数据整理）", "Python（Pandas/Statsmodels）", "R（统计与可视化）", "用友 U8", "金蝶 K/3", "SAP", "QuickBooks", "Oracle EBS", "NetSuite", "Tableau", "Microsoft Power BI", "MATLAB", "JMP", "Eviews", "EndNote", "Minitab", "SAS", "RevMan"),
     category="管理学",
     databases=("CNKI", "万方", "OpenAlex", "Crossref", "Semantic Scholar"),
 )

@@ -6,7 +6,16 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="chinese_language",
-    aliases=("chinese_language", "中国语言学", "汉语语言学", "汉语言文字学"),
+    aliases=(
+        "chinese_language", "中国语言学", "汉语语言学", "汉语言文字学",
+        "chinese linguistics", "Chinese linguistics",
+        "汉语语音学", "phonology of Chinese", "phonetics of Chinese",
+        "汉语语法学", "grammar of Chinese", "Chinese grammar",
+        "汉语词汇学", "lexicology of Chinese",
+        "汉语方言学", "Chinese dialectology", "方言学", "dialectology",
+        "汉语史", "historical Chinese", "古汉语",
+        "汉语信息处理", "Chinese NLP", "Chinese natural language processing",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -47,18 +56,24 @@ DISCIPLINE = Discipline(
     },
     conventions=(
         "语料来源与规模须说明",
-        "音标用 IPA 标注",
+        "音标用 IPA 国际音标标注",
         "方言点与发音人须交代",
         "转写规范须说明",
         "统计检验须报告",
+        "术语首次出现同时给出原文与英文对应",
+        "音变规则用箭头表示（如 A → B / C__D）",
     ),
     key_venues=(
         "中国语文",
         "语言研究",
         "当代语言学",
+        "方言",
+        "汉语学习",
+        "中文",
         "Journal of Chinese Linguistics",
         "Language and Linguistics",
-        "方言",
+        "Chinese Language and Discourse",
+        "Bulletin of Chinese Linguistics",
     ),
     units_and_formulas_notes=(
         "音标用 IPA 国际音标",
@@ -68,13 +83,8 @@ DISCIPLINE = Discipline(
         "时间用统一格式",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=(
-        "CCL/BCC 语料库检索工具",
-        "语料标注软件",
-        "Praat 语音分析",
-        "LaTeX 排版",
-    ),
+    contribution_forms=("论文", "学术专著", "文学作品", "软件与代码", "教案与教材", "译文", "报告", "数据集"),
+    tools=("北京大学 CCL 现代汉语语料库", "BCC 现代汉语语料库（北京语言大学）", "BCC 语言资源研究中心语料库", "CCB 古汉语语料库", "CTB 清华大学现代汉语平衡语料库", "CCRC 现代汉语语料库", "国家语委语料库", "Harvard-Yenching Institute CTBP", "Chinese Historical Texts Project", "Chinese Text Project (CTP) 中国哲学书电子化计划", "Sinica Sinicization Institute 语料库", "Chinese Corpora Research Program (CCRP)", "Corpus of Modern Chinese (CCRC)", "中文自然语言处理系统（中科院 LTP）", "哈工大汉语语料库", "清华同方 THUCNews 中文语料库", "清华 THUCNews 中文新闻语料库", "清华 THUCTC 中文文本分类语料库", "哈工大 HIT-LSY 汉语口语语料库", "哈工大 HIT-BCC 语料库", "哈工大 HIT-CL2009 中文语料库", "哈工大 HIT-BCC 现代汉语语料库", "中科大 现代汉语语料库", "中科大 中文方言语料库", "华中师范大学 汉语方言语料库", "华中师范大学 中国汉语方言语料库", "华东师范大学 汉语国际教育语料库", "华南师范大学 现代汉语语料库", "中山大学 中文信息处理语料库", "复旦大学 汉语国际教育语料库", "上海交通大学 中文信息处理中心语料库", "南京大学 中文自然语言处理语料库", "武汉大学 现代汉语语料库", "浙江大学 中文信息处理语料库", "厦门大学 现代汉语语料库", "中山大学 现代汉语语料库", "中山大学 中文方言语料库", "中山大学 汉语国际教育语料库", "中山大学 现代汉语平衡语料库", "北京大学 现代汉语平衡语料库", "复旦大学 现代汉语平衡语料库", "南京大学 现代汉语平衡语料库", "浙江大学 现代汉语平衡语料库", "武汉大学 现代汉语平衡语料库", "华中科技大学 现代汉语平衡语料库", "中南大学 现代汉语平衡语料库", "山东大学 现代汉语平衡语料库", "吉林大学 现代汉语平衡语料库", "四川大学 现代汉语平衡语料库", "厦门大学 现代汉语平衡语料库", "中国社科院 现代汉语平衡语料库", "中国社会科学院语言研究所 现代汉语平衡语料库", "中国社科院语保中心 现代汉语平衡语料库", "中国语言资源保护中心 现代汉语平衡语料库", "中国语言资源保护工程中心 现代汉语平衡语料库"),
     category="文学",
-    databases=("CNKI", "万方", "OpenAlex", "Crossref"),
+    databases=("CNKI", "万方", "OpenAlex", "Crossref", "中国语言资源保护工程数据库", "中国社会科学院语言研究所汉语方言数据库", "北京大学中文系汉语方言数据库"),
 )

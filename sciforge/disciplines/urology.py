@@ -64,8 +64,8 @@ DISCIPLINE = Discipline(
         "生存分析给出 HR 与 95% CI",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("膀胱镜", "尿动力学仪", "SPSS", "前列腺穿刺活检设备"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("膀胱镜 (cystoscope)", "尿动力学仪 (urodynamics)", "SPSS", "前列腺穿刺活检设备 (biopsy gun)", "经尿道电切镜 (TURP resectoscope)", "输尿管镜 (ureteroscope)", "钬激光 (holmium laser)", "达芬奇手术机器人 (da Vinci)", "超声诊断仪 (ultrasound)", "CT 泌尿造影", "多参数 MRI (mpMRI)", "PSA 检测仪", "流式细胞仪", "病理切片扫描仪 (whole slide imaging)", "膀胱测压仪", "GraphPad Prism", "STATA", "R (survival)", "SAS", "Python (lifelines)"),
     category="医学",
     databases=("PubMed", "OpenAlex", "Europe PMC", "CNKI"),
 )

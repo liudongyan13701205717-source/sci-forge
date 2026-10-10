@@ -69,8 +69,8 @@ DISCIPLINE = Discipline(
         "数值结果给出频率范围与误差估计",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "数据集"),
-    tools=("MATLAB", "Python (NumPy/SciPy)", "COMSOL", "Simulink", "Origin"),
+    contribution_forms=("论文", "学术专著", "软件与代码", "专利", "教案与教材", "报告", "数据集"),
+    tools=("MATLAB", "Python (NumPy/SciPy)", "COMSOL", "Simulink", "Origin", "Klippel", "LMS Test.Lab", "B&K PULSE", "Artemis SUITE", "Sound Analysis Pro", "ODEON", "Actran", "SYSNOISE", "ABAQUS (Acoustics)", "Room EQ Wizard", "Praat", "Adobe Audition", "CadnaA", "CadnaD", "NIST Sound Tools"),
     category="理学",
     databases=("arXiv", "OpenAlex", "Crossref", "Semantic Scholar", "Zenodo"),
 )

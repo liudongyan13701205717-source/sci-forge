@@ -6,7 +6,11 @@ from sciforge.disciplines.base import Discipline
 
 DISCIPLINE = Discipline(
     name="data_ethics",
-    aliases=("data_ethics", "数据伦理", "数据治理", "数据隐私", "data ethics"),
+    aliases=(
+        "data_ethics", "数据伦理", "数据治理", "数据隐私", "data ethics",
+        "data privacy", "数据保护", "信息伦理", "information ethics",
+        "AI ethics", "AI 伦理", "human rights and data",
+    ),
     paper_types={
         "research": (
             "abstract",
@@ -54,6 +58,7 @@ DISCIPLINE = Discipline(
         "Journal of Data Ethics",
         "AI and Ethics",
         "Philosophy & Technology",
+        "Responsible Engineering",
     ),
     units_and_formulas_notes=(
         "比例用 %；指标无量纲",
@@ -63,8 +68,8 @@ DISCIPLINE = Discipline(
         "定性判断须给出证据来源",
     ),
     paper_capable=True,
-    contribution_forms=("论文", "学术专著"),
-    tools=("隐私影响评估（PIA）工具", "差分隐私框架（Apple/Google）", "数据治理成熟度模型"),
-    category="交叉学科",
+    contribution_forms=("论文", "学术专著", "教案与教材", "报告", "数据集"),
+    tools=("OpenDP (Open Differential Privacy)", "Microsoft Differential Privacy Library", "Google RAPPOR", "Google DP Library", "Apple Private Relay", "IBM Watson OpenScale", "Fairlearn", "IBM AI Fairness 360 (AIF360)", "Presidio (Microsoft)", "IBM Watson Discovery", "Amazon Macie", "Google Cloud DLP", "Symantec DLP", "Nightingale AI", "ARX (ARX.de)", "OpenAnonymizer", "ARX Anonymizer", "Microsoft Purview", "Palantir Foundry", "Databricks Unity Catalog", "HashiCorp Vault", "Snowflake Cortex Guard", "IBM Watson Governance", "AWS Lake Formation", "Caylent Data Fabric", "BigID", "Varonis Systems", "Nightfall AI", "Credo AI", "Evidently AI", "IBM Trustworthy ML"),
+    category="管理学",
     databases=("OpenAlex", "Crossref", "arXiv", "CNKI"),
 )
